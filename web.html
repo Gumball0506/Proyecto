@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RS FIEI</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Enlace al archivo CSS del banner -->
-    <link rel="stylesheet" href="Estilos.banner.css">
+    <link rel="stylesheet" href="/Estilos.banner.css">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        #bannerImages {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 300px; /* Ajusta la altura según tus necesidades */
+        }
+        .bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajusta el tamaño de la imagen */
+            transition: transform 1s ease;
+        }
+    </style>
 </head>
 <body style="background-color: rgb(230, 193, 108);">
     <header>
@@ -21,15 +35,27 @@
         </nav>
     </header>
     
+    <!-- Formulario para subir imágenes -->
+    <form id="uploadForm">
+        <label for="imageUpload">Subir imagen:</label>
+        <input type="file" id="imageUpload" accept="image/*">
+        <button type="button" id="uploadButton">Subir</button>
+    </form>
+
     <!-- Inserción del banner aquí -->
-    <div id="ad">
-        <a href="publicacion.html" target="_blank" id="clicktag"> <!-- Cambia "url_de_tu_pagina_destino" por la URL de la página a la que deseas redirigir -->
-            <div id="boton">Mas información</div>
-            <img src="/imagenes/prueba.png" alt="Imagen de fondo" class="bg bg1">
-        </a>
+    <div id="banner">
+        <div id="ad">
+            <div id="clicktag">
+                <div id="boton">Más información</div>
+                <div id="bannerImages"></div>
+            </div>
+        </div>
     </div>
+
     <footer>
         <p>&copy; Si tienes alguna consulta o duda forms.com</p>
     </footer>
+
+    <script src="/funcion_banner.js"></script>
 </body>
 </html>

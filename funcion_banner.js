@@ -1,52 +1,36 @@
-let currentIndex = 0;
-let images = [];
-
-document.getElementById('uploadButton').addEventListener('click', () => {
-    const fileInput = document.getElementById('imageUpload');
-    const file = fileInput.files[0];
-
-    if (file) {
-        saveImageLocally(file);
-    }
+const slider = document.querySelector("#slider");
+let sliderSection = document.querySelectorAll(".slider__section");
+let sliderSectionlast = sliderSection[sliderSection.length - 1];
+const btnleft = document.querySelector("#btn-left");
+const btnright = document.querySelector("#btn-right");
+slider.insertAdjacentElement("afterbegin", sliderSectionlast);
+function moverDerecha() {
+  let sliderSectionfirst = document.querySelectorAll(".slider__section")[0];
+  slider.style.marginleft = "-200%";
+  slider.style.transition = "all 0.5s";
+  setTimeout(function () {
+    slider.style.transition = "none";
+    slider.insertAdjacentElement("beforeend", sliderSectionfirst);
+    slider.style.marginleft = "-100%";
+  }, 100);
+}
+function moverIzquierda() {
+  let sliderSection = document.querySelectorAll(".slider__section");
+  let sliderSectionlast = sliderSection[sliderSection.length - 1];
+  slider.style.marginleft = "0";
+  slider.style.transition = "all 0.5s";
+  setTimeout(function () {
+    slider.style.transition = "none";
+    slider.insertAdjacentElement("afterbegin", sliderSectionlast);
+    slider.style.marginleft = "-100%";
+  }, 100);
+}
+btnright.addEventListener("click", function () {
+  moverDerecha();
 });
-
-function saveImageLocally(file) {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    // Simulación de guardar la imagen localmente
-    const imgPath = URL.createObjectURL(file);
-    const imgElement = document.createElement('img');
-    imgElement.src = imgPath;
-    imgElement.alt = 'Imagen de banner';
-    imgElement.className = 'banner-image';
-    document.getElementById('bannerImages').appendChild(imgElement);
-
-    // Agregar imagen a la lista para el carrusel
-    images.push(imgElement);
-
-    // Actualizar el carrusel si es la primera imagen
-    if (images.length === 1) {
-        startCarousel();
-    }
-
-    // Simulación de respuesta exitosa
-    alert('Imagen subida exitosamente');
-}
-
-function startCarousel() {
-    setInterval(() => {
-        showNextImage();
-    }, 20000); // Cambiar de imagen cada 20 segundos
-}
-
-function showNextImage() {
-    const totalImages = images.length;
-    if (totalImages > 1) {
-        images[currentIndex].style.transform = 'translateX(-100%)'; // Mueve la imagen actual hacia la izquierda
-
-        currentIndex = (currentIndex + 1) % totalImages;
-
-        images[currentIndex].style.transform = 'none'; // Asegura que la siguiente imagen esté en su posición original
-    }
-}
+btnleft.addEventListener("click", function () {
+  moverIzquierda();
+});
+setInterval(function () {
+  moverDerecha();
+}, 5000);

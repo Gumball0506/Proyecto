@@ -70,3 +70,48 @@ button:hover {
     background-color: #45a049;
     transform: scale(1.05);
 }
+#boton:hover {
+    background-color: black;
+    color: rgb(255, 255, 255);
+}
+#boton {
+    padding: 10px 8px;  /* Añade espacio alrededor del texto dentro del botón */
+    border-radius: 2em; /* Redondea las esquinas del botón */
+    display: inline-block; /* Hace que el botón sea un elemento en línea */
+    font-size: 14px;  /* Tamaño del texto del botón */
+    font-weight: 300; /* Grosor del texto */
+    position: absolute; /* Posiciona el botón de forma absoluta con respecto a su contenedor */
+    left: 50%; /* Coloca el borde izquierdo del botón en el 50% del contenedor padre */
+    top: 50%; /* Coloca el borde superior del botón en el 50% del contenedor padre */
+    transform: translate(-50%, -50%); /* Centra el botón utilizando transformaciones */
+    border: 2px solid black; /* Establece un borde de 2 píxeles de ancho y negro */
+    z-index: 2; /* Coloca el botón sobre otros elementos (superposición) */
+    transition: all 0.5s ease; /* Aplica una transición suave a todos los cambios de estilo durante 0.5 segundos */
+}
+#boton:hover {
+    background-color: black; /* Cambia el color de fondo del botón a negro al pasar el ratón */
+    color: white; /* Cambia el color del texto a blanco al pasar el ratón */
+}
+#banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 380px;
+}
+
+#ad {
+    position: relative;
+    width: 1310px;
+    height: 380px;
+    overflow: hidden;
+}
+
+#clicktag {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: black;
+    text-decoration: none;
+}

@@ -1,110 +1,73 @@
-#banner {
+* {
+    box-sizing: border-box;
+}
+body{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 380px;
+    min-height: 100vh;
+    background: #ffbb00;
 }
-
-#ad {
-    position: relative;
-    width: 1310px;
-    height: 380px;
-    overflow: hidden;
-}
-
-#clicktag {
-    display: block;
-    position: relative;
+body, html {
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
-    color: black;
-    text-decoration: none;
 }
 
-#boton {
-    padding: 10px 8px;
-    border-radius: 2em;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 300;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px solid black;
-    z-index: 2;
-    transition: all 0.5s ease;
+.container-slider {
+    width: 100%;
+    max-width: 1310px;
+    height: 500px;
+    max-height: 665px;
+    margin: auto; /* Centra el contenedor horizontalmente */
+    overflow: hidden;   
+    position: relative;
 }
-
-#boton:hover {
-    background-color: black;
-    color: white;
-}
-
-.bg {
+.container-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que la imagen cubra todo el contenedor */
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
-#banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 380px;
-    overflow: hidden; /* Asegura que el contenido no sobrepase el tamaño del banner */
-    position: relative; /* Asegura que los elementos absolutos se posicionen correctamente */
+.slider{
+display:flex;
+width: 400%;
+height: 400px;
+margin-left:-100%;
 }
-
-#ad {
-    position: relative;
-    width: 100%; /* Ancho 100% para que se ajuste al contenedor */
-    height: 100%; /* Altura 100% para que se ajuste al contenedor */
-    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+.slider__section{
+width: 100%;
 }
-
-#clicktag {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    color: black;
-    text-decoration: none;
+.slider__img{
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
 }
-
-#boton {
-    padding: 10px 8px;
-    border-radius: 2em;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 300;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px solid black;
-    z-index: 2;
-    transition: all 0.5s ease;
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+.slider__btn{
+position: absolute;
+width: 40px;
+height: 40px;
+background: rgba(255, 255, 255, 0.5);
+top:50%;
+transform: translateY(-50%);
+font-size: 30px;
+padding: auto;
+font-weight: bold;
+font-family: monospace;
+text-align: center;
+border-radius: 80%;
+cursor: pointer;
+transition: background-color 0.3s ease, opacity 0.3s ease;
 }
-
-#boton:hover {
-    background-color: black;
-    color: white;
+.slider__btn:hover{
+background: #fff;
+opacity: 1;
 }
-
-.banner-container {
-    display: flex;
-    position: relative;
-    height: 100%;
+.slider__btn--derecha{
+    right: 10px;
 }
-
-.banner-image {
-    flex: 0 0 100%;
-    object-fit: cover; /* Ajusta el tamaño de la imagen */
-    transition: transform 1s ease;
+.slider__btn--izquierda{
+left: 10px;
 }

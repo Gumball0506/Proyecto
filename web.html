@@ -4,13 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RS FIEI</title>
-    <meta charset="URF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maxium-scale=1, minimum-scale=1">
-    <link rel="stylesheet" href="Estilos.banner.css">
+    <link rel="stylesheet" href="/Estilos.banner.css">
     <link rel="stylesheet" href="/styles.css">
     <style>
         body {
             background-color: rgb(230, 193, 108);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav ul li a {
+            display: block;
+            padding: 1em 2em;
+            text-decoration: none;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        nav ul li:hover {
+            background-color: #555;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            padding: 0.5em 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        .dropdown-menu a {
+            display: block;
+            color: white;
+            padding: 0.5em 1em;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .dropdown-menu a:hover {
+            background-color: #555;
+        }
+        nav ul li:hover .dropdown-menu {
+            display: block;
+        }
+        .container-slider {
+            margin-top: 5em; /* Ajuste para espacio debajo del encabezado */
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
         }
     </style>
 </head>
@@ -20,34 +84,33 @@
         <nav>
             <ul>
                 <li><a href="#">Inicio</a></li>
-                <li><a href="#">Nosotros</a></li>
-                <li><a href="#">Proyectos</a></li>
+                <li><a href="#">Nosotros</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Misión</a></li>
+                        <li><a href="#">Visión</a></li>
+                        <li><a href="#">Equipo</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Proyectos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Proyecto 1</a></li>
+                        <li><a href="#">Proyecto 2</a></li>
+                        <li><a href="#">Proyecto 3</a></li>
+                    </ul>
+                </li>
                 <li><a href="#">Contacto</a></li>
             </ul>
         </nav>
     </header>
     <div class="container-slider">
         <div class="slider" id="slider">
-            <div class="slider__section"><img src="/imagenes/prueba.png" alt="" class="slider__img">
-            </div>
-            <div class="slider__section"><img src="/imagenes/Diseño sin título (5).png" alt="" class="slider__img">
-            </div>
-            <div class="slider__section"><img src="img3.png" alt="" class="slider__img">
-            </div>
-            <div class="slider__section"><img src="img4.png" alt="" class="slider__img">
-            </div>   
         </div>
         <div class="slider__btn slider__btn--derecha" id="btn-right">&#62;
         </div>
         <div class="slider__btn slider__btn--izquierda"id="btn-left">&#60;
         </div>
-        <div id="ad">
-            <div id="clicktag">
-                <div class="button" id="boton">Más información</div>
-            </div>
-        </div>
     </div>
-    <script src="/funcion_banner.js"></script>
+    <script src="/imagenes_automaticas2.js"></script>
     <footer>
         <p>&copy; Si tienes alguna consulta o duda forms.com</p>
     </footer>

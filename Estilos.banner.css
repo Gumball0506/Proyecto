@@ -1,27 +1,32 @@
 * {
     box-sizing: border-box;
 }
-body{
+
+body {
     display: flex;
     min-height: 100vh;
     background: #ffbb00;
-}
-body, html {
     margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    min-height: 100vh; /* Mínimo alto de la ventana visible */
 }
 
 .container-slider {
     width: 100%;
-    max-width: 1310px;
-    height: 500px;
+    max-width: 1319px;
+    height: 445px; /* Ajustado para centrar el slider 166px más abajo */
     max-height: 665px;
     margin: auto; /* Centra el contenedor horizontalmente */
-    overflow: hidden;   
+    overflow: hidden;
     position: relative;
+    top: 60px; /* Mueve el slider hacia abajo 166px */
 }
+
 .container-slider img {
     width: 100%;
     height: 100%;
@@ -30,44 +35,53 @@ body, html {
     top: 0;
     left: 0;
 }
-.slider{
-display:flex;
-width: 400%;
-height: 400px;
-margin-left:-100%;
+
+.slider {
+    display: flex;
+    width: 400%;
+    height: 400px;
+    margin-left: -100%;
+    justify-content: center; /* Centra los elementos internos horizontalmente */
+    align-items: center; /* Centra los elementos internos verticalmente */
 }
-.slider__section{
-width: 100%;
+
+.slider__section {
+    width: 100%;
 }
-.slider__img{
-display: block;
-width: 100%;
-height: 100%;
-object-fit: cover;
+
+.slider__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-.slider__btn{
-position: absolute;
-width: 40px;
-height: 40px;
-background: rgba(255, 255, 255, 0.5);
-top:50%;
-transform: translateY(-50%);
-font-size: 30px;
-padding: auto;
-font-weight: bold;
-font-family: monospace;
-text-align: center;
-border-radius: 80%;
-cursor: pointer;
-transition: background-color 0.3s ease, opacity 0.3s ease;
+
+.slider__btn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.5);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    padding: auto;
+    font-weight: bold;
+    font-family: monospace;
+    text-align: center;
+    border-radius: 80%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
 }
-.slider__btn:hover{
-background: #fff;
-opacity: 1;
+
+.slider__btn:hover {
+    background: #fff;
+    opacity: 1;
 }
-.slider__btn--derecha{
+
+.slider__btn--derecha {
     right: 10px;
 }
-.slider__btn--izquierda{
-left: 10px;
+
+.slider__btn--izquierda {
+    left: 10px;
 }

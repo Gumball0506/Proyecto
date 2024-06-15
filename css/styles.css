@@ -1,0 +1,213 @@
+/* Estilo global del cuerpo del documento */
+body {
+    font-family: 'Arial', sans-serif; /* Fuente de texto */
+    margin: 0; /* Sin margen */
+    padding: 0; /* Sin relleno */
+    display: flex; /* Utiliza flexbox */
+    flex-direction: column; /* Direcciona los elementos en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    background-color: #f4f4f9; /* Color de fondo gris claro */
+    color: #333; /* Color de texto oscuro */
+}
+
+/* Estilo común para encabezado y pie de página */
+header, footer {
+    background-color: #333; /* Color de fondo oscuro */
+    color: white; /* Texto blanco */
+    width: 100%; /* Ancho completo */
+    text-align: center; /* Texto centrado */
+    padding: 1em 0; /* Relleno vertical */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para efecto de elevación */
+}
+
+/* Estilo del menú de navegación */
+nav {
+    margin-top: 1em; /* Margen superior */
+}
+
+nav ul {
+    list-style-type: none; /* Sin viñetas */
+    padding: 0; /* Sin relleno */
+    display: flex; /* Utiliza flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    margin: 0; /* Sin margen */
+}
+
+nav ul li {
+    margin: 0 1em; /* Espaciado horizontal entre elementos */
+}
+
+nav ul li a {
+    color: white; /* Texto blanco */
+    text-decoration: none; /* Sin subrayado */
+    padding: 0.5em 1em; /* Relleno interno */
+    display: block; /* Bloque completo */
+    background-color: transparent; /* Fondo transparente */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para fondo y color */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+nav ul li a:hover {
+    background-color: #4CAF50; /* Fondo verde al pasar el ratón */
+    color: white; /* Texto blanco */
+}
+
+/* Estilo del contenido principal */
+main {
+    padding: 2em; /* Relleno */
+    text-align: center; /* Texto centrado */
+    flex: 1; /* Toma el espacio restante */
+}
+
+/* Estilo de los botones */
+button {
+    background-color: #4CAF50; /* Fondo verde */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 1em 2em; /* Relleno */
+    cursor: pointer; /* Cursor de mano */
+    font-size: 1em; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.3s; /* Transición suave para fondo y transformación */
+}
+
+button:hover {
+    background-color: #45a049; /* Fondo verde más oscuro al pasar el ratón */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+}
+
+/* Estilo adicional específico para un botón con id="boton" */
+#boton:hover {
+    background-color: black; /* Fondo negro al pasar el ratón */
+    color: rgb(255, 255, 255); /* Texto blanco */
+}
+
+#boton {
+    padding: 10px 8px; /* Relleno interno */
+    border-radius: 2em; /* Bordes redondeados */
+    display: inline-block; /* Elemento en línea */
+    font-size: 14px; /* Tamaño de fuente */
+    font-weight: 300; /* Peso de fuente ligero */
+    position: absolute; /* Posicionamiento absoluto */
+    left: 50%; /* Centrado horizontal */
+    top: 50%; /* Centrado vertical */
+    transform: translate(-50%, -50%); /* Ajuste para centrar */
+    border: 2px solid black; /* Borde negro */
+    z-index: 2; /* Capas superiores */
+    transition: all 0.5s ease; /* Transición suave */
+}
+
+/* Estilo del banner */
+#banner {
+    display: flex; /* Utiliza flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 100%; /* Ancho completo */
+    height: 380px; /* Altura fija */
+}
+
+/* Estilo del anuncio */
+#ad {
+    position: relative; /* Posicionamiento relativo */
+    width: 1310px; /* Ancho fijo */
+    height: 380px; /* Altura fija */
+    overflow: hidden; /* Oculta contenido desbordado */
+}
+
+/* Estilo del enlace dentro del anuncio */
+#clicktag {
+    display: block; /* Bloque completo */
+    position: relative; /* Posicionamiento relativo */
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    color: black; /* Texto negro */
+    text-decoration: none; /* Sin subrayado */
+}
+
+/* Estilo adicional para el cuerpo del documento (duplicado y personalizado) */
+body {
+    background-color: rgb(230, 193, 108); /* Color de fondo */
+    font-family: Arial, sans-serif; /* Fuente de texto */
+    margin: 0; /* Sin margen */
+    padding: 0; /* Sin relleno */
+}
+
+/* Estilo del encabezado */
+header {
+    background-color: #333; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+    padding: 1em 0; /* Relleno vertical */
+    text-align: center; /* Texto centrado */
+    position: fixed; /* Posicionamiento fijo */
+    width: 100%; /* Ancho completo */
+    top: 0; /* Pegado a la parte superior */
+    z-index: 1000; /* Capas superiores */
+}
+
+/* Estilo de la lista de navegación */
+nav ul {
+    list-style-type: none; /* Sin viñetas */
+    margin: 0; /* Sin margen */
+    padding: 0; /* Sin relleno */
+    display: flex; /* Utiliza flexbox */
+    justify-content: center; /* Centra horizontalmente */
+}
+
+nav ul li {
+    position: relative; /* Posicionamiento relativo */
+}
+
+nav ul li a {
+    display: block; /* Bloque completo */
+    padding: 1em 2em; /* Relleno */
+    text-decoration: none; /* Sin subrayado */
+    color: white; /* Texto blanco */
+    transition: background-color 0.3s; /* Transición suave para el fondo */
+}
+
+nav ul li:hover {
+    background-color: #555; /* Fondo gris oscuro al pasar el ratón */
+}
+
+/* Estilo del menú desplegable */
+.dropdown-menu {
+    display: none; /* Oculto por defecto */
+    position: absolute; /* Posicionamiento absoluto */
+    background-color: #333; /* Fondo oscuro */
+    padding: 0.5em 0; /* Relleno vertical */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para efecto de elevación */
+    z-index: 100; /* Capas superiores */
+}
+
+.dropdown-menu a {
+    display: block; /* Bloque completo */
+    color: white; /* Texto blanco */
+    padding: 0.5em 1em; /* Relleno */
+    text-decoration: none; /* Sin subrayado */
+    transition: background-color 0.3s; /* Transición suave para el fondo */
+}
+
+.dropdown-menu a:hover {
+    background-color: #555; /* Fondo gris oscuro al pasar el ratón */
+}
+
+/* Mostrar el menú desplegable al pasar el ratón sobre el elemento de la lista */
+nav ul li:hover .dropdown-menu {
+    display: block; /* Mostrar bloque */
+}
+
+/* Ajuste de margen superior para el contenedor del slider */
+.container-slider {
+    margin-top: 5em; /* Espacio debajo del encabezado */
+}
+
+/* Estilo del pie de página */
+footer {
+    background-color: #333; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+    text-align: center; /* Texto centrado */
+    padding: 1em 0; /* Relleno vertical */
+    width: 100%; /* Ancho completo */
+    position: fixed; /* Posicionamiento fijo */
+    bottom: 0; /* Pegado a la parte inferior */
+}

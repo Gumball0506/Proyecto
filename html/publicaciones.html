@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- Codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Escala inicial para dispositivos móviles -->
+    <title>Sistema de Publicaciones</title> <!-- Título de la página -->
+    <link rel="stylesheet" href="/css/publicaciones.css"> <!-- Enlace al archivo CSS -->
+</head>
+<body>
+    <div class="container"> <!-- Contenedor principal -->
+        <h1>Sistema de Publicaciones</h1> <!-- Encabezado principal -->
+        <form id="postForm" class="form"> <!-- Formulario para crear una nueva publicación -->
+            <input type="text" id="title" placeholder="Título" required> <!-- Campo de entrada para el título -->
+            <textarea id="description" placeholder="Descripción" required></textarea> <!-- Área de texto para la descripción -->
+            <input type="file" id="image" accept="image/*" required> <!-- Entrada de archivo para la imagen -->
+            <button type="submit">Publicar</button> <!-- Botón para enviar el formulario -->
+        </form>
+        <div id="posts" class="posts-container"></div> <!-- Contenedor donde se mostrarán las publicaciones -->
+    </div>
+
+    <script src="/js/publicacion.js"></script> <!-- Enlace al archivo JavaScript -->
+</body>
+</html>

@@ -1,0 +1,75 @@
+/* Establece el modelo de caja para todos los elementos */
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Asegura que el padding y border no aumenten el tamaño total del elemento */
+}
+
+/* Establece el diseño del cuerpo */
+body {
+    background-color: rgb(231, 229, 229); /* Fondo del cuerpo */
+    display: flex; /* Usa el modelo de caja flexible para el cuerpo */
+    flex-flow: row wrap; /* Permite que los elementos fluyan en filas, y se envuelvan si no caben */
+    justify-content: left; /* Justifica los elementos a la izquierda */
+    font-family: sans-serif; /* Fuente del texto */
+}
+
+.container {
+    width: 100%; /* Ancho completo del contenedor */
+    max-width: 800px; /* Ancho máximo del contenedor */
+    margin: auto; /* Centra el contenedor horizontalmente */
+    background: white; /* Fondo blanco */
+    padding: 20px; /* Relleno interior del contenedor */
+    border-radius: 6px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, .6); /* Sombra exterior */
+}
+
+h1 {
+    text-align: center; /* Texto centrado */
+    margin-bottom: 20px; /* Margen inferior */
+}
+
+.form {
+    display: flex; /* Usa el modelo de caja flexible para el formulario */
+    flex-direction: column; /* Dirección de los elementos en columna */
+}
+
+.form input[type="text"],
+.form textarea,
+.form input[type="file"],
+.form button {
+    margin-bottom: 10px; /* Margen inferior para los elementos del formulario */
+    padding: 10px; /* Relleno interior de los elementos del formulario */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid #ddd; /* Borde con color gris claro */
+}
+
+.form button {
+    background-color: #385898; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor apuntador */
+}
+
+.form button:hover {
+    background-color: #2d4373; /* Color de fondo del botón al pasar el mouse */
+}
+
+.posts-container {
+    margin-top: 20px; /* Margen superior */
+}
+
+.posts-container .post {
+    background-color: white; /* Fondo blanco para cada publicación */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-bottom: 20px; /* Margen inferior */
+    padding: 10px; /* Relleno interior */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.posts-container .post img {
+    max-width: 100%; /* Imágenes con ancho máximo del 100% del contenedor */
+    height: auto; /* Altura automática para mantener la proporción */
+    margin-bottom: 10px; /* Margen inferior de las imágenes */
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+}

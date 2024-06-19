@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Publicaciones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Publicaciones</h1>
+        <form id="postForm">
+            <input type="text" id="title" placeholder="Título" required>
+            <input type="file" id="image" accept="image/*" required>
+            <textarea id="description" placeholder="Descripción" required></textarea>
+            <button type="submit">Publicar</button>
+        </form>
+        <div id="posts" class="posts-container"></div> 
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

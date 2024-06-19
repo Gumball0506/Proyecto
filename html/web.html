@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS FIEI</title>
+    <link rel="stylesheet" href="/css/Estilos.banner.css">
+    <link rel="stylesheet" href="/css/pagina_principal.css">
+    <style>
+        /* Estilos adicionales para la sección de imagen y descripción */
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .image-container {
+            flex: 1;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .description {
+            flex: 2;
+            margin-left: 20px;
+        }
+
+        .description h1 {
+            margin-top: 0;
+        }
+
+        .description p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Unidad de Responsabilidad Social FIEI</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Nosotros</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Misión</a></li>
+                        <li><a href="#">Visión</a></li>
+                        <li><a href="#">Equipo</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Proyectos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Proyectos realizados</a></li>
+                        <li><a href="/html/publicaciones.html">Proyecto actuales</a></li>
+                        <li><a href="#">Proyecto futuros</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container-slider">
+        <div class="slider" id="slider">
+        </div>
+        <div class="slider__btn slider__btn--derecha" id="btn-right">&#62;
+        </div>
+        <div class="slider__btn slider__btn--izquierda" id="btn-left">&#60;
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="image-container">
+            <img src="/imagenes/profesor.png"   alt ="Mg. José Martin Gil Lopez">
+        </div>
+        <div class="description">
+            <h1>Mg. José Martin Gil Lopez</h1>
+            <p>Esta es la descripción que aparecerá a la derecha de la imagen. Puedes añadir más contenido aquí según lo necesites.</p>
+        </div>
+    </div>
+
+    <script src="/js/imagenes_automaticas2.js"></script>
+
+    <footer>
+        <p>&copy; Si tienes alguna consulta o duda forms.com</p>
+    </footer>
+</body>
+</html>

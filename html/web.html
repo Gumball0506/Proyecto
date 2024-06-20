@@ -3,9 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pie de Página</title>
-    <!-- Enlace a Font Awesome para usar íconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>RS FIEI</title>
+    <link rel="stylesheet" href="/css/Estilos.banner.css">
+    <link rel="stylesheet" href="/css/pagina_principal.css">
+</head>
+<body>
+    <header>
+        <h1>Unidad de Responsabilidad Social FIEI</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Nosotros</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Misión</a></li>
+                        <li><a href="#">Visión</a></li>
+                        <li><a href="#">Equipo</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Proyectos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Proyectos realizados</a></li>
+                        <li><a href="/html/publicaciones.html">Proyecto actuales</a></li>
+                        <li><a href="#">Proyecto futuros</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container-slider">
+        <div class="slider" id="slider">
+        </div>
+        <div class="slider__btn slider__btn--derecha" id="btn-right">&#62;
+        </div>
+        <div class="slider__btn slider__btn--izquierda" id="btn-left">&#60;
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="image-container">
+            <img src="/imagenes/profesor.png"   alt ="Mg. José Martin Gil Lopez">
+        </div>
+        <div class="description">
+            <h1>Mg. José Martin Gil Lopez</h1>
+            <p>Esta es la descripción que aparecerá a la derecha de la imagen. Puedes añadir más contenido aquí según lo necesites.</p>
+        </div>
+    </div>
+
+    <script src="/js/imagenes_automaticas2.js"></script>
+
+    <footer>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Estilos generales para el cuerpo */
         body {

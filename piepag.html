@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pie de Página</title>
+    <!-- Enlace a Font Awesome para usar íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos generales para el cuerpo */
+        body {
+            font-family: Arial, sans-serif; /* Fuente Arial */
+            margin: 0; /* Sin márgenes */
+            padding: 0; /* Sin relleno */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Altura mínima de la ventana */
+        }
+        /* Estilos para el contenido principal */
+        .content {
+            flex: 1;
+        }
+        /* Estilos para el pie de página */
+        footer {
+            background-color: #333; /* Fondo color gris oscuro */
+            color: white; /* Texto en blanco */
+            padding: 20px 0; /* Relleno vertical */
+            text-align: center; /* Texto centrado */
+        }
+        /* Contenedor del pie de página */
+        .footer-container {
+            max-width: 1200px; /* Ancho máximo*/
+            margin: 0 auto; /* Centrando el contenedor */
+            display: flex; /* Usando Flexbox para el diseño */
+            justify-content: space-around; /* Espaciado uniforme entre los elementos */
+            flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas si es necesario */
+        }
+        /* Estilos para cada sección del pie de página */
+        .footer-section {
+            margin: 10px; /* Margen de alrededor de cada sección */
+        }
+        /* Estilos para los encabezados de las secciones del pie de página */
+        .footer-section h3 {
+            margin-bottom: 10px; /* Espacio debajo de los encabezados */
+        }
+        /* Estilos para los párrafos, enlaces y botones en el pie de página */
+        .footer-section p, .footer-section a, .footer-section button {
+            margin: 5px 0; /* Márgenes verticales */
+            color: white; /* Color del texto en blanco */
+            text-decoration: none; /* Sin subrayado en enlaces */
+            background: none; /* Sin fondo en botones */
+            border: none; /* Sin borde en botones */
+            cursor: pointer; /* Cursor en forma de mano para botones */
+            font-size: 16px; /* Tamaño de fuente de 16px */
+            display: flex; /* Flexbox para alinear íconos y texto */
+            align-items: center; /* Alinea los elementos del botón verticalmente */
+        }
+        /* Estilos para los íconos */
+        .footer-section i {
+            margin-right: 8px; /* Espacio entre el ícono y el texto */
+            background: white; /* Fondo blanco inicial */
+            color: #333; /* Color inicial del ícono */
+            border-radius: 50%; /* Forma circular */
+            padding: 10px; /* Espaciado dentro del ícono */
+            transition: all 0.3s ease; /* Transición suave para todos los cambios */
+        }
+        /* Animaciones para los íconos */
+        .footer-section a:hover i, .footer-section button:hover i {
+            background: currentColor; /* Fondo del color actual del texto */
+            color: white; /* Color del ícono en blanco */
+            transform: scale(1.1); /* Escala el ícono al pasar el cursor */
+        }
+        /* Inicialmente, los íconos serán blancos y negros */
+        .footer-section .fa-whatsapp,
+        .footer-section .fa-facebook,
+        .footer-section .fa-info-circle {
+            color: white; /* Color blanco inicial */
+            background-color: #333; /* Fondo negro inicial */
+        }
+        /* Cuando se toque el ícono, cambiará a su color característico */
+        .footer-section a:hover .fa-whatsapp,
+        .footer-section button:hover .fa-whatsapp {
+            color: #25D366; /* Color verde de WhatsApp */
+            background-color: rgba(202, 190, 190, 0.547); /* Fondo gris al pasar el cursor */
+        }
+        .footer-section a:hover .fa-facebook,
+        .footer-section button:hover .fa-facebook {
+            color: #1877F2; /* Color azul de Facebook */
+            background-color: rgba(202, 190, 190, 0.547); /* Fondo gris al pasar el cursor */
+        }
+        .footer-section a:hover .fa-info-circle,
+        .footer-section button:hover .fa-info-circle {
+            color: #17A2B8; /* Color azul claro para el botón "Nosotros" */
+            background-color: rgba(202, 190, 190, 0.547); /* Fondo gris al pasar el cursor */
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenido principal de la página -->
+    <div class="content">
+        <!-- Aquí va el contenido principal de la página -->
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="footer-container">
+            <!-- Sección "Nosotros" -->
+            <div class="footer-section">
+                <h3>Nosotros</h3>
+                <button onclick="window.location.href='#'">
+                    <a href="#">
+                        <i class="fas fa-info-circle"></i> <!-- Ícono de información -->
+                    </a>
+                    Nosotros
+                </button> <!-- Botón "Nosotros" que en el futuro redirigirá a una sección específica -->
+            </div>
+            <!-- Sección "Contáctanos" -->
+            <div class="footer-section">
+                <h3>Unete a nosotros</h3>
+                <button onclick="window.location.href='https://whatsapp.com/channel/0029VahXfXu1dAwCyrDa962O'">
+                    <a href="https://whatsapp.com/channel/0029VahXfXu1dAwCyrDa962O">
+                        <i class="fab fa-whatsapp"></i> <!-- Ícono de WhatsApp -->
+                    </a>
+                    WhatsApp
+                </button> <!-- Información de contacto con ícono de WhatsApp -->
+            </div>
+            <!-- Sección "Síguenos en nuestra página de Facebook" -->
+            <div class="footer-section">
+                <h3>Síguenos en Facebook</h3>
+                <p>
+                    <a href="https://www.facebook.com/FIEIOficial?locale=es_LA" target="_blank">
+                        <i class="fab fa-facebook"></i> <!-- Ícono de Facebook -->
+                        Facebook
+                    </a>
+                </p> <!-- Enlace a la página de Facebook con ícono de Facebook -->
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

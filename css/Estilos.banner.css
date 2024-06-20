@@ -1,0 +1,99 @@
+/* Establece el modelo de caja para todos los elementos */
+* {
+    box-sizing: border-box;
+}
+
+/* Establece el diseño del cuerpo */
+body {
+    display: flex; /* Flexbox para el diseño */
+    min-height: 100vh; /* Altura mínima del 100% de la ventana */
+    background: #ffbb00; /* Color de fondo amarillo */
+    margin: 0; /* Quita el margen predeterminado */
+}
+
+/* Contenedor principal centrado */
+.container {
+    display: flex; /* Flexbox para el diseño */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    min-height: 100vh; /* Altura mínima del 100% de la ventana */
+}
+
+/* Contenedor del slider */
+.container-slider {
+    width: 100%; /* Ancho completo */
+    max-width: 1319px; /* Ancho máximo */
+    height: 445px; /* Altura fija */
+    max-height: 665px; /* Altura máxima */
+    margin: auto; /* Centrado horizontal */
+    overflow: hidden; /* Oculta el contenido desbordado */
+    position: relative; /* Posicionamiento relativo para elementos absolutos */
+    top: 60px; /* Mueve el slider hacia abajo */
+}
+
+/* Estilo de las imágenes dentro del contenedor del slider */
+.container-slider img {
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    object-fit: cover; /* Cubre el contenedor sin deformarse */
+    position: absolute; /* Posicionamiento absoluto */
+    top: 0; /* Alineación superior */
+    left: 0; /* Alineación izquierda */
+}
+
+/* Estilo del slider */
+.slider {
+    display: flex; /* Flexbox para el diseño */
+    width: 400%; /* Ancho del 400% para varias imágenes */
+    height: 400px; /* Altura fija */
+    margin-left: -100%; /* Desplazamiento inicial hacia la izquierda */
+    justify-content: center; /* Centrado horizontal de elementos internos */
+    align-items: center; /* Centrado vertical de elementos internos */
+}
+
+/* Estilo de cada sección del slider */
+.slider__section {
+    width: 100%; /* Ancho completo */
+}
+
+/* Estilo de las imágenes dentro del slider */
+.slider__img {
+    display: block; /* Elemento de bloque */
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    object-fit: cover; /* Cubre el contenedor sin deformarse */
+}
+
+/* Estilo de los botones del slider */
+.slider__btn {
+    position: absolute; /* Posicionamiento absoluto */
+    width: 40px; /* Ancho fijo */
+    height: 40px; /* Altura fija */
+    background: rgba(255, 255, 255, 0.5); /* Fondo semitransparente */
+    top: 50%; /* Centrado vertical */
+    transform: translateY(-50%); /* Ajuste de centrado vertical */
+    font-size: 30px; /* Tamaño de fuente grande */
+    padding: auto; /* Alineación automática del padding */
+    font-weight: bold; /* Fuente en negrita */
+    font-family: monospace; /* Tipo de fuente monospace */
+    text-align: center; /* Texto centrado */
+    border-radius: 80%; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease, opacity 0.3s ease; /* Transición suave para cambios de fondo y opacidad */
+}
+
+/* Efecto hover para los botones del slider */
+.slider__btn:hover {
+    background: #fff; /* Fondo blanco */
+    opacity: 1; /* Opacidad total */
+}
+
+/* Botón derecho del slider */
+.slider__btn--derecha {
+    right: 10px; /* Posicionamiento a la derecha */
+}
+
+/* Botón izquierdo del slider */
+.slider__btn--izquierda {
+    left: 10px; /* Posicionamiento a la izquierda */
+}

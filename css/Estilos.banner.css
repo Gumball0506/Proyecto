@@ -90,10 +90,10 @@ body {
 
 /* Botón derecho del slider */
 .slider__btn--derecha {
-    right: 10px; /* Posicionamiento a la derecha */
+    right: 5px; /* Posicionamiento a la derecha */
 }
 
 /* Botón izquierdo del slider */
 .slider__btn--izquierda {
-    left: 10px; /* Posicionamiento a la izquierda */
+    left: 5px; /* Posicionamiento a la izquierda */
 }

@@ -244,3 +244,15 @@ footer {
     color: #666; /* Color de texto */
     line-height: 1.5; /* Altura de línea */
 }
+.image-container {
+    border: 3px solid #0d1963; /* Borde sólido de 2px de ancho y color gris */
+    padding: 5px; /* Añade un espacio interno alrededor de la imagen */
+    border-radius: 8px; /* Bordes redondeados para suavizar las esquinas */
+    overflow: hidden; /* Oculta cualquier desbordamiento de la imagen */
+}
+
+.image-container img {
+    display: block; /* Asegura que la imagen sea un bloque */
+    width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+}

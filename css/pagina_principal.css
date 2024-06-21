@@ -204,3 +204,43 @@ footer {
     bottom: 0;
 }
 
+/* Estilos para la sección de imagen y descripción */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+}
+
+.image-container {
+    flex: 1;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Borde redondeado para la imagen */
+}
+
+.description {
+    flex: 2;
+    margin-left: 20px;
+    background-color: #8fc8e8; /* Fondo gris claro */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.description h1 {
+    margin-top: 0;
+    font-size: 24px; /* Tamaño de fuente más grande */
+    color: #333; /* Color de texto */
+}
+
+.description p {
+    margin-top: 10px;
+    font-size: 16px; /* Tamaño de fuente */
+    color: #666; /* Color de texto */
+    line-height: 1.5; /* Altura de línea */
+}

@@ -8,28 +8,32 @@
 </head>
 <body>
     <div class="container">
-        <h1>Detalles de la Publicación</h1>
+        <h1 id="postTitle">Título de la Publicación</h1>
         <div class="post-details">
-            <div class="post-image">
-                <img id="postImage" src="" alt="Imagen de la publicación">
-            </div>
-            <div class="post-info">
-                <h2 id="postTitle"></h2>
-                <p id="postDescription"></p>
-                <p id="postDate"></p>
-                <p id="postLocation"></p>
-                <p id="postContact"></p>
-            </div>
-            <div class="comments-container">
-                <h3>Comentarios</h3>
-                <div class="comments-list" id="commentsList"></div>
-                <form id="commentForm" class="comment-form">
-                    <input type="text" id="commentInput" placeholder="Escribe un comentario...">
-                    <button type="submit">Comentar</button>
-                </form>
-            </div>
+          <div class="post-image">
+            <img id="postImage" src="" alt="Descripción de la imagen">
+          </div>
+          <div class="post-info">
+            <h2>Subtítulo de la Publicación</h2>
+            <p id="postDescription">Descripción detallada del contenido de la publicación.</p>
+            <p id="postDate">Fecha de publicación: </p>
+            <p id="postLocation">Ubicación: </p>
+            <p id="postContact">Contacto: </p>
+          </div>
         </div>
-    </div>
+      
+        <!-- Comentarios -->
+        <div class="comments-container">
+          <h3>Comentarios</h3>
+          <div id="commentsList" class="comments-list">
+            <!-- Los comentarios se cargarán dinámicamente aquí -->
+          </div>
+          <form id="commentForm" class="comment-form">
+            <input type="text" id="commentInput" placeholder="Escribe un comentario...">
+            <button type="submit">Comentar</button>
+          </form>
+        </div>
+      </div>
     <script src="/js/detalles_publicacion.js"></script>
 </body>
 </html>

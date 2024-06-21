@@ -11,10 +11,11 @@ body {
     font-family: 'Roboto', sans-serif; /* Fuente principal */
     margin: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Alto del cuerpo */
+    flex-direction: column; /* Asegura que los elementos se alineen verticalmente */
+    min-height: 100vh; /* Cambia height por min-height */
 }
+
+/* Elimina justify-content y align-items si no son necesarios aquí */
 
 .container {
     width: 95%;
@@ -23,6 +24,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    margin: auto; /* Centra el contenedor horizontalmente */
 }
 
 /* Encabezado */
@@ -328,3 +330,94 @@ body {
     color: #1877f2;
 }
 
+/* Nuevos estilos */
+.xh8yej3 {
+    width: 100%;
+}
+
+.x5yr21d {
+    height: 100%;
+}
+
+.x1ey2m1c {
+    bottom: 0;
+}
+
+.x13vifvy {
+    top: 0;
+}
+
+.xl1xv1r {
+    object-fit: cover;
+}
+
+.xds687c {
+    right: 0;
+}
+
+.x17qophe {
+    left: 0;
+}
+
+.x10l6tqk {
+    position: absolute;
+}
+
+img {
+    border: 0;
+}
+.user-agent-stylesheet img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+#facebook .system-fonts--body div {
+    font-family: inherit;
+}
+
+#facebook .system-fonts--body a {
+    font-family: inherit;
+}
+
+.x1ypdohk {
+    cursor: pointer;
+}
+
+.x1i10hfl {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.x16tdsg8 {
+    text-align: inherit;
+}
+
+.xe8uvvx {
+    list-style: none;
+}
+
+a {
+    color: #385898;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.xs83m0k {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.x4cne27 {
+    margin: 0;
+}
+
+.x1ja2u2z {
+    font-weight: inherit;
+}
+
+.x9f619 {
+    padding: 0;
+}
+
+.x4uap5 {
+    border: 0;
+}

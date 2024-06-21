@@ -1,31 +1,42 @@
 // Función para guardar un comentario en el almacenamiento local
 function saveComment(comment) {
   try {
+    // Obtener los comentarios existentes desde localStorage
     let comments = JSON.parse(localStorage.getItem("comments")) || [];
+    // Añadir el nuevo comentario a la lista de comentarios
     comments.push(comment);
+    // Guardar la lista actualizada de comentarios en localStorage
     localStorage.setItem("comments", JSON.stringify(comments));
     console.log("Comment saved:", comment);
   } catch (error) {
+    // Manejar errores durante el guardado del comentario
     console.error("Error saving comment:", error);
   }
 }
 
 // Función para mostrar un comentario en la interfaz de usuario
 function displayComment(comment, commentsList) {
+  // Crear un contenedor para el comentario
   const commentDiv = document.createElement("div");
   commentDiv.classList.add("comment");
   commentDiv.dataset.id = comment.id;
 
+  // Crear y añadir el texto del comentario
   const commentText = document.createElement("p");
   commentText.textContent = comment.text;
+  commentDiv.appendChild(commentText);
 
+  // Crear y añadir la fecha del comentario
   const commentDate = document.createElement("span");
   commentDate.classList.add("comment-date");
   commentDate.textContent = comment.date;
+  commentDiv.appendChild(commentDate);
 
+  // Crear y añadir el contenedor para las reacciones
   const reactionsContainer = document.createElement("div");
   reactionsContainer.classList.add("reactions-container");
 
+  // Crear botones de reacción y añadirlos al contenedor de reacciones
   const likeButton = createReactionButton(
     "👍",
     "like-button",
@@ -44,22 +55,23 @@ function displayComment(comment, commentsList) {
     comment.id,
     "haha"
   );
-
   reactionsContainer.appendChild(likeButton);
   reactionsContainer.appendChild(loveButton);
   reactionsContainer.appendChild(hahaButton);
 
+  // Crear y añadir el botón de opciones para el comentario
   const optionsButton = document.createElement("button");
   optionsButton.textContent = "⋮";
   optionsButton.classList.add("options-comment-button");
   optionsButton.addEventListener("click", function () {
     openOptionsModal(comment.id, comment.text);
   });
-
-  commentDiv.appendChild(commentDate);
-  commentDiv.appendChild(commentText);
   commentDiv.appendChild(optionsButton);
+
+  // Añadir el contenedor de reacciones al contenedor del comentario
   commentDiv.appendChild(reactionsContainer);
+
+  // Añadir el contenedor del comentario a la lista de comentarios en la interfaz de usuario
   commentsList.appendChild(commentDiv);
 }
 
@@ -74,11 +86,14 @@ function createReactionButton(text, className, commentId, reactionType) {
   return button;
 }
 
-// Función para reaccionar a un comentario
+// Función para manejar las reacciones a un comentario
 function reactToComment(commentId, reactionType) {
   try {
+    // Obtener la dirección IP del usuario (simulada)
     const userIP = getUserIP();
+    // Obtener los comentarios desde localStorage
     let comments = JSON.parse(localStorage.getItem("comments")) || [];
+    // Actualizar las reacciones del comentario correspondiente
     comments = comments.map((comment) => {
       if (comment.id === commentId) {
         if (!comment.userReactions) {
@@ -92,10 +107,13 @@ function reactToComment(commentId, reactionType) {
       }
       return comment;
     });
+    // Guardar la lista actualizada de comentarios en localStorage
     localStorage.setItem("comments", JSON.stringify(comments));
+    // Actualizar la interfaz de usuario con las reacciones del comentario
     updateReactionsUI(commentId);
     console.log(`Comment ${commentId} reacted with ${reactionType}`);
   } catch (error) {
+    // Manejar errores durante la reacción al comentario
     console.error("Error reacting to comment:", error);
   }
 }
@@ -107,20 +125,25 @@ function getUserIP() {
 
 // Función para actualizar la interfaz de usuario con las reacciones a un comentario
 function updateReactionsUI(commentId) {
+  // Obtener el contenedor del comentario por su ID
   const commentDiv = document.querySelector(`.comment[data-id="${commentId}"]`);
   if (commentDiv) {
     const reactionsContainer = commentDiv.querySelector(".reactions-container");
     if (reactionsContainer) {
+      // Obtener los comentarios desde localStorage
       let comments = JSON.parse(localStorage.getItem("comments")) || [];
       const comment = comments.find((c) => c.id === commentId);
 
+      // Contar las reacciones del comentario
       const reactionCounts = { like: 0, love: 0, haha: 0 };
       Object.values(comment.userReactions || {}).forEach((reaction) => {
         reactionCounts[reaction]++;
       });
 
+      // Limpiar el contenedor de reacciones
       reactionsContainer.innerHTML = "";
 
+      // Crear botones de reacción actualizados con el conteo de reacciones
       Object.keys(reactionCounts).forEach((reactionType) => {
         const count = reactionCounts[reactionType];
         const reactionButton = createReactionButton(
@@ -144,14 +167,17 @@ function updateReactionsUI(commentId) {
 // Evento al cargar el DOM, para mostrar las publicaciones y comentarios almacenados
 document.addEventListener("DOMContentLoaded", function () {
   try {
+    // Obtener y mostrar las publicaciones desde localStorage
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
     posts.reverse().forEach(displayPost);
     console.log("Posts loaded:", posts);
   } catch (error) {
+    // Manejar errores durante la carga de publicaciones
     console.error("Error loading posts:", error);
   }
 
   try {
+    // Obtener y mostrar los comentarios desde localStorage
     let comments = JSON.parse(localStorage.getItem("comments")) || [];
     comments.forEach(function (comment) {
       const postDiv = document.querySelector(
@@ -166,6 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     console.log("Comments loaded:", comments);
   } catch (error) {
+    // Manejar errores durante la carga de comentarios
     console.error("Error loading comments:", error);
   }
 });

@@ -1,98 +1,330 @@
-/* Establece el modelo de caja para todos los elementos */
+/* Reset y modelo de caja */
 *, ::before, ::after {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Asegura que el padding y border no aumenten el tamaño total del elemento */
+    box-sizing: border-box;
 }
 
-/* Establece el diseño del cuerpo */
+/* Estilos generales */
 body {
-    background-color: rgb(231, 229, 229); /* Fondo del cuerpo */
-    display: flex; /* Usa el modelo de caja flexible para el cuerpo */
-    flex-flow: row wrap; /* Permite que los elementos fluyan en filas, y se envuelvan si no caben */
-    justify-content: left; /* Justifica los elementos a la izquierda */
-    font-family: sans-serif; /* Fuente del texto */
+    background-color: #f0f2f5; /* Color de fondo del cuerpo */
+    font-family: 'Roboto', sans-serif; /* Fuente principal */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Alto del cuerpo */
 }
 
 .container {
-    width: 100%; /* Ancho completo del contenedor */
-    max-width: 800px; /* Ancho máximo del contenedor */
-    margin: auto; /* Centra el contenedor horizontalmente */
-    background: white; /* Fondo blanco */
-    padding: 20px; /* Relleno interior del contenedor */
-    border-radius: 6px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, .6); /* Sombra exterior */
+    width: 95%;
+    max-width: 800px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 }
 
-h1 {
-    text-align: center; /* Texto centrado */
-    margin-bottom: 20px; /* Margen inferior */
+/* Encabezado */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
+.header h1 {
+    color: #1877f2;
+}
+
+/* Formulario */
 .form {
-    display: flex; /* Usa el modelo de caja flexible para el formulario */
-    flex-direction: column; /* Dirección de los elementos en columna */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
 .form input[type="text"],
 .form textarea,
 .form input[type="file"],
 .form button {
-    margin-bottom: 10px; /* Margen inferior para los elementos del formulario */
-    padding: 10px; /* Relleno interior de los elementos del formulario */
-    border-radius: 5px; /* Bordes redondeados */
-    border: 1px solid #ddd; /* Borde con color gris claro */
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
 }
 
 .form button {
-    background-color: #385898; /* Color de fondo del botón */
-    color: white; /* Color del texto */
-    border: none; /* Sin borde */
-    cursor: pointer; /* Cursor apuntador */
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
 .form button:hover {
-    background-color: #2d4373; /* Color de fondo del botón al pasar el mouse */
+    background-color: #2d4373;
 }
 
+/* Contenedor de publicaciones */
 .posts-container {
-    margin-top: 20px; /* Margen superior */
+    width: 100%;
+    margin: 20px auto;
 }
 
-.posts-container .post {
-    background-color: white; /* Fondo blanco para cada publicación */
-    border-radius: 5px; /* Bordes redondeados */
-    margin-bottom: 20px; /* Margen inferior */
-    padding: 10px; /* Relleno interior */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    display: flex; /* Usar flexbox para el contenedor de la publicación */
-    flex-direction: column; /* Alinear los elementos en columna */
+/* Publicaciones individuales */
+.post {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
 }
 
-.posts-container .post img {
-    max-width: 100%; /* Imágenes con ancho máximo del 100% del contenedor */
-    height: 10%; /* Altura automática para mantener la proporción */
-    margin-bottom: 10px; /* Margen inferior de las imágenes */
-    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+.post h2 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    color: #1877f2;
 }
 
-.posts-container .buttons-container {
-    display: flex; /* Usar flexbox para el contenedor de los botones */
-    justify-content: space-between; /* Espacio entre los botones */
-    margin-top: 10px; /* Margen superior para separar los botones del contenido */
+.post img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: cover;
 }
 
-.posts-container .post button {
-    background: none; /* Sin fondo */
-    border: none; /* Sin borde */
-    cursor: pointer; /* Cursor apuntador */
+.post p {
+    font-size: 16px;
+    color: #4b4f56;
 }
 
-.posts-container .post button i {
-    font-size: 1.2em; /* Tamaño del icono */
-    color: #385898; /* Color del icono */
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
-.posts-container .post button i:hover {
-    color: #2d4373; /* Color del icono al pasar el mouse */
+.buttons-container button {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
+
+.buttons-container button i {
+    font-size: 18px;
+    color: #606770;
+}
+
+.buttons-container button i.fa-trash {
+    color: #f02849;
+}
+
+.buttons-container button i:hover {
+    color: #2d4373;
+}
+
+/* Contenedor de comentarios */
+.comments-container {
+    margin-top: 10px;
+}
+
+/* Comentario individual */
+.comment {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+.comment .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment .comment-header .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment .comment-header .user-info {
+    margin-left: 10px;
+}
+
+.comment .comment-header .comment-date {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+}
+
+.comment .comment-text {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #4b4f56;
+}
+
+.comment .reactions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.comment .reactions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.comment .reactions button i {
+    font-size: 18px;
+    color: #606770;
+}
+
+.comment .reactions button.active i {
+    color: #1877f2;
+}
+
+/* Formulario de comentario */
+.comment-form {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.comment-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+}
+
+.comment-form button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #2d4373;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.modal-content button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.modal-content button:first-child {
+    background-color: #1877f2;
+    color: #fff;
+}
+
+.modal-content button:last-child {
+    background-color: #f02849;
+    color: #fff;
+}
+
+/* Barra de reacciones */
+.reactions-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f2f5;
+    border-top: 1px solid #ddd;
+}
+
+.reactions-bar button {
+    background-color: transparent;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.reactions-bar button i {
+    font-size: 20px;
+    color: #606770;
+}
+
+.reactions-bar button.active i {
+    color: #1877f2;
+}
+
+/* Lista de comentarios */
+.comments-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Opciones del pie de página */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f2f5;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.footer .footer-options {
+    display: flex;
+    gap: 10px;
+}
+
+.footer .footer-options button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.footer .footer-options button i {
+    font-size: 20px;
+    color: #606770;
+}
+
+.footer .footer-options button:hover i {
+    color: #1877f2;
+}
+

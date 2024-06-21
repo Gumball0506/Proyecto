@@ -65,11 +65,34 @@ h1 {
     margin-bottom: 20px; /* Margen inferior */
     padding: 10px; /* Relleno interior */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    display: flex; /* Usar flexbox para el contenedor de la publicación */
+    flex-direction: column; /* Alinear los elementos en columna */
 }
 
 .posts-container .post img {
     max-width: 100%; /* Imágenes con ancho máximo del 100% del contenedor */
-    height: auto; /* Altura automática para mantener la proporción */
+    height: 10%; /* Altura automática para mantener la proporción */
     margin-bottom: 10px; /* Margen inferior de las imágenes */
     object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+}
+
+.posts-container .buttons-container {
+    display: flex; /* Usar flexbox para el contenedor de los botones */
+    justify-content: space-between; /* Espacio entre los botones */
+    margin-top: 10px; /* Margen superior para separar los botones del contenido */
+}
+
+.posts-container .post button {
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor apuntador */
+}
+
+.posts-container .post button i {
+    font-size: 1.2em; /* Tamaño del icono */
+    color: #385898; /* Color del icono */
+}
+
+.posts-container .post button i:hover {
+    color: #2d4373; /* Color del icono al pasar el mouse */
 }

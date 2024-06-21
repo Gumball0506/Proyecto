@@ -61,8 +61,12 @@ function displayPost(post) {
   const postTitle = document.createElement("h2");
   postTitle.textContent = post.title;
 
+  // Crear imagen para la publicación
   const postImage = document.createElement("img");
   postImage.src = post.image;
+  postImage.addEventListener("click", function () {
+    window.location.href = `/html/detalles_publicacion.html?id=${post.id}`; // Redireccionar al hacer clic en la imagen
+  });
 
   const postDescription = document.createElement("p");
   postDescription.textContent = post.description;
@@ -77,7 +81,7 @@ function displayPost(post) {
   viewIcon.classList.add("fas", "fa-eye"); // Añadir icono de visualización
   viewButton.appendChild(viewIcon);
   viewButton.addEventListener("click", function () {
-    window.location.href = `/html/detalles_publicacion.html?id=${post.id}`; // Navegar a la página de detalles de la publicación
+    // No se realiza ninguna acción al hacer clic en el botón de visualización
   });
 
   // Crear botón de eliminación

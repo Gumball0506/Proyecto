@@ -3,63 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RS FIEI</title>
+    <title>RS FIEI - Contacto</title>
     <link rel="stylesheet" href="/css/Estilos.banner.css">
     <link rel="stylesheet" href="/css/pagina_principal.css">
-</head>
-<body>
-    <header>
-        <h1>Unidad de Responsabilidad Social FIEI</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Nosotros</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Misión</a></li>
-                        <li><a href="#">Visión</a></li>
-                        <li><a href="#">Equipo</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Proyectos</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Proyectos realizados</a></li>
-                        <li><a href="/html/publicaciones.html">Proyecto actuales</a></li>
-                        <li><a href="#">Proyecto futuros</a></li>
-                    </ul>
-                </li>
-                <li><a href="/html/contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container-slider">
-        <div class="slider" id="slider">
-        </div>
-        <div class="slider__btn slider__btn--derecha" id="btn-right">&#62;
-        </div>
-        <div class="slider__btn slider__btn--izquierda" id="btn-left">&#60;
-        </div>
-    </div>
-
-
-    <div class="container">
-        <div class="image-container">
-            <img src="/imagenes/profesor.png" alt="Mg. José Martin Gil Lopez">
-        </div>
-        <div class="description">
-            <h1>Mg. José Martin Gil Lopez</h1>
-            <p>Mg. José Martin Gil Lopez es un profesional destacado en el ámbito de la responsabilidad social universitaria, actualmente desempeñándose como el encargado de la Unidad de Responsabilidad Social FIEI. Con una formación académica sólida y una vasta experiencia en la implementación de proyectos sociales, José Martin ha demostrado un compromiso inquebrantable con el desarrollo sostenible y el bienestar comunitario.</p>
-        <p>Su carrera profesional ha estado marcada por la promoción de iniciativas innovadoras que buscan mejorar la calidad de vida de diversas comunidades. Ha liderado numerosos proyectos que abordan temas cruciales como la educación, la salud y el medio ambiente, siempre con un enfoque inclusivo y participativo.</p>
-        <p>Se caracteriza por su capacidad para gestionar equipos multidisciplinarios, fomentar alianzas estratégicas y obtener resultados tangibles en sus proyectos. Su liderazgo ha sido clave para posicionar a la Unidad de Responsabilidad Social FIEI como un referente en la promoción de prácticas responsables y sostenibles dentro y fuera del entorno académico.</p>
-
-        </div>
-    </div>
-    
-
-    <script src="/js/imagenes_automaticas2.js"></script>
-
-    <footer>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/contacto.css"> <!-- Archivo CSS específico para la página de contacto -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome para íconos -->
     <style>
         /* Estilos generales para el cuerpo */
         body {
@@ -71,8 +19,72 @@
             min-height: 100vh; /* Altura mínima de la ventana */
         }
         /* Estilos para el contenido principal */
-        .content {
+        .container {
             flex: 1;
+            padding: 20px;
+            max-width: 800px; /* Ancho máximo del contenedor */
+            margin: 0 auto; /* Centrado horizontal */
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            text-align: center; /* Texto centrado */
+        }
+        .container p {
+            margin-bottom: 30px;
+            text-align: center; /* Texto centrado */
+        }
+        /* Estilos para el formulario de contacto */
+        .contact-form {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .contact-form textarea {
+            resize: vertical; /* Permitir la redimensión vertical */
+        }
+        .contact-form button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block; /* Bloque para ocupar ancho completo */
+            margin: 0 auto; /* Centrado horizontal */
+        }
+        .contact-form button:hover {
+            background-color: #555;
+        }
+        /* Estilos para el enlace de comentarios */
+        .comentarios-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn-comentarios {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .btn-comentarios:hover {
+            background-color: #555;
         }
         /* Estilos para el pie de página */
         footer {
@@ -83,7 +95,7 @@
         }
         /* Contenedor del pie de página */
         .footer-container {
-            max-width: 1200px; /* Ancho máximo*/
+            max-width: 1200px; /* Ancho máximo */
             margin: 0 auto; /* Centrando el contenedor */
             display: flex; /* Usando Flexbox para el diseño */
             justify-content: space-around; /* Espaciado uniforme entre los elementos */
@@ -150,21 +162,56 @@
     </style>
 </head>
 <body>
-    <!-- Contenido principal de la página -->
-    <div class="content">
-        <!-- Aquí va el contenido principal de la página -->
+    <header>
+        <h1>Unidad de Responsabilidad Social FIEI</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Nosotros</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Misión</a></li>
+                        <li><a href="#">Visión</a></li>
+                        <li><a href="#">Equipo</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Proyectos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Proyectos realizados</a></li>
+                        <li><a href="/html/publicaciones.html">Proyecto actuales</a></li>
+                        <li><a href="#">Proyecto futuros</a></li>
+                    </ul>
+                </li>
+                <li><a href="/html/contacto.html">Contacto</a></li> <!-- Enlace directo a la página de contacto -->
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Contacto</h2>
+        <p>¿Necesitas ayuda? Envíanos tu mensaje y te responderemos lo antes posible.</p>
+        <form action="/enviar-mensaje.php" method="POST" class="contact-form">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea> <!-- Aumento de las filas a 12 -->
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+
+        <div class="comentarios-link">
+            <p>¿Tienes algún comentario o necesitas soporte adicional?</p>
+            <a href="https://forms.gle/tGrLWmHZdwEAhgxL6" target="_blank" class="btn-comentarios">Formulario de Comentarios</a>
+        </div>
     </div>
 
-    <!-- Pie de página -->
     <footer>
         <div class="footer-container">
             <!-- Sección "Nosotros" -->
             <div class="footer-section">
                 <h3>Nosotros</h3>
                 <button onclick="window.location.href='#'">
-                    <a href="#">
-                        <i class="fas fa-info-circle"></i> <!-- Ícono de información -->
-                    </a>
+                    <i class="fas fa-info-circle"></i> <!-- Ícono de información -->
                     Nosotros
                 </button> <!-- Botón "Nosotros" que en el futuro redirigirá a una sección específica -->
             </div>
@@ -172,9 +219,7 @@
             <div class="footer-section">
                 <h3>Unete a nosotros</h3>
                 <button onclick="window.location.href='https://whatsapp.com/channel/0029VahXfXu1dAwCyrDa962O'">
-                    <a href="https://whatsapp.com/channel/0029VahXfXu1dAwCyrDa962O">
-                        <i class="fab fa-whatsapp"></i> <!-- Ícono de WhatsApp -->
-                    </a>
+                    <i class="fab fa-whatsapp"></i> <!-- Ícono de WhatsApp -->
                     WhatsApp
                 </button> <!-- Información de contacto con ícono de WhatsApp -->
             </div>
@@ -189,6 +234,7 @@
                 </p> <!-- Enlace a la página de Facebook con ícono de Facebook -->
             </div>
         </div>
+
     </footer>
 </body>
 </html>

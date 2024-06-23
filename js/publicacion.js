@@ -1,6 +1,6 @@
-// Cuando se envía el formulario de publicación
+// Evento que se ejecuta al enviar el formulario de publicación
 document.getElementById("postForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // Evitar el comportamiento predeterminado de envío
+  e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
 
   // Obtener los valores del formulario
   const title = document.getElementById("title").value;
@@ -11,20 +11,21 @@ document.getElementById("postForm").addEventListener("submit", function (e) {
   if (imageInput.files && imageInput.files[0]) {
     const reader = new FileReader();
 
+    // Evento que se ejecuta cuando se carga la imagen
     reader.onload = function (e) {
-      const imageUrl = e.target.result;
-      const postId = Date.now().toString(); // Generar ID único basado en el tiempo actual
+      const imageUrl = e.target.result; // Obtener la URL de la imagen cargada
+      const postId = Date.now().toString(); // Generar un ID único basado en la hora actual
       const currentDate = new Date().toLocaleString(); // Obtener la fecha y hora actual
 
-      // Crear objeto de publicación
+      // Crear objeto de publicación con los datos obtenidos
       const post = {
         id: postId,
         title: title,
         image: imageUrl,
         description: description,
         date: currentDate,
-        location: "Desconocido",
-        contact: "contacto@ejemplo.com",
+        location: "Desconocido", // Información adicional por defecto
+        contact: "contacto@ejemplo.com", // Información adicional por defecto
       };
 
       savePost(post); // Guardar la publicación en el almacenamiento local
@@ -40,95 +41,166 @@ document.getElementById("postForm").addEventListener("submit", function (e) {
 // Función para guardar la publicación en el almacenamiento local
 function savePost(post) {
   try {
-    let posts = JSON.parse(localStorage.getItem("posts")) || [];
-    posts.push(post); // Agregar la nueva publicación al arreglo
-    // Ordenar las publicaciones por fecha más reciente antes de guardarlas
-    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-    localStorage.setItem("posts", JSON.stringify(posts)); // Guardar en localStorage
-    console.log("Post saved:", post); // Registrar la publicación guardada en la consola
+    let posts = JSON.parse(localStorage.getItem("posts")) || []; // Obtener las publicaciones almacenadas
+    posts.push(post); // Agregar la nueva publicación
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date)); // Ordenar las publicaciones por fecha
+    localStorage.setItem("posts", JSON.stringify(posts)); // Guardar las publicaciones en el almacenamiento local
+    console.log("Post saved:", post); // Registro en consola
   } catch (error) {
-    console.error("Error saving post:", error); // Manejar errores al guardar la publicación
+    console.error("Error saving post:", error); // Manejar errores
   }
 }
 
 // Función para mostrar una publicación en la interfaz de usuario
 function displayPost(post) {
   const postDiv = document.createElement("div"); // Crear un nuevo elemento div
-  postDiv.classList.add("post"); // Agregar la clase 'post' al div
-  postDiv.dataset.id = post.id; // Establecer el atributo de datos 'id' con el ID de la publicación
+  postDiv.classList.add("post"); // Añadir clase 'post' al div
+  postDiv.dataset.id = post.id; // Añadir ID de la publicación como atributo de datos
 
-  // Crear elementos HTML para mostrar los detalles de la publicación
+  // Crear elementos para mostrar los detalles de la publicación
   const postTitle = document.createElement("h2");
   postTitle.textContent = post.title;
 
+  // Crear imagen para la publicación
   const postImage = document.createElement("img");
   postImage.src = post.image;
+  postImage.addEventListener("click", function () {
+    window.location.href = `/html/detalles_publicacion.html?id=${post.id}`; // Redireccionar al hacer clic en la imagen
+  });
 
   const postDescription = document.createElement("p");
   postDescription.textContent = post.description;
 
+  // Crear contenedor para los botones de visualización y eliminación
+  const buttonsContainer = document.createElement("div");
+  buttonsContainer.classList.add("buttons-container");
+
+  // Crear botón de visualización
   const viewButton = document.createElement("button");
-  viewButton.textContent = "Visualizar";
+  const viewIcon = document.createElement("i");
+  viewIcon.classList.add("fas", "fa-eye"); // Añadir icono de visualización
+  viewButton.appendChild(viewIcon);
   viewButton.addEventListener("click", function () {
-    window.location.href = `/html/detalles_publicacion.html?id=${post.id}`;
+    // No se realiza ninguna acción al hacer clic en el botón de visualización
   });
 
+  // Crear botón de eliminación
   const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Eliminar";
+  const deleteIcon = document.createElement("i");
+  deleteIcon.classList.add("fas", "fa-trash"); // Añadir icono de eliminación
+  deleteButton.appendChild(deleteIcon);
   deleteButton.addEventListener("click", function () {
-    deletePost(post.id); // Eliminar la publicación al hacer clic en el botón
-    postDiv.remove(); // Quitar el div de la interfaz de usuario
+    deletePost(post.id); // Eliminar la publicación
+    postDiv.remove(); // Quitar la publicación de la interfaz de usuario
   });
 
-  // Agregar elementos al div de la publicación
+  // Crear botón para comentarios con ícono
+  const commentButton = document.createElement("button");
+  commentButton.classList.add("commentarios-button"); // Añadir clase para estilos
+
+  const commentIcon = document.createElement("i");
+  commentIcon.classList.add("fas", "fa-comments"); // Añadir ícono de comentarios de Font Awesome
+
+  const commentText = document.createElement("span"); // Crear un elemento span para el texto "Comentarios"
+  commentText.textContent = "Comentarios";
+
+  commentButton.appendChild(commentIcon);
+  commentButton.appendChild(commentText);
+
+  commentButton.addEventListener("click", function () {
+    toggleComments(commentsContainer); // Alternar visibilidad de los comentarios
+  });
+
+  // Evento para cambiar el color al pasar el mouse por encima del botón
+  commentButton.addEventListener("mouseenter", function () {
+    commentText.classList.add("hovered"); // Agregar clase al pasar el mouse
+  });
+
+  // Evento para restaurar el color al retirar el mouse del botón
+  commentButton.addEventListener("mouseleave", function () {
+    commentText.classList.remove("hovered"); // Quitar clase al salir el mouse
+  });
+
+  // Ajustar el tamaño del texto del botón de comentarios
+  commentText.style.fontSize = "14px"; // Aumentar tamaño del texto
+
+  // Añadir los botones al contenedor de botones
+  buttonsContainer.appendChild(viewButton);
+  buttonsContainer.appendChild(deleteButton);
+  buttonsContainer.appendChild(commentButton);
+
+  // Crear contenedor para los comentarios
+  const commentsContainer = document.createElement("div");
+  commentsContainer.classList.add("comments-container");
+  commentsContainer.style.display = "none"; // Ocultar comentarios inicialmente
+
+  // Crear lista de comentarios
+  const commentsList = document.createElement("div");
+  commentsList.classList.add("comments-list");
+
+  // Crear formulario para agregar nuevos comentarios
+  const commentForm = document.createElement("form");
+  commentForm.classList.add("comment-form");
+  const commentInput = document.createElement("input");
+  commentInput.type = "text";
+  commentInput.placeholder = "Escribe un comentario...";
+  const commentSubmitButton = document.createElement("button");
+  commentSubmitButton.type = "submit";
+  commentSubmitButton.textContent = "Comentar";
+
+  // Añadir elementos al formulario de comentarios
+  commentForm.appendChild(commentInput);
+  commentForm.appendChild(commentSubmitButton);
+  commentsContainer.appendChild(commentsList);
+  commentsContainer.appendChild(commentForm);
+
+  // Evento que se ejecuta al enviar el formulario de comentarios
+  commentForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (commentInput.value.trim() !== "") {
+      const comment = {
+        postId: post.id, // ID de la publicación asociada al comentario
+        text: commentInput.value.trim(), // Texto del comentario
+        date: new Date().toLocaleString(), // Fecha y hora del comentario
+      };
+      saveComment(comment); // Guardar el comentario en el almacenamiento local
+      displayComment(comment, commentsList); // Mostrar el comentario en la interfaz de usuario
+      commentInput.value = ""; // Limpiar el campo de entrada de comentarios
+    }
+  });
+
+  // Añadir todos los elementos al div de la publicación
   postDiv.appendChild(postTitle);
   postDiv.appendChild(postImage);
   postDiv.appendChild(postDescription);
-  postDiv.appendChild(viewButton);
-  postDiv.appendChild(deleteButton);
+  postDiv.appendChild(buttonsContainer);
+  postDiv.appendChild(commentsContainer);
 
-  // Insertar la nueva publicación en orden de fecha más reciente
+  // Insertar la publicación en la interfaz de usuario en el lugar adecuado según la fecha
   const postsContainer = document.querySelector(".posts-container");
-  let inserted = false; // Bandera para controlar si se ha insertado la publicación
+  let inserted = false;
   for (let i = 0; i < postsContainer.children.length; i++) {
     const currentPost = postsContainer.children[i];
     const currentPostDate = new Date(currentPost.dataset.date);
     const newPostDate = new Date(post.date);
     if (newPostDate > currentPostDate) {
-      // Comparar fechas para determinar el orden
-      postsContainer.insertBefore(postDiv, currentPost); // Insertar antes de la publicación actual
+      postsContainer.insertBefore(postDiv, currentPost);
       inserted = true;
-      break; // Salir del bucle una vez insertada la publicación
+      break;
     }
   }
   if (!inserted) {
-    postsContainer.appendChild(postDiv); // Si es la más antigua, añadir al final
+    postsContainer.appendChild(postDiv);
   }
 }
 
-// Evento al cargar el DOM, para mostrar las publicaciones almacenadas
-document.addEventListener("DOMContentLoaded", function () {
-  try {
-    let posts = JSON.parse(localStorage.getItem("posts")) || []; // Obtener publicaciones del localStorage
-    posts.reverse().forEach(displayPost); // Mostrar publicaciones en orden de más reciente primero
-    console.log("Posts loaded:", posts); // Registrar las publicaciones cargadas en la consola
-  } catch (error) {
-    console.error("Error loading posts:", error); // Manejar errores al cargar las publicaciones
+// Función para alternar la visibilidad de los comentarios
+function toggleComments(commentsContainer) {
+  if (commentsContainer.style.display === "none") {
+    commentsContainer.style.display = "block";
+  } else {
+    commentsContainer.style.display = "none";
   }
-
-  getLocalStorageSize(); // Obtener el tamaño total del almacenamiento local
-});
-
-// Función para calcular y mostrar el tamaño total del almacenamiento local
-function getLocalStorageSize() {
-  let total = 0;
-  for (let x in localStorage) {
-    if (localStorage.hasOwnProperty(x)) {
-      total += (localStorage[x].length + x.length) * 2; // Calcular tamaño en bytes
-    }
-  }
-  console.log("LocalStorage size (bytes):", total); // Mostrar tamaño total en la consola
-  return total; // Devolver el tamaño total
 }
 
 // Función para eliminar una publicación por su ID
@@ -136,9 +208,9 @@ function deletePost(postId) {
   try {
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
     posts = posts.filter((post) => post.id !== postId); // Filtrar publicaciones para eliminar la seleccionada
-    localStorage.setItem("posts", JSON.stringify(posts)); // Actualizar almacenamiento local sin la publicación eliminada
-    console.log(`Post ${postId} deleted`); // Registrar la eliminación en la consola
+    localStorage.setItem("posts", JSON.stringify(posts)); // Actualizar el almacenamiento local
+    console.log(`Post ${postId} deleted`); // Registro en consola
   } catch (error) {
-    console.error("Error deleting post:", error); // Manejar errores al eliminar la publicación
+    console.error("Error deleting post:", error); // Manejar errores
   }
 }

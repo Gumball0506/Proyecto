@@ -1,49 +1,261 @@
-/* Establece el modelo de caja para todos los elementos */
-*, ::before, ::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Asegura que el padding y border no aumenten el tamaño total del elemento */
-}
-
-/* Establece el diseño del cuerpo */
+/* Estilos base */
 body {
-    background-color: rgb(231, 229, 229); /* Fondo del cuerpo */
-    display: flex; /* Usa el modelo de caja flexible para el cuerpo */
-    flex-flow: row wrap; /* Permite que los elementos fluyan en filas, y se envuelvan si no caben */
-    justify-content: left; /* Justifica los elementos a la izquierda */
-    font-family: sans-serif; /* Fuente del texto */
+  font-family: Arial, sans-serif; /* Define la fuente para todo el documento */
+  background-color: #f0f0f0; /* Color de fondo del cuerpo */
+  margin: 0; /* Elimina el margen exterior */
+  padding: 0; /* Elimina el relleno interior */
 }
 
 .container {
-    width: 100%; /* Ancho completo del contenedor */
-    max-width: 800px; /* Ancho máximo del contenedor */
-    margin: auto; /* Centra el contenedor horizontalmente */
-    background: white; /* Fondo blanco */
-    padding: 20px; /* Relleno interior del contenedor */
-    border-radius: 6px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, .6); /* Sombra exterior */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  max-width: 2000px; /* Ancho máximo del contenedor */
+  margin: 20px auto; /* Margen superior e inferior de 20px, centrado horizontalmente */
+  background-color: #ffffff; /* Color de fondo blanco */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden; /* Oculta el contenido que sobresale */
 }
 
 h1 {
-    text-align: center; /* Texto centrado */
-    margin-bottom: 20px; /* Margen inferior */
+  text-align: center; /* Texto centrado */
+  padding: 20px 0; /* Relleno arriba y abajo de 20px, sin relleno a los lados */
+  margin: 0; /* Elimina el margen */
+  background-color: #007bff; /* Fondo azul */
+  color: #ffffff; /* Color de texto blanco */
+  font-size: 24px; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
 }
 
-#postDetails {
-    margin-top: 20px; /* Margen superior */
-    padding: 20px; /* Relleno interior */
-    background-color: white; /* Fondo blanco */
-    border-radius: 5px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+.post-details {
+  display: flex; /* Contenedor flexible para detalles de publicación */
+  padding: 20px; /* Relleno de 20px */
 }
 
-#postDetails img {
-    max-width: 100%; /* Imágenes con ancho máximo del 100% del contenedor */
-    height: auto; /* Altura automática para mantener la proporción */
-    margin: 10px 0; /* Margen superior e inferior de las imágenes */
+.post-image {
+  flex: 1; /* Ocupa el espacio restante dentro del contenedor flexible */
+  margin-right: 20px; /* Margen derecho de 20px */
 }
 
-#postDetails p {
-    text-align: justify; /* Alineación justificada del texto */
-    line-height: 1.6; /* Altura de línea del párrafo */
+.post-image img {
+  max-width: 100%; /* Ancho máximo del 100% */
+  height: 100%; /* Altura automática para mantener la proporción */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+}
+
+.post-info {
+  flex: 1; /* Ocupa el espacio restante dentro del contenedor flexible */
+}
+
+.post-info h2 {
+  font-size: 22px; /* Tamaño de fuente */
+  margin-bottom: 10px; /* Margen inferior de 10px */
+}
+
+.post-info p {
+  line-height: 1.6; /* Altura de línea */
+  margin-bottom: 10px; /* Margen inferior de 10px */
+}
+/* Estilos para la parte de comentarios */
+.comments-container {
+  flex: 1; /* Ocupa el espacio restante dentro del contenedor flexible */
+  padding: 20px; /* Relleno de 20px */
+  border-left: 1px solid #ddd; /* Borde izquierdo sólido de 1px */
+  display: flex; /* Contenedor flexible para alinear elementos en columna */
+  flex-direction: column; /* Alineación en columna */
+}
+
+.comments-list {
+  flex: 1; /* Ocupa el espacio restante */
+  list-style-type: none; /* Elimina viñetas */
+  padding: 0; /* Elimina el relleno predeterminado */
+  margin-top: 15px; /* Margen superior de 15px */
+  overflow-y: auto; /* Scroll vertical si hay más contenido */
+}
+
+.comment {
+  background-color: #ffffff; /* Fondo blanco */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  padding: 15px; /* Relleno de 15px */
+  margin-bottom: 15px; /* Margen inferior de 15px */
+}
+
+.comment .comment-header {
+  display: flex; /* Contenedor flexible para encabezado de comentario */
+  align-items: center; /* Alinea elementos al centro vertical */
+  justify-content: space-between; /* Espacio equitativo entre elementos */
+  margin-bottom: 10px; /* Margen inferior de 10px */
+}
+
+.comment .comment-header .user-avatar {
+  width: 40px; /* Ancho de la imagen de avatar */
+  height: 40px; /* Altura de la imagen de avatar */
+  border-radius: 50%; /* Borde redondeado para avatar */
+  object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+}
+
+.comment .comment-header .user-info {
+  margin-left: 10px; /* Margen izquierdo de 10px */
+}
+.comment .comment-header .comment-date {
+  color: rgba(0, 0, 0, 0.5); /* Color de texto gris */
+  font-size: 14px; /* Tamaño de fuente de 14px */
+  margin-right: 10px; /* Margen derecho para separación del comentario */
+}
+
+.comment .comment-text {
+  margin-bottom: 10px; /* Margen inferior de 10px */
+  font-size: 16px; /* Tamaño de fuente de 16px */
+  color: #4b4f56; /* Color de texto gris oscuro */
+  flex: 1; /* Ocupa todo el espacio disponible */
+}
+
+.comment .reactions {
+  display: flex; /* Contenedor flexible para reacciones */
+  align-items: center; /* Alinea elementos al centro vertical */
+  gap: 10px; /* Espacio entre elementos de 10px */
+  margin-top: 10px; /* Margen superior de 10px */
+}
+
+.comment .reactions button {
+  background-color: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cambia el cursor a puntero */
+}
+
+.comment .reactions button i {
+  font-size: 18px; /* Tamaño de fuente de 18px */
+  color: #606770; /* Color de ícono gris */
+}
+
+.comment .reactions button.active i {
+  color: #1877f2; /* Color de ícono azul cuando está activo */
+}
+
+/* Alineación del encabezado del comentario */
+.comment .comment-header {
+  display: flex; /* Contenedor flexible para encabezado de comentario */
+  justify-content: space-between; /* Espacio equitativo entre elementos */
+  align-items: center; /* Alinea elementos al centro vertical */
+  margin-bottom: 10px; /* Margen inferior de 10px */
+}
+
+.comment .user-avatar {
+  width: 40px; /* Ancho de la imagen de avatar */
+  height: 40px; /* Altura de la imagen de avatar */
+  border-radius: 50%; /* Borde redondeado para avatar */
+  object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+}
+
+.comment .user-info {
+  margin-left: 10px; /* Margen izquierdo de 10px */
+}
+
+/* Formulario de comentario */
+.comment-form {
+  display: flex; /* Contenedor flexible para formulario de comentario */
+  align-items: center; /* Alinea elementos al centro vertical */
+  margin-top: 20px; /* Margen superior de 20px */
+}
+
+.comment-form input[type="text"] {
+  flex: 1; /* Ocupa todo el espacio restante */
+  padding: 10px; /* Relleno de 10px */
+  border-radius: 20px; /* Bordes redondeados */
+  border: 1px solid #ddd; /* Borde delgado gris */
+}
+
+.comment-form button {
+  background-color: #1877f2; /* Fondo azul */
+  color: white; /* Texto blanco */
+  border: none; /* Sin borde */
+  border-radius: 20px; /* Bordes redondeados */
+  padding: 10px 20px; /* Relleno de 10px arriba y abajo, 20px a los lados */
+  margin-left: 10px; /* Margen izquierdo de 10px */
+  cursor: pointer; /* Cambia el cursor a puntero */
+}
+
+.comment-form button:hover {
+  background-color: #2d4373; /* Color de fondo más oscuro al pasar el mouse */
+}
+
+.options-comment-button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.options-container {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.show-options {
+  display: block;
+}
+
+/* Otros estilos específicos que ya tenías pueden permanecer igual */
+
+/* Estilo para la ventana modal */
+.modal {
+  position: fixed; /* Posición fija */
+  top: 0; /* Alineado arriba */
+  left: 0; /* Alineado a la izquierda */
+  width: 100%; /* Ancho del 100% */
+  height: 100%; /* Altura del 100% */
+  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  display: flex; /* Contenedor flexible para centrar */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  z-index: 1000; /* Capa z alta para estar encima de otros elementos */
+}
+
+.modal-content {
+  background: white; /* Fondo blanco */
+  padding: 20px; /* Relleno de 20px */
+  border-radius: 5px; /* Bordes redondeados */
+  display: flex; /* Contenedor flexible */
+  flex-direction: column; /* Alineación en columna */
+  gap: 10px; /* Espacio entre elementos */
+}
+
+.edit-input {
+  padding: 10px; /* Relleno de 10px */
+  font-size: 1em; /* Tamaño de fuente */
+}
+
+.save-button,
+.delete-button {
+  padding: 10px; /* Relleno de 10px */
+  font-size: 1em; /* Tamaño de fuente */
+  cursor: pointer; /* Cambia el cursor a apuntador */
+}
+
+.save-button {
+  background: #4caf50; /* Fondo verde */
+  color: white; /* Texto blanco */
+  border: none; /* Sin borde */
+  border-radius: 3px; /* Bordes redondeados */
+}
+
+.delete-button {
+  background: #f44336; /* Fondo rojo */
+  color: white; /* Texto blanco */
+  border: none; /* Sin borde */
+  border-radius: 3px; /* Bordes redondeados */
+}
+
+.like-button,
+.love-button,
+.haha-button {
+  background: none; /* Fondo transparente */
+  border: none; /* Sin borde */
+  font-size: 1.2em; /* Tamaño de fuente */
+  cursor: pointer; /* Cambia el cursor a apuntador */
 }

@@ -94,13 +94,45 @@ function displayPost(post) {
     postDiv.remove(); // Quitar la publicación de la interfaz de usuario
   });
 
+  // Crear botón para comentarios con ícono
+  const commentButton = document.createElement("button");
+  commentButton.classList.add("commentarios-button"); // Añadir clase para estilos
+
+  const commentIcon = document.createElement("i");
+  commentIcon.classList.add("fas", "fa-comments"); // Añadir ícono de comentarios de Font Awesome
+
+  const commentText = document.createElement("span"); // Crear un elemento span para el texto "Comentarios"
+  commentText.textContent = "Comentarios";
+
+  commentButton.appendChild(commentIcon);
+  commentButton.appendChild(commentText);
+
+  commentButton.addEventListener("click", function () {
+    toggleComments(commentsContainer); // Alternar visibilidad de los comentarios
+  });
+
+  // Evento para cambiar el color al pasar el mouse por encima del botón
+  commentButton.addEventListener("mouseenter", function () {
+    commentText.classList.add("hovered"); // Agregar clase al pasar el mouse
+  });
+
+  // Evento para restaurar el color al retirar el mouse del botón
+  commentButton.addEventListener("mouseleave", function () {
+    commentText.classList.remove("hovered"); // Quitar clase al salir el mouse
+  });
+
+  // Ajustar el tamaño del texto del botón de comentarios
+  commentText.style.fontSize = "14px"; // Aumentar tamaño del texto
+
   // Añadir los botones al contenedor de botones
   buttonsContainer.appendChild(viewButton);
   buttonsContainer.appendChild(deleteButton);
+  buttonsContainer.appendChild(commentButton);
 
   // Crear contenedor para los comentarios
   const commentsContainer = document.createElement("div");
   commentsContainer.classList.add("comments-container");
+  commentsContainer.style.display = "none"; // Ocultar comentarios inicialmente
 
   // Crear lista de comentarios
   const commentsList = document.createElement("div");
@@ -112,13 +144,13 @@ function displayPost(post) {
   const commentInput = document.createElement("input");
   commentInput.type = "text";
   commentInput.placeholder = "Escribe un comentario...";
-  const commentButton = document.createElement("button");
-  commentButton.type = "submit";
-  commentButton.textContent = "Comentar";
+  const commentSubmitButton = document.createElement("button");
+  commentSubmitButton.type = "submit";
+  commentSubmitButton.textContent = "Comentar";
 
   // Añadir elementos al formulario de comentarios
   commentForm.appendChild(commentInput);
-  commentForm.appendChild(commentButton);
+  commentForm.appendChild(commentSubmitButton);
   commentsContainer.appendChild(commentsList);
   commentsContainer.appendChild(commentForm);
 
@@ -159,6 +191,15 @@ function displayPost(post) {
   }
   if (!inserted) {
     postsContainer.appendChild(postDiv);
+  }
+}
+
+// Función para alternar la visibilidad de los comentarios
+function toggleComments(commentsContainer) {
+  if (commentsContainer.style.display === "none") {
+    commentsContainer.style.display = "block";
+  } else {
+    commentsContainer.style.display = "none";
   }
 }
 

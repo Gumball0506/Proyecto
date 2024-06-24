@@ -54,14 +54,13 @@ function displayPost(post) {
     postImage.src = post.image;
 
     const postDescription = document.createElement('p');
-    postDescription.textContent = post.description;
 
     postDiv.appendChild(postTitle);
     postDiv.appendChild(postImage);
     postDiv.appendChild(postDescription);
 
     postDiv.addEventListener('click', function() {
-        window.location.href = `/index.html?id=${post.id}`;
+        window.location.href = `/html/detalles.html?id=${post.id}`;
     });
 
     document.querySelector('.posts-container').appendChild(postDiv);

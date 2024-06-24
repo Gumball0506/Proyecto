@@ -22,16 +22,16 @@ function displayPostDetails(post) {
     postImage.src = post.image;
 
     const postDescription = document.createElement('p');
-    postDescription.innerHTML = `<span>Descripción:</span> ${post.description}`;
+   
 
     const postDate = document.createElement('p');
-    postDate.innerHTML = `<span>Fecha de publicación:</span> ${post.date}`;
+    postDate.textContent = `Fecha de publicación: ${post.date}`;
 
     const postLocation = document.createElement('p');
-    postLocation.innerHTML = `<span>Ubicación:</span> ${post.location}`;
+    postLocation.textContent = `Ubicación: ${post.location}`;
 
     const postContact = document.createElement('p');
-    postContact.innerHTML = `<span>Contacto:</span> ${post.contact}`;
+    postContact.textContent = `Contacto: ${post.contact}`;
 
     postDetailsDiv.appendChild(postTitle);
     postDetailsDiv.appendChild(postImage);
@@ -40,3 +40,4 @@ function displayPostDetails(post) {
     postDetailsDiv.appendChild(postLocation);
     postDetailsDiv.appendChild(postContact);
 }
+

@@ -344,7 +344,33 @@ body {
     background-color: transparent; /* Color inicial del subrayado */
     transition: background-color 0.3s ease; /* Transición del color del subrayado */
 }
-
-.commentarios-button i {
-    margin-right: 8px; /* Espacio entre el ícono y el texto */
-}
+/* Estilos para botones de edición y eliminación de comentarios */
+.edit-button, .delete-button {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor apuntador al pasar */
+    font-size: 16px; /* Tamaño de fuente */
+    color: #555; /* Color del texto */
+    transition: color 0.3s ease-in-out; /* Transición suave del color del texto */
+    display: flex; /* Mostrar como flex para alinear elementos */
+    align-items: center; /* Alinear contenido verticalmente */
+  }
+  
+  .edit-button:hover, .delete-button:hover {
+    color: #007bff; /* Cambio de color al pasar el mouse */
+  }
+  
+  .edit-button i, .delete-button i {
+    margin-right: 5px; /* Espacio a la derecha del icono */
+    font-size: 14px; /* Tamaño del icono */
+  }
+  
+  /* Estilo específico para el botón de eliminar */
+  .delete-button {
+    color: #dc3545; /* Color rojo para el botón de eliminar */
+  }
+  
+  .delete-button:hover {
+    color: #c82333; /* Cambio de color rojo más oscuro al pasar el mouse */
+  }
+    

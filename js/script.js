@@ -3,7 +3,8 @@ document.getElementById('postForm').addEventListener('submit', function(e) {
 
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
-    const imageInput = document.getElementById('image');
+    const imageInput = document.getElementById('item');
+
 
     if (imageInput.files && imageInput.files[0]) {
         const reader = new FileReader();

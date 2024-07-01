@@ -4,25 +4,59 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-/* Estilos generales */
-body {
-    background-color: #f0f2f5;
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+.body{
+    background-color: #000000;
 }
-
-.container {
-    width: 95%;
-    max-width: 800px;
-    background-color: #fff;
-    padding: 20px;
+.fondo{
+    width: calc(100% - 35%); /* Restar 224px de cada lado */
+    max-width: 1024px; /* Ancho máximo del contenedor */
+    background-color: #ffffff;
+    padding: 0 20px; /* 224px de padding a cada lado */
+    padding-bottom: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     margin: auto;
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .fondo {
+        width: 100%; /* Ancho completo en pantallas pequeñas */
+        padding: 0 16px; /* Reducir el padding en pantallas pequeñas */
+    }
+}
+
+.posts-container {
+    width: 70%;
+    margin: auto;
+    border-color: #000000;
+}
+
+.post {
+    background-color: #000000; /* Fondo blanco para cada publicación */
+    border-radius: 8px;
+    border-color: #000000;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px; /* Reducir el margen inferior */
+    padding: 40px; /* Reducir el padding */
+}
+
+.post h2 {
+    font-size: 10px; /* Reducir el tamaño del título */
+    margin-bottom: 8px; /* Reducir el margen inferior del título */
+}
+
+.post img {
+    width: auto;
+    border-radius: 8px;
+    margin-bottom: 8px; /* Reducir el margen inferior de la imagen */
+    object-fit: cover;
+}
+
+.post p {
+    font-size: 14px; /* Reducir el tamaño del texto */
+    color: #000000;
+    margin-bottom: 8px; /* Reducir el margen inferior */
 }
 
 .header {
@@ -36,10 +70,10 @@ body {
 
 .form {
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    margin-bottom: 20px;
+    padding: 2px;
+    margin-bottom: 10px;
 }
 
 .form input[type="text"],
@@ -48,9 +82,10 @@ body {
 .form button {
     width: 100%;
     padding: 10px;
+    position: auto;
     margin: 10px 0;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
 }
 
 .form button {
@@ -63,18 +98,12 @@ body {
 .form button:hover {
     background-color: #2d4373;
 }
-
-.posts-container {
-    width: 100%;
-    margin: 20px auto;
-}
-
 .post {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    padding: 15px;
+    padding: 20px;
 }
 
 .post h2 {
@@ -193,7 +222,7 @@ body {
     flex: 1;
     padding: 10px;
     border-radius: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #1b1b1b;
 }
 
 .comment-form button {
@@ -344,7 +373,33 @@ body {
     background-color: transparent; /* Color inicial del subrayado */
     transition: background-color 0.3s ease; /* Transición del color del subrayado */
 }
-
-.commentarios-button i {
-    margin-right: 8px; /* Espacio entre el ícono y el texto */
-}
+/* Estilos para botones de edición y eliminación de comentarios */
+.edit-button, .delete-button {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor apuntador al pasar */
+    font-size: 16px; /* Tamaño de fuente */
+    color: #555; /* Color del texto */
+    transition: color 0.3s ease-in-out; /* Transición suave del color del texto */
+    display: flex; /* Mostrar como flex para alinear elementos */
+    align-items: center; /* Alinear contenido verticalmente */
+  }
+  
+  .edit-button:hover, .delete-button:hover {
+    color: #007bff; /* Cambio de color al pasar el mouse */
+  }
+  
+  .edit-button i, .delete-button i {
+    margin-right: 5px; /* Espacio a la derecha del icono */
+    font-size: 14px; /* Tamaño del icono */
+  }
+  
+  /* Estilo específico para el botón de eliminar */
+  .delete-button {
+    color: #dc3545; /* Color rojo para el botón de eliminar */
+  }
+  
+  .delete-button:hover {
+    color: #c82333; /* Cambio de color rojo más oscuro al pasar el mouse */
+  }
+    

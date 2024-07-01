@@ -50,12 +50,12 @@ function savePost(post) {
     console.error("Error saving post:", error); // Manejar errores
   }
 }
-
 // Función para mostrar una publicación en la interfaz de usuario
 function displayPost(post) {
   const postDiv = document.createElement("div"); // Crear un nuevo elemento div
   postDiv.classList.add("post"); // Añadir clase 'post' al div
   postDiv.dataset.id = post.id; // Añadir ID de la publicación como atributo de datos
+  postDiv.dataset.date = post.date; // Añadir fecha de la publicación como atributo de datos
 
   // Crear elementos para mostrar los detalles de la publicación
   const postTitle = document.createElement("h2");
@@ -111,18 +111,15 @@ function displayPost(post) {
     toggleComments(commentsContainer); // Alternar visibilidad de los comentarios
   });
 
-  // Evento para cambiar el color al pasar el mouse por encima del botón
   commentButton.addEventListener("mouseenter", function () {
     commentText.classList.add("hovered"); // Agregar clase al pasar el mouse
   });
 
-  // Evento para restaurar el color al retirar el mouse del botón
   commentButton.addEventListener("mouseleave", function () {
     commentText.classList.remove("hovered"); // Quitar clase al salir el mouse
   });
 
-  // Ajustar el tamaño del texto del botón de comentarios
-  commentText.style.fontSize = "14px"; // Aumentar tamaño del texto
+  commentText.style.fontSize = "14px"; // Ajustar el tamaño del texto del botón de comentarios
 
   // Añadir los botones al contenedor de botones
   buttonsContainer.appendChild(viewButton);
@@ -159,7 +156,9 @@ function displayPost(post) {
     e.preventDefault();
     if (commentInput.value.trim() !== "") {
       if (containsBannedWords(commentInput.value.trim())) {
-        alert("Tu comentario contiene palabras inapropiadas y no puede ser publicado.");
+        alert(
+          "Tu comentario contiene palabras inapropiadas y no puede ser publicado."
+        );
         return;
       }
       const comment = {
@@ -197,7 +196,6 @@ function displayPost(post) {
     postsContainer.appendChild(postDiv);
   }
 }
-
 // Función para alternar la visibilidad de los comentarios
 function toggleComments(commentsContainer) {
   if (commentsContainer.style.display === "none") {
@@ -214,8 +212,34 @@ function deletePost(postId) {
     posts = posts.filter((post) => post.id !== postId); // Filtrar la publicación a eliminar
     localStorage.setItem("posts", JSON.stringify(posts));
     console.log("Post deleted:", postId);
+
+    // Eliminar comentarios asociados a la publicación eliminada
+    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+    comments = comments.filter((comment) => comment.postId !== postId); // Filtrar comentarios asociados a la publicación
+    localStorage.setItem("comments", JSON.stringify(comments));
+    console.log("Comments deleted for post:", postId);
   } catch (error) {
     console.error("Error deleting post:", error); // Manejar errores
+  }
+}
+
+// Función para editar un comentario por su ID
+function editComment(commentId, newText) {
+  try {
+    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+    const commentIndex = comments.findIndex(
+      (comment) => comment.id === commentId
+    );
+    if (commentIndex !== -1) {
+      comments[commentIndex].text = newText; // Actualizar el texto del comentario
+      localStorage.setItem("comments", JSON.stringify(comments)); // Guardar en el almacenamiento local
+      console.log("Comment edited:", commentId);
+      return true; // Devolver true si se editó correctamente
+    }
+    return false; // Devolver false si no se encontró el comentario
+  } catch (error) {
+    console.error("Error editing comment:", error); // Manejar errores
+    return false; // Devolver false en caso de error
   }
 }
 
@@ -230,28 +254,127 @@ window.addEventListener("load", function () {
 });
 
 // Palabras prohibidas
-const bannedWords = ["Conchatumadre", "Huevón", "Huevona", "Chuchamadre", "Conchudo",
-  "Conchuda", "Cojudo", "Cojuda", "Mierda", "Carajo", "Puta",
-  "Pichula", "Chucha", "Cholo", "Chola", "Serrano", "Serrana",
-  "Chuchatumadre", "Cachudo", "Cachuda", "Maricón", "Pendejo",
-  "Pendeja", "Comemierda", "Imbécil", "Idiota", "Baboso", "Babosa",
-  "Conchetumadre", "Cabrón", "Cabrona", "Cojudez", "Huevada",
-  "Chupa", "Mamahuevo", "Concha", "Chúpame", "Malnacido", "Malnacida",
-  "Hijo de puta", "Reconcha", "Jodido", "Jodida", "Cagón", "Cagona",
-  "Puto", "Putamadre", "Mierdera", "Chupapinga", "Conchadetumadre",
-  "Chucha de tu madre", "Rosquete", "Mamaverga", "Huevonazo",
-  "Huevonaza", "Compadre", "Jetón", "Jetona", "Tarado", "Tarada",
-  "Gil", "Mongol", "Pajero", "Pajera", "Gillpollas", "Chupapico",
-  "Recontra", "Reconchudo", "Reconchuda", "Conchesumare", "Carechimba",
-  "Malparido", "Malparida", "Cagada", "Manyado", "Manyada", "Cachero",
-  "Cachera", "Chupetín", "Lameculos", "Culo", "Conchesumadre",
-  "Huevón de mierda", "Cojudazo", "Cojudaza", "Cholo de mierda",
-  "Serrano de mierda", "Basura", "Imbécil de mierda", "Maricón de mierda",
-  "Perra", "Puto el que lee", "Concha tu hermana", "Conchatuhermana",
-  "Chupamela", "Pichula triste", "Conchudo de mierda", "CTM", "CTMR",
-  "PTM", "CSM", "HDP", "QLO", "WBN", "MRD", "HDLGP", "CHM", "PTMR",
-  "CSMR", "CNR", "PDT", "CLIAO", "TMR", "DTM", "HMNO", "QLP", "MIERDA","mAm4Hu3v0","mi3rd4"]
-;
+const bannedWords = [
+  "Conchatumadre",
+  "Huevón",
+  "Huevona",
+  "Chuchamadre",
+  "Conchudo",
+  "Conchuda",
+  "Cojudo",
+  "Cojuda",
+  "Mierda",
+  "Carajo",
+  "Puta",
+  "Pichula",
+  "Chucha",
+  "Cholo",
+  "Chola",
+  "Serrano",
+  "Serrana",
+  "Chuchatumadre",
+  "Cachudo",
+  "Cachuda",
+  "Maricón",
+  "Pendejo",
+  "Pendeja",
+  "Comemierda",
+  "Imbécil",
+  "Idiota",
+  "Baboso",
+  "Babosa",
+  "Conchetumadre",
+  "Cabrón",
+  "Cabrona",
+  "Cojudez",
+  "Huevada",
+  "Chupa",
+  "Mamahuevo",
+  "Concha",
+  "Chúpame",
+  "Malnacido",
+  "Malnacida",
+  "Hijo de puta",
+  "Reconcha",
+  "Jodido",
+  "Jodida",
+  "Cagón",
+  "Cagona",
+  "Puto",
+  "Putamadre",
+  "Mierdera",
+  "Chupapinga",
+  "Conchadetumadre",
+  "Chucha de tu madre",
+  "Rosquete",
+  "Mamaverga",
+  "Huevonazo",
+  "Huevonaza",
+  "Compadre",
+  "Jetón",
+  "Jetona",
+  "Tarado",
+  "Tarada",
+  "Gil",
+  "Mongol",
+  "Pajero",
+  "Pajera",
+  "Gillpollas",
+  "Chupapico",
+  "Recontra",
+  "Reconchudo",
+  "Reconchuda",
+  "Conchesumare",
+  "Carechimba",
+  "Malparido",
+  "Malparida",
+  "Cagada",
+  "Manyado",
+  "Manyada",
+  "Cachero",
+  "Cachera",
+  "Chupetín",
+  "Lameculos",
+  "Culo",
+  "Conchesumadre",
+  "Huevón de mierda",
+  "Cojudazo",
+  "Cojudaza",
+  "Cholo de mierda",
+  "Serrano de mierda",
+  "Basura",
+  "Imbécil de mierda",
+  "Maricón de mierda",
+  "Perra",
+  "Puto el que lee",
+  "Concha tu hermana",
+  "Conchatuhermana",
+  "Chupamela",
+  "Pichula triste",
+  "Conchudo de mierda",
+  "CTM",
+  "CTMR",
+  "PTM",
+  "CSM",
+  "HDP",
+  "QLO",
+  "WBN",
+  "MRD",
+  "HDLGP",
+  "CHM",
+  "PTMR",
+  "CSMR",
+  "CNR",
+  "PDT",
+  "CLIAO",
+  "TMR",
+  "DTM",
+  "HMNO",
+  "QLP",
+  "MIERDA",
+  "mAm4Hu3v0",
+  "mi3rd4",
+];
 
 // Función para verificar si un texto contiene palabras prohibidas
 function containsBannedWords(text) {
@@ -285,9 +408,60 @@ function displayComment(comment, commentsList) {
   const commentDate = document.createElement("span");
   commentDate.classList.add("comment-date");
   commentDate.textContent = comment.date;
+
+  // Crear botón para editar comentario
+  const editButton = document.createElement("button");
+  editButton.classList.add("edit-button"); // Agregar clase para estilos
+  const editIcon = document.createElement("i");
+  editIcon.classList.add("fas", "fa-edit"); // Agregar icono de edición de Font Awesome
+  editButton.appendChild(editIcon); // Añadir el icono al botón
+  editButton.addEventListener("click", function () {
+    const newText = prompt("Edita tu comentario:", comment.text);
+    if (newText !== null && newText.trim() !== "" && newText !== comment.text) {
+      if (containsBannedWords(newText.trim())) {
+        alert(
+          "Tu comentario contiene palabras inapropiadas y no puede ser editado."
+        );
+        return;
+      }
+      if (editComment(comment.id, newText)) {
+        commentText.textContent = newText; // Actualizar texto del comentario en la interfaz
+        console.log("Comment edited successfully:", comment.id);
+      } else {
+        console.error("Failed to edit comment:", comment.id);
+      }
+    }
+  });
+
+  // Crear botón para eliminar comentario
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-button"); // Agregar clase para estilos
+  const deleteIcon = document.createElement("i");
+  deleteIcon.classList.add("fas", "fa-trash"); // Agregar icono de eliminación de Font Awesome
+  deleteButton.appendChild(deleteIcon); // Añadir el icono al botón
+  deleteButton.addEventListener("click", function () {
+    deleteComment(comment.id, commentDiv); // Eliminar el comentario
+  });
+
   commentDiv.appendChild(commentText);
   commentDiv.appendChild(commentDate);
+  commentDiv.appendChild(editButton);
+  commentDiv.appendChild(deleteButton);
+
   commentsList.appendChild(commentDiv);
+}
+
+// Función para eliminar un comentario por su ID
+function deleteComment(commentId, commentDiv) {
+  try {
+    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+    comments = comments.filter((comment) => comment.id !== commentId); // Filtrar el comentario a eliminar
+    localStorage.setItem("comments", JSON.stringify(comments));
+    console.log("Comment deleted:", commentId);
+    commentDiv.remove(); // Quitar el comentario de la interfaz de usuario
+  } catch (error) {
+    console.error("Error deleting comment:", error); // Manejar errores
+  }
 }
 
 // Cargar los comentarios al cargar la página
@@ -295,7 +469,9 @@ window.addEventListener("load", function () {
   try {
     const comments = JSON.parse(localStorage.getItem("comments")) || [];
     comments.forEach((comment) => {
-      const postDiv = document.querySelector(`.post[data-id="${comment.postId}"]`);
+      const postDiv = document.querySelector(
+        `.post[data-id="${comment.postId}"]`
+      );
       if (postDiv) {
         const commentsList = postDiv.querySelector(".comments-list");
         if (commentsList) {

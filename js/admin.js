@@ -1,4 +1,3 @@
-// Credenciales de administrador (en una aplicación real, esto nunca debería estar en el frontend)
 const ADMIN_USERNAME = 'admin';
 const ADMIN_PASSWORD = 'password123';
 

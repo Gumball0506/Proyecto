@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RS FIEI - Contacto</title>
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
-
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
-
-        <!-- Font Awesome -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/contacto.css"> <!-- Archivo CSS específico para la página de contacto -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/css/updated_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Sistema de Publicaciones Pasadas</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="/css/updated_style.css" rel="stylesheet">
 </head>
-    <!-- Navbar Start -->
+<body>
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="" class="navbar-brand">
+                <a href="" class="navbar-brand" id="custom-linke">
                     <h1 class="m-0 text-primary"><span class="text-dark">UNI</span>RSE</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -29,44 +25,44 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="/html/web1.html" class="nav-item nav-link active">Inicio</a>
-                        <a href="/html/equipo.html" class="nav-item nav-link">Equipo</a>
-                        <a href="/html/nosotros.html" class="nav-item nav-link">Nosotros</a>
+                        <a href="/html/web1.html" class="nav-item nav-link active" id="custom_linka">Inicio</a>
+                        <a href="/html/equipo.html" class="nav-item nav-link" id="custom_linkb">Equipo</a>
+                        <a href="/html/nosotros.html" class="nav-item nav-link" id="custom_linkc">Nosotros</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="/html/publicaciones_public.html" class="dropdown-item">Proyectos actuales</a>
-                                <a href="/html/publicacionesAntiguas_public.html" class="dropdown-item">Proyectos realizados</a>
-                                <a href="/html/publicaciones_futuras_public.html" class="dropdown-item">Proyectos futuros</a>
+                                <a href="/html/publicaciones.html" class="dropdown-item">Proyectos actuales</a>
+                                <a href="/html/publicacionesAntiguas.html" class="dropdown-item">Proyectos realizados</a>
+                                <a href="/html/publicaciones_futuras.html" class="dropdown-item">Proyectos futuros</a>
                             </div>
                         </div>
-                        <a href="/html/contacto.html" class="nav-item nav-link">Contactos</a>
+                        <a href="/html/contacto.html" class="nav-item nav-link" id="custom_linkd">Contactos</a>
                         <a href="inicio_de_sesion.html" class="nav-item nav-link">Administrador</a>
                     </div>
                 </div>
             </nav>
         </div>
     </div>
-    <!-- Navbar End -->
+    <div class="">
+        <input type="submit" class="pu_ac" id="pu_ac" value="publicaciones actuales">   
+        <input type="submit" class="pu_an" id="pu_an" value="publicaciones antiguas">
+        <input type="submit" class="pu_fu" id="pu_fu" value="publicaciones futuras">
+      </div>
     <div class="container">
-        <h2>Contacto</h2>
-        <p>¿Necesitas ayuda? Envíanos tu mensaje y te responderemos lo antes posible.</p>
-        <form action="/enviar-mensaje.php" method="POST" class="contact-form">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="mensaje">Mensaje:</label>
-            <textarea id="mensaje" name="mensaje" rows="5" required></textarea> <!-- Aumento de las filas a 12 -->
-            <button type="submit">Enviar Mensaje</button>
+        <h1>Sistema de Publicaciones Pasadas</h1>.
+        <form id="postForm">.
+            <input type="text" id="title" placeholder="Título" required>
+            <input type="file" id="item" accept="image/*" required>
+            <textarea id="description" placeholder="Descripción" required></textarea>
+            <button type="submit">Publicar</button>
         </form>
-
-        <div class="comentarios-link">
-            <p>¿Tienes algún comentario o necesitas soporte adicional?</p>
-            <a href="https://forms.gle/tGrLWmHZdwEAhgxL6" target="_blank" class="btn-comentarios">Formulario de Comentarios</a>
-        </div>
+        <div id="posts" class="posts-container"></div>
     </div>
-    <!-- Footer Start -->
+    <div class="cartasfotos"></div>
+    <div class="button">
+        <btn class="prev"><i class="fa-solid fa-arrow-left"></i></btn>
+        <btn class="next"><i class="fa-solid fa-arrow-right"></i></btn>
+    </div>
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
@@ -112,15 +108,16 @@
             </div>
         </div>
     </div>
+    
 
-
-    <!-- JavaScript Libraries -->
+    <script src="/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="/js/easing.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
-    <!-- Template Javascript -->
     <script src="/js/main.js"></script>
-    <!-- Footer End -->
 </body>
 </html>
+
+
+

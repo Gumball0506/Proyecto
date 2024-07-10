@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mostrar/Ocultar Cuadro de Texto al Registrarse</title>
+<style>
+    /* Estilo para ocultar el cuadro de texto */
+    #cuadroTexto {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<!-- Formulario de registro -->
+<form id="registroForm">
+    <label for="nombreUsuario">Nombre de usuario:</label>
+    <input type="text" id="nombreUsuario" name="nombreUsuario" required>
+    <br>
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Registrarse</button>
+</form>
+
+<!-- Cuadro de texto que se ocultará/mostrará -->
+<input type="text" id="cuadroTexto" placeholder="Escribe algo...">
+
+<script>
+    // Obtener referencia al formulario de registro
+    const registroForm = document.getElementById('registroForm');
+    // Obtener referencia al cuadro de texto
+    const cuadroTexto = document.getElementById('cuadroTexto');
+
+    // Agregar evento submit al formulario de registro
+    registroForm.addEventListener('submit', function(event) {
+        // Evitar que se recargue la página por defecto
+        event.preventDefault();
+
+        // Obtener valores de los campos de entrada
+        const nombreUsuario = document.getElementById('nombreUsuario').value;
+        const password = document.getElementById('password').value;
+
+        // Simulación de registro exitoso (validación simple)
+        if (nombreUsuario === 'usuario' && password === 'contraseña') {
+            // Mostrar el cuadro de texto
+            cuadroTexto.style.display = 'block';
+
+        } else {
+            alert('Usuario o contraseña inc orrectos. Por favor intenta de nuevo.');
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -108,3 +108,67 @@ prev.addEventListener("click", function () {
   let items = document.querySelectorAll(".item");
   document.querySelector(".cartasfotos").prepend(items[items.length - 1]);
 });
+
+// Funcion para los enlaces
+const pu_ac = document.getElementById('pu_ac');
+const pu_an = document.getElementById('pu_an');
+const pu_fu = document.getElementById('pu_fu');
+
+// Agregamos un evento de click al botón
+pu_ac.addEventListener('click', function() {
+  // Redirigimos a la página deseada
+  window.location.href = 'publicaciones_admin.html'; 
+});
+
+pu_an.addEventListener('click', function() {
+  // Redirigimos a la página deseada
+  window.location.href = 'publicacionesAntiguas_admin.html'; 
+});
+
+pu_fu.addEventListener('click', function() {
+  // Redirigimos a la página deseada
+  window.location.href = 'publicaciones_futuras_admin.html'; 
+});
+
+
+    // Funcion para confirmar salir del modo admin
+    document.getElementById('custom_linka').addEventListener('click', function(event) {
+      event.preventDefault(); 
+      var userConfirmed = confirm('¿Deseas continuar a la siguiente página?,si acepta dejará de ser administrador hasta que vuelva a iniciar sesión');
+      if (userConfirmed) {
+          window.location.href = this.href; 
+      }
+  });
+      // Funcion para confirmar salir del modo admin
+      document.getElementById('custom_linkb').addEventListener('click', function(event) {
+        event.preventDefault(); 
+        var userConfirmed = confirm('¿Deseas continuar a la siguiente página?,si acepta dejará de ser administrador hasta que vuelva a iniciar sesión');
+        if (userConfirmed) {
+            window.location.href = this.href; 
+        }
+    });
+  // Funcion para confirmar salir del modo admin
+  document.getElementById('custom_linkc').addEventListener('click', function(event) {
+    event.preventDefault(); 
+    var userConfirmed = confirm('¿Deseas continuar a la siguiente página?,si acepta dejará de ser administrador hasta que vuelva a iniciar sesión');
+    if (userConfirmed) {
+        window.location.href = this.href; 
+    }
+});
+  // Funcion para confirmar salir del modo admin
+  document.getElementById('custom_linkd').addEventListener('click', function(event) {
+    event.preventDefault(); 
+    var userConfirmed = confirm('¿Deseas continuar a la siguiente página?,si acepta dejará de ser administrador hasta que vuelva a iniciar sesión');
+    if (userConfirmed) {
+        window.location.href = this.href; 
+    }
+});
+  // Funcion para confirmar salir del modo admin
+  document.getElementById('custom_linke').addEventListener('click', function(event) {
+    event.preventDefault(); 
+    var userConfirmed = confirm('¿Deseas continuar a la siguiente página?,si acepta dejará de ser administrador hasta que vuelva a iniciar sesión');
+    if (userConfirmed) {
+        window.location.href = this.href; 
+    }
+});
+

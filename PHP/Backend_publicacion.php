@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $titulo = $_POST['titulo'];
                 $descripcion = $_POST['descripcion'];
                 $url_registro = $_POST['url_registro']; // Asegúrate de usar el nombre correcto del campo
-
+                $eventDate = $_POST['eventDate'];
                 // Obtener información del archivo de imagen
                 $foto_nombre = $_FILES['foto']['name'];
                 $foto_tipo = $_FILES['foto']['type'];
@@ -30,12 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
 
                 // Insertar datos en la base de datos
-                $sql = "INSERT INTO proyectos (Titulo, Descripcion, Foto, url_registro) VALUES (?, ?, ?, ?)";
+                $sql = "INSERT INTO proyectos (Titulo, Descripcion, Foto, Fecha_inicio, url_registro) VALUES (?, ?, ?, ?, ?)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(1, $titulo);
                 $stmt->bindParam(2, $descripcion);
                 $stmt->bindParam(3, $foto_contenido, PDO::PARAM_LOB); // Usar PDO::PARAM_LOB para datos binarios
-                $stmt->bindParam(4, $url_registro);
+                $stmt->bindParam(4, $eventDate); // Corregido aquí
+                $stmt->bindParam(5, $url_registro);
                 $stmt->execute();
 
                 $response = array('success' => true);

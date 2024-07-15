@@ -20,59 +20,58 @@
         <!-- Customized Bootstrap Stylesheet -->
         <link href="/css/updated_style.css" rel="stylesheet">
 </head>
-        <!-- Navbar Start -->
-        <div class="container-fluid position-relative nav-bar p-0">
-            <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-                <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                    <a href="" class="navbar-brand">
-                        <h1 class="m-0 text-primary"><span class="text-dark">UNI</span>RSE</h1>
-                    </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                        <div class="navbar-nav ml-auto py-0">
-                            <a href="/html/web1.html" class="nav-item nav-link active">Inicio</a>
-                            <a href="/html/equipo.html" class="nav-item nav-link">Equipo</a>
-                            <a href="/html/nosotros.html" class="nav-item nav-link">Nosotros</a>
-                            <a href="/html/calendario.html" class="nav-item nav-link">Calendario</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
-                                <div class="dropdown-menu border-0 rounded-0 m-0">
-                                    <a href="/html/publicaciones_public.html" class="dropdown-item">Proyectos actuales</a>
-                                    <a href="/html/publicacionesAntiguas_public.html" class="dropdown-item">Proyectos realizados</a>
-                                    <a href="/html/publicaciones_futuras_public.html" class="dropdown-item">Proyectos futuros</a>
-                                    <a href="/html/proyecto_estudiantes.html" class="dropdown-item">Proyectos de estudiantes</a>
-                                </div>
-                            </div>
-                            <a href="/html/contacto.html" class="nav-item nav-link">Contactos</a>
-                            <a href="inicio_de_sesion.html" class="nav-item nav-link">Administrador</a>
+ <!-- Navbar Start -->
+ <div class="container-fluid position-relative nav-bar p-0">
+    <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+            <a href="" class="navbar-brand">
+                <h1 class="m-0 text-primary"><span class="text-dark">UNI</span>RSE</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="/html/web1.html" class="nav-item nav-link active">Inicio</a>
+                    <a href="/html/equipo.html" class="nav-item nav-link">Equipo</a>
+                    <a href="/html/nosotros.html" class="nav-item nav-link">Nosotros</a>
+                    <a href="/html/calendario.html" class="nav-item nav-link">Calendario</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
+                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                            <a href="/html/publicaciones_public.html" class="dropdown-item">Proyectos actuales</a>
+                            <a href="/html/publicacionesAntiguas_public.html" class="dropdown-item">Proyectos realizados</a>
+                            <a href="/html/publicaciones_futuras_public.html" class="dropdown-item">Proyectos futuros</a>
+                            <a href="/html/proyecto_estudiantes.html" class="dropdown-item">Proyectos de estudiantes</a>
                         </div>
                     </div>
-                </nav>
+                    <a href="/html/contacto.html" class="nav-item nav-link">Contactos</a>
+                    <a href="inicio_de_sesion.html" class="nav-item nav-link">Administrador</a>
+                </div>
             </div>
-        </div>
-        <!-- Navbar End -->
+        </nav>
+    </div>
+</div>
+<!-- Navbar End -->
         <div class="">
             <input type="submit" class="pu_ac" id="pu_ac" value="publicaciones actuales">   
             <input type="submit" class="pu_an" id="pu_an" value="publicaciones antiguas">
             <input type="submit" class="pu_fu" id="pu_fu" value="publicaciones futuras">
           </div>    
-        <div id="admin">
-    <div class="fondo"  >
-            <h1>Sistema de Publicaciones</h1>
-            <form id="postForm" class="form">
-                <input type="text" id="title" placeholder="Título" required>
-                <textarea id="description" placeholder="Descripción" required></textarea>
-                <input type="file" id="image" accept="image/*" required>
-                <button type="submit">Publicar</button>
-            </form>
+          <div class="fondo">
+            <div id="admin">
+                <h1>Sistema de Publicaciones</h1>
+                <form id="postForm" class="form">
+                    <input type="text" id="title" placeholder="Título" required>
+                    <textarea id="description" placeholder="Descripción" required></textarea>
+                    <input type="text" id="registrationLink" name="registrationLink" placeholder="URL de registro" required>
+                    <input type="date" id="eventDate" placeholder="Fecha del evento" required>
+                    <input type="file" id="image" accept="image/*" required>
+                    <button type="submit">Publicar</button>
+                </form>
+            </div>
+            <div id="posts" class="posts-container"></div>
         </div>
-        <div id="posts" class="posts-container"></div>
-      
-    </div>
-
-
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">

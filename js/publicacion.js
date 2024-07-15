@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
       formData.append("accion", "guardar_proyecto");
       formData.append("titulo", titulo);
       formData.append("descripcion", descripcion);
+      formData.append("eventDate", document.getElementById("eventDate").value);
       formData.append("foto", foto);
       formData.append(
         "url_registro",

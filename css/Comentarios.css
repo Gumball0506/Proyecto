@@ -1,120 +1,233 @@
 /* Estilo para contenedor de comentarios */
 .comments-container {
-    margin-top: 15px;
-    padding-top: 10px;
-    border-top: 1px solid #ddd;
-  }
+  margin-top: 10px;
+  padding-top: 2px;
+  border-top: 1px solid #ddd;
+}
+
+.comments-list {
+  max-height: 400px; /* Ajusta la altura máxima según necesites */
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+/* Estilo para los comentarios */
+.comment {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.comment .comment-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.comment .comment-header .user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment .comment-header .user-info {
+  flex-grow: 1;
+}
+
+.comment .comment-header .comment-date {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+}
+
+.comment .comment-text {
+  font-size: 16px;
+  color: #4b4f56;
+  margin-bottom: 10px;
+}
+
+.comment .reactions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.comment .reactions button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.comment .reactions button i {
+  font-size: 18px;
+  color: #606770;
+}
+
+.comment .reactions button.active i {
+  color: #1877f2;
+}
+
+.comment-form {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.comment-form input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #1b1b1b;
+}
+
+.comment-form button {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.comment-form button:hover {
+  background-color: #2d4373;
+}
+
+/* Estilo específico para comentarios generados dinámicamente */
+.comentario {
+  background-color: #f0f2f5;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.comentario p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #1c1e21;
+}
+
+.comentario button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #606770;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.comentario button:hover {
+  color: #1877f2;
+
+}
+/* Estilo para botones tipo Facebook */
+.fb-style-button {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
   
-  .comments-list {
-    max-height: 200px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-  }
+}
+
+.fb-style-button:hover {
+  background-color: #3b5998;
   
-  /* Estilo para los comentarios */
-  .comment {
-    position: relative;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    align-items: flex-start; /* Alinear elementos al inicio */
-    gap: 10px; /* Espacio entre elementos */
-  }
+}
+
+.fb-style-button i {
+  color: white;
+  font-size: 16px;
+}
+
+.fb-style-button1 {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+  margin-left: 68%;
+}
+
+.fb-style-button1:hover {
+  background-color: #3b5998;
   
-  .comment p {
-    margin: 0;
-    flex-grow: 1;
-  }
+}
+
+.fb-style-button1 i {
+  color: white;
+  font-size: 16px;
+}
+
+/* Estilo para formulario de comentarios tipo Facebook */
+.fb-style-comment-form {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
   
-  .comment-date {
-    font-size: 0.8em;
-    color: #999;
-    align-self: flex-start; /* Alinear la fecha al inicio */
-    margin-right: 10px; /* Margen derecho para separación */
-  }
+}
+
+.fb-style-comment-form textarea {
+  flex: 1;
+  border-radius: 20px;
+  border: 1px solid #dcdcdc;
+  resize: none;
+  font-size: 14px;
+  padding-left: 5px;
+  padding-top: 10px;
+}
+
+.fb-style-comment-form button {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.fb-style-comment-form button:hover {
+  background-color: #3b5998;
+}
+.eliminar-proyecto-btn {
+  background-color: #dc3545;
+
+
+.eliminar-proyecto-btn:hover {
+  background-color: #c82333;
+}
+
+.fb-style-comment-form {
+  margin-top: 10px;
+}
+
+.form-comentario textarea {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  resize: vertical;
   
-  .options-comment-button {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  
-  .options-container {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #fff;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .show-options {
-    display: block;
-  }
-  
-  /* Estilo para la ventana modal */
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .edit-input {
-    padding: 10px;
-    font-size: 1em;
-  }
-  
-  .save-button,
-  .delete-button {
-    padding: 10px;
-    font-size: 1em;
-    cursor: pointer;
-  }
-  
-  .save-button {
-    background: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 3px;
-  }
-  
-  .delete-button {
-    background: #f44336;
-    color: white;
-    border: none;
-    border-radius: 3px;
-  }
-  
-  /* Estilos para botones de reacción */
-  .reactions-container {
-    display: flex;
-    align-items: center;
-    gap: 5px; /* Espacio entre botones de reacción */
-  }
-  
-  .like-button,
-  .love-button,
-  .haha-button {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  
+}
+}

@@ -46,13 +46,6 @@
     margin-bottom: 8px; /* Reducir el margen inferior del título */
 }
 
-.post img {
-    width: auto;
-    border-radius: 8px;
-    margin-bottom: 8px; /* Reducir el margen inferior de la imagen */
-    object-fit: cover;
-}
-
 .post p {
     font-size: 14px; /* Reducir el tamaño del texto */
     color: #000000;
@@ -112,7 +105,7 @@
     color: #1877f2;
 }
 
-.post img {
+img {
     width: 100%;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -402,5 +395,42 @@
   .delete-button:hover {
     color: #c82333; /* Cambio de color rojo más oscuro al pasar el mouse */
   }
-
- 
+.proyecto {
+    border: 1px solid #ddd; /* Borde delgada */
+    border-radius: 10px; /* Bordes circulares */
+    padding: 20px; /* Espacio interno */
+    margin-bottom: 20px; /* Margen inferior entre tarjetas */
+    background-color: #f9f9f9; /* Color de fondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+  .proyecto h3 {
+    font-size: 1.5rem; /* Tamaño de fuente para el título */
+    margin-bottom: 10px; /* Margen inferior para separación */
+  }
+  
+  .proyecto p {
+    margin-bottom: 10px; /* Margen inferior para separación */
+  }
+  
+  .comentarios-btn {
+    margin-top: 1px; /* Margen superior para separación */
+  }
+  
+  /* Estilos para la imagen */
+  .proyecto img {
+    max-width: 100%; /* Ajuste máximo de ancho */
+    height: auto; /* Altura automática */
+    border-radius: 8px; /* Bordes circulares para la imagen */
+  }
+  .enlace-registro-btn {
+    display: inline-block;
+    position: relative;
+    left: 0; /* Alinea en el extremo izquierdo */
+  }
+  
+  .vistas-container {
+    display: inline-block;
+    position: relative;
+    left: 82%; /* Alinea en el extremo derecho */
+  }

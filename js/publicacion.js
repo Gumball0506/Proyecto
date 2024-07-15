@@ -1,260 +1,6 @@
-// Evento que se ejecuta al enviar el formulario de publicación
-document.getElementById("postForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
-
-  // Obtener los valores del formulario
-  const title = document.getElementById("title").value;
-  const description = document.getElementById("description").value;
-  const imageInput = document.getElementById("image");
-
-  // Verificar si se seleccionó un archivo de imagen
-  if (imageInput.files && imageInput.files[0]) {
-    const reader = new FileReader();
-
-    // Evento que se ejecuta cuando se carga la imagen
-    reader.onload = function (e) {
-      const imageUrl = e.target.result; // Obtener la URL de la imagen cargada
-      const postId = Date.now().toString(); // Generar un ID único basado en la hora actual
-      const currentDate = new Date().toLocaleString(); // Obtener la fecha y hora actual
-
-      // Crear objeto de publicación con los datos obtenidos
-      const post = {
-        id: postId,
-        title: title,
-        image: imageUrl,
-        description: description,
-        date: currentDate,
-        location: "Desconocido", // Información adicional por defecto
-        contact: "contacto@ejemplo.com", // Información adicional por defecto
-      };
-
-      savePost(post); // Guardar la publicación en el almacenamiento local
-      displayPost(post); // Mostrar la publicación en la interfaz de usuario
-      document.getElementById("postForm").reset(); // Reiniciar el formulario
-    };
-
-    // Leer el archivo de imagen como URL
-    reader.readAsDataURL(imageInput.files[0]);
-  }
-});
-
-// Función para guardar la publicación en el almacenamiento local
-function savePost(post) {
-  try {
-    let posts = JSON.parse(localStorage.getItem("posts")) || []; // Obtener las publicaciones almacenadas
-    posts.push(post); // Agregar la nueva publicación
-    posts.sort((a, b) => new Date(b.date) - new Date(a.date)); // Ordenar las publicaciones por fecha
-    localStorage.setItem("posts", JSON.stringify(posts)); // Guardar las publicaciones en el almacenamiento local
-    console.log("Post saved:", post); // Registro en consola
-  } catch (error) {
-    console.error("Error saving post:", error); // Manejar errores
-  }
-}
-// Función para mostrar una publicación en la interfaz de usuario
-function displayPost(post) {
-  const postDiv = document.createElement("div"); // Crear un nuevo elemento div
-  postDiv.classList.add("post"); // Añadir clase 'post' al div
-  postDiv.dataset.id = post.id; // Añadir ID de la publicación como atributo de datos
-  postDiv.dataset.date = post.date; // Añadir fecha de la publicación como atributo de datos
-
-  // Crear elementos para mostrar los detalles de la publicación
-  const postTitle = document.createElement("h2");
-  postTitle.textContent = post.title;
-
-  // Crear imagen para la publicación
-  const postImage = document.createElement("img");
-  postImage.src = post.image;
-  postImage.addEventListener("click", function () {
-    window.location.href = `/html/detalles_publicacion.html?id=${post.id}`; // Redireccionar al hacer clic en la imagen
-  });
-
-  const postDescription = document.createElement("p");
-  postDescription.textContent = post.description;
-
-  // Crear contenedor para los botones de visualización y eliminación
-  const buttonsContainer = document.createElement("div");
-  buttonsContainer.classList.add("buttons-container");
-
-  // Crear botón de visualización
-  const viewButton = document.createElement("button");
-  const viewIcon = document.createElement("i");
-  viewIcon.classList.add("fas", "fa-eye"); // Añadir icono de visualización
-  viewButton.appendChild(viewIcon);
-  viewButton.addEventListener("click", function () {
-    // No se realiza ninguna acción al hacer clic en el botón de visualización
-  });
-
-  // Crear botón de eliminación
-  const deleteButton = document.createElement("button");
-  const deleteIcon = document.createElement("i");
-  deleteIcon.classList.add("fas", "fa-trash"); // Añadir icono de eliminación
-  deleteButton.appendChild(deleteIcon);
-  deleteButton.addEventListener("click", function () {
-    deletePost(post.id); // Eliminar la publicación
-    postDiv.remove(); // Quitar la publicación de la interfaz de usuario
-  });
-
-  // Crear botón para comentarios con ícono
-  const commentButton = document.createElement("button");
-  commentButton.classList.add("comentarios-button"); // Añadir clase para estilos
-
-  const commentIcon = document.createElement("i");
-  commentIcon.classList.add("fas", "fa-comments"); // Añadir ícono de comentarios de Font Awesome
-
-  const commentText = document.createElement("span"); // Crear un elemento span para el texto "Comentarios"
-  commentText.textContent = "Comentarios";
-
-  commentButton.appendChild(commentIcon);
-  commentButton.appendChild(commentText);
-
-  commentButton.addEventListener("click", function () {
-    toggleComments(commentsContainer); // Alternar visibilidad de los comentarios
-  });
-
-  commentButton.addEventListener("mouseenter", function () {
-    commentText.classList.add("hovered"); // Agregar clase al pasar el mouse
-  });
-
-  commentButton.addEventListener("mouseleave", function () {
-    commentText.classList.remove("hovered"); // Quitar clase al salir el mouse
-  });
-
-  commentText.style.fontSize = "14px"; // Ajustar el tamaño del texto del botón de comentarios
-
-  // Añadir los botones al contenedor de botones
-  buttonsContainer.appendChild(viewButton);
-  buttonsContainer.appendChild(deleteButton);
-  buttonsContainer.appendChild(commentButton);
-
-  // Crear contenedor para los comentarios
-  const commentsContainer = document.createElement("div");
-  commentsContainer.classList.add("comments-container");
-  commentsContainer.style.display = "none"; // Ocultar comentarios inicialmente
-
-  // Crear lista de comentarios
-  const commentsList = document.createElement("div");
-  commentsList.classList.add("comments-list");
-
-  // Crear formulario para agregar nuevos comentarios
-  const commentForm = document.createElement("form");
-  commentForm.classList.add("comment-form");
-  const commentInput = document.createElement("input");
-  commentInput.type = "text";
-  commentInput.placeholder = "Escribe un comentario...";
-  const commentSubmitButton = document.createElement("button");
-  commentSubmitButton.type = "submit";
-  commentSubmitButton.textContent = "Comentar";
-
-  // Añadir elementos al formulario de comentarios
-  commentForm.appendChild(commentInput);
-  commentForm.appendChild(commentSubmitButton);
-  commentsContainer.appendChild(commentsList);
-  commentsContainer.appendChild(commentForm);
-
-  // Evento que se ejecuta al enviar el formulario de comentarios
-  commentForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (commentInput.value.trim() !== "") {
-      if (containsBannedWords(commentInput.value.trim())) {
-        alert(
-          "Tu comentario contiene palabras inapropiadas y no puede ser publicado."
-        );
-        return;
-      }
-      const comment = {
-        postId: post.id, // ID de la publicación asociada al comentario
-        text: commentInput.value.trim(), // Texto del comentario
-        date: new Date().toLocaleString(), // Fecha y hora del comentario
-      };
-      saveComment(comment); // Guardar el comentario en el almacenamiento local
-      displayComment(comment, commentsList); // Mostrar el comentario en la interfaz de usuario
-      commentInput.value = ""; // Limpiar el campo de entrada de comentarios
-    }
-  });
-
-  // Añadir todos los elementos al div de la publicación
-  postDiv.appendChild(postTitle);
-  postDiv.appendChild(postImage);
-  postDiv.appendChild(postDescription);
-  postDiv.appendChild(buttonsContainer);
-  postDiv.appendChild(commentsContainer);
-
-  // Insertar la publicación en la interfaz de usuario en el lugar adecuado según la fecha
-  const postsContainer = document.querySelector(".posts-container");
-  let inserted = false;
-  for (let i = 0; i < postsContainer.children.length; i++) {
-    const currentPost = postsContainer.children[i];
-    const currentPostDate = new Date(currentPost.dataset.date);
-    const newPostDate = new Date(post.date);
-    if (newPostDate > currentPostDate) {
-      postsContainer.insertBefore(postDiv, currentPost);
-      inserted = true;
-      break;
-    }
-  }
-  if (!inserted) {
-    postsContainer.appendChild(postDiv);
-  }
-}
-// Función para alternar la visibilidad de los comentarios
-function toggleComments(commentsContainer) {
-  if (commentsContainer.style.display === "none") {
-    commentsContainer.style.display = "block";
-  } else {
-    commentsContainer.style.display = "none";
-  }
-}
-
-// Función para eliminar una publicación por su ID
-function deletePost(postId) {
-  try {
-    let posts = JSON.parse(localStorage.getItem("posts")) || [];
-    posts = posts.filter((post) => post.id !== postId); // Filtrar la publicación a eliminar
-    localStorage.setItem("posts", JSON.stringify(posts));
-    console.log("Post deleted:", postId);
-
-    // Eliminar comentarios asociados a la publicación eliminada
-    let comments = JSON.parse(localStorage.getItem("comments")) || [];
-    comments = comments.filter((comment) => comment.postId !== postId); // Filtrar comentarios asociados a la publicación
-    localStorage.setItem("comments", JSON.stringify(comments));
-    console.log("Comments deleted for post:", postId);
-  } catch (error) {
-    console.error("Error deleting post:", error); // Manejar errores
-  }
-}
-
-// Función para editar un comentario por su ID
-function editComment(commentId, newText) {
-  try {
-    let comments = JSON.parse(localStorage.getItem("comments")) || [];
-    const commentIndex = comments.findIndex(
-      (comment) => comment.id === commentId
-    );
-    if (commentIndex !== -1) {
-      comments[commentIndex].text = newText; // Actualizar el texto del comentario
-      localStorage.setItem("comments", JSON.stringify(comments)); // Guardar en el almacenamiento local
-      console.log("Comment edited:", commentId);
-      return true; // Devolver true si se editó correctamente
-    }
-    return false; // Devolver false si no se encontró el comentario
-  } catch (error) {
-    console.error("Error editing comment:", error); // Manejar errores
-    return false; // Devolver false en caso de error
-  }
-}
-
-// Cargar las publicaciones existentes al cargar la página
-window.addEventListener("load", function () {
-  try {
-    const posts = JSON.parse(localStorage.getItem("posts")) || [];
-    posts.forEach(displayPost); // Mostrar cada publicación almacenada
-  } catch (error) {
-    console.error("Error loading posts:", error); // Manejar errores
-  }
-});
-
 // Palabras prohibidas
 const bannedWords = [
+  "mrd",
   "Conchatumadre",
   "Huevón",
   "Huevona",
@@ -374,175 +120,415 @@ const bannedWords = [
   "MIERDA",
   "mAm4Hu3v0",
   "mi3rd4",
+  "Coño",
+  "Chingada",
+  "Culero",
+  "Pendejada",
+  "Estúpido",
+  "Gonorrea",
+  "Tonto",
+  "Trol",
+  "Capullo",
+  "Negro",
+  "Blanco",
+  "Indio",
+  "Gringo",
+  "Porno",
+  "Orgasmo",
+  "Prostitución",
+  "Violar",
+  "Gay",
+  "Lesbiana",
+  "Trans",
+  "Homosexual",
+  "Travesti",
 ];
 
-// Función para verificar si un texto contiene palabras prohibidas
-function containsBannedWords(text) {
-  const lowerCaseText = text.toLowerCase();
-  for (const word of bannedWords) {
-    if (lowerCaseText.includes(word.toLowerCase())) {
-      return true;
-    }
-  }
-  return false;
-}
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("postForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Evitar el envío automático del formulario
 
-// Función para guardar un comentario en el almacenamiento local
-function saveComment(comment) {
-  try {
-    let comments = JSON.parse(localStorage.getItem("comments")) || [];
-    comments.push(comment); // Agregar el comentario al arreglo
-    localStorage.setItem("comments", JSON.stringify(comments)); // Guardar en el almacenamiento local
-    console.log("Comment saved:", comment); // Registro en consola
-  } catch (error) {
-    console.error("Error saving comment:", error); // Manejar errores
-  }
-}
+      let titulo = document.getElementById("title").value;
+      let descripcion = document.getElementById("description").value;
+      let foto = document.getElementById("image").files[0]; // Obtener el archivo de imagen
 
-// Función para mostrar un comentario en la interfaz de usuario
-function displayComment(comment, commentsList) {
-  const commentDiv = document.createElement("div");
-  commentDiv.classList.add("comment");
-  const commentText = document.createElement("p");
-  commentText.textContent = comment.text;
-  const commentDate = document.createElement("span");
-  commentDate.classList.add("comment-date");
-  commentDate.textContent = comment.date;
-
-  // Crear botón para editar comentario
-  const editButton = document.createElement("button");
-  editButton.classList.add("edit-button"); // Agregar clase para estilos
-  const editIcon = document.createElement("i");
-  editIcon.classList.add("fas", "fa-edit"); // Agregar icono de edición de Font Awesome
-  editButton.appendChild(editIcon); // Añadir el icono al botón
-  editButton.addEventListener("click", function () {
-    const newText = prompt("Edita tu comentario:", comment.text);
-    if (newText !== null && newText.trim() !== "" && newText !== comment.text) {
-      if (containsBannedWords(newText.trim())) {
-        alert(
-          "Tu comentario contiene palabras inapropiadas y no puede ser editado."
-        );
-        return;
-      }
-      if (editComment(comment.id, newText)) {
-        commentText.textContent = newText; // Actualizar texto del comentario en la interfaz
-        console.log("Comment edited successfully:", comment.id);
-      } else {
-        console.error("Failed to edit comment:", comment.id);
-      }
-    }
-  });
-
-  // Crear botón para eliminar comentario
-  const deleteButton = document.createElement("button");
-  deleteButton.classList.add("delete-button"); // Agregar clase para estilos
-  const deleteIcon = document.createElement("i");
-  deleteIcon.classList.add("fas", "fa-trash"); // Agregar icono de eliminación de Font Awesome
-  deleteButton.appendChild(deleteIcon); // Añadir el icono al botón
-  deleteButton.addEventListener("click", function () {
-    deleteComment(comment.id, commentDiv); // Eliminar el comentario
-  });
-
-  commentDiv.appendChild(commentText);
-  commentDiv.appendChild(commentDate);
-  commentDiv.appendChild(editButton);
-  commentDiv.appendChild(deleteButton);
-
-  commentsList.appendChild(commentDiv);
-}
-
-// Función para eliminar un comentario por su ID
-function deleteComment(commentId, commentDiv) {
-  try {
-    let comments = JSON.parse(localStorage.getItem("comments")) || [];
-    comments = comments.filter((comment) => comment.id !== commentId); // Filtrar el comentario a eliminar
-    localStorage.setItem("comments", JSON.stringify(comments));
-    console.log("Comment deleted:", commentId);
-    commentDiv.remove(); // Quitar el comentario de la interfaz de usuario
-  } catch (error) {
-    console.error("Error deleting comment:", error); // Manejar errores
-  }
-}
-
-// Cargar los comentarios al cargar la página
-window.addEventListener("load", function () {
-  try {
-    const comments = JSON.parse(localStorage.getItem("comments")) || [];
-    comments.forEach((comment) => {
-      const postDiv = document.querySelector(
-        `.post[data-id="${comment.postId}"]`
+      let formData = new FormData();
+      formData.append("accion", "guardar_proyecto");
+      formData.append("titulo", titulo);
+      formData.append("descripcion", descripcion);
+      formData.append("foto", foto);
+      formData.append(
+        "url_registro",
+        document.getElementById("registrationLink").value
       );
-      if (postDiv) {
-        const commentsList = postDiv.querySelector(".comments-list");
-        if (commentsList) {
-          displayComment(comment, commentsList);
-        }
-      }
-    });
-  } catch (error) {
-    console.error("Error loading comments:", error); // Manejar errores
-  }
-});
+      console.log(
+        "Valor de url_registro enviado: ",
+        document.getElementById("registrationLink").value
+      );
 
-    // Funcion para confirmar salir del modo admin
-    document.getElementById('custom_linka').addEventListener('click', function(event) {
-        event.preventDefault(); 
-        var userConfirmed = confirm('¿Deseas continuar a la siguiente página?,si acepta dejará de ser administrador hasta que vuelva a iniciar sesión');
-        if (userConfirmed) {
-            window.location.href = this.href; 
-        }
-    });
-        // Funcion para confirmar salir del modo admin
-        document.getElementById('custom_linkb').addEventListener('click', function(event) {
-          event.preventDefault(); 
-          var userConfirmed = confirm('¿Deseas continuar a la siguiente página?,si acepta dejará de ser administrador hasta que vuelva a iniciar sesión');
-          if (userConfirmed) {
-              window.location.href = this.href; 
+      // Asegurar que se envíe correctamente la imagen
+
+      fetch("/PHP/Backend_publicacion.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert("Proyecto publicado correctamente");
+            cargarProyectos(); // Actualiza la lista de proyectos después de publicar
+            document.getElementById("postForm").reset(); // Reinicia el formulario después de enviarlo
+          } else {
+            alert(
+              "Error al publicar el proyecto. Por favor, intenta de nuevo."
+            );
           }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert(
+            "Hubo un problema al procesar la solicitud. Por favor, intenta de nuevo más tarde."
+          );
+        });
+    });
+
+  function cargarProyectos() {
+    fetch("/PHP/Backend_publicacion.php?accion=obtener_proyectos")
+      .then((response) => response.json())
+      .then((proyectos) => {
+        mostrarProyectos(proyectos); // Mostrar proyectos en la interfaz
+      })
+      .catch((error) => {
+        console.error("Error al cargar los proyectos:", error);
       });
-    // Funcion para confirmar salir del modo admin
-    document.getElementById('custom_linkc').addEventListener('click', function(event) {
-      event.preventDefault(); 
-      var userConfirmed = confirm('¿Deseas continuar a la siguiente página?,si acepta dejará de ser administrador hasta que vuelva a iniciar sesión');
-      if (userConfirmed) {
-          window.location.href = this.href; 
+  }
+
+  function mostrarProyectos(proyectos) {
+    let proyectosContainer = document.getElementById("posts");
+    proyectosContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
+
+    proyectos.forEach((proyecto) => {
+      let proyectoDiv = document.createElement("div");
+      proyectoDiv.classList.add("proyecto");
+
+      let tituloElement = document.createElement("h3");
+      tituloElement.textContent = proyecto.Titulo;
+
+      let descripcionElement = document.createElement("p");
+      descripcionElement.textContent = proyecto.Descripcion;
+
+      let imagenElement = document.createElement("img");
+      imagenElement.src = "data:image/png;base64," + proyecto.Foto;
+      imagenElement.alt = proyecto.Titulo;
+
+      let vistasElement = document.createElement("div");
+      vistasElement.classList.add("vistas-container");
+
+      let vistasTexto = document.createElement("span");
+      vistasTexto.textContent = "";
+
+      let vistasIcono = document.createElement("i");
+      vistasIcono.classList.add("fas", "fa-eye");
+
+      let vistasNumero = document.createElement("span");
+      vistasNumero.textContent = proyecto.total_vistas;
+
+      vistasElement.appendChild(vistasTexto);
+      vistasElement.appendChild(vistasIcono);
+      vistasElement.appendChild(vistasNumero);
+
+      let enlaceRegistroBoton = document.createElement("a");
+      enlaceRegistroBoton.textContent = "Registro";
+      enlaceRegistroBoton.href = proyecto.url_registro; // Asignar el URL guardado en la base de datos
+      enlaceRegistroBoton.classList.add("enlace-registro-btn");
+      enlaceRegistroBoton.addEventListener("click", function () {
+        incrementarVistas(proyecto.ID_Proyecto);
+      });
+
+      let comentariosBoton = document.createElement("button");
+      comentariosBoton.innerHTML = `<i class="fas fa-comments"></i> Comentarios`;
+      comentariosBoton.classList.add("fb-style-button1", "comentarios-btn");
+      comentariosBoton.addEventListener("click", function () {
+        toggleComentarios(proyecto.ID_Proyecto);
+      });
+
+      let eliminarBoton = document.createElement("button");
+      eliminarBoton.innerHTML = `<i class="fas fa-trash"></i>`;
+      eliminarBoton.classList.add("eliminar-proyecto-btn", "fb-style-button");
+      eliminarBoton.addEventListener("click", function () {
+        eliminarProyecto(proyecto.ID_Proyecto);
+      });
+
+      let comentariosContainer = document.createElement("div");
+      comentariosContainer.id = "comentarios-" + proyecto.ID_Proyecto;
+      comentariosContainer.classList.add("comentarios-container");
+      comentariosContainer.style.display = "none"; // Inicialmente oculto
+
+      let comentarioForm = document.createElement("form");
+      comentarioForm.id = "form-comentario-" + proyecto.ID_Proyecto;
+      comentarioForm.classList.add("form-comentario", "fb-style-comment-form");
+      comentarioForm.innerHTML = `
+        <textarea id="comentario-${proyecto.ID_Proyecto}" placeholder="Agregar un comentario"></textarea>
+        <button type="submit">Comentar</button>
+      `;
+      comentarioForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let comentario = document.getElementById(
+          "comentario-" + proyecto.ID_Proyecto
+        ).value;
+        agregarComentario(proyecto.ID_Proyecto, comentario);
+      });
+
+      proyectoDiv.appendChild(tituloElement);
+      proyectoDiv.appendChild(descripcionElement);
+      proyectoDiv.appendChild(enlaceRegistroBoton);
+      proyectoDiv.appendChild(vistasElement);
+      proyectoDiv.appendChild(imagenElement);
+      proyectoDiv.appendChild(eliminarBoton);
+      proyectoDiv.appendChild(comentariosBoton);
+      proyectoDiv.appendChild(comentariosContainer);
+      proyectoDiv.appendChild(comentarioForm);
+      proyectosContainer.appendChild(proyectoDiv);
+    });
+  }
+
+  // Resto del código JavaScript para manejar eventos, cargar comentarios, etc.
+
+  function cargarComentarios(proyecto_id) {
+    fetch(
+      `/PHP/Backend_publicacion.php?accion=obtener_comentarios&ID_Proyecto=${proyecto_id}`
+    )
+      .then((response) => response.json())
+      .then((comentarios) => mostrarComentarios(comentarios, proyecto_id))
+      .catch((error) =>
+        console.error("Error al cargar los comentarios:", error)
+      );
+  }
+
+  function mostrarComentarios(comentarios, proyecto_id) {
+    let comentariosContainer = document.getElementById(
+      "comentarios-" + proyecto_id
+    );
+    comentariosContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
+
+    comentarios.forEach((comentario) => {
+      let comentarioDiv = document.createElement("div");
+      comentarioDiv.classList.add("comentario");
+
+      let comentarioTexto = document.createElement("p");
+      comentarioTexto.textContent = comentario.Comentario;
+
+      let editarBoton = document.createElement("button");
+      editarBoton.textContent = "Editar";
+      editarBoton.addEventListener("click", function () {
+        editarComentario(comentario.ID_Comentario);
+      });
+
+      let eliminarBoton = document.createElement("button");
+      eliminarBoton.innerHTML = "Eliminar";
+      eliminarBoton.addEventListener("click", function () {
+        eliminarComentario(comentario.ID_Comentario);
+      });
+
+      comentarioDiv.appendChild(comentarioTexto);
+      comentarioDiv.appendChild(editarBoton);
+      comentarioDiv.appendChild(eliminarBoton);
+
+      comentariosContainer.appendChild(comentarioDiv);
+    });
+  }
+
+  function toggleComentarios(proyecto_id) {
+    let comentariosDiv = document.getElementById("comentarios-" + proyecto_id);
+    if (comentariosDiv.style.display === "none") {
+      comentariosDiv.style.display = "block";
+      cargarComentarios(proyecto_id);
+    } else {
+      comentariosDiv.style.display = "none";
+    }
+  }
+  function agregarComentario(proyecto_id, comentario) {
+    // Verificar si el comentario contiene palabras prohibidas
+    let comentarioLimpio = limpiarComentario(comentario);
+
+    if (comentarioLimpio !== comentario) {
+      alert(
+        "El comentario contiene palabras ofensivas y no puede ser publicado."
+      );
+      return;
+    }
+
+    fetch("/PHP/Backend_publicacion.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `accion=agregar_comentario&ID_Proyecto=${encodeURIComponent(
+        proyecto_id
+      )}&Comentario=${encodeURIComponent(comentario)}`,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert("Comentario agregado correctamente");
+          cargarComentarios(proyecto_id);
+          document.getElementById("comentario-" + proyecto_id).value = "";
+        } else {
+          alert("Error al agregar el comentario. Por favor, intenta de nuevo.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert(
+          "Hubo un problema al procesar la solicitud. Por favor, intenta de nuevo más tarde."
+        );
+      });
+  }
+  // Función para limpiar el comentario y verificar palabras prohibidas
+  function limpiarComentario(comentario) {
+    // Convertir el comentario a minúsculas para evitar problemas de mayúsculas y minúsculas
+    let comentarioLimpio = comentario.toLowerCase();
+
+    // Eliminar espacios en blanco innecesarios
+    comentarioLimpio = comentarioLimpio.trim();
+
+    // Reemplazar caracteres especiales y símbolos con espacios para asegurar una comparación adecuada
+    comentarioLimpio = comentarioLimpio.replace(/[^\w\s]/gi, " ");
+
+    // Separar el comentario en palabras individuales
+    let palabras = comentarioLimpio.split(/\s+/);
+
+    // Verificar si alguna palabra está en la lista de palabras prohibidas
+    for (let i = 0; i < palabras.length; i++) {
+      // Convertir la palabra actual a minúsculas para la comparación
+      let palabraActual = palabras[i].toLowerCase();
+
+      if (bannedWords.includes(palabraActual)) {
+        // Si se encuentra una palabra prohibida, reemplazarla con asteriscos
+        comentarioLimpio = comentarioLimpio.replace(
+          palabraActual,
+          "*".repeat(palabras[i].length)
+        );
       }
-  });
-    // Funcion para confirmar salir del modo admin
-    document.getElementById('custom_linkd').addEventListener('click', function(event) {
-      event.preventDefault(); 
-      var userConfirmed = confirm('¿Deseas continuar a la siguiente página?,si acepta dejará de ser administrador hasta que vuelva a iniciar sesión');
-      if (userConfirmed) {
-          window.location.href = this.href; 
-      }
-  });
-    // Funcion para confirmar salir del modo admin
-    document.getElementById('custom_linke').addEventListener('click', function(event) {
-      event.preventDefault(); 
-      var userConfirmed = confirm('¿Deseas continuar a la siguiente página?,si acepta dejará de ser administrador hasta que vuelva a iniciar sesión');
-      if (userConfirmed) {
-          window.location.href = this.href; 
-      }
-  });
+    }
+    return comentarioLimpio;
+  }
 
+  function editarComentario(comentario_id) {
+    let nuevoComentario = prompt("Ingresa el nuevo comentario:");
+    if (nuevoComentario) {
+      fetch("/PHP/Backend_publicacion.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `accion=editar_comentario&ID_Comentario=${encodeURIComponent(
+          comentario_id
+        )}&Comentario=${encodeURIComponent(nuevoComentario)}`,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert("Comentario editado correctamente");
+            cargarComentarios(data.proyecto_id);
+          } else {
+            alert(
+              "Error al editar el comentario. Por favor, intenta de nuevo."
+            );
+          }
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  }
 
-    // Funcion para los enlaces
-      const pu_ac = document.getElementById('pu_ac');
-      const pu_an = document.getElementById('pu_an');
-      const pu_fu = document.getElementById('pu_fu');
-    
-      // Agregamos un evento de click al botón
-      pu_ac.addEventListener('click', function() {
-        // Redirigimos a la página deseada
-        window.location.href = 'publicaciones_admin.html'; 
+  function eliminarComentario(comentario_id) {
+    let confirmacion = confirm(
+      "¿Estás seguro de que deseas eliminar este comentario?"
+    );
+    if (confirmacion) {
+      fetch("/PHP/Backend_publicacion.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `accion=eliminar_comentario&ID_Comentario=${encodeURIComponent(
+          comentario_id
+        )}`,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert("Comentario eliminado correctamente");
+            cargarComentarios(data.proyecto_id);
+          } else {
+            alert(
+              "Error al eliminar el comentario. Por favor, intenta de nuevo."
+            );
+          }
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  }
+
+  function eliminarProyecto(proyecto_id) {
+    let confirmacion = confirm(
+      "¿Estás seguro de que deseas eliminar este proyecto?"
+    );
+    if (confirmacion) {
+      fetch("/PHP/Backend_publicacion.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `accion=eliminar_proyecto&ID_Proyecto=${encodeURIComponent(
+          proyecto_id
+        )}`,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert("Proyecto eliminado correctamente");
+            cargarProyectos();
+          } else {
+            alert(
+              "Error al eliminar el proyecto. Por favor, intenta de nuevo."
+            );
+          }
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  }
+
+  function incrementarVistas(proyecto_id) {
+    fetch("/PHP/Backend_publicacion.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `accion=incrementar_vistas&ID_Proyecto=${encodeURIComponent(
+        proyecto_id
+      )}`,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          obtenerVistasTotales(proyecto_id); // Actualizar las vistas después de incrementarlas
+        } else {
+          alert(
+            "Error al incrementar las vistas. Por favor, intenta de nuevo."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert(
+          "Hubo un problema al procesar la solicitud. Por favor, intenta de nuevo más tarde."
+        );
       });
+  }
 
-      pu_an.addEventListener('click', function() {
-        // Redirigimos a la página deseada
-        window.location.href = 'publicacionesAntiguas_admin.html'; 
-      });
-
-      pu_fu.addEventListener('click', function() {
-        // Redirigimos a la página deseada
-        window.location.href = 'publicaciones_futuras_admin.html'; 
-      });
+  // Cargar los proyectos al cargar la página
+  cargarProyectos();
+});

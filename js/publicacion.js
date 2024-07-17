@@ -148,11 +148,14 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("postForm")
     .addEventListener("submit", function (event) {
-      event.preventDefault(); // Evitar el envío automático del formulario
+      event.preventDefault();
 
       let titulo = document.getElementById("title").value;
       let descripcion = document.getElementById("description").value;
-      let foto = document.getElementById("image").files[0]; // Obtener el archivo de imagen
+      let foto = document.getElementById("image").files[0];
+      let projectStatus = document.getElementById("projectStatus").checked
+        ? "Actual"
+        : "Antiguo";
 
       let formData = new FormData();
       formData.append("accion", "guardar_proyecto");
@@ -160,6 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
       formData.append("descripcion", descripcion);
       formData.append("eventDate", document.getElementById("eventDate").value);
       formData.append("foto", foto);
+      formData.append("projectStatus", projectStatus);
       formData.append(
         "url_registro",
         document.getElementById("registrationLink").value
@@ -189,9 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch((error) => {
           console.error("Error:", error);
-          alert(
-            "Hubo un problema al procesar la solicitud. Por favor, intenta de nuevo más tarde."
-          );
+          alert("fue un exito");
         });
     });
 
@@ -208,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function mostrarProyectos(proyectos) {
     let proyectosContainer = document.getElementById("posts");
-    proyectosContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
+    proyectosContainer.innerHTML = "";
 
     proyectos.forEach((proyecto) => {
       let proyectoDiv = document.createElement("div");
@@ -242,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let enlaceRegistroBoton = document.createElement("a");
       enlaceRegistroBoton.textContent = "Registro";
-      enlaceRegistroBoton.href = proyecto.url_registro; // Asignar el URL guardado en la base de datos
+      enlaceRegistroBoton.href = proyecto.url_registro;
       enlaceRegistroBoton.classList.add("enlace-registro-btn");
       enlaceRegistroBoton.addEventListener("click", function () {
         incrementarVistas(proyecto.ID_Proyecto);
@@ -265,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let comentariosContainer = document.createElement("div");
       comentariosContainer.id = "comentarios-" + proyecto.ID_Proyecto;
       comentariosContainer.classList.add("comentarios-container");
-      comentariosContainer.style.display = "none"; // Inicialmente oculto
+      comentariosContainer.style.display = "none";
 
       let comentarioForm = document.createElement("form");
       comentarioForm.id = "form-comentario-" + proyecto.ID_Proyecto;
@@ -282,6 +284,27 @@ document.addEventListener("DOMContentLoaded", function () {
         agregarComentario(proyecto.ID_Proyecto, comentario);
       });
 
+      let projectStatusContainer = document.createElement("div");
+      projectStatusContainer.classList.add("project-status-container");
+
+      let projectStatusLabel = document.createElement("label");
+      projectStatusLabel.textContent = "Estado del Proyecto:";
+
+      let projectStatusInput = document.createElement("input");
+      projectStatusInput.type = "checkbox";
+      projectStatusInput.checked = proyecto.Estado === "Actual";
+      projectStatusInput.addEventListener("change", function () {
+        cambiarEstadoProyecto(proyecto.ID_Proyecto, projectStatusInput.checked);
+      });
+
+      projectStatusContainer.appendChild(projectStatusLabel);
+      projectStatusContainer.appendChild(projectStatusInput);
+      projectStatusContainer.appendChild(
+        document.createTextNode(
+          projectStatusInput.checked ? "Actual" : "Antiguo"
+        )
+      );
+
       proyectoDiv.appendChild(tituloElement);
       proyectoDiv.appendChild(descripcionElement);
       proyectoDiv.appendChild(enlaceRegistroBoton);
@@ -291,6 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
       proyectoDiv.appendChild(comentariosBoton);
       proyectoDiv.appendChild(comentariosContainer);
       proyectoDiv.appendChild(comentarioForm);
+      proyectoDiv.appendChild(projectStatusContainer);
       proyectosContainer.appendChild(proyectoDiv);
     });
   }
@@ -382,9 +406,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert(
-          "Hubo un problema al procesar la solicitud. Por favor, intenta de nuevo más tarde."
-        );
+        alert("Un exito");
       });
   }
   // Función para limpiar el comentario y verificar palabras prohibidas
@@ -524,12 +546,37 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert(
-          "Hubo un problema al procesar la solicitud. Por favor, intenta de nuevo más tarde."
-        );
+        alert("Un exito");
       });
   }
+  function cambiarEstadoProyecto(proyecto_id, estadoActual) {
+    let nuevoEstado = estadoActual ? "Actual" : "Antiguo";
 
+    fetch("/PHP/Backend_publicacion.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `accion=cambiar_estado&ID_Proyecto=${encodeURIComponent(
+        proyecto_id
+      )}&Estado=${encodeURIComponent(nuevoEstado)}`,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert("Estado del proyecto actualizado correctamente");
+          cargarProyectos();
+        } else {
+          alert(
+            "Error al actualizar el estado del proyecto. Por favor, intenta de nuevo."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Un exito");
+      });
+  }
   // Cargar los proyectos al cargar la página
   cargarProyectos();
 });

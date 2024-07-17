@@ -146,6 +146,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             echo json_encode($response);
             break;
+        case 'cambiar_estado':
+            // Cambiar el estado de un proyecto
+            try {
+                $id_proyecto = $_POST['ID_Proyecto'];
+                $nuevo_estado = $_POST['Estado'];
+
+                $sql = "UPDATE proyectos SET Estado = ? WHERE ID_Proyecto = ?";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(1, $nuevo_estado);
+                $stmt->bindParam(2, $id_proyecto);
+                $stmt->execute();
+
+                $response = array('success' => true);
+            } catch (Exception $e) {
+                $response = array('success' => false, 'error' => $e->getMessage());
+            }
+            echo json_encode($response);
+            break;
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Manejar las diferentes acciones según el valor de $_GET['accion']
@@ -154,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch ($accion) {
         case 'obtener_proyectos':
             try {
-                $stmt = $pdo->query("SELECT p.ID_Proyecto, p.Titulo, p.Descripcion, p.Foto, p.url_registro, COALESCE(v.total_vistas, 0) AS total_vistas 
+                $stmt = $pdo->query("SELECT p.ID_Proyecto, p.Titulo, p.Descripcion, p.Foto, p.url_registro, COALESCE(v.total_vistas, 0) AS total_vistas, p.Estado 
                                     FROM proyectos p
                                     LEFT JOIN vistas_totales v ON p.ID_Proyecto = v.ID_Proyecto");
                 $proyectos = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -169,7 +187,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode(array('success' => false, 'error' => $e->getMessage()));
             }
             break;
-
 
         case 'obtener_comentarios':
             // Obtener los comentarios de un proyecto específico

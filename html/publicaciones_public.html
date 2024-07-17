@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <style>
+        /* Estilo para ocultar el cuadro de texto */
+        #admin {
+            display: none;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Publicaciones</title>
@@ -52,21 +58,30 @@
             </div>
         </div>
         <!-- Navbar End -->
-    <div class="fondo">
-        <div id="admin">
-            <h1>Sistema de Publicaciones</h1>
-            <form id="postForm" class="form">
-                <input type="text" id="title" placeholder="Título" required>
-                <textarea id="description" placeholder="Descripción" required></textarea>
-                <input type="text" id="registrationLink" name="registrationLink" placeholder="URL de registro" required>
-                <input type="date" id="eventDate" placeholder="Fecha del evento" required>
-                <input type="file" id="image" accept="image/*" required>
-                <button type="submit">Publicar</button>
-            </form>
+        
+        <div class="fondo">
+            <div id="admin">
+                <h1>Sistema de Publicaciones</h1>
+                <form id="postForm" class="form">
+                    <input type="text" id="title" placeholder="Título" required>
+                    <textarea id="description" placeholder="Descripción" required></textarea>
+                    <input type="text" id="registrationLink" name="registrationLink" placeholder="URL de registro" required>
+                    <div class="input-container">
+                        <input type="date" id="eventDate" placeholder="Fecha del evento" required>
+                        <div>
+                            <label for="projectStatus">Estado del Proyecto:</label>
+                            <input type="checkbox" id="projectStatus" name="projectStatus" checked>
+                            <label for="projectStatus">Actual</label>
+                        </div>
+                    </div>
+                    <input type="file" id="image" accept="image/*" required>
+                    <button type="submit">Publicar</button>
+                </form>
+            </div>
+            <div id="posts" class="posts-container">
+                <!-- Ejemplo de proyecto publicado -->
+            </div>
         </div>
-        <div id="posts" class="posts-container"></div>
-    </div>
-
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">

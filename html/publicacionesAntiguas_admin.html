@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Sistema de Publicaciones Pasadas</title>
-    <link rel="stylesheet" href="/css/styles.css">
     <link href="img/favicon.ico" rel="icon">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="/css/updated_style.css" rel="stylesheet">
+    <link href="/css/publicaciones_antiguas.css" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid position-relative nav-bar p-0">
@@ -49,21 +49,10 @@
         <input type="submit" class="pu_ac" id="pu_ac" value="publicaciones actuales">   
         <input type="submit" class="pu_an" id="pu_an" value="publicaciones antiguas">
         <input type="submit" class="pu_fu" id="pu_fu" value="publicaciones futuras">
-      </div>
-    <div class="container">
-        <h1>Sistema de Publicaciones Pasadas</h1>.
-        <form id="postForm">.
-            <input type="text" id="title" placeholder="Título" required>
-            <input type="file" id="item" accept="image/*" required>
-            <textarea id="description" placeholder="Descripción" required></textarea>
-            <button type="submit">Publicar</button>
-        </form>
-        <div id="posts" class="posts-container"></div>
     </div>
-    <div class="cartasfotos"></div>
-    <div class="button">
-        <btn class="prev"><i class="fa-solid fa-arrow-left"></i></btn>
-        <btn class="next"><i class="fa-solid fa-arrow-right"></i></btn>
+    <h8 class="titulo-principal">Proyectos Realizados</h8>
+    <div id="posts" class="container-fluid">
+        <!-- Aquí se mostrarán los proyectos antiguos -->
     </div>
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -110,13 +99,10 @@
             </div>
         </div>
     </div>
-    
-
-    <script src="/js/script.js"></script>
+    <script src="/js/publicaciones_antiguas.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="/js/easing.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
 </body>
 </html>

@@ -154,9 +154,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let descripcion = document.getElementById("description").value;
       let foto = document.getElementById("image").files[0];
       let projectStatus = document.getElementById("projectStatus").checked
-        ? "Actual"
-        : "Antiguo";
-
+        ? "1"
+        : "2";
       let formData = new FormData();
       formData.append("accion", "guardar_proyecto");
       formData.append("titulo", titulo);
@@ -168,12 +167,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "url_registro",
         document.getElementById("registrationLink").value
       );
-      console.log(
-        "Valor de url_registro enviado: ",
-        document.getElementById("registrationLink").value
-      );
-
-      // Asegurar que se envíe correctamente la imagen
 
       fetch("/PHP/Backend_publicacion.php", {
         method: "POST",
@@ -193,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch((error) => {
           console.error("Error:", error);
-          alert("fue un exito");
+          alert("Error al publicar el proyecto.");
         });
     });
 
@@ -251,14 +244,15 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       let comentariosBoton = document.createElement("button");
-      comentariosBoton.innerHTML = `<i class="fas fa-comments"></i> Comentarios`;
+      comentariosBoton.innerHTML =
+        '<i class="fas fa-comments"></i> Comentarios';
       comentariosBoton.classList.add("fb-style-button1", "comentarios-btn");
       comentariosBoton.addEventListener("click", function () {
         toggleComentarios(proyecto.ID_Proyecto);
       });
 
       let eliminarBoton = document.createElement("button");
-      eliminarBoton.innerHTML = `<i class="fas fa-trash"></i>`;
+      eliminarBoton.innerHTML = '<i class="fas fa-trash"></i>';
       eliminarBoton.classList.add("eliminar-proyecto-btn", "fb-style-button");
       eliminarBoton.addEventListener("click", function () {
         eliminarProyecto(proyecto.ID_Proyecto);
@@ -272,10 +266,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let comentarioForm = document.createElement("form");
       comentarioForm.id = "form-comentario-" + proyecto.ID_Proyecto;
       comentarioForm.classList.add("form-comentario", "fb-style-comment-form");
-      comentarioForm.innerHTML = `
-        <textarea id="comentario-${proyecto.ID_Proyecto}" placeholder="Agregar un comentario"></textarea>
-        <button type="submit">Comentar</button>
-      `;
+      comentarioForm.innerHTML = `<textarea id="comentario-${proyecto.ID_Proyecto}" placeholder="Agregar un comentario"></textarea>
+        <button type="submit">Comentar</button>`;
       comentarioForm.addEventListener("submit", function (event) {
         event.preventDefault();
         let comentario = document.getElementById(
@@ -292,18 +284,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let projectStatusInput = document.createElement("input");
       projectStatusInput.type = "checkbox";
-      projectStatusInput.checked = proyecto.Estado === "Actual";
-      projectStatusInput.addEventListener("change", function () {
-        cambiarEstadoProyecto(proyecto.ID_Proyecto, projectStatusInput.checked);
-      });
 
+      // Inicializa el estado del checkbox
+      projectStatusInput.checked = proyecto.Estado ? "Actual" : "Antiguo";
+
+      // Crea un elemento para mostrar el texto del estado
+      let projectStatusText = document.createElement("span");
+      projectStatusText.textContent = projectStatusInput.checked
+        ? "Actual"
+        : "Actual";
+
+      // Función para actualizar el texto y el estado
+      function actualizarEstado() {
+        let nuevoEstado = projectStatusInput.checked ? "Antiguo" : "Antiguo";
+        projectStatusText.textContent = nuevoEstado;
+        cambiarEstadoProyecto(proyecto.ID_Proyecto, nuevoEstado);
+      }
+
+      // Añade el texto y el checkbox al contenedor
       projectStatusContainer.appendChild(projectStatusLabel);
       projectStatusContainer.appendChild(projectStatusInput);
-      projectStatusContainer.appendChild(
-        document.createTextNode(
-          projectStatusInput.checked ? "Actual" : "Antiguo"
-        )
-      );
+      projectStatusContainer.appendChild(projectStatusText);
+
+      // Actualiza el estado cuando cambia el checkbox
+      projectStatusInput.addEventListener("change", actualizarEstado);
 
       proyectoDiv.appendChild(tituloElement);
       proyectoDiv.appendChild(descripcionElement);
@@ -550,7 +554,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
   function cambiarEstadoProyecto(proyecto_id, estadoActual) {
-    let nuevoEstado = estadoActual ? "Actual" : "Antiguo";
+    let nuevoEstado = estadoActual ? "1" : "2";
 
     fetch("/PHP/Backend_publicacion.php", {
       method: "POST",
@@ -564,7 +568,9 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert("Estado del proyecto actualizado correctamente");
+          alert(
+            "Estado del proyecto actualizado correctamente, se cambio a Antiguo"
+          );
           cargarProyectos();
         } else {
           alert(
@@ -577,6 +583,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Un exito");
       });
   }
-  // Cargar los proyectos al cargar la página
-  cargarProyectos();
+  // Resto del código para manejar comentarios, eliminar proyectos, etc.
+
+  cargarProyectos(); // Cargar proyectos al cargar la página
 });

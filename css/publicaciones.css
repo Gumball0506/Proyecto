@@ -1,0 +1,447 @@
+/* Reset y modelo de caja */
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.body{
+    background-color: #000000;
+}
+.fondo{
+    width: calc(100% - 35%); /* Restar 224px de cada lado */
+    max-width: 1024px; /* Ancho máximo del contenedor */
+    background-color: #ffffff;
+    padding: 0 20px; /* 224px de padding a cada lado */
+    padding-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    margin: auto;
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .fondo {
+        width: 100%; /* Ancho completo en pantallas pequeñas */
+        padding: 0 16px; /* Reducir el padding en pantallas pequeñas */
+    }
+}
+
+.posts-container {
+    width: 70%;
+    margin: auto;
+    border-color: #000000;
+}
+
+.post {
+    background-color: #000000; /* Fondo blanco para cada publicación */
+    border-radius: 8px;
+    border-color: #000000;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px; /* Reducir el margen inferior */
+    padding: 40px; /* Reducir el padding */
+}
+
+.post h2 {
+    font-size: 10px; /* Reducir el tamaño del título */
+    margin-bottom: 8px; /* Reducir el margen inferior del título */
+}
+
+.post p {
+    font-size: 14px; /* Reducir el tamaño del texto */
+    color: #000000;
+    margin-bottom: 8px; /* Reducir el margen inferior */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    color: #1877f2;
+}
+
+.form {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 2px;
+    margin-bottom: 10px;
+}
+
+.form input[type="text"],
+.form textarea,
+.form input[type="file"],
+.form button {
+    width: 100%;
+    padding: 10px;
+    position: auto;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #000000;
+}
+
+.form button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background-color: #2d4373;
+}
+.post {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.post h2 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    color: #1877f2;
+}
+
+img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.post p {
+    font-size: 16px;
+    color: #4b4f56;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.buttons-container button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.buttons-container button i {
+    font-size: 18px;
+    color: #606770;
+}
+
+.buttons-container button i.fa-trash {
+    color: #f02849;
+}
+
+.buttons-container button i:hover {
+    color: #2d4373;
+}
+
+.comments-container {
+    margin-top: 10px;
+}
+
+.comment {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+.comment .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment .comment-header .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment .comment-header .user-info {
+    margin-left: 10px;
+}
+
+.comment .comment-header .comment-date {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+}
+
+.comment .comment-text {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #4b4f56;
+}
+
+.comment .reactions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.comment .reactions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.comment .reactions button i {
+    font-size: 18px;
+    color: #606770;
+}
+
+.comment .reactions button.active i {
+    color: #1877f2;
+}
+
+.comment-form {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.comment-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #1b1b1b;
+}
+
+.comment-form button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #2d4373;
+}
+
+.reactions-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f2f5;
+    border-top: 1px solid #ddd;
+}
+
+.reactions-bar button {
+    background-color: transparent;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.reactions-bar button i {
+    font-size: 20px;
+    color: #606770;
+}
+
+.reactions-bar button.active i {
+    color: #1877f2;
+}
+
+.comments-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f2f5;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.footer .footer-options {
+    display: flex;
+    gap: 10px;
+}
+
+.footer .footer-options button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.footer .footer-options button i {
+    font-size: 20px;
+    color: #606770;
+}
+
+.footer .footer-options button:hover i {
+    color: #1877f2;
+}
+
+.buttons-container button.comment-button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+.buttons-container button.comment-button:hover {
+    background-color: #2d4373;
+}
+
+.buttons-container button.comment-button i {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.buttons-container button.comment-button span {
+    margin-left: 6px;
+}
+.buttons-container button.comment-button {
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones suaves */
+    margin-left: 10px;
+}
+.commentarios-button {
+    background-color: transparent;
+    color: #000000;
+    border: none;
+    font-size: 14px; /* Tamaño de fuente inicial */
+    cursor: pointer;
+    display: inline-flex; /* Usar flexbox para alinear ícono y texto */
+    align-items: center; /* Alinear verticalmente ícono y texto */
+    position: relative; /* Añadir posición relativa para el subrayado */
+    padding: 8px 12px; /* Ajustar padding para espacio alrededor del contenido */
+}
+
+.commentarios-button::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: transparent; /* Color inicial del subrayado */
+    transition: background-color 0.3s ease; /* Transición del color del subrayado */
+}
+
+.commentarios-button:hover .hovered::before {
+    background-color: #1877f2; /* Color del subrayado al pasar el mouse */
+}
+
+.commentarios-button:hover .hovered {
+    color: #1877f2; /* Cambia el color del texto al pasar el mouse */
+}
+
+.hovered {
+    position: relative; /* Añadir posición relativa para el subrayado */
+}
+
+.hovered::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: transparent; /* Color inicial del subrayado */
+    transition: background-color 0.3s ease; /* Transición del color del subrayado */
+}
+/* Estilos para botones de edición y eliminación de comentarios */
+.edit-button, .delete-button {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor apuntador al pasar */
+    font-size: 16px; /* Tamaño de fuente */
+    color: #555; /* Color del texto */
+    transition: color 0.3s ease-in-out; /* Transición suave del color del texto */
+    display: flex; /* Mostrar como flex para alinear elementos */
+    align-items: center; /* Alinear contenido verticalmente */
+  }
+  
+  .edit-button:hover, .delete-button:hover {
+    color: #007bff; /* Cambio de color al pasar el mouse */
+  }
+  
+  .edit-button i, .delete-button i {
+    margin-right: 5px; /* Espacio a la derecha del icono */
+    font-size: 14px; /* Tamaño del icono */
+  }
+  
+  /* Estilo específico para el botón de eliminar */
+  .delete-button {
+    color: #dc3545; /* Color rojo para el botón de eliminar */
+  }
+  
+  .delete-button:hover {
+    color: #c82333; /* Cambio de color rojo más oscuro al pasar el mouse */
+  }
+.proyecto {
+    border: 1px solid #ddd; /* Borde delgada */
+    border-radius: 10px; /* Bordes circulares */
+    padding: 20px; /* Espacio interno */
+    margin-bottom: 10px; /* Margen inferior entre tarjetas */
+    background-color: #f9f9f9; /* Color de fondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    margin-top: 1px;
+  }
+  
+  .proyecto h3 {
+    font-size: 1.5rem; /* Tamaño de fuente para el título */
+    margin-bottom: 10px; /* Margen inferior para separación */
+  }
+  
+  .proyecto p {
+    margin-bottom: 10px;
+    margin-top: 10px; /* Margen inferior para separación */
+  }
+  
+  .comentarios-btn {
+    margin-top: 1px; /* Margen superior para separación */
+  }
+  
+  /* Estilos para la imagen */
+  .proyecto img {
+    max-width: 100%; /* Ajuste máximo de ancho */
+    height: auto; /* Altura automática */
+    border-radius: 8px; /* Bordes circulares para la imagen */
+  }
+  .enlace-registro-btn {
+    display: inline-block;
+    position: relative;
+    left: 0; /* Alinea en el extremo izquierdo */
+  }
+  
+  .vistas-container {
+    display: inline-block;
+    position: relative;
+    left: 82%; /* Alinea en el extremo derecho */
+  }
+  .input-container {
+    display: flex; /* Utilizar flexbox para organizar los elementos */
+    align-items: center; /* Centrar verticalmente los elementos */
+}
+
+/* Estilo opcional para separar los elementos */
+.input-container > * {
+    margin-right: 10px; /* Espaciado entre los elementos */
+}

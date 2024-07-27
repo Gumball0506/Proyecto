@@ -1,0 +1,48 @@
+#posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .proyecto-card {
+    flex: 0 1 calc(30% - 10px); /* Cada tarjeta ocupa aproximadamente 20% del contenedor menos el espacio de la brecha */
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 2px;
+    transition: transform 0.3s;
+  }
+  
+  .proyecto-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .proyecto-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .proyecto-card h3 {
+    font-size: 1.25rem;
+    margin: 15px 0;
+    margin-bottom: 3px;
+  }
+  .titulo-principal {
+    padding-left: 35%;
+    font-size: 2.5rem; /* Tamaño más grande */
+    font-family: 'Georgia', serif; /* Fuente elegante */
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Puedes cambiar el color según tu preferencia */
+    padding-bottom: 10px;
+    font-weight: bold; /* Negrita */
+}
+body{
+    background-color: rgb(255, 206, 114);
+}

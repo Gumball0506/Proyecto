@@ -1,0 +1,223 @@
+/* Estilos generales del calendario */
+#calendar {
+    width: 100%;
+    max-width: 100%; /* Asegúrate de que el calendario no se extienda más allá del ancho del contenedor */
+    margin: auto;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    margin-top: 60px;
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+}
+
+#month-year {
+    font-size: 1.2em;
+}
+
+#days-of-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #f0f0f0;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+#days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+}
+
+/* Estilos para los días y eventos */
+.day, .empty-day {
+    position: relative;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem; /* Ajustado para ser más legible en pantallas pequeñas */
+}
+
+.day:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.empty-day {
+    background-color: #e0e0e0;
+}
+
+.special-day {
+    background-color: #ADD8E6; /* Color medio celeste */
+}
+
+.event {
+    background-color: #FFDAB9; /* Color naranja claro */
+    color: #333;
+    padding: 2px 4px;
+    border-radius: 3px;
+    margin: 2px 0;
+    font-size: 0.8rem;
+}
+
+.important-date {
+    background-color: #ADD8E6; /* Color medio celeste */
+    color: #333;
+    padding: 2px 4px;
+    border-radius: 3px;
+    margin: 2px 0;
+    font-size: 0.8rem;
+}
+
+.day-number {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #000000; /* Color verde oscuro */
+}
+
+/* Estilo para los botones de navegación */
+button {
+    background-color: #ffae00;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #fffd6d;
+}
+
+/* Media Queries para hacer el calendario responsive */
+
+/* Para pantallas de 600px o menos (móviles) */
+@media (max-width: 600px) {
+    #calendar {
+        max-width: 100%;
+    }
+    #calendar-header {
+        flex-direction: column;
+    }
+    #month-year {
+        font-size: 1em;
+    }
+    #days-of-week, #days {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .day, .empty-day {
+        padding: 8px;
+    }
+}
+
+/* Para pantallas entre 600px y 1024px (tabletas) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    #calendar {
+        max-width: 90%;
+    }
+    #calendar-header {
+        flex-direction: row;
+    }
+    #month-year {
+        font-size: 1.1em;
+    }
+    #days-of-week, #days {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .day, .empty-day {
+        padding: 12px;
+    }
+}
+
+/* Para pantallas más grandes (laptops y desktops) */
+@media (min-width: 1025px) {
+    #calendar {
+        max-width: 80%;
+    }
+    #calendar-header {
+        flex-direction: row;
+    }
+    #month-year {
+        font-size: 1.2em;
+    }
+    #days-of-week, #days {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .day, .empty-day {
+        padding: 15px;
+    }
+}
+/* Estilos del modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); /* Color de fondo semitransparente */
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Estilo de contenido del modal */
+  #event-details {
+    margin-top: 10px;
+  }
+  .modal button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  

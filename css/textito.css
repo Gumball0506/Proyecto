@@ -1,0 +1,60 @@
+
+.content {
+  padding-left: 5%;
+  padding-right: 5%;
+  color: #c7c7c7c9;
+}
+
+.content h6 {
+  font-size: clamp(2rem, 3vw, 5rem);
+  font-weight: 700;
+  background: #F57126;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  margin-bottom: 36px;
+  padding-left: 10px;
+}
+
+.content p {
+  font-size: clamp(0.8rem, 3vw, 1rem);
+  line-height: 1.6;
+  padding-right: 5%;
+}
+
+.contentito {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 0px;
+}
+
+.contentito h6 {
+  margin-top: 0;
+  color: #333;
+}
+
+.contentito p {
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .content {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+  .content p {
+    padding-right: 80px;
+  }
+  .contentito {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

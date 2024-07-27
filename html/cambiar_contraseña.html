@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Contraseña</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/cambiar_contraseña.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cambiar Contraseña</h2>
+        <form id="cambiarForm">
+            <div class="input-field">
+                <input type="password" id="newPassword" name="newPassword" placeholder="Nueva contraseña" required>
+                <i class='bx bx-lock-alt'></i>
+            </div>
+            <div class="input-field">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirmar contraseña" required>
+                <i class='bx bx-lock-alt'></i>
+            </div>
+            <button type="submit">Cambiar Contraseña</button>
+        </form>
+    </div>
+
+    <script src="/js/cambiar.js"></script>
+</body>
+</html>

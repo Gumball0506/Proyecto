@@ -1,0 +1,404 @@
+/* Estilo para la imagen de fondo */
+.tim-marshall-catzhuz7z8g-unspl-icon {
+    width: 100%;
+    height: 884px;
+    position: absolute;
+    margin: 0 !important;
+    top: 115px;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+/* Estilo para el texto de la sección "Quienes Somos" */
+#QS {
+    font-size: 1.2em; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+}
+
+/* Estilo para las secciones del menú */
+.inicio,
+.responsbilidad-social-fiei {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo específico para la sección "Responsabilidad Social FIEI" */
+.responsbilidad-social-fiei {
+    margin: 0;
+    width: 291px;
+    font-size: inherit;
+    font-weight: 400;
+    font-family: inherit;
+    flex-shrink: 0;
+}
+
+/* Estilo para el enlace "Inicio" */
+.inicio {
+    text-decoration: none;
+    color: inherit;
+    min-width: 73px;
+}
+
+/* Wrapper para la sección "Inicio" */
+.inicio-wrapper {
+    width: 99px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 var(--padding-xl) 0 0;
+    box-sizing: border-box;
+}
+
+/* Estilo para los enlaces "Acerca de" y "Eventos" */
+.acerca-de,
+.eventos {
+    text-decoration: none;
+    position: relative;
+    color: inherit;
+}
+
+/* Estilo específico para la sección "Eventos" */
+.eventos {
+    width: 124px;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* Estilo específico para la sección "Acerca de" */
+.acerca-de {
+    white-space: nowrap;
+}
+
+/* Wrapper para la sección "Acerca de" */
+.acerca-de-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 16px 0 0;
+}
+
+/* Estilo para el enlace "Contacto" */
+.contacto {
+    text-decoration: none;
+    position: relative;
+    color: inherit;
+}
+
+/* Estilo para los enlaces dentro del nav */
+nav a {
+    text-decoration: none;
+    color: inherit;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Estilo para los enlaces de autenticación */
+.auth-links a {
+    color: #fff;
+    background-color: #000;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para el texto dentro de los enlaces de autenticación */
+.auth-links h5 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Estilo para los iconos dentro de los enlaces de autenticación */
+.auth-links a i {
+    margin-right: 5px;
+}
+
+/* Estilo para los enlaces de autenticación al pasar el mouse */
+.auth-links a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Wrapper para los enlaces de autenticación */
+.auth-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+}
+
+/* Wrapper adicional para los enlaces de autenticación */
+.auth-links2 {
+    margin-left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Estilo para los enlaces de navegación específicos */
+nav a.inicio,
+nav a.eventos,
+nav a.acerca-de,
+nav a.contacto {
+    color: #333;
+}
+
+/* Línea divisoria en los enlaces de autenticación */
+.auth-links::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 30px;
+    background-color: #ccc;
+    margin-right: 15px;
+}
+
+/* Estilo para los grupos de frames */
+.frame-group,
+.frame-wrapper {
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.frame-group {
+    align-self: stretch;
+    flex-direction: row;
+    gap: var(--gap-xl);
+    text-align: left;
+    font-size: var(--font-size-5xl);
+    color: var(--color-black);
+    font-family: var(--font-inter);
+}
+
+/* Estilo para los enlaces "Login" y "Registro" */
+.login, .registro {
+    align-self: stretch;
+    text-decoration: none;
+    flex-direction: row;
+    gap: var(--gap-xl);
+    text-align: left;
+    font-size: var(--font-size-5xl);
+    color: var(--color-black);
+    font-family: var(--font-inter);
+}
+
+.frame-wrapper {
+    width: 567px;
+    flex-direction: column;
+    padding: 28px 0 0;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* Estilo para el contenedor principal */
+.responsbilidad-social-fiei-parent {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 100%;
+    gap: var(--gap-xl);
+    text-align: center;
+    font-size: var(--font-size-17xl);
+    color: var(--color-black);
+    font-family: var(--font-marmelad);
+}
+
+/* Estilo para el logo */
+.logo-fiei-2021-1-icon {
+    height: 83px;
+    flex: 1;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Wrapper para el logo */
+.logo-fiei-2021-1-wrapper {
+    width: 370px;
+    flex-direction: row;
+    padding: 0 35px;
+    box-sizing: border-box;
+}
+
+.frame-parent,
+.logo-fiei-2021-1-wrapper,
+.paginaweb-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 100%;
+}
+
+.frame-parent {
+    width: 1080px;
+    flex-direction: column;
+    gap: 64px;
+}
+
+.paginaweb-inner {
+    align-self: stretch;
+    flex-direction: row;
+    padding: 0 32px 444px;
+    box-sizing: border-box;
+}
+
+.facilitando-el-compromiso {
+    margin: 0;
+    flex: 1;
+    position: relative;
+    font-size: inherit;
+    font-weight: 400;
+    font-family: inherit;
+    display: inline-block;
+    mix-blend-mode: normal;
+    max-width: 100%;
+    z-index: 1;
+}
+
+.facilitando-el-compromiso-soci-wrapper {
+    width: 1069px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 var(--padding-21xl) 166px;
+    box-sizing: border-box;
+    max-width: 100%;
+    text-align: center;
+    font-size: 64px;
+    color: var(--color-white);
+    font-family: var(--font-mako);
+}
+
+/* Estilo para las líneas y el texto */
+.blank-line,
+.quienes-somos,
+.somos-un-equipo {
+    display: block;
+}
+
+.quienes-somos-somos-container {
+    margin: 0;
+    align-self: stretch;
+    position: relative;
+}
+
+.quienes-somos-somos-un-equipo-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--padding-21xl) 0 0;
+    box-sizing: border-box;
+    min-width: 370px;
+    max-width: 100%;
+}
+
+/* Estilo para las imágenes */
+.clark-tibbs-oqstl2l5oxi-unspla-icon,
+.hannah-busing-zyx1bk9mqma-unsp-icon {
+    align-self: stretch;
+    height: 297px;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.clark-tibbs-oqstl2l5oxi-unspla-icon {
+    height: 328px;
+}
+
+.hannah-busing-zyx1bk9mqma-unsp-parent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 36px;
+    min-width: 372px;
+    max-width: 100%;
+}
+
+/* Estilo para el contenedor principal */
+.frame-container,
+.paginaweb-child {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.frame-container {
+    align-self: stretch;
+    flex-direction: row;
+    gap: 31px;
+}
+
+.paginaweb-child {
+    align-self: stretch;
+    flex-direction: column;
+    gap: 36px;
+}
+
+/* Fuente general para la página */
+* {
+    font-family: 'Inter', sans-serif;
+}
+/* Estilo de los botones */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1em 2em;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Estilo adicional específico para un botón con id="boton" */
+#boton:hover {
+    background-color: black;
+    color: rgb(255, 255, 255);
+}
+
+#boton {
+    padding: 10px 8px;
+    border-radius: 2em;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 300;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    z-index: 2;
+    transition: all 0.5s ease;
+}

@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function fetchSolicitudes() {
+  const content = document.getElementById("content");
   content.innerHTML = "<h2>Cargando...</h2>"; // Mensaje de carga
   fetch("/PHP/gestionar_solicitudes.php")
     .then((response) => {
@@ -44,6 +45,7 @@ function fetchSolicitudes() {
 }
 
 function renderSolicitudes(solicitudes) {
+  const content = document.getElementById("content");
   let solicitudesHTML = `
     <h2>Solicitudes de Proyectos</h2>
     <table>
@@ -83,10 +85,31 @@ function renderAcciones(solicitud) {
 }
 
 function displayError(message) {
+  const content = document.getElementById("content");
   content.innerHTML = `<h2>Error al cargar solicitudes: ${message}</h2>`;
 }
 
+function mostrarMensaje(mensaje, tipo) {
+  const content = document.getElementById("content");
+  const mensajeHTML = `<div class="mensaje ${tipo}">${mensaje}</div>`;
+  content.innerHTML += mensajeHTML;
+
+  const mensajeElemento = content.lastChild;
+  setTimeout(() => {
+    mensajeElemento.classList.add("desaparecer");
+    setTimeout(() => {
+      mensajeElemento.remove();
+    }, 500); // Tiempo que dura la animación de desaparición
+  }, 3000); // Tiempo que se muestra el mensaje
+}
 function cambiarEstado(idProyecto, estado) {
+  const loadingOverlay = document.getElementById("loadingOverlay");
+  const loadingMessage = document.getElementById("loadingMessage");
+
+  // Mostrar la pantalla de carga
+  loadingOverlay.style.display = "flex"; // Mostrar el overlay
+  loadingMessage.innerHTML = "Cambiando estado..."; // Mensaje de carga
+
   fetch("/PHP/gestionar_solicitudes.php", {
     method: "POST",
     headers: {
@@ -94,12 +117,28 @@ function cambiarEstado(idProyecto, estado) {
     },
     body: JSON.stringify({ id: idProyecto, estado: estado }),
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error en la respuesta del servidor.");
+      }
+      return response.json();
+    })
     .then((result) => {
-      alert(result.message);
-      document.getElementById("solicitudes").click(); // Recargar solicitudes
+      loadingMessage.innerHTML = "El estado ha sido cambiado correctamente."; // Mensaje de éxito
+      setTimeout(() => {
+        loadingOverlay.style.display = "none"; // Ocultar el overlay después de un breve tiempo
+        mostrarMensaje(result.message, result.success ? "exito" : "error"); // Mostrar mensaje de éxito o error
+      }, 2000); // Esperar 2 segundos antes de ocultar el overlay
+
+      if (result.success) {
+        fetchSolicitudes(); // Volver a cargar solicitudes para actualizar el estado
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
+      loadingMessage.innerHTML = "Error al cambiar el estado."; // Mensaje de error
+      setTimeout(() => {
+        loadingOverlay.style.display = "none"; // Ocultar el overlay después de un breve tiempo
+      }, 2000); // Esperar 2 segundos antes de ocultar el overlay
     });
 }

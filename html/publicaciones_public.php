@@ -54,7 +54,7 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
                                 <div class="dropdown-menu border-0 rounded-0 m-0">
-                                    <a href="/html/publicaciones_public.html" class="dropdown-item">Proyectos actuales</a>
+                                    <a href="/html/publicaciones_public.php" class="dropdown-item">Proyectos actuales</a>
                                     <a href="/html/publicacionesAntiguas_public.html" class="dropdown-item">Proyectos realizados</a>
                                     <a href="/html/publicaciones_futuras_public.html" class="dropdown-item">Proyectos futuros</a>
                                     <a href="/html/proyecto_estudiantes.html" class="dropdown-item">Proyectos de estudiantes</a>

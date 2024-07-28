@@ -6,10 +6,10 @@ $password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
-    // Configuración adicional para manejar errores y configuración de PDO
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    // echo "Conexión exitosa a la base de datos."; // Comentado para no interferir con respuestas JSON
+    // echo "Conexión exitosa a la base de datos."; // Comenta o elimina esta línea en producción
 } catch (PDOException $e) {
+    error_log("Error de conexión: " . $e->getMessage()); // Registra el error en el archivo de log del servidor
     die("Error de conexión: " . $e->getMessage());
 }

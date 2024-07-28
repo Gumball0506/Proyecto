@@ -10,10 +10,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="/css/updated_style.css" rel="stylesheet">
+    <link href="/css/updated_style.css/" rel="stylesheet">
     <link href="/css/publicaciones_antiguas.css" rel="stylesheet">
+    <style>
+        #admin {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <?php
+    session_start();
+    if (isset($_SESSION['username'])) {
+        echo "<script>document.addEventListener('DOMContentLoaded', function() { document.getElementById('admin').style.display = 'block'; });</script>";
+    }
+    ?>
+
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
@@ -33,14 +45,16 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a href="/html/publicaciones_public.php" class="dropdown-item">Proyectos actuales</a>
-                                <a href="/html/publicacionesAntiguas_public.html" class="dropdown-item">Proyectos realizados</a>
+                                <a href="/html/publicacionesAntiguas_public.php" class="dropdown-item">Proyectos realizados</a>
                                 <a href="/html/publicaciones_futuras_public.html" class="dropdown-item">Proyectos futuros</a>
                                 <a href="/html/propuesta_proyectos_rsu.html" class="dropdown-item">Proyectos de estudiantes</a>
                             </div>
                         </div>
                         <a href="/html/contacto.html" class="nav-item nav-link">Contactos</a>
                         <a href="/html/dashboard_administrador.html" class="nav-item nav-link">Estadisticas</a>
-                        <a href="/html/inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
+                        <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
+                        
+                        </div>
                     </div>
                 </div>
             </nav>

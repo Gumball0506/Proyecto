@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const content = document.getElementById("content");
+  var loadingOverlay = document.getElementById("loadingOverlay");
+  loadingOverlay.style.display = "none";
 
   document.getElementById("principal").addEventListener("click", function () {
     content.innerHTML =
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function fetchSolicitudes() {
   const content = document.getElementById("content");
-  content.innerHTML = "<h2>Cargando...</h2>"; // Mensaje de carga
+  content.innerHTML = "<h2>Cargando...</h2>";
   fetch("/PHP/gestionar_solicitudes.php")
     .then((response) => {
       if (!response.ok) {
@@ -47,25 +48,25 @@ function fetchSolicitudes() {
 function renderSolicitudes(solicitudes) {
   const content = document.getElementById("content");
   let solicitudesHTML = `
-    <h2>Solicitudes de Proyectos</h2>
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Nombre y Apellidos</th>
-        <th>Título del Proyecto</th>
-        <th>Código del Estudiante</th>
-        <th>Proceso</th>
-      </tr>`;
+      <h2>Solicitudes de Proyectos</h2>
+      <table>
+          <tr>
+              <th>ID</th>
+              <th>Nombre y Apellidos</th>
+              <th>Título del Proyecto</th>
+              <th>Código del Estudiante</th>
+              <th>Proceso</th>
+          </tr>`;
 
   solicitudes.forEach((solicitud) => {
     solicitudesHTML += `
-      <tr>
-        <td>${solicitud.ID_ProyectoA}</td>
-        <td>${solicitud.Nombres_Apellidos}</td>
-        <td>${solicitud.Titulo_Proyecto}</td>
-        <td>${solicitud.Codigo_alumno}</td>
-        <td>${renderAcciones(solicitud)}</td>
-      </tr>`;
+          <tr>
+              <td>${solicitud.ID_ProyectoA}</td>
+              <td>${solicitud.Nombres_Apellidos}</td>
+              <td>${solicitud.Titulo_Proyecto}</td>
+              <td>${solicitud.Codigo_alumno}</td>
+              <td>${renderAcciones(solicitud)}</td>
+          </tr>`;
   });
 
   solicitudesHTML += "</table>";
@@ -75,8 +76,8 @@ function renderSolicitudes(solicitudes) {
 function renderAcciones(solicitud) {
   if (solicitud.Proceso === "Proceso") {
     return `
-      <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Aceptado')">Aceptar</button>
-      <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Rechazado')">Rechazar</button>`;
+          <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Aceptado')">Aceptar</button>
+          <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Rechazado')">Rechazar</button>`;
   } else {
     return `<span class='estado-${solicitud.Proceso.toLowerCase()}'>${
       solicitud.Proceso
@@ -99,16 +100,16 @@ function mostrarMensaje(mensaje, tipo) {
     mensajeElemento.classList.add("desaparecer");
     setTimeout(() => {
       mensajeElemento.remove();
-    }, 500); // Tiempo que dura la animación de desaparición
-  }, 3000); // Tiempo que se muestra el mensaje
+    }, 500);
+  }, 3000);
 }
+
 function cambiarEstado(idProyecto, estado) {
   const loadingOverlay = document.getElementById("loadingOverlay");
   const loadingMessage = document.getElementById("loadingMessage");
 
-  // Mostrar la pantalla de carga
-  loadingOverlay.style.display = "flex"; // Mostrar el overlay
-  loadingMessage.innerHTML = "Cambiando estado..."; // Mensaje de carga
+  loadingOverlay.style.display = "flex";
+  loadingMessage.innerHTML = "Cambiando estado...";
 
   fetch("/PHP/gestionar_solicitudes.php", {
     method: "POST",
@@ -124,21 +125,21 @@ function cambiarEstado(idProyecto, estado) {
       return response.json();
     })
     .then((result) => {
-      loadingMessage.innerHTML = "El estado ha sido cambiado correctamente."; // Mensaje de éxito
+      loadingMessage.innerHTML = "El estado ha sido cambiado correctamente.";
       setTimeout(() => {
-        loadingOverlay.style.display = "none"; // Ocultar el overlay después de un breve tiempo
-        mostrarMensaje(result.message, result.success ? "exito" : "error"); // Mostrar mensaje de éxito o error
-      }, 2000); // Esperar 2 segundos antes de ocultar el overlay
+        loadingOverlay.style.display = "none";
+        mostrarMensaje(result.message, result.success ? "exito" : "error");
+      }, 2000);
 
       if (result.success) {
-        fetchSolicitudes(); // Volver a cargar solicitudes para actualizar el estado
+        fetchSolicitudes();
       }
     })
     .catch((error) => {
       console.error("Error:", error);
-      loadingMessage.innerHTML = "Error al cambiar el estado."; // Mensaje de error
+      loadingMessage.innerHTML = "Error al cambiar el estado.";
       setTimeout(() => {
-        loadingOverlay.style.display = "none"; // Ocultar el overlay después de un breve tiempo
-      }, 2000); // Esperar 2 segundos antes de ocultar el overlay
+        loadingOverlay.style.display = "none";
+      }, 2000);
     });
 }

@@ -7,6 +7,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/inicio_sesion.css">
+
 </head>
 <style>
     /* Estilo para ocultar el cuadro de texto */
@@ -22,7 +23,7 @@
                 <header>Iniciar Sesión</header>
             </div>
             
-            <form action="/PHP/admin.php" method="post">
+            <form action="/PHP/compr.php" method="post">
                 <label for="username">Usuario:</label>
                 <input type="text" id="username" name="username" required>
                 <br><br>
@@ -38,7 +39,7 @@
                     <label for="check">Recordarme</label>
                 </div>
                 <div class="right">
-                    <label><a href="/html/recuperar_contraseña.html" id="forgotPassword">¿Olvidaste la contraseña?</a></label>
+                    <label><a href="/PHP/recovery.php" id="forgotPassword">¿Olvidaste la contraseña?</a></label>
                 </div>
             </div>
             

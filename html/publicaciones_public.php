@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <style>
-        /* Estilo para ocultar el cuadro de texto */
         #admin {
             display: none;
         }
@@ -26,6 +26,7 @@
         <link href="/css/updated_style.css" rel="stylesheet">
         
 </head>
+
 <body>
 <?php
     session_start();
@@ -146,4 +147,5 @@
     
 
 </body>
+
 </html>

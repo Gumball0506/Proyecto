@@ -48,11 +48,7 @@
             </div>
         </div>
         <div id="opciones">
-            <div class="">
-                <input type="submit" class="pu_ac" id="pu_ac" value="publicaciones actuales">   
-                <input type="submit" class="pu_an" id="pu_an" value="publicaciones antiguas">
-                <input type="submit" class="pu_fu" id="pu_fu" value="publicaciones futuras">
-            </div>
+   
             <div class="">
                 <button id="logoutButton">Cerrar Sesión</button>
             </div>
@@ -60,27 +56,11 @@
     
     <script>
         // Obtenemos una referencia al botón
-        const pu_ac = document.getElementById('pu_ac');
-        const pu_an = document.getElementById('pu_an');
-        const pu_fu = document.getElementById('pu_fu');
+        
         const invitado = document.getElementById('invitado');
         const logoutButton = document.getElementById('logoutButton');
         
-        // Agregamos un evento de click al botón
-        pu_ac.addEventListener('click', function() {
-            // Redirigimos a la página deseada
-            window.location.href = 'publicaciones_admin.html'; 
-        });
-
-        pu_an.addEventListener('click', function() {
-            // Redirigimos a la página deseada
-            window.location.href = 'publicacionesAntiguas_admin.html'; 
-        });
-
-        pu_fu.addEventListener('click', function() {
-            // Redirigimos a la página deseada
-            window.location.href = 'publicaciones_futuras_admin.html'; 
-        });
+ 
         invitado.addEventListener('click', function() {
             // Redirigimos a la página deseada
             window.location.href = 'web1.html'; 

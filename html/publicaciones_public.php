@@ -24,7 +24,16 @@
     
         <!-- Customized Bootstrap Stylesheet -->
         <link href="/css/updated_style.css" rel="stylesheet">
+        
 </head>
+<body>
+<?php
+    session_start();
+    if (isset($_SESSION['username'])) {
+        echo "<script>document.addEventListener('DOMContentLoaded', function() { document.getElementById('admin').style.display = 'block'; });</script>";
+    }
+    ?>
+
         <!-- Navbar Start -->
         <div class="container-fluid position-relative nav-bar p-0">
             <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
@@ -51,7 +60,7 @@
                                 </div>
                             </div>
                             <a href="/html/contacto.html" class="nav-item nav-link">Contactos</a>
-                            <a href="inicio_de_sesion.html" class="nav-item nav-link">Administrador</a>
+                            <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
                         </div>
                     </div>
                 </nav>
@@ -134,5 +143,7 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/publicacion.js"></script>
+    
+
 </body>
 </html>

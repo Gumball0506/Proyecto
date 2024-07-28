@@ -12,31 +12,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch ($accion) {
         case 'guardar_proyecto':
             try {
-                $titulo = $_POST['titulo'];
-                $descripcion = $_POST['descripcion'];
-                $url_registro = $_POST['url_registro']; // Asegúrate de usar el nombre correcto del campo
-                $eventDate = $_POST['eventDate'];
-                // Obtener información del archivo de imagen
-                $foto_nombre = $_FILES['foto']['name'];
-                $foto_tipo = $_FILES['foto']['type'];
-                $foto_tamano = $_FILES['foto']['size'];
-                $foto_temporal = $_FILES['foto']['tmp_name'];
+                $titulo = $_POST['titulo'] ?? '';
+                $descripcion = $_POST['descripcion'] ?? '';
+                $url_registro = $_POST['url_registro'] ?? '';
+                $eventDate = $_POST['eventDate'] ?? '';
+                $estado_id = $_POST['projectStatus'];
+                $foto_temporal = $_FILES['foto']['tmp_name'] ?? null;
 
-                // Verificar si se ha subido una imagen
+                // Validación simple
+                if (empty($titulo) || empty($descripcion) || empty($url_registro) || empty($eventDate)) {
+                    throw new Exception('Datos incompletos.');
+                }
+
                 if (!empty($foto_temporal) && is_uploaded_file($foto_temporal)) {
                     $foto_contenido = file_get_contents($foto_temporal);
                 } else {
-                    $foto_contenido = null; // Manejar la falta de imagen según tus requisitos
+                    $foto_contenido = null;
                 }
 
-                // Insertar datos en la base de datos
-                $sql = "INSERT INTO proyectos (Titulo, Descripcion, Foto, Fecha_inicio, url_registro) VALUES (?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO proyectos (Titulo, Descripcion, Foto, Fecha_inicio, url_registro, ID_Estado) VALUES (?, ?, ?, ?, ?, ?)";
                 $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(1, $titulo);
-                $stmt->bindParam(2, $descripcion);
-                $stmt->bindParam(3, $foto_contenido, PDO::PARAM_LOB); // Usar PDO::PARAM_LOB para datos binarios
-                $stmt->bindParam(4, $eventDate); // Corregido aquí
-                $stmt->bindParam(5, $url_registro);
+                $stmt->execute([$titulo, $descripcion, $foto_contenido, $eventDate, $url_registro, $estado_id]);
+
+                $response = ['success' => true];
+                echo json_encode($response);
+            } catch (PDOException $e) {
+                $response = ['success' => false, 'error' => 'Error en la base de datos: ' . $e->getMessage()];
+                echo json_encode($response);
+            } catch (Exception $e) {
+                $response = ['success' => false, 'error' => $e->getMessage()];
+                echo json_encode($response);
+            }
+            break;
+        case 'cambiar_estado':
+            // Cambiar el estado de un proyecto
+            try {
+                $id_proyecto = $_POST['ID_Proyecto'];
+                $nuevo_estado = $_POST['Estado'];
+
+                $sql = "UPDATE proyectos SET ID_Estado = ? WHERE ID_Proyecto = ?";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(1, $nuevo_estado);
+                $stmt->bindParam(2, $id_proyecto);
                 $stmt->execute();
 
                 $response = array('success' => true);
@@ -45,9 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             echo json_encode($response);
             break;
-
         case 'agregar_comentario':
-            // Agregar un nuevo comentario a un proyecto
             try {
                 $ID_Proyecto = $_POST['ID_Proyecto'];
                 $Comentario = $_POST['Comentario'];
@@ -66,7 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'editar_comentario':
-            // Editar un comentario existente
             try {
                 $ID_Comentario = $_POST['ID_Comentario'];
                 $Comentario = $_POST['Comentario'];
@@ -85,7 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'eliminar_comentario':
-            // Eliminar un comentario
             try {
                 $ID_Comentario = $_POST['ID_Comentario'];
 
@@ -109,7 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'eliminar_proyecto':
-            // Eliminar un proyecto
             try {
                 $ID_Proyecto = $_POST['ID_Proyecto'];
 
@@ -131,7 +143,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'incrementar_vistas':
-            // Incrementar el contador de vistas de un proyecto
             try {
                 $ID_Proyecto = $_POST['ID_Proyecto'];
 
@@ -146,38 +157,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             echo json_encode($response);
             break;
-        case 'cambiar_estado':
-            // Cambiar el estado de un proyecto
-            try {
-                $id_proyecto = $_POST['ID_Proyecto'];
-                $nuevo_estado = $_POST['Estado'];
-
-                $sql = "UPDATE proyectos SET Estado = ? WHERE ID_Proyecto = ?";
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(1, $nuevo_estado);
-                $stmt->bindParam(2, $id_proyecto);
-                $stmt->execute();
-
-                $response = array('success' => true);
-            } catch (Exception $e) {
-                $response = array('success' => false, 'error' => $e->getMessage());
-            }
-            echo json_encode($response);
-            break;
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Manejar las diferentes acciones según el valor de $_GET['accion']
     $accion = $_GET['accion'] ?? '';
 
     switch ($accion) {
         case 'obtener_proyectos':
             try {
-                $stmt = $pdo->query("SELECT p.ID_Proyecto, p.Titulo, p.Descripcion, p.Foto, p.url_registro, COALESCE(v.total_vistas, 0) AS total_vistas, p.Estado 
+                $stmt = $pdo->query("SELECT p.ID_Proyecto, p.Titulo, p.Descripcion, p.Foto, p.url_registro, COALESCE(v.total_vistas, 0) AS total_vistas, e.ID_Estado AS Estado 
                                     FROM proyectos p
-                                    LEFT JOIN vistas_totales v ON p.ID_Proyecto = v.ID_Proyecto");
+                                    LEFT JOIN vistas_totales v ON p.ID_Proyecto = v.ID_Proyecto
+                                    LEFT JOIN estado e ON p.ID_Estado = e.ID_Estado");
                 $proyectos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                // Decodificar imágenes base64 para envío al frontend
                 foreach ($proyectos as &$proyecto) {
                     $proyecto['Foto'] = base64_encode($proyecto['Foto']);
                 }
@@ -189,7 +181,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'obtener_comentarios':
-            // Obtener los comentarios de un proyecto específico
             try {
                 $ID_Proyecto = $_GET['ID_Proyecto'];
 
@@ -205,5 +196,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
     }
 } else {
-    echo json_encode(array('success' => false, 'error' => 'Método no soportado'));
+    echo json_encode(array('success' => false, 'error' => 'Método de solicitud no soportado'));
 }

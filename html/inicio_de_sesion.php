@@ -57,8 +57,6 @@
                 <button id="logoutButton">Cerrar Sesión</button>
             </div>
         </div>
-        
-    </div>
     
     <script>
         // Obtenemos una referencia al botón

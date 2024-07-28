@@ -1,14 +1,17 @@
 body {
-    position: relative;
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-image: url("/imagenes/pazinterior.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/imagenes/banner2.2.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     overflow: hidden;
+    position: relative;
 }
 
 body::before {
@@ -24,11 +27,11 @@ body::before {
 
 
 .box {
-    background: #e9961b;
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 8px;
     padding: 50px;
     width: 400px;
-    box-shadow: 0 0 20px rgba(248, 165, 56, 0.932);
+    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.3);
 }
 
 .container {
@@ -38,10 +41,11 @@ body::before {
 .top-header {
     margin-bottom: 40px;
     text-align: center;
+    border-style: inset;
 }
 
 .top-header header {
-    font-size: 24px;
+    font-size: 34px;
     color: #fff;
     font-weight: 500;
 }
@@ -66,17 +70,18 @@ input[type="password"]::placeholder {
 button[type="submit"] {
     width: 100%;
     padding: 15px;
-    background: #fff;
+    background: #ec6628;
     border: none;
     border-radius: 4px;
-    color: #23242a;
+    color: #fff;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 16px;
 }
 
 button[type="submit"]:hover {
-    background: #6e7abd;
+    background: #ff9966;
 }
 
 .bottom {
@@ -96,12 +101,12 @@ button[type="submit"]:hover {
 }
 
 .bottom .left label {
-    color: #aaa;
+    color: #fff;
     font-size: 14px;
 }
 
 .bottom .right a {
-    color: #45f3ff;
+    color: #fff;
     font-size: 14px;
     text-decoration: none;
 }
@@ -116,8 +121,8 @@ button[type="submit"]:hover {
 }
 
 .incognito-option button {
-    background: #45f3ff;
-    color: #23242a;
+    background:#ec6628;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
@@ -126,7 +131,13 @@ button[type="submit"]:hover {
 }
 
 .incognito-option button:hover {
-    background: #32d1e8;
+    background: #ff9966;
 }
 
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #fff;
+}
 

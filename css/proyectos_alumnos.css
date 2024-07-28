@@ -9,7 +9,6 @@ body {
     background-image: url('/jpg/prueba1.png'); /* Asegúrate de que la ruta a tu imagen sea correcta */
     background-size: cover; /* Esto asegura que la imagen cubra todo el fondo */
     background-repeat: no-repeat;
-    font-family: Helvetica, Arial, sans-serif;
     color: #333;
     margin: 0;
     padding: 0;
@@ -18,12 +17,12 @@ body {
 h1, h2 {
     text-align: center;
     color: #fff;
-    text-shadow: 2px 2px 4px #000;
+
 }
 
 .container {
+    margin-top: 20px;
     width: 80%;
-    margin: 0 auto;
     padding: 20px;
     background: rgba(255, 165, 0, 0.8); /* Fondo naranja con transparencia */
     border-radius: 10px;

@@ -3,7 +3,7 @@
 <html>
 <head>    
     <title>Recuperación de Contraseña</title>
-    <link rel="stylesheet" href="/css/recuperar_contraseña.css">
+    
 </head>
 
 <body>

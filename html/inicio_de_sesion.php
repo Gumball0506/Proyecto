@@ -45,20 +45,9 @@
             
             <div class="incognito-option" id="invitado">
                 <button id="incognitoButton">Continuar como usuario normal</button>
-            </div>
-        </div>
-        <div id="opciones">
-            <div class="">
-                <input type="submit" class="pu_ac" id="pu_ac" value="publicaciones actuales">   
-                <input type="submit" class="pu_an" id="pu_an" value="publicaciones antiguas">
-                <input type="submit" class="pu_fu" id="pu_fu" value="publicaciones futuras">
-            </div>
-            <div class="">
                 <button id="logoutButton">Cerrar Sesión</button>
             </div>
         </div>
-        
-    </div>
     
     <script>
         // Obtenemos una referencia al botón

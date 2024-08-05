@@ -6,6 +6,15 @@
         #admin {
             display: none;
         }
+        #vistas{
+            display: none;
+        }
+        #eliminar{
+            display: none;
+        }
+        #status{
+            display: none;
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,10 +39,12 @@
 <body>
     <?php
     session_start();
-    if (isset($_SESSION['username'])) {
-        echo "<script>document.addEventListener('DOMContentLoaded', function() { document.getElementById('admin').style.display = 'block'; });</script>";
-    }
-    ?>
+    $sessionActive = isset($_SESSION['username']);
+?>
+<script>
+    var sessionActive = <?php echo json_encode($sessionActive); ?>;
+</script>
+<script src="/js/publicacion.js"></script>
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">

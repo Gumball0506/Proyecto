@@ -244,8 +244,8 @@ function proyecto_rechazado($idProyecto)
             <div class="content">
                 <p>Estimado/a <strong>' . $proyecto['Nombres_Apellidos'] . '</strong>,</p>
                 <p>Le informamos que su proyecto "<strong>' . $proyecto['Titulo_Proyecto'] . '</strong>" ha sido rechazado.</p>
-                <p>Agradecemos su interés y le invitamos a que lo vuelva a enviar en otra oportunidad.</p>
-                <p>Atentamente,<br>El equipo de gestión</p>
+                <p>Agradecemos su interes y le invitamos a que lo vuelva a enviar en otra oportunidad.</p>
+                <p>Atentamente,<br>El equipo de gestion</p>
             </div>
             <div class="footer">
                 <p>&copy; ' . date("Y") . ' Responsabilidad Social Universitaria. Todos los derechos reservados.</p>

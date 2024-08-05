@@ -110,7 +110,7 @@ body, html {
 }
 
 header {
-  background-color: #3498db;
+  background-color: #637b94;
   color: white;
   padding: 20px;
   width: 100%;
@@ -233,4 +233,39 @@ td:last-child {
   margin-top: 10px;
   font-size: 18px;
   color: #3498db;
+}
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.chart {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1 1 45%; /* Dos gráficos por fila */
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  color: #333;
 }

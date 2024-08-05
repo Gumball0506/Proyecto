@@ -60,7 +60,7 @@
                                     <a href="/html/propuesta_proyectos_rsu.html" class="dropdown-item">Proyectos de estudiantes</a>
                                 </div>
                             </div>
-                            <a href="/html/contacto.html" class="nav-item nav-link">Contactos</a>
+                            <a href="link de forms" class="nav-item nav-link">Contactos</a>
                             <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
                         </div>
                     </div>

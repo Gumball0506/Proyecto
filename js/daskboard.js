@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const loadingOverlay = document.getElementById("loadingOverlay");
+  const loadingMessage = document.getElementById("loadingMessage");
   const content = document.getElementById("content");
   loadingOverlay.style.display = "none";
 
@@ -62,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const labels = totalViews.map((view) => view.Titulo);
     const viewsData = totalViews.map((view) => view.total_vistas);
 
-    // Calcular el déficit de error para cada proyecto
     const deficitError = viewsData.map(
       (viewCount) => totalPageViews - viewCount
     );
@@ -81,18 +81,18 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           {
             label: "Total de vistas",
-            data: Array(labels.length).fill(totalPageViews), // Coloca el total de vistas de la página en cada barra
+            data: Array(labels.length).fill(totalPageViews),
             backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderColor: "rgba(255, 99, 132, 1)",
             borderWidth: 1,
           },
           {
             label: "Déficit de Error",
-            type: "line", // Tipo de gráfico de línea
+            type: "line",
             data: deficitError,
-            fill: false, // No llenar debajo de la línea
+            fill: false,
             borderColor: "rgba(75, 192, 192, 1)",
-            tension: 0.1, // Suavizar la línea
+            tension: 0.1,
           },
         ],
       },
@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
+
   function fetchProjectStatsAndRenderChart() {
     fetch("/PHP/estadistica_dashboard.php")
       .then((response) => response.json())
@@ -136,7 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const viewsLabels = viewsByMonth.map((view) => view.Mes);
     const viewsData = viewsByMonth.map((view) => view.Total_Vistas);
 
-    // Gráfico de proyectos por mes
     new Chart(projectChartCtx, {
       type: "bar",
       data: {
@@ -170,7 +170,6 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    // Gráfico de vistas por mes
     new Chart(viewsChartCtx, {
       type: "line",
       data: {
@@ -209,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function fetchSolicitudes() {
     const content = document.getElementById("content");
     content.innerHTML = "<h2>Cargando...</h2>";
-    loadingOverlay.style.display = "flex"; // Mostrar el overlay
+    loadingOverlay.style.display = "flex";
 
     fetch("/PHP/gestionar_solicitudes.php")
       .then((response) => {
@@ -219,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return response.json();
       })
       .then((data) => {
-        loadingOverlay.style.display = "none"; // Ocultar el overlay
+        loadingOverlay.style.display = "none";
         if (data.success) {
           renderSolicitudes(data.solicitudes);
         } else {
@@ -228,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((error) => {
         console.error("Error:", error);
-        loadingOverlay.style.display = "none"; // Ocultar el overlay
+        loadingOverlay.style.display = "none";
         displayError("Error al cargar solicitudes.");
       });
   }
@@ -289,40 +288,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 
-  function cambiarEstado(idProyecto, estado) {
-    loadingOverlay.style.display = "flex"; // Mostrar el overlay
-    loadingMessage.innerHTML = "Cambiando estado...";
+  window.cambiarEstado = function (id, estado) {
+    loadingOverlay.style.display = "flex";
+    loadingMessage.textContent = "Cambiando estado...";
 
     fetch("/PHP/gestionar_solicitudes.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: idProyecto, estado: estado }),
+      body: JSON.stringify({ id, estado }),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error en la respuesta del servidor.");
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((result) => {
-        loadingMessage.innerHTML = "El estado ha sido cambiado correctamente.";
-        setTimeout(() => {
-          loadingOverlay.style.display = "none";
-          mostrarMensaje(result.message, result.success ? "exito" : "error");
-        }, 2000);
+        loadingOverlay.style.display = "none";
 
         if (result.success) {
+          mostrarMensaje(result.message, "exito");
           fetchSolicitudes();
+        } else {
+          mostrarMensaje(result.message, "error");
         }
       })
       .catch((error) => {
+        loadingOverlay.style.display = "none";
         console.error("Error:", error);
-        loadingMessage.innerHTML = "Error al cambiar el estado.";
-        setTimeout(() => {
-          loadingOverlay.style.display = "none";
-        }, 2000);
+        mostrarMensaje("Error al cambiar estado.", "error");
       });
-  }
+  };
 });

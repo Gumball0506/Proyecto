@@ -234,3 +234,15 @@ td:last-child {
   font-size: 18px;
   color: #3498db;
 }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#loadingMessage {
+  color: #fff;
+  margin-top: 10px;
+}
+
+
+

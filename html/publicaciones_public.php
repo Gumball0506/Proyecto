@@ -6,7 +6,6 @@
         #admin {
             display: none;
         }
-<<<<<<< HEAD
         .vistas-container{
             display: none;
         }
@@ -14,18 +13,6 @@
             display: none;
         }
         .project-status-container{
-=======
-
-        #vistas {
-            display: none;
-        }
-
-        #eliminar {
-            display: none;
-        }
-
-        #status {
->>>>>>> refs/remotes/origin/main
             display: none;
         }
         
@@ -58,11 +45,7 @@
     <script>
         var sessionActive = <?php echo json_encode($sessionActive); ?>;
     </script>
-<<<<<<< HEAD
 <script src="/js/publicacion.js"></script>
-=======
-    <script src="/js/publicacion.js"></script>
->>>>>>> refs/remotes/origin/main
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">

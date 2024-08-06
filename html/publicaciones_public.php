@@ -6,15 +6,16 @@
         #admin {
             display: none;
         }
-        #vistas{
+        .vistas-container{
             display: none;
         }
-        #eliminar{
+        .eliminar-proyecto-btn{
             display: none;
         }
-        #status{
+        .project-status-container{
             display: none;
         }
+        
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,13 +38,13 @@
 </head>
 
 <body>
-    <?php
+<?php
     session_start();
     $sessionActive = isset($_SESSION['username']);
-?>
-<script>
-    var sessionActive = <?php echo json_encode($sessionActive); ?>;
-</script>
+    ?>
+    <script>
+        var sessionActive = <?php echo json_encode($sessionActive); ?>;
+    </script>
 <script src="/js/publicacion.js"></script>
 
     <!-- Navbar Start -->

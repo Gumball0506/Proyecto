@@ -146,34 +146,55 @@ const bannedWords = [
 
 document.addEventListener('DOMContentLoaded', function() {
   if (sessionActive) {
-      // Mostrar el div 'admin'
+      // Mostrar el div con el id 'admin'
       document.getElementById('admin').style.display = 'block';
 
-      // Configura el MutationObserver para el div 'vistas'
+      // Configura el MutationObserver para el div con la clase 'vistas-container'
       const observerV = new MutationObserver(function(mutations) {
           mutations.forEach(function(mutation) {
-              if (document.getElementById('vistas')) {
-                  document.getElementById('vistas').style.display = 'block';
-                  observerV.disconnect(); // Deja de observar después de encontrar el elemento
+              // Obtener todos los elementos con la clase 'vistas-container'
+              const vistasElements = document.getElementsByClassName('vistas-container');
+              
+              // Iterar sobre cada elemento encontrado
+              for (let i = 0; i < vistasElements.length; i++) {
+                  vistasElements[i].style.display = 'block';
               }
+
+              // Deja de observar después de encontrar y mostrar el elemento
+              observerV.disconnect();
           });
       });
-      const observerE = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (document.getElementById('eliminar')) {
-                document.getElementById('eliminar').style.display = 'block';
-                observerE.disconnect(); // Deja de observar después de encontrar el elemento
-            }
+            // Configura el MutationObserver para el div con la clase 'vistas-container'
+            const observerE = new MutationObserver(function(mutations) {
+              mutations.forEach(function(mutation) {
+                  // Obtener todos los elementos con la clase 'vistas-container'
+                  const vistasElements = document.getElementsByClassName('eliminar-proyecto-btn');
+                  
+                  // Iterar sobre cada elemento encontrado
+                  for (let i = 0; i < vistasElements.length; i++) {
+                      vistasElements[i].style.display = 'block';
+                  }
+    
+                  // Deja de observar después de encontrar y mostrar el elemento
+                  observerV.disconnect();
+              });
+          });
+          // Configura el MutationObserver para el div con la clase 'vistas-container'
+          const observerS = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                // Obtener todos los elementos con la clase 'vistas-container'
+                const vistasElements = document.getElementsByClassName('project-status-container');
+                
+                // Iterar sobre cada elemento encontrado
+                for (let i = 0; i < vistasElements.length; i++) {
+                    vistasElements[i].style.display = 'block';
+                }
+  
+                // Deja de observar después de encontrar y mostrar el elemento
+                observerV.disconnect();
+            });
         });
-      });
-      const observerS = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (document.getElementById('status')) {
-                document.getElementById('status').style.display = 'block';
-                observerS.disconnect(); // Deja de observar después de encontrar el elemento
-            }
-        });
-      });
+
 
       // Empieza a observar el body por la adición de nuevos nodos
       observerV.observe(document.body, { childList: true, subtree: true });
@@ -181,6 +202,9 @@ document.addEventListener('DOMContentLoaded', function() {
       observerS.observe(document.body, { childList: true, subtree: true });
   }
 });
+
+
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -293,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let eliminarBoton = document.createElement("button");
       eliminarBoton.innerHTML = '<i class="fas fa-trash"></i>';
-      eliminarBoton.classList.add("eliminar-proyecto-btn", "fb-style-button");
+      eliminarBoton.classList.add("eliminar-proyecto-btn");
       eliminarBoton.id="eliminar"
       eliminarBoton.addEventListener("click", function () {
         eliminarProyecto(proyecto.ID_Proyecto);
@@ -596,7 +620,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
   function cambiarEstadoProyecto(proyecto_id, estadoActual) {
-    let nuevoEstado = estadoActual ? "1" : "2";
+    let nuevoEstado = estadoActual ? "Actual" : "Antiguo";
 
     fetch("/PHP/Backend_publicacion.php", {
       method: "POST",

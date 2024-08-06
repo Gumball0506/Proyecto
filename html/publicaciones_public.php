@@ -6,6 +6,7 @@
         #admin {
             display: none;
         }
+<<<<<<< HEAD
         .vistas-container{
             display: none;
         }
@@ -13,6 +14,18 @@
             display: none;
         }
         .project-status-container{
+=======
+
+        #vistas {
+            display: none;
+        }
+
+        #eliminar {
+            display: none;
+        }
+
+        #status {
+>>>>>>> refs/remotes/origin/main
             display: none;
         }
         
@@ -45,14 +58,18 @@
     <script>
         var sessionActive = <?php echo json_encode($sessionActive); ?>;
     </script>
+<<<<<<< HEAD
 <script src="/js/publicacion.js"></script>
+=======
+    <script src="/js/publicacion.js"></script>
+>>>>>>> refs/remotes/origin/main
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
                 <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-primary"><span class="text-dark">UNI</span>RSE</h1>
+                    <h1 class="m-0 text-primary"><span class="text-dark"></span>RSU</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -72,9 +89,9 @@
                                 <a href="/html/propuesta_proyectos_rsu.html" class="dropdown-item">Proyectos de estudiantes</a>
                             </div>
                         </div>
-                        <a href="link de forms" class="nav-item nav-link">Contactos</a>
+                        <a href="link del forms" class="nav-item nav-link">Contactos</a>
                         <a href="/html/dashboard_administrador.html" class="nav-item nav-link">Estadisticas</a>
-                        <a href="/html/inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
+                        <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
 
                     </div>
                 </div>

@@ -1,6 +1,16 @@
 <?php
 require 'conexion.php';
 
+function cifrar($datos)
+{
+    $password = 'ABCD-1234.aer'; // Contraseña de cifrado
+    $metodo = 'AES-256-CBC'; // Método de cifrado
+    $ivSize = openssl_cipher_iv_length($metodo); // Tamaño del vector de inicialización
+    $iv = openssl_random_pseudo_bytes($ivSize); // Generar IV aleatorio
+    $datosCifrados = openssl_encrypt($datos, $metodo, $password, OPENSSL_RAW_DATA, $iv); // Cifrar los datos
+    return base64_encode($iv . $datosCifrados); // Retornar IV + datos cifrados en base64
+}
+
 try {
     // Validar y sanitizar entradas
     $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
@@ -35,6 +45,9 @@ try {
     // Comenzar transacción
     $pdo->beginTransaction();
 
+    // Cifrar el correo antes de insertarlo
+    $correoCifrado = cifrar($correo);
+
     // Insertar datos en la tabla proyectos_alumnos
     $stmt = $pdo->prepare('
         INSERT INTO proyectos_alumnos (
@@ -67,7 +80,7 @@ try {
         ':titulo_proyecto' => $titulo,
         ':codigo' => $codigo,
         ':descripcion' => $descripcion,
-        ':correo' => $correo,
+        ':correo' => $correoCifrado, // Guardar el correo cifrado
         ':archivo' => $archivoContenido,
         ':tipoArchivo' => $tipoArchivo,
         ':facultad' => $facultad,

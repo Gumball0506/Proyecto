@@ -201,7 +201,7 @@ td:last-child {
   border-radius: 5px;
   text-align: center;
 }
-
+/* pantalla carga */
 .loading-overlay {
   position: fixed;
   top: 0;

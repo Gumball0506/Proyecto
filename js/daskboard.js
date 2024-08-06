@@ -262,8 +262,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderAcciones(solicitud) {
     if (solicitud.Proceso === "Proceso") {
       return `
-          <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Aceptado')">Aceptar</button>
-          <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Rechazado')">Rechazar</button>`;
+        <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Aceptado')">Aceptar</button>
+        <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Rechazado')">Rechazar</button>
+        <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Proceso')">Revisar</button>
+        <span class='estado-proceso'></span>`;
     } else {
       return `<span class='estado-${solicitud.Proceso.toLowerCase()}'>${
         solicitud.Proceso

@@ -326,7 +326,8 @@ img {
     color: #000000;
     border: none;
     font-size: 14px; /* Tamaño de fuente inicial */
-    cursor: pointer; /* Usar flexbox para alinear ícono y texto */
+    cursor: pointer;
+    display: inline-flex; /* Usar flexbox para alinear ícono y texto */
     align-items: center; /* Alinear verticalmente ícono y texto */
     position: relative; /* Añadir posición relativa para el subrayado */
     padding: 8px 12px; /* Ajustar padding para espacio alrededor del contenido */

@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', function() {
+  if (sessionActive) {
+      document.getElementById('stat').style.display = 'block';
+
+}})
 document.addEventListener("DOMContentLoaded", function () {
   cargarProyectosAntiguos(); // Llamar a la función para cargar los proyectos antiguos
 
@@ -42,3 +47,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+

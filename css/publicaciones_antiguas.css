@@ -46,3 +46,6 @@
 body{
     background-color: rgb(255, 206, 114);
 }
+#stat{
+  display: none;
+}

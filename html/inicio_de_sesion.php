@@ -63,7 +63,7 @@
  
         invitado.addEventListener('click', function() {
             // Redirigimos a la página deseada
-            window.location.href = 'web1.html'; 
+            window.location.href = 'web1.php'; 
         });
         logoutButton.addEventListener('click', function() {
           window.location.href = '/PHP/logout.php'; 

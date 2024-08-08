@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (sessionActive) {
       // Mostrar el div con el id 'admin'
       document.getElementById('admin').style.display = 'block';
+      document.getElementById('stat').style.display = 'block';
 
       // Configura el MutationObserver para el div con la clase 'vistas-container'
       const observerV = new MutationObserver(function(mutations) {

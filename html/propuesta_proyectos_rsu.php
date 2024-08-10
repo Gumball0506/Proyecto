@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Propuesta Proyectos RSU</title>
     <link href="img/favicon.ico" rel="icon">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link href="/css/updated_style.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/proyectos_alumnos.css">
 </head>
+
 <body>
-<?php
+    <?php
     session_start();
     $sessionActive = isset($_SESSION['username']);
     ?>
@@ -41,12 +43,11 @@
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a href="/html/publicaciones_public.php" class="dropdown-item">Proyectos actuales</a>
                                 <a href="/html/publicacionesAntiguas_public.php" class="dropdown-item">Proyectos realizados</a>
-                                <a href="/html/publicaciones_futuras_public.html" class="dropdown-item">Proyectos futuros</a>
                                 <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
                             </div>
                         </div>
                         <a href="link del forms" class="nav-item nav-link">Contactos</a>
-                        <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat">Estadisticas</a>
+                        <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat" id="stat">Estadisticas</a>
                         <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
 
                     </div>
@@ -57,7 +58,7 @@
     <div class="container">
         <h1>Bienvenido a Propuesta de proyectos RSU</h1>
         <h2>Aquí podrás preparar tu documento de proyecto para la presentación</h2>
-        
+
         <div class="form-group">
             <h4>Modelo de presentación de propuesta</h4>
             <a href="/pdf/Currículum Vitae LozaBenites (1) (1).pdf" class="button" download>Descargar Modelo</a>
@@ -136,27 +137,28 @@
             const formData = new FormData(this);
 
             fetch('/php/proyectos_alumnos.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(result => {
-                alert(result);
-                // Limpiar el formulario después de enviar los datos
-                document.getElementById('proyecto-form').reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(result => {
+                    alert(result);
+                    // Limpiar el formulario después de enviar los datos
+                    document.getElementById('proyecto-form').reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
     </script>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="/js/easing.min.js"></script>
-        <script src="/js/main.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/easing.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </body>
+
 </html>

@@ -125,8 +125,8 @@
 
 .comentario button:hover {
   color: #1877f2;
-
 }
+
 /* Estilo para botones tipo Facebook */
 .fb-style-button {
   background-color: #1877f2;
@@ -140,12 +140,10 @@
   gap: 5px;
   font-size: 14px;
   transition: background-color 0.3s, color 0.3s;
-  
 }
 
 .fb-style-button:hover {
   background-color: #3b5998;
-  
 }
 
 .fb-style-button i {
@@ -170,7 +168,6 @@
 
 .fb-style-button1:hover {
   background-color: #3b5998;
-  
 }
 
 .fb-style-button1 i {
@@ -183,7 +180,6 @@
   display: flex;
   align-items: center;
   margin-top: 10px;
-  
 }
 
 .fb-style-comment-form textarea {
@@ -211,9 +207,10 @@
 .fb-style-comment-form button:hover {
   background-color: #3b5998;
 }
+
 .eliminar-proyecto-btn {
   background-color: #dc3545;
-
+}
 
 .eliminar-proyecto-btn:hover {
   background-color: #c82333;
@@ -228,6 +225,39 @@
   padding: 5px;
   margin-bottom: 5px;
   resize: vertical;
-  
 }
+
+/* Media Queries para responsividad */
+@media (max-width: 600px) {
+  .comment {
+      padding: 10px; /* Reduce padding en comentarios */
+  }
+
+  .comment-form input[type="text"] {
+      padding: 8px; /* Reduce padding en el input */
+      font-size: 14px; /* Ajusta tamaño de fuente */
+  }
+
+  .comment-form button {
+      padding: 8px 15px; /* Reduce padding en botón */
+      font-size: 14px; /* Ajusta tamaño de fuente */
+  }
+
+  .comentario {
+      padding: 10px; /* Ajusta padding para comentarios dinámicos */
+  }
+
+  .comentario p {
+      font-size: 14px; /* Ajusta tamaño de fuente */
+  }
+
+  .fb-style-comment-form textarea {
+      padding: 8px; /* Ajusta padding en textarea */
+      font-size: 14px; /* Ajusta tamaño de fuente */
+  }
+
+  .fb-style-comment-form button {
+      padding: 8px 15px; /* Ajusta padding en botón */
+      font-size: 14px; /* Ajusta tamaño de fuente */
+  }
 }

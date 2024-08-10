@@ -2,9 +2,9 @@
 header('Content-Type: application/json');
 
 $host = 'localhost';
-$dbname = 'proyecto_integrador';
-$username = 'root';
-$password = '';
+$dbname = 'Responsabilidad_Social';
+$username = 'RSUFIEI';
+$password = 'Bicicleta123*';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);

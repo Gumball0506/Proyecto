@@ -12,22 +12,22 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif; /* Establece una fuente para el texto */
 }
 
 h1, h2 {
     text-align: center;
     color: #fff;
-
 }
 
 .container {
-    margin-top: 20px;
-    width: 80%;
+    margin: 20px auto; /* Centra el contenedor en la pantalla */
+    width: 90%; /* Cambiado a 90% para más espacio en dispositivos pequeños */
+    max-width: 800px; /* Máxima anchura para pantallas grandes */
     padding: 20px;
     background: rgba(255, 165, 0, 0.8); /* Fondo naranja con transparencia */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; /* Añade un margen inferior para separar los contenedores */
 }
 
 .button {
@@ -50,7 +50,11 @@ h1, h2 {
     transform: scale(1.05);
 }
 
-input[type="text"], input[type="number"], input[type="email"], textarea {
+input[type="text"],
+input[type="number"],
+input[type="email"],
+textarea,
+select {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -85,4 +89,33 @@ form {
     background: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Media queries para responsividad */
+@media (max-width: 600px) {
+    h1, h2 {
+        font-size: 1.5em; /* Ajustar tamaño de encabezados en pantallas pequeñas */
+    }
+
+    .container {
+        width: 95%; /* Aumenta el ancho en dispositivos más pequeños */
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    select,
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    textarea {
+        padding: 8px; /* Ajustar padding en pantallas pequeñas */
+        font-size: 14px; /* Ajustar tamaño de fuente en pantallas pequeñas */
+    }
+
+    .button {
+        font-size: 14px; /* Ajustar tamaño de botón en pantallas pequeñas */
+        padding: 8px 16px; /* Ajustar padding de botón en pantallas pequeñas */
+    }
 }

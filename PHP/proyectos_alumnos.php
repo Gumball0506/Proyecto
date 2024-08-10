@@ -60,7 +60,8 @@ try {
             ID_Tipo_Archivo, 
             ID_Facultad, 
             Numero_telefono, 
-            Proceso
+            Proceso,
+            ID_Admin
         ) VALUES (
             :nombre,
             :titulo_proyecto,
@@ -71,7 +72,8 @@ try {
             :tipoArchivo, 
             :facultad, 
             :telefono, 
-            "Proceso"
+            "Proceso",
+            1
         )
     ');
 

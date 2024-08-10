@@ -1,7 +1,6 @@
 /* Estilos generales del calendario */
 #calendar {
     width: 100%;
-    max-width: 100%;
     margin: auto;
     text-align: center;
     border: 4px solid #ff9800; /* Naranja */
@@ -10,7 +9,7 @@
     font-family: 'Roboto', sans-serif;
     margin-top: 20px;
     background: #f5f5f5; /* Gris claro */
-    padding: 10px; /* Reducido para móviles */
+    padding: 10px;
 }
 
 /* Encabezado del calendario */
@@ -19,7 +18,7 @@
     flex-direction: column; /* Ajustado para móviles */
     justify-content: center;
     align-items: center;
-    padding: 10px 15px; /* Reducido para móviles */
+    padding: 10px 15px;
     background: #333; /* Negro */
     color: white;
     border-bottom: 4px solid #ff9800; /* Naranja */
@@ -29,7 +28,7 @@
 }
 
 #month-year {
-    font-size: 1.2em; /* Reducido para móviles */
+    font-size: 1.2em;
     font-weight: bold;
     text-transform: uppercase;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -41,7 +40,7 @@
     grid-template-columns: repeat(7, 1fr);
     background: #333; /* Negro */
     color: white;
-    padding: 5px 0; /* Reducido para móviles */
+    padding: 5px 0;
     font-weight: bold;
     border-radius: 10px;
     text-transform: uppercase;
@@ -51,32 +50,32 @@
 #days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 2px; /* Reducido para móviles */
-    padding: 5px; /* Reducido para móviles */
+    gap: 1px; /* Ajustado para móviles */
+    padding: 5px;
 }
 
 /* Estilos para los días y eventos */
 .day, .empty-day {
     position: relative;
-    padding: 8px; /* Reducido para móviles */
+    padding: 5px; /* Reducido para móviles */
     background: #ffffff; /* Blanco */
-    border: 2px solid #ccc; /* Gris claro */
-    border-radius: 10px; /* Reducido para móviles */
+    border: 1px solid #ccc; /* Gris claro */
+    border-radius: 5px; /* Reducido para móviles */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem; /* Reducido para móviles */
+    font-size: 0.7rem; /* Reducido para móviles */
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .day:hover {
     background: #ffecb3; /* Naranja claro */
     cursor: pointer;
     transform: scale(1.05);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .empty-day {
@@ -85,33 +84,23 @@
 
 .special-day {
     background: #ffe0b2; /* Naranja muy claro */
-    border: 2px solid #ff9800; /* Naranja */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.event {
-    background: #ffeb3b; /* Naranja */
-    color: #333; /* Gris oscuro */
-    padding: 4px 8px;
-    border-radius: 8px;
-    margin: 2px 0; /* Reducido para móviles */
-    font-size: 0.7rem; /* Reducido para móviles */
+    border: 1px solid #ff9800; /* Naranja */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.important-date {
+.event, .important-date {
     background: #ffeb3b; /* Naranja */
     color: #333; /* Gris oscuro */
-    padding: 4px 8px;
-    border-radius: 8px;
-    margin: 2px 0; /* Reducido para móviles */
-    font-size: 0.7rem; /* Reducido para móviles */
+    padding: 2px 4px; /* Reducido para móviles */
+    border-radius: 5px;
+    margin: 1px 0;
+    font-size: 0.6rem; /* Reducido para móviles */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .day-number {
     font-weight: bold;
-    font-size: 1rem; /* Reducido para móviles */
+    font-size: 0.9rem; /* Reducido para móviles */
     color: #333; /* Gris oscuro */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
@@ -121,10 +110,10 @@ button {
     background: #ff9800; /* Naranja */
     color: white;
     border: none;
-    padding: 8px 12px; /* Reducido para móviles */
-    border-radius: 8px; /* Reducido para móviles */
+    padding: 8px 12px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.9rem; /* Reducido para móviles */
+    font-size: 0.9rem;
     transition: background-color 0.3s, transform 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -134,32 +123,34 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* Media Queries para hacer el calendario responsive */
+/* Media Queries para hacer el calendario completamente responsive */
 
 /* Para pantallas de 600px o menos (móviles) */
 @media (max-width: 600px) {
     #calendar {
-        max-width: 100%;
         padding: 10px;
     }
+
     #calendar-header {
         flex-direction: column;
         align-items: center;
     }
+
     #month-year {
-        font-size: 1.2em;
-        text-align: center;
-        width: 100%;
+        font-size: 1.5em;
         margin-bottom: 10px;
     }
+
     #days-of-week, #days {
         grid-template-columns: repeat(7, 1fr);
     }
+
     .day, .empty-day {
-        padding: 8px;
-        font-size: 0.7rem;
-        border-radius: 8px;
+        padding: 5px; /* Ajustado */
+        font-size: 0.7rem; /* Ajustado */
+        border-radius: 5px; /* Ajustado */
     }
+
     button {
         width: 48%;
         margin: 5px 1%;
@@ -168,23 +159,33 @@ button:hover {
     }
 }
 
-/* Para pantallas entre 600px y 1024px (tabletas) */
+/* Para pantallas entre 601px y 1024px (tabletas) */
 @media (min-width: 601px) and (max-width: 1024px) {
     #calendar {
         max-width: 90%;
+        padding: 15px;
     }
+
     #calendar-header {
         flex-direction: row;
     }
+
     #month-year {
-        font-size: 1.4em;
+        font-size: 1.8em;
     }
+
     #days-of-week, #days {
         grid-template-columns: repeat(7, 1fr);
     }
+
     .day, .empty-day {
-        padding: 16px;
-        font-size: 0.8rem;
+        padding: 10px; /* Ajustado */
+        font-size: 0.8rem; /* Ajustado */
+    }
+
+    button {
+        width: auto;
+        margin: 5px;
     }
 }
 
@@ -192,18 +193,28 @@ button:hover {
 @media (min-width: 1025px) {
     #calendar {
         max-width: 80%;
+        padding: 20px;
     }
+
     #calendar-header {
         flex-direction: row;
     }
+
     #month-year {
-        font-size: 1.5em;
+        font-size: 2em;
     }
+
     #days-of-week, #days {
         grid-template-columns: repeat(7, 1fr);
     }
+
     .day, .empty-day {
-        padding: 20px;
+        padding: 15px; /* Ajustado */
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 1rem;
     }
 }
 
@@ -250,25 +261,4 @@ button:hover {
     color: #e65100; /* Naranja oscuro */
     text-decoration: none;
     cursor: pointer;
-}
-
-.modal button {
-    background-color: #ff9800; /* Naranja */
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    margin: 6px 2px;
-    cursor: pointer;
-    border-radius: 12px;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.modal button:hover {
-    background-color: #e65100; /* Naranja oscuro */
-    transform: scale(1.05);
 }

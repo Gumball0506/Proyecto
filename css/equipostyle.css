@@ -27,7 +27,6 @@
     bottom: 5px;
     left: 50%;
     transform: translate(-50%, -20%);
-    -ms-transform: translate(-50%,-20%);
     width: max-content;
     text-align: center;
     padding: 10px 18px;
@@ -35,14 +34,13 @@
     border-radius: 8px;
     border: 2px solid rgba(177, 177, 177, 0.4);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px); /* Corregido para eliminar el espacio */
-    -webkit-backdrop-filter: blur(10px); /* Corregido para eliminar el espacio */
+    backdrop-filter: blur(10px);
     transition: all 0.5s linear;
 }
 
 .title span {
     font-size: 1.2rem;
-    font-weight: 400; /* Ajustado el peso de la letra */
+    font-weight: 400;
 }
 
 .swiper-slide-active .title {
@@ -76,6 +74,7 @@
     z-index: -1;
 }
 
+/* Media Queries para hacer el Swiper completamente responsive */
 @media (max-width: 1100px) {
     .swiper-slide {
         width: 300px;
@@ -97,5 +96,22 @@
 @media (max-width: 610px) {
     .swiper-slide {
         width: 200px;
+    }
+}
+
+/* Nueva media query para pantallas más pequeñas */
+@media (max-width: 480px) {
+    .swiper-slide {
+        width: 90%; /* Ocupa el 90% del ancho del contenedor */
+        max-width: 300px; /* Máximo tamaño para evitar que sea demasiado grande */
+    }
+
+    .swiper {
+        padding: 30px 0; /* Reducir el padding en pantallas pequeñas */
+    }
+
+    .title {
+        padding: 8px 10px; /* Ajustar el padding del título */
+        font-size: 1rem; /* Ajustar tamaño de texto */
     }
 }

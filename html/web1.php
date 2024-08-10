@@ -6,7 +6,7 @@
     <title>Proyecto de RSU</title>
     <link href="img/favicon.ico" rel="icon">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link href="/css/updated_style.css" rel="stylesheet">
@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<?php
+    <?php
     session_start();
     $sessionActive = isset($_SESSION['username']);
     ?>
@@ -29,18 +29,15 @@
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>correo del profesors</p>
+                        <p><i class="fa fa-envelope mr-2"></i></p>
                         <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>numero del p</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i></p>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
                         <a class="text-primary px-3" href="https://www.facebook.com/FIEIOficial?locale=es_LA">
                             <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-twitter"></i>
                         </a>
                     </div>
                 </div>
@@ -60,14 +57,13 @@
                     <div class="navbar-nav ml-auto py-0">
                         <a href="/html/web1.php" class="nav-item nav-link active">Inicio</a>
                         <a href="/html/equipo.php" class="nav-item nav-link">Equipo</a>
-                        <a href="/html/nosotros.php" class="nav-item nav-link">Nosotros</a>
+                        <a href="/html/Nosotros.php" class="nav-item nav-link">Nosotros</a>
                         <a href="/html/calendario.php" class="nav-item nav-link">Calendario</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a href="/html/publicaciones_public.php" class="dropdown-item">Proyectos actuales</a>
                                 <a href="/html/publicacionesAntiguas_public.php" class="dropdown-item">Proyectos realizados</a>
-                                <a href="/html/publicaciones_futuras_public.html" class="dropdown-item">Proyectos futuros</a>
                                 <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
                             </div>
                         </div>
@@ -129,11 +125,11 @@
                         <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Sobre el jefe de proyecto</h6>
                         <h1 class="mb-3">Mg. José Martin Gil Lopez</h1>
                         <p>es un líder en responsabilidad social universitaria, encabezando la Unidad de Responsabilidad Social FIEI. Con sólida formación académica y experiencia en proyectos sociales, se dedica al desarrollo sostenible y al bienestar comunitario. Destacado por su capacidad para gestionar equipos y promover prácticas responsables, ha liderado iniciativas que mejoran la calidad de vida en educación, salud y medio ambiente</p>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="container-fluid pb-5">
         <div class="container pb-5">
@@ -171,7 +167,7 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
     <div class="container-fluid py-5">
@@ -233,7 +229,7 @@
                 </div>
             </main>
         </div>
-    </div>    
+    </div>
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
@@ -346,105 +342,99 @@
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
-    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Equipo</h6>
-    <h1>De Desarrolladores</h1>
-    </div>
-    <div id="particles-js" class="particles"></div>
-    <div class="swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="/imagenes/abra (2).png" alt=""/>
-                <div class="title">
-                    <span>Abraham Loza</span>
-                </div>
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Equipo</h6>
+                <h1>De Desarrolladores</h1>
             </div>
-            <div class="swiper-slide">
-                <img src="/imagenes/lily.foto.png" alt=""/>
-                <div class="title">
-                    <span>Lily Roque</span>
+            <div id="particles-js" class="particles"></div>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="/imagenes/abra (2).png" alt="" />
+                        <div class="title">
+                            <span>Abraham Loza</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/imagenes/lily.foto.png" alt="" />
+                        <div class="title">
+                            <span>Lily Roque</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/imagenes/harold (2).png" alt="" />
+                        <div class="title">
+                            <span>Harold Ortiz</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/imagenes/sergio1.foto.png" alt="" />
+                        <div class="title">
+                            <span>Sergio Vidal</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/imagenes/Nieves.foto.png" alt="" />
+                        <div class="title">
+                            <span>Elizabeth Nieves</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/imagenes/william.png" alt="" />
+                        <div class="title">
+                            <span>William Vegu</span>
+                        </div>
+                    </div>
                 </div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-slide">
-                <img src="/imagenes/sergio1.foto.png" alt=""/>
-                <div class="title">
-                    <span>Sergio Vidal</span>
-                </div> 
-            </div> 
-            <div class="swiper-slide">
-                <img src="/imagenes/harold (2).png" alt=""/>
-                <div class="title">
-                    <span>Harold Ortiz</span>
-                </div> 
-            </div> 
-            <div class="swiper-slide">
-                <img src="/imagenes/Nieves.foto.png" alt=""/>
-                <div class="title">
-                    <span>Elizabeth Nieves</span>
-                </div>
-            </div> 
-            <div class="swiper-slide">
-                <img src="/imagenes/william.png" alt=""/>
-                <div class="title">
-                    <span>William Vegu</span>
-                </div> 
-            </div> 
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="contentito">
+            <h1>Agradecimiento</h1>
+            <h6>
+                Queremos expresar nuestro más sincero agradecimiento a cada uno de ustedes por su dedicación y compromiso con la responsabilidad social universitaria.
+                Gracias a su participación en voluntariados, proyectos y charlas, estamos construyendo una comunidad más solidaria y consciente.
+                Su entusiasmo y esfuerzo son fundamentales para generar un impacto positivo y sostenible en nuestra sociedad.
+            </h6>
+        </div>
     </div>
-</div>
-<div class="contentito">
-    <h1>Agradecimiento</h1>
-    <h6>
-    Queremos expresar nuestro más sincero agradecimiento a cada uno de ustedes por su dedicación y compromiso con la responsabilidad social universitaria. 
-    Gracias a su participación en voluntariados, proyectos y charlas, estamos construyendo una comunidad más solidaria y consciente.
-    Su entusiasmo y esfuerzo son fundamentales para generar un impacto positivo y sostenible en nuestra sociedad.
-    </h6>
-  </div>
-</div>
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
                 <a href="" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">UNI</span>RSE</h1>
+                    <h1 class="text-primary"><span class="text-white"></span>RSU</h1>
                 </a>
                 <p>Únete a nuestra comunidad de viajeros apasionados! Explora el mundo con nosotros mientras compartimos experiencias únicas y descubrimos nuevos destinos juntos</p>
                 <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Siguenos</h6>
                 <div class="d-flex justify-content-start">
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-2" href="https://www.facebook.com/FIEIOficial?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
                 <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Servicios</h5>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Nosotros</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Soporte</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Mision</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Equipo</a>
-                    <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Blog</a>
+                    <a class="text-white-50 mb-2" href="https://web.unfv.edu.pe/facultades/fiei/"><i class="fa fa-angle-right mr-2"></i>Nosotros</a>
+                    <a class="text-white-50 mb-2" href="/html/contacto.html"><i class="fa fa-angle-right mr-2"></i>Soporte</a>
+                    <a class="text-white-50 mb-2" href="/html/web1.php"><i class="fa fa-angle-right mr-2"></i>Mision</a>
+                    <a class="text-white-50 mb-2" href="/html/equipo.php"><i class="fa fa-angle-right mr-2"></i>Equipo</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
                 <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Enlaces</h5>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Nosotros</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Soporte</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Administrador</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Equipo</a>
-                    <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Blog</a>
+                    <a class="text-white-50 mb-2" href="https://web.unfv.edu.pe/facultades/fiei/"><i class="fa fa-angle-right mr-2"></i>Nosotros</a>
+                    <a class="text-white-50 mb-2" href="/html/contacto.html"><i class="fa fa-angle-right mr-2"></i>Soporte</a>
+                    <a class="text-white-50 mb-2" href="/html/inicio_de_sesion.php"><i class="fa fa-angle-right mr-2"></i>Administrador</a>
+                    <a class="text-white-50 mb-2" href="/html/equipo.php"><i class="fa fa-angle-right mr-2"></i>Equipo</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
                 <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contactanos</h5>
-                <p><i class="fa fa-map-marker-alt mr-2"></i>Direccion de la Fiei</p>
-                <p><i class="fa fa-phone-alt mr-2"></i>Numero</p>
-                <p><i class="fa fa-envelope mr-2"></i>correo</p>
-                    </div>
-                </div>
+                <p><i class="fa fa-map-marker-alt mr-2"></i> Jr. Iquique Nº 127 - Breña - Lima</p>
+                <p><i class="fa fa-phone-alt mr-2"></i> (+51) 748-0888 Anexo: 9871 - 9866</p>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -455,8 +445,8 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="/js/equipojs.js"></script> 
-    <script src="/js/proy.rlz.js"></script> 
+    <script src="/js/equipojs.js"></script>
+    <script src="/js/proy.rlz.js"></script>
 </body>
 
 </html>

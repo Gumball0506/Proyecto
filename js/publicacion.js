@@ -144,69 +144,69 @@ const bannedWords = [
   "Travesti",
 ];
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   if (sessionActive) {
-      // Mostrar el div con el id 'admin'
-      document.getElementById('admin').style.display = 'block';
-      document.getElementById('stat').style.display = 'block';
+    // Mostrar el div con el id 'admin'
+    document.getElementById("admin").style.display = "block";
+    document.getElementById("stat").style.display = "block";
 
-      // Configura el MutationObserver para el div con la clase 'vistas-container'
-      const observerV = new MutationObserver(function(mutations) {
-          mutations.forEach(function(mutation) {
-              // Obtener todos los elementos con la clase 'vistas-container'
-              const vistasElements = document.getElementsByClassName('vistas-container');
-              
-              // Iterar sobre cada elemento encontrado
-              for (let i = 0; i < vistasElements.length; i++) {
-                  vistasElements[i].style.display = 'block';
-              }
+    // Configura el MutationObserver para el div con la clase 'vistas-container'
+    const observerV = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        // Obtener todos los elementos con la clase 'vistas-container'
+        const vistasElements =
+          document.getElementsByClassName("vistas-container");
 
-              // Deja de observar después de encontrar y mostrar el elemento
-              observerV.disconnect();
-          });
+        // Iterar sobre cada elemento encontrado
+        for (let i = 0; i < vistasElements.length; i++) {
+          vistasElements[i].style.display = "block";
+        }
+
+        // Deja de observar después de encontrar y mostrar el elemento
+        observerV.disconnect();
       });
-            // Configura el MutationObserver para el div con la clase 'vistas-container'
-            const observerE = new MutationObserver(function(mutations) {
-              mutations.forEach(function(mutation) {
-                  // Obtener todos los elementos con la clase 'vistas-container'
-                  const vistasElements = document.getElementsByClassName('eliminar-proyecto-btn');
-                  
-                  // Iterar sobre cada elemento encontrado
-                  for (let i = 0; i < vistasElements.length; i++) {
-                      vistasElements[i].style.display = 'block';
-                  }
-    
-                  // Deja de observar después de encontrar y mostrar el elemento
-                  observerV.disconnect();
-              });
-          });
-          // Configura el MutationObserver para el div con la clase 'vistas-container'
-          const observerS = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                // Obtener todos los elementos con la clase 'vistas-container'
-                const vistasElements = document.getElementsByClassName('project-status-container');
-                
-                // Iterar sobre cada elemento encontrado
-                for (let i = 0; i < vistasElements.length; i++) {
-                    vistasElements[i].style.display = 'block';
-                }
-  
-                // Deja de observar después de encontrar y mostrar el elemento
-                observerV.disconnect();
-            });
-        });
+    });
+    // Configura el MutationObserver para el div con la clase 'vistas-container'
+    const observerE = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        // Obtener todos los elementos con la clase 'vistas-container'
+        const vistasElements = document.getElementsByClassName(
+          "eliminar-proyecto-btn"
+        );
 
+        // Iterar sobre cada elemento encontrado
+        for (let i = 0; i < vistasElements.length; i++) {
+          vistasElements[i].style.display = "block";
+        }
 
-      // Empieza a observar el body por la adición de nuevos nodos
-      observerV.observe(document.body, { childList: true, subtree: true });
-      observerE.observe(document.body, { childList: true, subtree: true });
-      observerS.observe(document.body, { childList: true, subtree: true });
+        // Deja de observar después de encontrar y mostrar el elemento
+        observerV.disconnect();
+      });
+    });
+    // Configura el MutationObserver para el div con la clase 'vistas-container'
+    const observerS = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        // Obtener todos los elementos con la clase 'vistas-container'
+        const vistasElements = document.getElementsByClassName(
+          "project-status-container"
+        );
+
+        // Iterar sobre cada elemento encontrado
+        for (let i = 0; i < vistasElements.length; i++) {
+          vistasElements[i].style.display = "block";
+        }
+
+        // Deja de observar después de encontrar y mostrar el elemento
+        observerV.disconnect();
+      });
+    });
+
+    // Empieza a observar el body por la adición de nuevos nodos
+    observerV.observe(document.body, { childList: true, subtree: true });
+    observerE.observe(document.body, { childList: true, subtree: true });
+    observerS.observe(document.body, { childList: true, subtree: true });
   }
 });
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   document
@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let eliminarBoton = document.createElement("button");
       eliminarBoton.innerHTML = '<i class="fas fa-trash"></i>';
       eliminarBoton.classList.add("eliminar-proyecto-btn");
-      eliminarBoton.id="eliminar"
+      eliminarBoton.id = "eliminar";
       eliminarBoton.addEventListener("click", function () {
         eliminarProyecto(proyecto.ID_Proyecto);
       });
@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let projectStatusContainer = document.createElement("div");
       projectStatusContainer.classList.add("project-status-container");
-      projectStatusContainer.id="status"
+      projectStatusContainer.id = "status";
 
       let projectStatusLabel = document.createElement("label");
       projectStatusLabel.textContent = "Estado del Proyecto:";
@@ -353,18 +353,20 @@ document.addEventListener("DOMContentLoaded", function () {
       projectStatusInput.type = "checkbox";
 
       // Inicializa el estado del checkbox
-      projectStatusInput.checked = proyecto.Estado ? "Actual" : "Antiguo";
+      projectStatusInput.checked = proyecto.Estado === "1"; // Asegúrate de comparar correctamente
 
       // Crea un elemento para mostrar el texto del estado
       let projectStatusText = document.createElement("span");
       projectStatusText.textContent = projectStatusInput.checked
         ? "Actual"
-        : "Actual";
+        : "Antiguo"; // Cambiado a "Antiguo"
 
       // Función para actualizar el texto y el estado
       function actualizarEstado() {
-        let nuevoEstado = projectStatusInput.checked ? "Antiguo" : "Antiguo";
-        projectStatusText.textContent = nuevoEstado;
+        let nuevoEstado = projectStatusInput.checked ? "1" : "2"; // "1" para "Actual" y "2" para "Antiguo"
+        projectStatusText.textContent = projectStatusInput.checked
+          ? "Actual"
+          : "Antiguo"; // Cambia el texto según el estado
         cambiarEstadoProyecto(proyecto.ID_Proyecto, nuevoEstado);
       }
 
@@ -374,7 +376,10 @@ document.addEventListener("DOMContentLoaded", function () {
       projectStatusContainer.appendChild(projectStatusText);
 
       // Actualiza el estado cuando cambia el checkbox
-      projectStatusInput.addEventListener("change", actualizarEstado);
+      projectStatusInput.addEventListener("change", function () {
+        console.log("Estado cambiado"); // Agrega este log para verificar
+        actualizarEstado();
+      });
 
       proyectoDiv.appendChild(tituloElement);
       proyectoDiv.appendChild(descripcionElement);
@@ -620,9 +625,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Un exito");
       });
   }
-  function cambiarEstadoProyecto(proyecto_id, estadoActual) {
-    let nuevoEstado = estadoActual ? "Actual" : "Antiguo";
-
+  function cambiarEstadoProyecto(proyecto_id, nuevoEstado) {
     fetch("/PHP/Backend_publicacion.php", {
       method: "POST",
       headers: {
@@ -636,21 +639,17 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         if (data.success) {
           alert(
-            "Estado del proyecto actualizado correctamente, se cambio a Antiguo"
+            "Estado del proyecto actualizado correctamente, Se paso al área proyectos antiguos"
           );
-          cargarProyectos();
         } else {
-          alert(
-            "Error al actualizar el estado del proyecto. Por favor, intenta de nuevo."
-          );
+          alert("Error al actualizar el estado del proyecto.");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("Un exito");
+        alert("Ocurrió un error al cambiar el estado.");
       });
   }
-  // Resto del código para manejar comentarios, eliminar proyectos, etc.
 
   cargarProyectos(); // Cargar proyectos al cargar la página
 });

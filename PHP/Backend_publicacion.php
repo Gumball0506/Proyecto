@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $foto_contenido = null;
                 }
 
-                $sql = "INSERT INTO proyectos (Titulo, Descripcion, Foto, Fecha_inicio, url_registro, ID_Estado) VALUES (?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO proyectos (Titulo, Descripcion, Foto, Fecha_inicio, url_registro, ID_Estado, ID_Admin) VALUES (?, ?, ?, ?, ?, ?, '1')";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([$titulo, $descripcion, $foto_contenido, $eventDate, $url_registro, $estado_id]);
 

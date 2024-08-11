@@ -5,7 +5,7 @@ const main = document.querySelector("main");
 let currentIndex = 0;
 
 function updateSlide() {
-  const mainWidth = main.offsetWidth;
+  const mainWidth = main.clientWidth; // Cambia a clientWidth para obtener el ancho correcto
   const translateValue = currentIndex * -mainWidth;
   slideRow.style.transform = `translateX(${translateValue}px)`;
 

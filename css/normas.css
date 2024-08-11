@@ -1,0 +1,150 @@
+/* Estilo general */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Estilo para el encabezado */
+.header {
+    background: linear-gradient(135deg, #ff5722, #ff9800); 
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 2.5em;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el encabezado hero */
+.hero {
+    background: url('hero-bg.jpg') no-repeat center center/cover; 
+    color: #ffffff;
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 5px solid #ff9800; 
+    position: relative;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h2 {
+    font-size: 2.5em;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.3em;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    background: #fff;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.content .text-content {
+    width: 50%;
+}
+
+.content .text-content h2 {
+    font-size: 2.2em;
+    color: #ff5722;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.content .text-content p {
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+
+.content .text-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.content .image-content {
+    width: 45%;
+}
+
+.content .image-content img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.content.alternate {
+    flex-direction: row-reverse;
+}
+
+
+.extra-content {
+    padding: 40px 20px;
+    text-align: center;
+    background: #ff9800; 
+    color: #fff;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.extra-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.extra-content p {
+    font-size: 1.3em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.extra-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.extra-content .images {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.extra-content .images img {
+    width: 48%;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

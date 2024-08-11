@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$dbname = 'Responsabilidad_Social';
-$username = 'RSUFIEI';
-$password = 'Bicicleta123*';
+$dbname = 'proyecto_integrador';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);

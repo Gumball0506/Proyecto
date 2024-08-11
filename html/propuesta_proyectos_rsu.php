@@ -47,14 +47,14 @@
                             </div>
                         </div>
                         <a href="link del forms" class="nav-item nav-link">Contactos</a>
-                        <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat" id="stat">Estadisticas</a>
-                        <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
-
+                        <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat">Estadisticas</a>
+                        <a href="/html/inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
                     </div>
                 </div>
             </nav>
         </div>
     </div>
+
     <div class="container">
         <h1>Bienvenido a Propuesta de proyectos RSU</h1>
         <h2>Aquí podrás preparar tu documento de proyecto para la presentación</h2>
@@ -83,7 +83,6 @@
             <div class="form-group">
                 <label for="facultad">Facultad:</label>
                 <select id="facultad" name="facultad" required>
-                    <!-- Opciones de facultades aquí -->
                     <option value="1">Facultad de Administración</option>
                     <option value="2">Facultad de Ciencias Económicas</option>
                     <option value="3">Facultad de Ciencias Financieras y Contables</option>
@@ -136,7 +135,7 @@
 
             const formData = new FormData(this);
 
-            fetch('/php/proyectos_alumnos.php', {
+            fetch('/PHP/proyectos_alumnos.php', {
                     method: 'POST',
                     body: formData
                 })
@@ -151,12 +150,11 @@
                 });
         });
     </script>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="/js/easing.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </body>

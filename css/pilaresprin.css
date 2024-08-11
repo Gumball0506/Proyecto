@@ -1,0 +1,91 @@
+.containerpilares, .boxpilares, .titulopilares, .contentpilares, .redes-socialespilares {
+    width: 100%;
+}
+
+.containerpilares {
+    max-width: 1150px;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+    color: #505050;
+    line-height: 1.7;
+}
+
+.titulopilares {
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 60px;
+}
+
+.contentpilares {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 55px;
+}
+
+.boxpilares {
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.boxpilares:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.boxpilares figure {
+    width: 100%;
+    height: 250px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.boxpilares figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.namepilares h12 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.redes-socialespilares {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.7);
+    height: 0%;
+    line-height: 260px;
+    transition: all 500ms ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.boxpilares:hover .redes-socialespilares {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+}
+
+.redes-socialespilares a {
+    text-decoration: none;
+    padding: 5px;
+    font-size: 22px;
+    color: #989898;
+    transition: all 400ms ease;
+}
+
+.redes-socialespilares a:hover {
+    color: #e66e3e;
+}
+
+.boxpilares:hover h12 {
+    color: #e66e3e;
+}

@@ -14,6 +14,9 @@
     <link href="/css/equipostyle.css" rel="stylesheet">
     <link href="/css/proyec.reail.css" rel="stylesheet">
     <link href="/css/textito.css" rel="stylesheet">
+    <link href="/css/pilaresprin.css" rel="stylesheet">
+    <link href="/css/ejes.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -86,7 +89,7 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Responsabilidad Social Universitaria</h4>
                             <h1 class="display-3 text-white mb-md-4">Unidos por un Futuro Mejor</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Conócenos Más</a>
+                            <a href="/html/queesrsu.html" class="btn btn-primary py-md-3 px-md-5 mt-2">Conócenos Más</a>
                         </div>
                     </div>
                 </div>
@@ -96,7 +99,7 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Responsabilidad Social Universitaria</h4>
                             <h1 class="display-3 text-white mb-md-4">Unidos por un Futuro Mejor</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Conócenos Más</a>
+                            <a href="/html/normasrsu.html" class="btn btn-primary py-md-3 px-md-5 mt-2">Conócenos Más</a>
                         </div>
                     </div>
                 </div>
@@ -118,14 +121,14 @@
             <div class="row">
                 <div class="col-lg-6" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="/imagenes/profesor.png" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="/imagenes/profesor-decano.png" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 pt-5 pb-lg-5">
                     <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
-                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Sobre el jefe de proyecto</h6>
-                        <h1 class="mb-3">Mg. José Martin Gil Lopez</h1>
-                        <p>es un líder en responsabilidad social universitaria, encabezando la Unidad de Responsabilidad Social FIEI. Con sólida formación académica y experiencia en proyectos sociales, se dedica al desarrollo sostenible y al bienestar comunitario. Destacado por su capacidad para gestionar equipos y promover prácticas responsables, ha liderado iniciativas que mejoran la calidad de vida en educación, salud y medio ambiente</p>
+                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Nuestra Identidad</h6>
+                        <h1 class="mb-3">"Acerca de Nosotros"</h1>
+                        <p>Bienvenidos a la página de Responsabilidad Social de la Universidad Nacional Federico Villarreal (UNFV). Somos un equipo comprometido con el desarrollo integral de nuestra comunidad universitaria y la sociedad en general, guiados por los principios de ética, sostenibilidad y compromiso social. Bajo la dirección del Mg. José Martin Gil Lopez, encargado del área de Responsabilidad Social de la UNFV, trabajamos incansablemente para fomentar una educación de calidad que vaya más allá de las aulas, promoviendo iniciativas que generen un impacto positivo en el entorno social, económico y ambiental.</p>
                     </div>
                 </div>
             </div>
@@ -171,6 +174,51 @@
             </div>
         </div>
     </div>
+    <div class="containerpilares">
+    <div class="titulopilares">
+        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Pilares importantes en la RSU</h6>
+        <h1>Responsabilidad Social UNFV</h1>
+        <p>No solo se enfoquen en la formación académica, sino también en formar ciudadanos conscientes y comprometidos con su entorno.</p>
+    </div>
+    <div class="contentpilares">
+        <div class="boxpilares card">
+            <figure>
+                <img src="https://cdn-icons-png.flaticon.com/128/2327/2327640.png">
+            </figure>
+            <div class="namepilares">
+                <h12>Sostenibilidad Ambiental</h12>
+                <span>Implementar prácticas sostenibles en el campus universitario, como la gestión eficiente de recursos, la reducción de residuos y la promoción de la conciencia ambiental entre estudiantes y personal.</span>
+            </div>
+        </div>
+        <div class="boxpilares card">
+            <figure>
+                <img src="https://cdn-icons-png.flaticon.com/128/13104/13104539.png">
+            </figure>
+            <div class="namepilares">
+                <h12>Educación de Calidad</h12>
+                <span>Es el pilar fundamental de la universidad. Asegurando que los estudiantes reciban una formación académica integral y relevante, que no solo les prepare para el mercado laboral, sino que también los capacite para contribuir positivamente a la sociedad.</span>
+            </div>
+        </div>
+        <div class="boxpilares card">
+            <figure>
+                <img src="https://cdn-icons-png.flaticon.com/128/2436/2436890.png">
+            </figure>
+            <div class="namepilares">
+                <h12>Investigación con Impacto Social</h12>
+                <span>La investigación universitaria debe abordar y encontrar soluciones a problemas sociales, económicos y ambientales. Para garantizar el conocimiento y asi genere tenga un impacto real y beneficioso en la comunidad.</span>
+            </div>
+        </div>
+        <div class="boxpilares card">
+            <figure>
+                <img src="https://cdn-icons-png.flaticon.com/128/10930/10930925.png">
+            </figure>
+            <div class="namepilares">
+                <h12>Compromiso con la Comunidad</h12>
+                <span>La participación activa en proyectos comunitarios y el apoyo a iniciativas locales o globales ayudan a fortalecer la relación entre la universidad y la sociedad, generando beneficios mutuos.</span>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
@@ -234,34 +282,99 @@
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Servicios</h6>
-                <h1>Comunicación Social</h1>
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Actividades RSU</h6>
+                <h1>Formacion de las Personas</h1>
+                <p>Es esencial para crear una comunidad académica comprometida con los valores éticos, sociales y ambientales.</p>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <i class="fa fa-2x fa-route mx-auto mb-4"></i>
-                        <h5 class="mb-2">Guía RSU</h5>
-                        <p class="m-0">Ofrecemos orientación y recursos para involucrarte en proyectos de RSU. Desde consejos prácticos hasta eventos de sensibilización, estamos aquí para apoyarte.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i>
-                        <h5 class="mb-2">Reserva de Participación</h5>
-                        <p class="m-0">Inscríbete fácilmente en nuestras actividades y eventos de RSU. Sé parte del cambio positivo y contribuye a crear un futuro más sostenible y justo.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <i class="fa fa-2x fa-hotel mx-auto mb-4"></i>
-                        <h5 class="mb-2">Recursos para Proyectos RSU</h5>
-                        <p class="m-0">Ofrecemos herramientas y apoyo integral en la FIEI para la implementación de tus proyectos de responsabilidad social universitaria. Siguenos para mas información</p>
-                    </div>
-                </div>
-            </div>
+            <div class="containerformacion">
+    <div class="cardformacion">
+        <div class="imgBxformacion">
+            <img src="/imagenes/voluntariadosRSU.png">
+        </div>
+        <div class="contentformacion">
+            <h13>PROGRAMA DE VOLUNTARIADO</h13>
+            <p>Nuestros programas de voluntariado brindan a los estudiantes la oportunidad de participar activamente en causas sociales y comunitarias. 
+               que permiten el desarrollo de habilidades de liderazgo, trabajo en equipo y empatía.</p>
         </div>
     </div>
+
+    <div class="cardformacion">
+        <div class="imgBxformacion">
+            <img src="/imagenes/charlasRSU.png">
+        </div>
+        <div class="contentformacion">
+            <h13>CHARLAS Y CONFERENCIAS</h13>
+            <p>Estos son organizadas por la universidad que expresan espacios de reflexión y aprendizaje, donde expertos y profesionales comparten sus conocimientos y experiencias con los estudiantes. 
+                </p>
+        </div>
+    </div>
+
+    <div class="cardformacion">
+        <div class="imgBxformacion">
+            <img src="/imagenes/participacionRSU.png">
+        </div>
+        <div class="contentformacion">
+            <h13>CONCURSO SOBRE RSU</h13>
+            <p>La participación es una herramienta clave para la formación práctica y aplicada de nuestros estudiantes. 
+            A través de estos proyectos, se promueve la investigación, la creatividad y la innovación, permitiendo a los participantes trabajar en soluciones concretas a problemas reales. </p>
+        </div>
+    </div>
+
+    <div class="cardformacion">
+        <div class="imgBxformacion">
+            <img src="/imagenes/charlasRSU.png">
+        </div>
+        <div class="contentformacion">
+            <h13>EVENTOS Y CAMPAÑAS</h13>
+            <p> Nuestra universidad organiza una variedad de campañas y eventos diseñados para aumentar la conciencia sobre temas sociales y ambientales entre los estudiantes y la comunidad universitaria 
+                que tienen como objetivo promover el compromiso social y la participación activa en causas relevantes. </p>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+<div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Villareilinos</h6>
+                <h1>Nuestros Ejes Fundamentales</h1>
+                <p>En la Universidad Nacional Federico Villarreal, los VILLAREILINOS se destacan por su compromiso con el desarrollo integral y el bienestar social. Asi
+                orientamos nuestras acciones hacia la construcción de un futuro más justo, equitativo y sostenible.
+                </p>
+                <div class="containerejes">
+    <div class="boxejes">
+        <span></span>
+        <div class="contentejes">
+            <h14>Formación Integral de los Estudiantes</h14>
+            <p>Garantiza que los estudiantes reciban una educación que no solo se centra en el conocimiento académico, sino también en el desarrollo de habilidades éticas, sociales y cívicas, fomentando su compromiso con la sociedad y el medio ambiente.</p>
+        </div>
+    </div>
+    <div class="boxejes">
+        <span></span>
+        <div class="contentejes">
+            <h14>Formación Integral de los Estudiantes</h14>
+            <p>Se centra en proporcionar a los estudiantes una educación que no solo aborde aspectos académicos, sino también éticos y sociales, preparándolos para ser ciudadanos responsables y comprometidos.</p>
+        </div>
+    </div>
+    <div class="boxejes">
+        <span></span>
+        <div class="contentejes">
+            <h14>Gestión Ambiental Sostenible</h14>
+            <p>Promueve la adopción de prácticas que reduzcan el impacto ambiental de las actividades universitarias y fomenten la sostenibilidad tanto en el campus como en la comunidad en general.</p>
+        </div>
+    </div>
+    <div class="boxejes">
+        <span></span>
+        <div class="contentejes">
+            <h14>Ética y Gobernanza</h14>
+            <p>Implica la adopción de prácticas transparentes y éticas en la gestión universitaria, así como el desarrollo de políticas y directrices que refuercen la integridad y la rendición de cuentas.</p>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">

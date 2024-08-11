@@ -56,7 +56,7 @@ body {
 }
 
 header {
-  background-color: #3498db;
+  background-color: #637b94;
   color: white;
   padding: 20px;
   width: 100%;
@@ -76,6 +76,79 @@ header {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+button.reject {
+  background-color: #e74c3c;
+}
+
+button.reject:hover {
+  background-color: #c0392b;
+}
+
+td:last-child {
+  font-weight: bold;
+}
+
+.estado-aceptado {
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.estado-rechazado {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.estado-en-proceso {
+  background-color: #f1c40f;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+/* pantalla carga */
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -103,4 +176,43 @@ header {
   100% { transform: rotate(360deg); }
 }
 
+.loading-message {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #3498db;
+}
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
 
+.chart {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1 1 45%; /* Dos gráficos por fila */
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  color: #333;
+}

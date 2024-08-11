@@ -1,9 +1,9 @@
 <?php
 // Configuración de la base de datos
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "proyecto_integrador";
+$username = "RSUFIEI";
+$password = "Bicicleta123*";
+$dbname = "Responsabilidad_Social";
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -12,4 +12,3 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
-

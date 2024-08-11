@@ -36,6 +36,9 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+#stat{
+  display: none;
+}
 *,
 *::before,
 *::after {
@@ -61,7 +64,7 @@ body {
   line-height: 1.5;
   color: #656565;
   text-align: left;
-  background-color: #f3f3f3;
+  background-color: #dacb89;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {

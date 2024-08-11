@@ -73,11 +73,11 @@ body {
     top: 50%; /* Centrado vertical */
     transform: translateY(-50%); /* Ajuste de centrado vertical */
     font-size: 30px; /* Tamaño de fuente grande */
-    padding: auto; /* Alineación automática del padding */
+    padding: 0; /* Alineación automática del padding */
     font-weight: bold; /* Fuente en negrita */
     font-family: monospace; /* Tipo de fuente monospace */
     text-align: center; /* Texto centrado */
-    border-radius: 80%; /* Bordes redondeados */
+    border-radius: 50%; /* Bordes redondeados */
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
     transition: background-color 0.3s ease, opacity 0.3s ease; /* Transición suave para cambios de fondo y opacidad */
 }
@@ -96,4 +96,37 @@ body {
 /* Botón izquierdo del slider */
 .slider__btn--izquierda {
     left: 5px; /* Posicionamiento a la izquierda */
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .container-slider {
+        height: 300px; /* Ajusta la altura en pantallas más pequeñas */
+    }
+
+    .slider {
+        height: 300px; /* Ajusta la altura del slider */
+    }
+
+    .slider__btn {
+        width: 30px; /* Reduce el tamaño de los botones */
+        height: 30px; /* Reduce el tamaño de los botones */
+        font-size: 24px; /* Reduce el tamaño de fuente */
+    }
+}
+
+@media (max-width: 480px) {
+    .container-slider {
+        height: 200px; /* Ajusta la altura en pantallas más pequeñas */
+    }
+
+    .slider {
+        height: 200px; /* Ajusta la altura del slider */
+    }
+
+    .slider__btn {
+        width: 25px; /* Reduce el tamaño de los botones */
+        height: 25px; /* Reduce el tamaño de los botones */
+        font-size: 20px; /* Reduce el tamaño de fuente */
+    }
 }

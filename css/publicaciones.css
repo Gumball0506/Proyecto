@@ -432,7 +432,6 @@ img {
   }
   
   .vistas-container {
-    display: inline-block;
     position: relative;
     left: 82%; /* Alinea en el extremo derecho */
   }

@@ -1,4 +1,10 @@
-(function ($) {
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (sessionActive) {
+        document.getElementById('stat').style.display = 'block';
+  
+  }})
+  (function ($) {
     "use strict";
     
     // Dropdown on mouse hover

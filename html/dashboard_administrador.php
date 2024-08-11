@@ -62,15 +62,23 @@
     <div class="container">
         <aside class="sidebar">
             <div class="profile">
-                <img src="path/to/profile-pic.jpg" alt="Foto de Perfil" class="profile-pic">
-                <h2>Sr. Admin</h2>
+                <img src="/imagenes/admin.png" alt="Foto de Perfil" class="profile-pic">
+                <h2>Admin</h2>
             </div>
             <nav class="nav">
                 <ul>
-                    <li><a href="#" id="principal">Inicio</a></li>
-                    <li><a href="#" id="vistas">Vistas</a></li>
-                    <li><a href="#" id="registros">Estadisticas</a></li>
-                    <li><a href="#" id="solicitudes">Solicitudes de Proyectos</a></li>
+                    <li><i class="fas fa-qrcode"></i>
+                        <a href="#" id="principal">Inicio</a>
+                    </li>
+                    <li><i class="fas fa-link"></i>
+                        <a href="#" id="vistas">Vistas</a>
+                    </li>
+                    <li><i class="fas fa-stream"></i>
+                        <a href="#" id="registros">Estadisticas</a>
+                    </li>
+                    <li><i class="fas fa-calendar-week"></i>
+                        <a href="#" id="solicitudes">Solicitudes de Proyectos</a>
+                    </li>
                 </ul>
             </nav>
         </aside>
@@ -81,8 +89,9 @@
             <section class="content" id="content">
                 <h2>Bienvenido al Sistema</h2>
                 <p>Seleccione una opción del menú para comenzar.</p>
-            </section>
-        </main>
+    </div>
+    </section>
+    </main>
     </div>
 
     <div id="loadingOverlay" class="loading-overlay">

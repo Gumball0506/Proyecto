@@ -144,6 +144,45 @@ const bannedWords = [
   "Travesti",
 ];
 
+document.addEventListener('DOMContentLoaded', function() {
+  if (sessionActive) {
+      // Mostrar el div 'admin'
+      document.getElementById('admin').style.display = 'block';
+
+      // Configura el MutationObserver para el div 'vistas'
+      const observerV = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+              if (document.getElementById('vistas')) {
+                  document.getElementById('vistas').style.display = 'block';
+                  observerV.disconnect(); // Deja de observar después de encontrar el elemento
+              }
+          });
+      });
+      const observerE = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (document.getElementById('eliminar')) {
+                document.getElementById('eliminar').style.display = 'block';
+                observerE.disconnect(); // Deja de observar después de encontrar el elemento
+            }
+        });
+      });
+      const observerS = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (document.getElementById('status')) {
+                document.getElementById('status').style.display = 'block';
+                observerS.disconnect(); // Deja de observar después de encontrar el elemento
+            }
+        });
+      });
+
+      // Empieza a observar el body por la adición de nuevos nodos
+      observerV.observe(document.body, { childList: true, subtree: true });
+      observerE.observe(document.body, { childList: true, subtree: true });
+      observerS.observe(document.body, { childList: true, subtree: true });
+  }
+});
+
+
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("postForm")
@@ -221,6 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let vistasElement = document.createElement("div");
       vistasElement.classList.add("vistas-container");
+      vistasElement.id = "vistas";
 
       let vistasTexto = document.createElement("span");
       vistasTexto.textContent = "";
@@ -254,6 +294,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let eliminarBoton = document.createElement("button");
       eliminarBoton.innerHTML = '<i class="fas fa-trash"></i>';
       eliminarBoton.classList.add("eliminar-proyecto-btn", "fb-style-button");
+      eliminarBoton.id="eliminar"
       eliminarBoton.addEventListener("click", function () {
         eliminarProyecto(proyecto.ID_Proyecto);
       });
@@ -278,6 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let projectStatusContainer = document.createElement("div");
       projectStatusContainer.classList.add("project-status-container");
+      projectStatusContainer.id="status"
 
       let projectStatusLabel = document.createElement("label");
       projectStatusLabel.textContent = "Estado del Proyecto:";

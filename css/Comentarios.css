@@ -132,7 +132,7 @@
   background-color: #1877f2;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 50px;
   border-radius: 20px;
   cursor: pointer;
   display: inline-flex;
@@ -151,11 +151,17 @@
   font-size: 16px;
 }
 
+.comments-container {
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos se coloquen en una columna */
+  position: relative;/* Para el posicionamiento absoluto si es necesario */
+}
+
 .fb-style-button1 {
   background-color: #1877f2;
   color: white;
   border: none;
-  padding: 4px 6px;
+  padding: 2px 4px;
   border-radius: 20px;
   cursor: pointer;
   display: inline-flex;
@@ -163,8 +169,11 @@
   gap: 5px;
   font-size: 14px;
   transition: background-color 0.3s, color 0.3s;
-  margin-left: 68%;
+  margin: 0; /* Elimina el margen */
+  align-self: flex-end; /* Alinea el botón al final del contenedor */
+  margin-left: auto; 
 }
+
 
 .fb-style-button1:hover {
   background-color: #3b5998;
@@ -209,12 +218,33 @@
 }
 
 .eliminar-proyecto-btn {
-  background-color: #dc3545;
+  background-color: #dc3545; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 4px 6px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor de puntero */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: background-color 0.3s, transform 0.3s; /* Efectos de transición */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+  margin-left: 90%;
 }
 
+/* Efecto hover */
 .eliminar-proyecto-btn:hover {
-  background-color: #c82333;
+  background-color: #c82333; /* Color de fondo al pasar el mouse */
+  transform: translateY(-2px); /* Levantar ligeramente el botón */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
 }
+
+/* Opcional: para dispositivos móviles */
+@media (max-width: 600px) {
+  .eliminar-proyecto-btn {
+    font-size: 14px; /* Tamaño de fuente más pequeño en móviles */
+    padding: 8px 12px; /* Ajuste de espaciado */
+  }
+}
+
 
 .fb-style-comment-form {
   margin-top: 10px;
@@ -229,35 +259,39 @@
 
 /* Media Queries para responsividad */
 @media (max-width: 600px) {
+  .comments-list {
+    max-height: 300px; /* Reduce la altura máxima en móviles */
+  }
+
   .comment {
-      padding: 10px; /* Reduce padding en comentarios */
+    padding: 10px; /* Reduce padding en comentarios */
   }
 
   .comment-form input[type="text"] {
-      padding: 8px; /* Reduce padding en el input */
-      font-size: 14px; /* Ajusta tamaño de fuente */
+    padding: 8px; /* Reduce padding en el input */
+    font-size: 14px; /* Ajusta tamaño de fuente */
   }
 
   .comment-form button {
-      padding: 8px 15px; /* Reduce padding en botón */
-      font-size: 14px; /* Ajusta tamaño de fuente */
+    padding: 8px 15px; /* Reduce padding en botón */
+    font-size: 14px; /* Ajusta tamaño de fuente */
   }
 
   .comentario {
-      padding: 10px; /* Ajusta padding para comentarios dinámicos */
+    padding: 10px; /* Ajusta padding para comentarios dinámicos */
   }
 
   .comentario p {
-      font-size: 14px; /* Ajusta tamaño de fuente */
+    font-size: 14px; /* Ajusta tamaño de fuente */
   }
 
   .fb-style-comment-form textarea {
-      padding: 8px; /* Ajusta padding en textarea */
-      font-size: 14px; /* Ajusta tamaño de fuente */
+    padding: 8px; /* Ajusta padding en textarea */
+    font-size: 14px; /* Ajusta tamaño de fuente */
   }
 
   .fb-style-comment-form button {
-      padding: 8px 15px; /* Ajusta padding en botón */
-      font-size: 14px; /* Ajusta tamaño de fuente */
+    padding: 8px 15px; /* Ajusta padding en botón */
+    font-size: 14px; /* Ajusta tamaño de fuente */
   }
 }

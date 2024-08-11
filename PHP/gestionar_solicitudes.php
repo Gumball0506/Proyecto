@@ -82,15 +82,15 @@ function enviar_alumnos($idProyecto)
         $mail = new PHPMailer(true);
         // Configuración del servidor
         $mail->isSMTP();
-        $mail->Host = 'smtp.office365.com';
+        $mail->Host = 'brsocial.fiei.online';
         $mail->SMTPAuth = true;
-        $mail->Username = 'haroldortiz@outlook.es'; // Cambiar por variable de entorno
-        $mail->Password = 'bicicleta123'; // Cambiar por variable de entorno
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Username = 'rsufiei@brsocial.fiei.online'; // Cambiar por variable de entorno
+        $mail->Password = 'W4ht7xxoP^eX'; // Cambiar por variable de entorno
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
 
         // Configurar el correo
-        $mail->setFrom('haroldortiz@outlook.es', 'Harold Ortiz');
+        $mail->setFrom('rsufiei@brsocial.fiei.online', 'Soporte_Tecnico');
         $mail->addAddress($correoDesencriptado, $proyecto['Nombres_Apellidos']);
         $mail->isHTML(true);
         $mail->Subject = 'Notificacion de Aceptacion de Proyecto';
@@ -142,15 +142,15 @@ function proyecto_rechazado($idProyecto)
         $mail = new PHPMailer(true);
         // Configuración del servidor
         $mail->isSMTP();
-        $mail->Host = 'smtp.office365.com';
+        $mail->Host = 'brsocial.fiei.online';
         $mail->SMTPAuth = true;
-        $mail->Username = 'haroldortiz@outlook.es'; // Cambiar por variable de entorno
-        $mail->Password = 'bicicleta123'; // Cambiar por variable de entorno
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Username = 'rsufiei@brsocial.fiei.online'; // Cambiar por variable de entorno
+        $mail->Password = 'W4ht7xxoP^eX'; // Cambiar por variable de entorno
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
 
         // Configurar el correo
-        $mail->setFrom('haroldortiz@outlook.es', 'Harold Ortiz');
+        $mail->setFrom('rsufiei@brsocial.fiei.online', 'Soporte_Tecnico');
         $mail->addAddress($correoDesencriptado, $proyecto['Nombres_Apellidos']);
         $mail->isHTML(true);
         $mail->Subject = 'Notificacion de Rechazo de Proyecto';
@@ -200,15 +200,15 @@ function proyecto_proceso($idProyecto)
         $mail = new PHPMailer(true);
         // Configuración del servidor
         $mail->isSMTP();
-        $mail->Host = 'smtp.office365.com';
+        $mail->Host = 'brsocial.fiei.online';
         $mail->SMTPAuth = true;
-        $mail->Username = 'haroldortiz@outlook.es'; // Cambiar por variable de entorno
-        $mail->Password = 'bicicleta123'; // Cambiar por variable de entorno
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Username = 'rsufiei@brsocial.fiei.online'; // Cambiar por variable de entorno
+        $mail->Password = 'W4ht7xxoP^eX'; // Cambiar por variable de entorno
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
 
         // Configurar el correo
-        $mail->setFrom('haroldortiz@outlook.es', 'Harold Ortiz');
+        $mail->setFrom('rsufiei@brsocial.fiei.online', 'Soporte_Tecnico');
         $mail->addAddress($correoDesencriptado, $proyecto['Nombres_Apellidos']);
         $mail->isHTML(true);
         $mail->Subject = 'Notificacion de Revision de su Proyecto';
@@ -282,22 +282,19 @@ function proyecto_proceso_profesor($idProyecto)
             $proyecto = $stmtCorreo->fetch(PDO::FETCH_ASSOC);
 
             if ($proyecto) {
-                // Desencriptar el correo del profesor
-                $correoProfesorDesencriptado = descifrar($proyecto['Correo_Electronico']);
-
                 $mail = new PHPMailer(true);
                 // Configuración del servidor
                 $mail->isSMTP();
-                $mail->Host = 'smtp.office365.com';
+                $mail->Host = 'brsocial.fiei.online';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'haroldortiz@outlook.es'; // Cambiar por variable de entorno
-                $mail->Password = 'bicicleta123'; // Cambiar por variable de entorno
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
+                $mail->Username = 'rsufiei@brsocial.fiei.online'; // Cambiar por variable de entorno
+                $mail->Password = 'W4ht7xxoP^eX'; // Cambiar por variable de entorno
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $mail->Port = 465;
 
                 // Configurar el correo
-                $mail->setFrom('haroldortiz@outlook.es', 'Harold Ortiz');
-                $mail->addAddress($correoProfesorDesencriptado);
+                $mail->setFrom('rsufiei@brsocial.fiei.online', 'Soporte_Tecnico');
+                $mail->addAddress('correo del profesor');
                 $mail->isHTML(true);
                 $mail->Subject = 'Notificacion de Proyecto para revision';
 

@@ -71,7 +71,7 @@
                                 <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
                             </div>
                         </div>
-                        <a href="link del forms" class="nav-item nav-link">Contactos</a>
+                        <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
                         <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat" id="stat">Estadisticas</a>
                         <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
 
@@ -183,7 +183,7 @@
     <div class="contentpilares">
         <div class="boxpilares card">
             <figure>
-                <img src="https://cdn-icons-png.flaticon.com/128/2327/2327640.png">
+                <img src="/imagenes/Sostenibilidad.jpg">
             </figure>
             <div class="namepilares">
                 <h12>Sostenibilidad Ambiental</h12>
@@ -192,7 +192,7 @@
         </div>
         <div class="boxpilares card">
             <figure>
-                <img src="https://cdn-icons-png.flaticon.com/128/13104/13104539.png">
+                <img src="/imagenes/Educacion.jpg">
             </figure>
             <div class="namepilares">
                 <h12>Educación de Calidad</h12>
@@ -201,7 +201,7 @@
         </div>
         <div class="boxpilares card">
             <figure>
-                <img src="https://cdn-icons-png.flaticon.com/128/2436/2436890.png">
+                <img src="/imagenes/Investigacion.jpg">
             </figure>
             <div class="namepilares">
                 <h12>Investigación con Impacto Social</h12>
@@ -210,7 +210,7 @@
         </div>
         <div class="boxpilares card">
             <figure>
-                <img src="https://cdn-icons-png.flaticon.com/128/10930/10930925.png">
+                <img src="/imagenes/Compromiso.jpg">
             </figure>
             <div class="namepilares">
                 <h12>Compromiso con la Comunidad</h12>
@@ -336,7 +336,7 @@
 <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Villareilinos</h6>
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Villarealinos</h6>
                 <h1>Nuestros Ejes Fundamentales</h1>
                 <p>En la Universidad Nacional Federico Villarreal, los VILLAREILINOS se destacan por su compromiso con el desarrollo integral y el bienestar social. Asi
                 orientamos nuestras acciones hacia la construcción de un futuro más justo, equitativo y sostenible.
@@ -469,13 +469,13 @@
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="/imagenes/lily.foto.png" alt="" />
+                        <img src="/imagenes/lily.png" alt="" />
                         <div class="title">
                             <span>Lily Roque</span>
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="/imagenes/harold (2).png" alt="" />
+                        <img src="/imagenes/harold.jpg" alt="" />
                         <div class="title">
                             <span>Harold Ortiz</span>
                         </div>
@@ -487,15 +487,15 @@
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="/imagenes/Nieves.foto.png" alt="" />
+                        <img src="/imagenes/nieves.jpg" alt="" />
                         <div class="title">
                             <span>Elizabeth Nieves</span>
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="/imagenes/william.png" alt="" />
+                        <img src="/imagenes/willy.jpg" alt="" />
                         <div class="title">
-                            <span>William Vegu</span>
+                            <span>William Vega</span>
                         </div>
                     </div>
                 </div>

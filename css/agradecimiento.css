@@ -1,0 +1,46 @@
+.blog-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .blog-slider__img img {
+    width: 100%;
+    height: auto;
+    border-bottom: 5px solid #FF6F00; /* Color de borde que combine con el color de tu universidad */
+  }
+  
+  .blog-slider__text {
+    padding: 18px;
+    background-color: #fff; /* Fondo blanco para el texto */
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    font-size: 1.2rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 5px solid #FF6F00; /* Color de borde que combine con el color de tu universidad */
+  }
+  
+  .blog-slider__text::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: #FF6F00; /* Color de borde que combine con el color de tu universidad */
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .blog-slider__text p {
+    margin: 0;
+  }

@@ -62,7 +62,7 @@ article {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #344233;
+  color: #000000;
   font-weight: 700;
 }
 .blog-content__title {

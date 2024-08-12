@@ -17,7 +17,7 @@
     <link href="/css/pilaresprin.css" rel="stylesheet">
     <link href="/css/ejes.css" rel="stylesheet">
     <link href="/css/misivi.css" rel="stylesheet">
-
+    <link href="/css/agradecimiento.css" rel="stylesheet">
 </head>
 
 <body>
@@ -548,9 +548,9 @@
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="/imagenes/sergio.foto.png" alt="" />
+                        <img src="/imagenes/willy.jpg" alt="" />
                         <div class="title">
-                            <span>Sergio Vidal</span>
+                            <span>William Vega</span>
                         </div>
                     </div>
                     <div class="swiper-slide">
@@ -560,24 +560,35 @@
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="/imagenes/willy.jpg" alt="" />
+                        <img src="/imagenes/vidal.png" alt="" />
                         <div class="title">
-                            <span>William Vega</span>
+                            <span>Sergio Vidal</span>
                         </div>
                     </div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-        <div class="contentito">
-            <h1>Agradecimiento</h1>
-            <h6>
-                Queremos expresar nuestro más sincero agradecimiento a cada uno de ustedes por su dedicación y compromiso con la responsabilidad social universitaria.
-                Gracias a su participación en voluntariados, proyectos y charlas, estamos construyendo una comunidad más solidaria y consciente.
-                Su entusiasmo y esfuerzo son fundamentales para generar un impacto positivo y sostenible en nuestra sociedad.
-            </h6>
+
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Villarealinos</h6>
+                <h1>Agradecimiento</h1>
+
+                <div class="blog-slider">
+        <div class="blog-slider__img">
+          <img src="/imagenes/Sostenibilidad.jpg" alt="">
         </div>
-    </div>
+          <div class="blog-slider__text">Queremos expresar nuestro más sincero agradecimiento a cada uno de ustedes por su dedicación y compromiso con la responsabilidad social universitaria.
+                Gracias a su participación en voluntariados, proyectos y charlas, estamos construyendo una comunidad más solidaria y consciente.
+                Su entusiasmo y esfuerzo son fundamentales para generar un impacto positivo y sostenible en nuestra sociedad.</div>
+        </div>
+      </div>
+</div>
+</div>
+</div>
+</div>
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">

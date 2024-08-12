@@ -16,6 +16,7 @@
     <link href="/css/textito.css" rel="stylesheet">
     <link href="/css/pilaresprin.css" rel="stylesheet">
     <link href="/css/ejes.css" rel="stylesheet">
+    <link href="/css/misivi.css" rel="stylesheet">
 
 </head>
 
@@ -144,8 +145,8 @@
                             <i class="fa fa-2x fa-money-check-alt text-white"></i>
                         </div>
                         <div class="d-flex flex-column">
-                            <h5 class="">EN VERSE</h5>
-                            <p class="m-0">En verse</p>
+                            <h5 class="">Somos</h5>
+                            <p class="m-0">COLABORATIVOS</p>
                         </div>
                     </div>
                 </div>
@@ -155,8 +156,8 @@
                             <i class="fa fa-2x fa-award text-white"></i>
                         </div>
                         <div class="d-flex flex-column">
-                            <h5 class="">EN VERSE</h5>
-                            <p class="m-0">EN VERSE</p>
+                            <h5 class="">Somos</h5>
+                            <p class="m-0">INNOVADORES</p>
                         </div>
                     </div>
                 </div>
@@ -166,11 +167,12 @@
                             <i class="fa fa-2x fa-globe text-white"></i>
                         </div>
                         <div class="d-flex flex-column">
-                            <h5 class="">EN VERSE</h5>
-                            <p class="m-0">EN VERSE</p>
+                            <h5 class="">Somos</h5>
+                            <p class="m-0">COMPROMETIDOS</p>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -230,42 +232,39 @@
                     <div class="slide-row" id="slide-row">
                         <div class="slide-col">
                             <div class="content">
-                                <p>Una conferencia, congreso o encuentro es una reunión de gente con un interés o un antecedente común.</p>
-                                <h2>PUBLICACIONES 1</h2>
-                                <button class="btn-small">Leer más</button>
+                                <p>El "Concurso de Esculturas con RAEE", los estudiantes aprovecharon estos materiales reciclables para transformarlos en obras de arte ecológico. Demuestrando sus habilidades artísticas y contribuyendo al cuidado del #MedioAmbiente.
+                                </p>
+                                <h2>ESCULTURAS CON RAEE EN LA FIEI</h2>
                             </div>
                             <div class="hero">
-                                <img src="/imagenes/publi.1.png" alt="avatar">
+                                <img src="/imagenes/proyectosR1.png" alt="avatar">
                             </div>
                         </div>
                         <div class="slide-col">
                             <div class="content">
-                                <p>Una conferencia, congreso o encuentro es una reunión de gente con un interés o un antecedente común.</p>
-                                <h2>PUBLICACIONES 2</h2>
-                                <button class="btn-small">Leer más</button>
+                                <p>Estudiantes voluntarios y una comitiva de la #FIEI, llevaron alegría a cientos de niños y niñas de la comunidad shipibo-konibo instalada en la Asociación de Viviendas de Cantagallo, con quienes compartieron una deliciosa chocolatada y entregaron regalos.</p>
+                                <h2>NAVIDAD VILLAREILINA</h2>
                             </div>
                             <div class="hero">
-                                <img src="/imagenes/publi.2.png" alt="avatar">
+                                <img src="/imagenes/proyectosR5.png.jpg" alt="avatar">
                             </div>
                         </div>
                         <div class="slide-col">
                             <div class="content">
-                                <p>Una conferencia, congreso o encuentro es una reunión de gente con un interés o un antecedente común.</p>
-                                <h2>PUBLICACIONES 3</h2>
-                                <button class="btn-small">Leer más</button>
+                                <p>Descubrieron los fundamentos esenciales para garantizar un entorno laboral seguro y saludable, aprendiendo a identificar riesgos y aplicar medidas preventivas. Por ultimo, conocieron las mejores prácticas en seguridad laboral.</p>
+                                <h2>CHARLAS LABORALES</h2>
                             </div>
                             <div class="hero">
-                                <img src="/imagenes/publi.3.png" alt="avatar">
+                                <img src="/imagenes/proyectosR3.png" alt="avatar">
                             </div>
                         </div>
                         <div class="slide-col">
                             <div class="content">
-                                <p>Una conferencia, congreso o encuentro es una reunión de gente con un interés o un antecedente común.</p>
-                                <h2>PUBLICACIONES 4</h2>
-                                <button class="btn-small">Leer más</button>
+                                <p>Esta capacitación estuvo dirigida a todo el personal docente, administrativo y funcionarios de la #ComunidadFIEI.En la cual aprendieron habilidades vitales para responder de manera efectiva ante situaciones de emergencia en el entorno laboral.</p>
+                                <h2>CAPACITACION FIEI</h2>
                             </div>
                             <div class="hero">
-                                <img src="/imagenes/publi.4.png" alt="avatar">
+                                <img src="/imagenes/proyectosR4.png" alt="avatar">
                             </div>
                         </div>
                     </div>
@@ -322,7 +321,7 @@
 
     <div class="cardformacion">
         <div class="imgBxformacion">
-            <img src="/imagenes/charlasRSU.png">
+            <img src="/imagenes/campañas.png">
         </div>
         <div class="contentformacion">
             <h13>EVENTOS Y CAMPAÑAS</h13>
@@ -456,6 +455,74 @@
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">principales alcances</h6>
+                <h1>Compromiso Villarealino</h1>
+                <p>Este compromiso se refleja en la firme convicción de que la educación superior debe ser un motor de cambio social, orientado a la mejora continua de la sociedad en su conjunto. 
+                    A través de la Responsabilidad Social Universitaria (RSU), la UNFV articula sus objetivos, misión y visión para canalizar este compromiso en acciones concretas y sostenibles.</p>
+    <article>
+      <div class="blog__image-box">
+        <div class="blog__image-box_img">
+          <img src="/imagenes/objet3.png" alt="image" />
+        </div>
+      </div>
+      <div class="blog-content">
+        <h2 class="blog-content__title">
+          OBJETIVOS
+        </h2>
+        <ul class="blog-content__footer">
+          <li class="blog-content__footer-text">
+          Promover la responsabilidad social: Fomentar una cultura de responsabilidad social dentro de la comunidad universitaria, involucrando a estudiantes, docentes y administrativos.<br>
+          Desarrollar proyectos sostenibles: Implementar y apoyar proyectos que aborden problemáticas sociales. <br>
+          </li>
+        </ul>
+      </div>
+      
+    </article>
+    <article>
+    <div class="blog__image-box">
+        <div class="blog__image-box_img">
+          <img src="/imagenes/objet1.png" alt="image" />
+        </div>
+      </div>
+      <div class="blog-content">
+        <h2 class="blog-content__title">
+          MISIÓN
+        </h2>
+        <ul class="blog-content__footer">
+          <li class="blog-content__footer-text">
+          La misión de la Responsabilidad Social Universitaria de la Universidad Nacional Federico Villarreal es formar profesionales competentes, comprometidos con la ética, la sostenibilidad y el bienestar social, 
+          a través de la integración de la responsabilidad social en todos los aspectos de la vida universitaria, promoviendo el desarrollo sostenible y el mejoramiento de la calidad de vida de la comunidad.
+          </li>
+        </ul>
+      </div>
+      </article>
+      <article>
+    <div class="blog__image-box">
+        <div class="blog__image-box_img">
+          <img src="/imagenes/objet2.png" alt="image" />
+        </div>
+      </div>
+      <div class="blog-content">
+        <h2 class="blog-content__title">
+          VISIÓN
+        </h2>
+        <ul class="blog-content__footer">
+          <li class="blog-content__footer-text">
+          La visión de la Responsabilidad Social Universitaria de la Universidad Nacional Federico Villarreal es ser reconocida como una institución líder en la promoción de la responsabilidad social, 
+          destacándose por su contribución significativa al desarrollo sostenible, la justicia social y la protección del medio ambiente, y por formar profesionales con una sólida conciencia social y ambiental.
+
+
+          </li>
+        </ul>
+      </div>
+      </article>
+</div>
+</div>
+</div>
+
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-3 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Equipo</h6>
                 <h1>De Desarrolladores</h1>
             </div>
@@ -481,7 +548,7 @@
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="/imagenes/sergio1.foto.png" alt="" />
+                        <img src="/imagenes/sergio.foto.png" alt="" />
                         <div class="title">
                             <span>Sergio Vidal</span>
                         </div>

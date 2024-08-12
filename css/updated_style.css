@@ -11098,7 +11098,7 @@ h6,
   border-radius: 8px;
   transform: skewX(15deg);
   transition: 0.5s;
-  filter: blur(30px);
+  filter: blur(20px); /* Disminuye el blur para reducir la iluminación */
 }
 
 .boxejes:hover:before,
@@ -11109,7 +11109,7 @@ h6,
 .boxejes:before,
 .box:after {
   background: linear-gradient(315deg, #ffbc00, #ff0058);
-  opacity: 0.9;
+  opacity: 0.9; /* Reduce la opacidad para disminuir la intensidad del brillo */
 }
 
 

@@ -54,6 +54,7 @@
 .namepilares h12 {
     font-size: 18px;
     font-weight: bold;
+    color:#E48C22;
 }
 
 .redes-socialespilares {
@@ -87,7 +88,7 @@
 }
 
 .boxpilares:hover h12 {
-    color: #e66e3e;
+    color: #ca4922;
 }
 
 /* Media Queries para Responsividad */

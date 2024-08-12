@@ -1,0 +1,120 @@
+/* Importar fuente de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* From Uiverse.io by MikeAndrewDesigner */
+.e-card {
+    margin: 100px auto;
+    background: transparent;
+    box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.45);
+    position: relative;
+    width: 600px;
+    /* Aumentado el ancho */
+    height: 400px;
+    /* Aumentado la altura para más espacio */
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    /* Usar flexbox para centrar contenido */
+    flex-direction: column;
+    /* Colocar los elementos en columna */
+    align-items: center;
+    /* Alinear los elementos en el centro horizontalmente */
+    justify-content: center;
+    /* Alinear los elementos en el centro verticalmente */
+    font-family: 'Roboto', sans-serif;
+    /* Aplicar la fuente */
+}
+
+.wave {
+    position: absolute;
+    width: 1200px;
+    /* Aumentado para cubrir más área */
+    height: 700px;
+    opacity: 0.6;
+    left: -300px;
+    /* Ajustado para centrar las olas */
+    top: 0;
+    background: linear-gradient(744deg, #ff7f00, #ff9f00 60%, #ffbb00);
+    z-index: 0;
+    /* Enviar al fondo para no cubrir el texto */
+}
+
+.icon {
+    width: 6em;
+    /* Tamaño del icono */
+    margin-bottom: 1em;
+    /* Espaciado debajo del icono */
+    z-index: 1;
+    /* Asegurarse de que el icono esté sobre el fondo */
+}
+
+.infotop {
+    text-align: center;
+    font-size: 24px;
+    /* Tamaño del texto */
+    color: #000;
+    /* Color negro */
+    font-weight: 700;
+    /* Peso de la fuente */
+    z-index: 1;
+    /* Asegurarse de que el texto esté sobre el fondo */
+}
+
+.name {
+    font-size: 18px;
+    /* Tamaño del texto */
+    font-weight: 400;
+    /* Peso de la fuente */
+    text-transform: lowercase;
+    padding: 0 2em;
+    /* Espaciado horizontal */
+    text-align: center;
+    /* Centrado del texto */
+    line-height: 1.4;
+    /* Espaciado entre líneas para mejor legibilidad */
+    color: #000;
+    /* Color negro */
+    z-index: 1;
+    /* Asegurarse de que el texto esté sobre el fondo */
+}
+
+.wave:nth-child(2),
+.wave:nth-child(3) {
+    top: 230px;
+}
+
+.playing .wave {
+    border-radius: 40%;
+    animation: wave 3000ms infinite linear;
+}
+
+.wave {
+    border-radius: 40%;
+    animation: wave 55s infinite linear;
+}
+
+.playing .wave:nth-child(2) {
+    animation-duration: 4000ms;
+}
+
+.wave:nth-child(2) {
+    animation-duration: 50s;
+}
+
+.playing .wave:nth-child(3) {
+    animation-duration: 5000ms;
+}
+
+.wave:nth-child(3) {
+    animation-duration: 45s;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

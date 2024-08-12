@@ -93,17 +93,16 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="/imagenes/Nieves.foto.png" alt="">
+                            <img class="img-fluid w-100" src="/imagenes/eli.png" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.facebook.com/yolitanieves"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.instagram.com/elizzaync?fbclid=IwY2xjawEmbQBleHRuA2FlbQIxMAABHXNFclno2AuO2nyfV100vh335fkWS1W1BX7F11U5BJQhwO8v8b5VNVCEuQ_aem_2h6NVqJiokLmnWEupB66-g"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.linkedin.com/in/elizabethnievescampos/"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
                             <h5 class="text-truncate">Elizabeth Nieves</h5>
-                            <p class="m-0">Agradezco haber formado parte de este proyecto y haber entregado la página web bien </p>
+                            <p class="m-0">Agradezco haber formado parte de este proyecto y haber entregado la página web con muy buena presentaciòn </p>
                         </div>
                     </div>
                 </div>
@@ -112,29 +111,27 @@
                         <div class="team-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="/imagenes/abra (2).png" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.facebook.com/abraham.loza.14"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.instagram.com/loza_abraham/"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.linkedin.com/in/fernando-loza-benites-925495322/"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
                             <h5 class="text-truncate">Abraham Loza</h5>
-                            <p class="m-0">Me enorgullece haber sido parte de este proyecto y haber entregado una página web bien elaborada.</p>
+                            <p class="m-0">Me enorgullece haber sido parte y realizar este proyecto y haber entregado una página web bien elaborada.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="/imagenes/harold (2).png" alt="">
+                            <img class="img-fluid w-100" src="/imagenes/ortiz.png" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-outline-primary btn-square" href="https://www.facebook.com/profile.php?id=100006893327310&locale=es_LA" target="_blank">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                                 <a class="btn btn-outline-primary btn-square" href="https://www.instagram.com/harold_24ortiz/" target="_blank"><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.linkedin.com/in/harold-ortiz-558aa7310/"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -146,12 +143,11 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="/imagenes/lily.foto.png" alt="">
+                            <img class="img-fluid w-100" src="/imagenes/roque.png" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.facebook.com/lily.roqueaquise"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.instagram.com/mei.roqueaquise/"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.linkedin.com/in/lily-roque-394273314/"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -163,12 +159,11 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="/imagenes/sergio1.foto.png" alt="">
+                            <img class="img-fluid w-100" src="/imagenes/vidal.png" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.facebook.com/100003120519009"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.instagram.com/sergi0_2000/"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.linkedin.com/in/svooiz/"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -180,12 +175,11 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="/imagenes/william.png" alt="">
+                            <img class="img-fluid w-100" src="/imagenes/vega.png" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.facebook.com/william.vegagutierrez.3/"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.instagram.com/williamvegu/"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://www.linkedin.com/in/william-vega-gutierrez-324959310/"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">

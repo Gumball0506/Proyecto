@@ -1,9 +1,25 @@
+
 <?php
-// Configuración de la base de datos
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "proyecto_integrador";
+$username = "RSUFIEI";
+$password = "Bicicleta123*";
+$dbname = "Responsabilidad_Social";
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);

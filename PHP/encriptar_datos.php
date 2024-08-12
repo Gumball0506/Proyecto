@@ -1,5 +1,20 @@
 <?php
 function cifrar($datos)
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
 {
     $password = 'ABCD-1234.aer'; // Contraseña de cifrado
     $metodo = 'AES-256-CBC'; // Método de cifrado

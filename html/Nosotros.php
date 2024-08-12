@@ -1,3 +1,20 @@
+<?php
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,6 +31,28 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="/css/updated_style.css" rel="stylesheet">
 </head>
+<style>
+    .watermark {
+        position: relative;
+        /* Fija la huella en la pantalla */
+        left: 50%;
+        /* Centra horizontalmente */
+        bottom: 10px;
+        /* Posición desde el fondo */
+        transform: translateX(-50%);
+        /* Ajusta la posición para centrar */
+        opacity: 0.5;
+        /* Opacidad */
+        z-index: 1000;
+        /* Asegúrate de que esté por encima de otros elementos */
+        text-align: center;
+        /* Centra el texto */
+        font-size: 14px;
+        /* Ajusta el tamaño de fuente según tus necesidades */
+        color: #fff;
+        /* Cambia el color del texto si es necesario */
+    }
+</style>
 
 <body>
     <?php
@@ -29,18 +68,15 @@
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>correo del profesor</p>
+                        <p><i class="fa fa-envelope mr-2"></i></p>
                         <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>número del profesor</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i></p>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
                         <a class="text-primary px-3" href="https://www.facebook.com/FIEIOficial?locale=es_LA">
                             <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-twitter"></i>
                         </a>
                     </div>
                 </div>
@@ -60,7 +96,7 @@
                     <div class="navbar-nav ml-auto py-0">
                         <a href="/html/web1.php" class="nav-item nav-link active">Inicio</a>
                         <a href="/html/equipo.php" class="nav-item nav-link">Equipo</a>
-                        <a href="/html/nosotros.php" class="nav-item nav-link">Nosotros</a>
+                        <a href="/html/Nosotros.php" class="nav-item nav-link">Nosotros</a>
                         <a href="/html/calendario.php" class="nav-item nav-link">Calendario</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
@@ -70,7 +106,7 @@
                                 <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
                             </div>
                         </div>
-                        <a href="link del forms" class="nav-item nav-link">Contactos</a>
+                        <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
                         <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat" id="stat">Estadisticas</a>
                         <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
 
@@ -217,6 +253,9 @@
                 <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contactanos</h5>
                 <p><i class="fa fa-map-marker-alt mr-2"></i> Jr. Iquique Nº 127 - Breña - Lima</p>
                 <p><i class="fa fa-phone-alt mr-2"></i> (+51) 748-0888 Anexo: 9871 - 9866</p>
+            </div>
+            <div class="watermark">
+                © 2024 Responsabilidad Social Universitaria. Todos los derechos reservados.
             </div>
         </div>
     </div>

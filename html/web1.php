@@ -1,3 +1,20 @@
+<?php
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +36,28 @@
     <link href="/css/misivi.css" rel="stylesheet">
     <link href="/css/agradecimiento.css" rel="stylesheet">
 </head>
+<style>
+    .watermark {
+        position: relative;
+        /* Fija la huella en la pantalla */
+        left: 50%;
+        /* Centra horizontalmente */
+        bottom: 10px;
+        /* Posición desde el fondo */
+        transform: translateX(-50%);
+        /* Ajusta la posición para centrar */
+        opacity: 0.5;
+        /* Opacidad */
+        z-index: 1000;
+        /* Asegúrate de que esté por encima de otros elementos */
+        text-align: center;
+        /* Centra el texto */
+        font-size: 14px;
+        /* Ajusta el tamaño de fuente según tus necesidades */
+        color: #fff;
+        /* Cambia el color del texto si es necesario */
+    }
+</style>
 
 <body>
     <?php
@@ -172,55 +211,55 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
     <div class="containerpilares">
-    <div class="titulopilares">
-        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Pilares importantes en la RSU</h6>
-        <h1>Responsabilidad Social UNFV</h1>
-        <p>No solo se enfoquen en la formación académica, sino también en formar ciudadanos conscientes y comprometidos con su entorno.</p>
+        <div class="titulopilares">
+            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Pilares importantes en la RSU</h6>
+            <h1>Responsabilidad Social UNFV</h1>
+            <p>No solo se enfoquen en la formación académica, sino también en formar ciudadanos conscientes y comprometidos con su entorno.</p>
+        </div>
+        <div class="contentpilares">
+            <div class="boxpilares card">
+                <figure>
+                    <img src="/imagenes/Sostenibilidad.jpg">
+                </figure>
+                <div class="namepilares">
+                    <h12>Sostenibilidad Ambiental</h12>
+                    <span>Implementar prácticas sostenibles en el campus universitario, como la gestión eficiente de recursos, la reducción de residuos y la promoción de la conciencia ambiental entre estudiantes y personal.</span>
+                </div>
+            </div>
+            <div class="boxpilares card">
+                <figure>
+                    <img src="/imagenes/Educacion.jpg">
+                </figure>
+                <div class="namepilares">
+                    <h12>Educación de Calidad</h12>
+                    <span>Es el pilar fundamental de la universidad. Asegurando que los estudiantes reciban una formación académica integral y relevante, que no solo les prepare para el mercado laboral, sino que también los capacite para contribuir positivamente a la sociedad.</span>
+                </div>
+            </div>
+            <div class="boxpilares card">
+                <figure>
+                    <img src="/imagenes/Investigacion.jpg">
+                </figure>
+                <div class="namepilares">
+                    <h12>Investigación con Impacto Social</h12>
+                    <span>La investigación universitaria debe abordar y encontrar soluciones a problemas sociales, económicos y ambientales. Para garantizar el conocimiento y asi genere tenga un impacto real y beneficioso en la comunidad.</span>
+                </div>
+            </div>
+            <div class="boxpilares card">
+                <figure>
+                    <img src="/imagenes/Compromiso.jpg">
+                </figure>
+                <div class="namepilares">
+                    <h12>Compromiso con la Comunidad</h12>
+                    <span>La participación activa en proyectos comunitarios y el apoyo a iniciativas locales o globales ayudan a fortalecer la relación entre la universidad y la sociedad, generando beneficios mutuos.</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="contentpilares">
-        <div class="boxpilares card">
-            <figure>
-                <img src="/imagenes/Sostenibilidad.jpg">
-            </figure>
-            <div class="namepilares">
-                <h12>Sostenibilidad Ambiental</h12>
-                <span>Implementar prácticas sostenibles en el campus universitario, como la gestión eficiente de recursos, la reducción de residuos y la promoción de la conciencia ambiental entre estudiantes y personal.</span>
-            </div>
-        </div>
-        <div class="boxpilares card">
-            <figure>
-                <img src="/imagenes/Educacion.jpg">
-            </figure>
-            <div class="namepilares">
-                <h12>Educación de Calidad</h12>
-                <span>Es el pilar fundamental de la universidad. Asegurando que los estudiantes reciban una formación académica integral y relevante, que no solo les prepare para el mercado laboral, sino que también los capacite para contribuir positivamente a la sociedad.</span>
-            </div>
-        </div>
-        <div class="boxpilares card">
-            <figure>
-                <img src="/imagenes/Investigacion.jpg">
-            </figure>
-            <div class="namepilares">
-                <h12>Investigación con Impacto Social</h12>
-                <span>La investigación universitaria debe abordar y encontrar soluciones a problemas sociales, económicos y ambientales. Para garantizar el conocimiento y asi genere tenga un impacto real y beneficioso en la comunidad.</span>
-            </div>
-        </div>
-        <div class="boxpilares card">
-            <figure>
-                <img src="/imagenes/Compromiso.jpg">
-            </figure>
-            <div class="namepilares">
-                <h12>Compromiso con la Comunidad</h12>
-                <span>La participación activa en proyectos comunitarios y el apoyo a iniciativas locales o globales ayudan a fortalecer la relación entre la universidad y la sociedad, generando beneficios mutuos.</span>
-            </div>
-        </div>
-    </div>
-</div>
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
@@ -286,93 +325,93 @@
                 <p>Es esencial para crear una comunidad académica comprometida con los valores éticos, sociales y ambientales.</p>
             </div>
             <div class="containerformacion">
-    <div class="cardformacion">
-        <div class="imgBxformacion">
-            <img src="/imagenes/voluntariadosRSU.png">
-        </div>
-        <div class="contentformacion">
-            <h13>PROGRAMA DE VOLUNTARIADO</h13>
-            <p>Nuestros programas de voluntariado brindan a los estudiantes la oportunidad de participar activamente en causas sociales y comunitarias. 
-               que permiten el desarrollo de habilidades de liderazgo, trabajo en equipo y empatía.</p>
-        </div>
-    </div>
+                <div class="cardformacion">
+                    <div class="imgBxformacion">
+                        <img src="/imagenes/voluntariadosRSU.png">
+                    </div>
+                    <div class="contentformacion">
+                        <h13>PROGRAMA DE VOLUNTARIADO</h13>
+                        <p>Nuestros programas de voluntariado brindan a los estudiantes la oportunidad de participar activamente en causas sociales y comunitarias.
+                            que permiten el desarrollo de habilidades de liderazgo, trabajo en equipo y empatía.</p>
+                    </div>
+                </div>
 
-    <div class="cardformacion">
-        <div class="imgBxformacion">
-            <img src="/imagenes/charlasRSU.png">
-        </div>
-        <div class="contentformacion">
-            <h13>CHARLAS Y CONFERENCIAS</h13>
-            <p>Estos son organizadas por la universidad que expresan espacios de reflexión y aprendizaje, donde expertos y profesionales comparten sus conocimientos y experiencias con los estudiantes. 
-                </p>
-        </div>
-    </div>
+                <div class="cardformacion">
+                    <div class="imgBxformacion">
+                        <img src="/imagenes/charlasRSU.png">
+                    </div>
+                    <div class="contentformacion">
+                        <h13>CHARLAS Y CONFERENCIAS</h13>
+                        <p>Estos son organizadas por la universidad que expresan espacios de reflexión y aprendizaje, donde expertos y profesionales comparten sus conocimientos y experiencias con los estudiantes.
+                        </p>
+                    </div>
+                </div>
 
-    <div class="cardformacion">
-        <div class="imgBxformacion">
-            <img src="/imagenes/participacionRSU.png">
-        </div>
-        <div class="contentformacion">
-            <h13>CONCURSO SOBRE RSU</h13>
-            <p>La participación es una herramienta clave para la formación práctica y aplicada de nuestros estudiantes. 
-            A través de estos proyectos, se promueve la investigación, la creatividad y la innovación, permitiendo a los participantes trabajar en soluciones concretas a problemas reales. </p>
-        </div>
-    </div>
+                <div class="cardformacion">
+                    <div class="imgBxformacion">
+                        <img src="/imagenes/participacionRSU.png">
+                    </div>
+                    <div class="contentformacion">
+                        <h13>CONCURSO SOBRE RSU</h13>
+                        <p>La participación es una herramienta clave para la formación práctica y aplicada de nuestros estudiantes.
+                            A través de estos proyectos, se promueve la investigación, la creatividad y la innovación, permitiendo a los participantes trabajar en soluciones concretas a problemas reales. </p>
+                    </div>
+                </div>
 
-    <div class="cardformacion">
-        <div class="imgBxformacion">
-            <img src="/imagenes/campañas.png">
+                <div class="cardformacion">
+                    <div class="imgBxformacion">
+                        <img src="/imagenes/campañas.png">
+                    </div>
+                    <div class="contentformacion">
+                        <h13>EVENTOS Y CAMPAÑAS</h13>
+                        <p> Nuestra universidad organiza una variedad de campañas y eventos diseñados para aumentar la conciencia sobre temas sociales y ambientales entre los estudiantes y la comunidad universitaria
+                            que tienen como objetivo promover el compromiso social y la participación activa en causas relevantes. </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="contentformacion">
-            <h13>EVENTOS Y CAMPAÑAS</h13>
-            <p> Nuestra universidad organiza una variedad de campañas y eventos diseñados para aumentar la conciencia sobre temas sociales y ambientales entre los estudiantes y la comunidad universitaria 
-                que tienen como objetivo promover el compromiso social y la participación activa en causas relevantes. </p>
-        </div>
     </div>
-    </div>
-    </div>
-</div>
-<div class="container-fluid py-5">
+    <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Villarealinos</h6>
                 <h1>Nuestros Ejes Fundamentales</h1>
                 <p>En la Universidad Nacional Federico Villarreal, los VILLAREILINOS se destacan por su compromiso con el desarrollo integral y el bienestar social. Asi
-                orientamos nuestras acciones hacia la construcción de un futuro más justo, equitativo y sostenible.
+                    orientamos nuestras acciones hacia la construcción de un futuro más justo, equitativo y sostenible.
                 </p>
                 <div class="containerejes">
-    <div class="boxejes">
-        <span></span>
-        <div class="contentejes">
-            <h14>Formación Integral de los Estudiantes</h14>
-            <p>Garantiza que los estudiantes reciban una educación que no solo se centra en el conocimiento académico, sino también en el desarrollo de habilidades éticas, sociales y cívicas, fomentando su compromiso con la sociedad y el medio ambiente.</p>
+                    <div class="boxejes">
+                        <span></span>
+                        <div class="contentejes">
+                            <h14>Formación Integral de los Estudiantes</h14>
+                            <p>Garantiza que los estudiantes reciban una educación que no solo se centra en el conocimiento académico, sino también en el desarrollo de habilidades éticas, sociales y cívicas, fomentando su compromiso con la sociedad y el medio ambiente.</p>
+                        </div>
+                    </div>
+                    <div class="boxejes">
+                        <span></span>
+                        <div class="contentejes">
+                            <h14>Formación Integral de los Estudiantes</h14>
+                            <p>Se centra en proporcionar a los estudiantes una educación que no solo aborde aspectos académicos, sino también éticos y sociales, preparándolos para ser ciudadanos responsables y comprometidos.</p>
+                        </div>
+                    </div>
+                    <div class="boxejes">
+                        <span></span>
+                        <div class="contentejes">
+                            <h14>Gestión Ambiental Sostenible</h14>
+                            <p>Promueve la adopción de prácticas que reduzcan el impacto ambiental de las actividades universitarias y fomenten la sostenibilidad tanto en el campus como en la comunidad en general.</p>
+                        </div>
+                    </div>
+                    <div class="boxejes">
+                        <span></span>
+                        <div class="contentejes">
+                            <h14>Ética y Gobernanza</h14>
+                            <p>Implica la adopción de prácticas transparentes y éticas en la gestión universitaria, así como el desarrollo de políticas y directrices que refuercen la integridad y la rendición de cuentas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="boxejes">
-        <span></span>
-        <div class="contentejes">
-            <h14>Formación Integral de los Estudiantes</h14>
-            <p>Se centra en proporcionar a los estudiantes una educación que no solo aborde aspectos académicos, sino también éticos y sociales, preparándolos para ser ciudadanos responsables y comprometidos.</p>
-        </div>
-    </div>
-    <div class="boxejes">
-        <span></span>
-        <div class="contentejes">
-            <h14>Gestión Ambiental Sostenible</h14>
-            <p>Promueve la adopción de prácticas que reduzcan el impacto ambiental de las actividades universitarias y fomenten la sostenibilidad tanto en el campus como en la comunidad en general.</p>
-        </div>
-    </div>
-    <div class="boxejes">
-        <span></span>
-        <div class="contentejes">
-            <h14>Ética y Gobernanza</h14>
-            <p>Implica la adopción de prácticas transparentes y éticas en la gestión universitaria, así como el desarrollo de políticas y directrices que refuercen la integridad y la rendición de cuentas.</p>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
 
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
@@ -457,68 +496,68 @@
             <div class="text-center mb-3 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">principales alcances</h6>
                 <h1>Compromiso Villarealino</h1>
-                <p>Este compromiso se refleja en la firme convicción de que la educación superior debe ser un motor de cambio social, orientado a la mejora continua de la sociedad en su conjunto. 
+                <p>Este compromiso se refleja en la firme convicción de que la educación superior debe ser un motor de cambio social, orientado a la mejora continua de la sociedad en su conjunto.
                     A través de la Responsabilidad Social Universitaria (RSU), la UNFV articula sus objetivos, misión y visión para canalizar este compromiso en acciones concretas y sostenibles.</p>
-    <article>
-      <div class="blog__image-box">
-        <div class="blog__image-box_img">
-          <img src="/imagenes/objet3.png" alt="image" />
-        </div>
-      </div>
-      <div class="blog-content">
-        <h2 class="blog-content__title">
-          OBJETIVOS
-        </h2>
-        <ul class="blog-content__footer">
-          <li class="blog-content__footer-text">
-          Promover la responsabilidad social: Fomentar una cultura de responsabilidad social dentro de la comunidad universitaria, involucrando a estudiantes, docentes y administrativos.<br>
-          Desarrollar proyectos sostenibles: Implementar y apoyar proyectos que aborden problemáticas sociales. <br>
-          </li>
-        </ul>
-      </div>
-      
-    </article>
-    <article>
-    <div class="blog__image-box">
-        <div class="blog__image-box_img">
-          <img src="/imagenes/objet1.png" alt="image" />
-        </div>
-      </div>
-      <div class="blog-content">
-        <h2 class="blog-content__title">
-          MISIÓN
-        </h2>
-        <ul class="blog-content__footer">
-          <li class="blog-content__footer-text">
-          La misión de la Responsabilidad Social Universitaria de la Universidad Nacional Federico Villarreal es formar profesionales competentes, comprometidos con la ética, la sostenibilidad y el bienestar social, 
-          a través de la integración de la responsabilidad social en todos los aspectos de la vida universitaria, promoviendo el desarrollo sostenible y el mejoramiento de la calidad de vida de la comunidad.
-          </li>
-        </ul>
-      </div>
-      </article>
-      <article>
-    <div class="blog__image-box">
-        <div class="blog__image-box_img">
-          <img src="/imagenes/objet2.png" alt="image" />
-        </div>
-      </div>
-      <div class="blog-content">
-        <h2 class="blog-content__title">
-          VISIÓN
-        </h2>
-        <ul class="blog-content__footer">
-          <li class="blog-content__footer-text">
-          La visión de la Responsabilidad Social Universitaria de la Universidad Nacional Federico Villarreal es ser reconocida como una institución líder en la promoción de la responsabilidad social, 
-          destacándose por su contribución significativa al desarrollo sostenible, la justicia social y la protección del medio ambiente, y por formar profesionales con una sólida conciencia social y ambiental.
+                <article>
+                    <div class="blog__image-box">
+                        <div class="blog__image-box_img">
+                            <img src="/imagenes/objet3.png" alt="image" />
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <h2 class="blog-content__title">
+                            OBJETIVOS
+                        </h2>
+                        <ul class="blog-content__footer">
+                            <li class="blog-content__footer-text">
+                                Promover la responsabilidad social: Fomentar una cultura de responsabilidad social dentro de la comunidad universitaria, involucrando a estudiantes, docentes y administrativos.<br>
+                                Desarrollar proyectos sostenibles: Implementar y apoyar proyectos que aborden problemáticas sociales. <br>
+                            </li>
+                        </ul>
+                    </div>
+
+                </article>
+                <article>
+                    <div class="blog__image-box">
+                        <div class="blog__image-box_img">
+                            <img src="/imagenes/objet1.png" alt="image" />
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <h2 class="blog-content__title">
+                            MISIÓN
+                        </h2>
+                        <ul class="blog-content__footer">
+                            <li class="blog-content__footer-text">
+                                La misión de la Responsabilidad Social Universitaria de la Universidad Nacional Federico Villarreal es formar profesionales competentes, comprometidos con la ética, la sostenibilidad y el bienestar social,
+                                a través de la integración de la responsabilidad social en todos los aspectos de la vida universitaria, promoviendo el desarrollo sostenible y el mejoramiento de la calidad de vida de la comunidad.
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article>
+                    <div class="blog__image-box">
+                        <div class="blog__image-box_img">
+                            <img src="/imagenes/objet2.png" alt="image" />
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <h2 class="blog-content__title">
+                            VISIÓN
+                        </h2>
+                        <ul class="blog-content__footer">
+                            <li class="blog-content__footer-text">
+                                La visión de la Responsabilidad Social Universitaria de la Universidad Nacional Federico Villarreal es ser reconocida como una institución líder en la promoción de la responsabilidad social,
+                                destacándose por su contribución significativa al desarrollo sostenible, la justicia social y la protección del medio ambiente, y por formar profesionales con una sólida conciencia social y ambiental.
 
 
-          </li>
-        </ul>
-      </div>
-      </article>
-</div>
-</div>
-</div>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
 
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
@@ -570,25 +609,25 @@
             </div>
         </div>
 
-    <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Villarealinos</h6>
-                <h1>Agradecimiento</h1>
+        <div class="container-fluid py-5">
+            <div class="container pt-5 pb-3">
+                <div class="text-center mb-3 pb-3">
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Villarealinos</h6>
+                    <h1>Agradecimiento</h1>
 
-                <div class="blog-slider">
-        <div class="blog-slider__img">
-          <img src="/imagenes/Sostenibilidad.jpg" alt="">
+                    <div class="blog-slider">
+                        <div class="blog-slider__img">
+                            <img src="/imagenes/Sostenibilidad.jpg" alt="">
+                        </div>
+                        <div class="blog-slider__text">Queremos expresar nuestro más sincero agradecimiento a cada uno de ustedes por su dedicación y compromiso con la responsabilidad social universitaria.
+                            Gracias a su participación en voluntariados, proyectos y charlas, estamos construyendo una comunidad más solidaria y consciente.
+                            Su entusiasmo y esfuerzo son fundamentales para generar un impacto positivo y sostenible en nuestra sociedad.</div>
+                    </div>
+                </div>
+            </div>
         </div>
-          <div class="blog-slider__text">Queremos expresar nuestro más sincero agradecimiento a cada uno de ustedes por su dedicación y compromiso con la responsabilidad social universitaria.
-                Gracias a su participación en voluntariados, proyectos y charlas, estamos construyendo una comunidad más solidaria y consciente.
-                Su entusiasmo y esfuerzo son fundamentales para generar un impacto positivo y sostenible en nuestra sociedad.</div>
-        </div>
-      </div>
-</div>
-</div>
-</div>
-</div>
+    </div>
+    </div>
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
@@ -623,6 +662,9 @@
                 <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contactanos</h5>
                 <p><i class="fa fa-map-marker-alt mr-2"></i> Jr. Iquique Nº 127 - Breña - Lima</p>
                 <p><i class="fa fa-phone-alt mr-2"></i> (+51) 748-0888 Anexo: 9871 - 9866</p>
+            </div>
+            <div class="watermark">
+                © 2024 Responsabilidad Social Universitaria. Todos los derechos reservados.
             </div>
         </div>
     </div>

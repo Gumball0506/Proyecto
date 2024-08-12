@@ -2,7 +2,21 @@
 ini_set('SMTP', 'localhost');
 ini_set('smtp_port', 25);
 ini_set('sendmail_from', 'tu_email@ejemplo.com');
-// /php/recuperar_contrasena.php
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
 
 header('Content-Type: application/json');
 

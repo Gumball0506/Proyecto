@@ -1,27 +1,59 @@
 <?php
-require 'admin.php'; // Asegúrate de que la conexión a la base de datos esté configurada
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+
+include 'conexion.php'; // Incluye el archivo de conexión PDO
 
 // Iniciar sesión
 session_start();
 
-// Obtener datos del formulario
-$user = $_POST['username'];
-$pass = $_POST['password'];
+// Verificar que el formulario fue enviado con el método POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtener datos del formulario
+    $user = $_POST['username'];
+    $pass = $_POST['password'];
 
-// Preparar y ejecutar consulta
-$sql = $conn->prepare("SELECT * FROM administrador WHERE Nombre = ? AND Contraseña = ?");
-$sql->bind_param("ss", $user, $pass);
-$sql->execute();
-$result = $sql->get_result();
+    try {
+        // Preparar la consulta SQL
+        $sql = "SELECT * FROM administrador WHERE Nombre = :username AND Contraseña = :password";
+        $stmt = $pdo->prepare($sql);
 
-// Verificar si el usuario existe
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $_SESSION['username'] = $user; // Almacenar el nombre de usuario en la sesión
-    echo "<script>window.location.href='/html/publicaciones_public.php';</script>";
+        // Enlazar parámetros
+        $stmt->bindParam(':username', $user, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $pass, PDO::PARAM_STR);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Verificar si el usuario existe
+        if ($stmt->rowCount() > 0) {
+            $_SESSION['username'] = $user; // Almacenar el nombre de usuario en la sesión
+            echo "<script>window.location.href='/html/publicaciones_public.php';</script>";
+        } else {
+            echo "<script>alert('Usuario o contraseña incorrectos'); window.location.href='/html/inicio_de_sesion.php';</script>";
+        }
+    } catch (PDOException $e) {
+        // Manejar el error de la consulta
+        error_log("Error en la consulta: " . $e->getMessage()); // Registra el error en el archivo de log del servidor
+        die("Error en la consulta: " . $e->getMessage());
+    }
 } else {
-    echo "<script>alert('Usuario o contraseña incorrectos'); window.location.href='/html/inicio_de_sesion.php';</script>";
+    die("Método de solicitud no válido. Por favor, use el método POST.");
 }
 
-// Cerrar conexión
-$conn->close();
+// Cerrar la conexión (PDO se cierra automáticamente al finalizar el script)

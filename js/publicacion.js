@@ -1,149 +1,3 @@
-// Palabras prohibidas
-const bannedWords = [
-  "mrd",
-  "Conchatumadre",
-  "Huevón",
-  "Huevona",
-  "Chuchamadre",
-  "Conchudo",
-  "Conchuda",
-  "Cojudo",
-  "Cojuda",
-  "Mierda",
-  "Carajo",
-  "Puta",
-  "Pichula",
-  "Chucha",
-  "Cholo",
-  "Chola",
-  "Serrano",
-  "Serrana",
-  "Chuchatumadre",
-  "Cachudo",
-  "Cachuda",
-  "Maricón",
-  "Pendejo",
-  "Pendeja",
-  "Comemierda",
-  "Imbécil",
-  "Idiota",
-  "Baboso",
-  "Babosa",
-  "Conchetumadre",
-  "Cabrón",
-  "Cabrona",
-  "Cojudez",
-  "Huevada",
-  "Chupa",
-  "Mamahuevo",
-  "Concha",
-  "Chúpame",
-  "Malnacido",
-  "Malnacida",
-  "Hijo de puta",
-  "Reconcha",
-  "Jodido",
-  "Jodida",
-  "Cagón",
-  "Cagona",
-  "Puto",
-  "Putamadre",
-  "Mierdera",
-  "Chupapinga",
-  "Conchadetumadre",
-  "Chucha de tu madre",
-  "Rosquete",
-  "Mamaverga",
-  "Huevonazo",
-  "Huevonaza",
-  "Compadre",
-  "Jetón",
-  "Jetona",
-  "Tarado",
-  "Tarada",
-  "Gil",
-  "Mongol",
-  "Pajero",
-  "Pajera",
-  "Gillpollas",
-  "Chupapico",
-  "Recontra",
-  "Reconchudo",
-  "Reconchuda",
-  "Conchesumare",
-  "Carechimba",
-  "Malparido",
-  "Malparida",
-  "Cagada",
-  "Manyado",
-  "Manyada",
-  "Cachero",
-  "Cachera",
-  "Chupetín",
-  "Lameculos",
-  "Culo",
-  "Conchesumadre",
-  "Huevón de mierda",
-  "Cojudazo",
-  "Cojudaza",
-  "Cholo de mierda",
-  "Serrano de mierda",
-  "Basura",
-  "Imbécil de mierda",
-  "Maricón de mierda",
-  "Perra",
-  "Puto el que lee",
-  "Concha tu hermana",
-  "Conchatuhermana",
-  "Chupamela",
-  "Pichula triste",
-  "Conchudo de mierda",
-  "CTM",
-  "CTMR",
-  "PTM",
-  "CSM",
-  "HDP",
-  "QLO",
-  "WBN",
-  "MRD",
-  "HDLGP",
-  "CHM",
-  "PTMR",
-  "CSMR",
-  "CNR",
-  "PDT",
-  "CLIAO",
-  "TMR",
-  "DTM",
-  "HMNO",
-  "QLP",
-  "MIERDA",
-  "mAm4Hu3v0",
-  "mi3rd4",
-  "Coño",
-  "Chingada",
-  "Culero",
-  "Pendejada",
-  "Estúpido",
-  "Gonorrea",
-  "Tonto",
-  "Trol",
-  "Capullo",
-  "Negro",
-  "Blanco",
-  "Indio",
-  "Gringo",
-  "Porno",
-  "Orgasmo",
-  "Prostitución",
-  "Violar",
-  "Gay",
-  "Lesbiana",
-  "Trans",
-  "Homosexual",
-  "Travesti",
-];
-
 document.addEventListener("DOMContentLoaded", function () {
   if (sessionActive) {
     // Mostrar el div con el id 'admin'
@@ -452,11 +306,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function agregarComentario(proyecto_id, comentario) {
     // Verificar si el comentario contiene palabras prohibidas
-    let comentarioLimpio = limpiarComentario(comentario);
+    let palabrasProhibidas = detectarPalabrasProhibidas(comentario);
 
-    if (comentarioLimpio !== comentario) {
+    if (palabrasProhibidas.length > 0) {
       alert(
-        "El comentario contiene palabras ofensivas y no puede ser publicado."
+        `El comentario contiene palabras ofensivas: ${palabrasProhibidas.join(
+          ", "
+        )}, y no puede ser publicado.`
       );
       return;
     }
@@ -482,38 +338,187 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("Un exito");
+        alert("Error al agregar el comentario.");
       });
   }
-  // Función para limpiar el comentario y verificar palabras prohibidas
-  function limpiarComentario(comentario) {
+
+  // Función para detectar palabras prohibidas en un comentario
+  function detectarPalabrasProhibidas(comentario) {
     // Convertir el comentario a minúsculas para evitar problemas de mayúsculas y minúsculas
     let comentarioLimpio = comentario.toLowerCase();
-
-    // Eliminar espacios en blanco innecesarios
-    comentarioLimpio = comentarioLimpio.trim();
-
-    // Reemplazar caracteres especiales y símbolos con espacios para asegurar una comparación adecuada
-    comentarioLimpio = comentarioLimpio.replace(/[^\w\s]/gi, " ");
 
     // Separar el comentario en palabras individuales
     let palabras = comentarioLimpio.split(/\s+/);
 
-    // Verificar si alguna palabra está en la lista de palabras prohibidas
-    for (let i = 0; i < palabras.length; i++) {
-      // Convertir la palabra actual a minúsculas para la comparación
-      let palabraActual = palabras[i].toLowerCase();
+    // Crear un array para almacenar las palabras prohibidas encontradas
+    let palabrasProhibidasEncontradas = [];
 
-      if (bannedWords.includes(palabraActual)) {
-        // Si se encuentra una palabra prohibida, reemplazarla con asteriscos
-        comentarioLimpio = comentarioLimpio.replace(
-          palabraActual,
-          "*".repeat(palabras[i].length)
-        );
+    // Verificar si alguna palabra está en la lista de palabras prohibidas
+    for (let palabra of palabras) {
+      if (bannedWords.includes(palabra)) {
+        // Si se encuentra una palabra prohibida, agregarla al array de palabras prohibidas encontradas
+        palabrasProhibidasEncontradas.push(palabra);
       }
     }
-    return comentarioLimpio;
+
+    // Retornar las palabras prohibidas encontradas
+    return palabrasProhibidasEncontradas;
   }
+
+  // Palabras prohibidas
+  const bannedWords = [
+    "mrd",
+    "conchatumadre",
+    "huevón",
+    "huevona",
+    "chuchamadre",
+    "conchudo",
+    "conchuda",
+    "cojudo",
+    "cojuda",
+    "mierda",
+    "carajo",
+    "puta",
+    "pichula",
+    "chucha",
+    "cholo",
+    "chola",
+    "serrano",
+    "serrana",
+    "chuchatumadre",
+    "cachudo",
+    "cachuda",
+    "maricón",
+    "pendejo",
+    "pendeja",
+    "comemierda",
+    "imbécil",
+    "idiota",
+    "baboso",
+    "babosa",
+    "conchetumadre",
+    "cabrón",
+    "cabrona",
+    "cojudez",
+    "huevada",
+    "chupa",
+    "mamahuevo",
+    "concha",
+    "chúpame",
+    "malnacido",
+    "malnacida",
+    "hijo de puta",
+    "reconcha",
+    "jodido",
+    "jodida",
+    "cagón",
+    "cagona",
+    "puto",
+    "putamadre",
+    "mierdera",
+    "chupapinga",
+    "conchadetumadre",
+    "chucha de tu madre",
+    "rosquete",
+    "mamaverga",
+    "huevonazo",
+    "huevonaza",
+    "compadre",
+    "jetón",
+    "jetona",
+    "tarado",
+    "tarada",
+    "gil",
+    "mongol",
+    "pajero",
+    "pajera",
+    "gillpollas",
+    "chupapico",
+    "recontra",
+    "reconchudo",
+    "reconchuda",
+    "conchesumare",
+    "carechimba",
+    "malparido",
+    "malparida",
+    "cagada",
+    "manyado",
+    "manyada",
+    "cachero",
+    "cachera",
+    "chupetín",
+    "lameculos",
+    "culo",
+    "conchesumadre",
+    "huevón de mierda",
+    "cojudazo",
+    "cojudaza",
+    "cholo de mierda",
+    "serrano de mierda",
+    "basura",
+    "imbécil de mierda",
+    "maricón de mierda",
+    "perra",
+    "puto el que lee",
+    "concha tu hermana",
+    "conchatuhermana",
+    "chupamela",
+    "pichula triste",
+    "conchudo de mierda",
+    "ctm",
+    "ctmr",
+    "ptm",
+    "csm",
+    "hdp",
+    "qlo",
+    "wbn",
+    "mrd",
+    "hdlgp",
+    "chm",
+    "ptmr",
+    "csmr",
+    "cnr",
+    "pdt",
+    "cliao",
+    "tmr",
+    "dtm",
+    "hmno",
+    "qlp",
+    "mierda",
+    "mam4hu3v0",
+    "mi3rd4",
+    "coño",
+    "chingada",
+    "culero",
+    "pendejada",
+    "estúpido",
+    "gonorrea",
+    "tonto",
+    "trol",
+    "capullo",
+    "negro",
+    "blanco",
+    "indio",
+    "gringo",
+    "porno",
+    "orgasmo",
+    "prostitución",
+    "violar",
+    "gay",
+    "lesbiana",
+    "trans",
+    "homosexual",
+    "travesti",
+    "pelotudo",
+    "Pelotudo",
+  ];
+
+  // Ejemplo de uso
+  const comentarioEjemplo =
+    "Este es un comentario con palabras prohibidas como mrd y conchatumadre.";
+  const palabrasProhibidas = detectarPalabrasProhibidas(comentarioEjemplo);
+
+  console.log("Palabras prohibidas encontradas:", palabrasProhibidas);
 
   function editarComentario(comentario_id) {
     let nuevoComentario = prompt("Ingresa el nuevo comentario:");

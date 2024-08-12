@@ -1,3 +1,20 @@
+<?php
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -61,7 +78,7 @@
 
         <div class="form-group">
             <h4>Modelo de presentación de propuesta</h4>
-            <a href="/pdf/Currículum Vitae LozaBenites (1) (1).pdf" class="button" download>Descargar Modelo</a>
+            <a href="/pdf/Modelo_proyecto.pdf" class="button" download>Descargar Modelo</a>
         </div>
 
         <div class="form-group">

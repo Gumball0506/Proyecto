@@ -1,6 +1,20 @@
 <?php
 require_once 'conexion.php'; // Asegúrate de que esta línea cargue el archivo con la conexión PDO
-
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
 // Establecer el nombre de la página
 $page_name = 'pagina_publicaciones';
 

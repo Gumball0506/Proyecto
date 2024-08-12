@@ -1,5 +1,21 @@
 <?php
-// Backend_publicacion.php
+
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+
 
 require_once 'conexion.php'; // Asegúrate de que este archivo incluye la conexión a tu base de datos
 

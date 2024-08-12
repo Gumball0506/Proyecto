@@ -1,6 +1,20 @@
 <?php
 header('Content-Type: application/json');
-
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
 $host = 'localhost';
 $dbname = 'Responsabilidad_Social';
 $username = 'RSUFIEI';

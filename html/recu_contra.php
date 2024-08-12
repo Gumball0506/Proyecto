@@ -1,9 +1,26 @@
-<!-- recovery.php -->
+<?php
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+?>
 <!DOCTYPE html>
 <html>
-<head>    
+
+<head>
     <title>Recuperación de Contraseña</title>
-    
+
 </head>
 
 <body>
@@ -15,4 +32,5 @@
         <button type="submit">Enviar</button>
     </form>
 </body>
+
 </html>

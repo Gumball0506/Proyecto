@@ -22,20 +22,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     try {
         $mail->isSMTP();
-        $mail->Host = 'smtp.office365.com';
+        $mail->Host = 'brsocial.fiei.online';
         $mail->SMTPAuth = true;
-        $mail->Username = 'williamveguout@outlook.com';
-        $mail->Password = 'veguout123';
+        $mail->Username = 'rsufiei@brsocial.fiei.online';
+        $mail->Password = 'W4ht7xxoP^eX';
         $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+        $mail->Port = 465;
 
-        $mail->setFrom('williamveguout@outlook.com', 'Nombre de tu App');
+        $mail->setFrom('rsufiei@brsocial.fiei.online', 'Recuperacion de Contraseña');
         $mail->addAddress($email);          
         
         $mail->isHTML(true);
         $mail->Subject = 'Recuperación de Contraseña';
         $mail->Body = "Haz clic en el siguiente enlace para restablecer tu contraseña: 
-                       <a href='http://localhost:3000/PHP/reset_password.php?token=$token'>Recuperar Contraseña</a>";
+                       <a href='https://brsocial.fiei.online/PHP/reset_password.php?token=$token'>Recuperar Contraseña</a>";
         
         $mail->send();
         echo 'El mensaje ha sido enviado';

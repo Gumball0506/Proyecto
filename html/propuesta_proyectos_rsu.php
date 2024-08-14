@@ -63,7 +63,7 @@
                                 <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
                             </div>
                         </div>
-                        <a href="link del forms" class="nav-item nav-link">Contactos</a>
+                        <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
                         <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat">Estadisticas</a>
                         <a href="/html/inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
                     </div>

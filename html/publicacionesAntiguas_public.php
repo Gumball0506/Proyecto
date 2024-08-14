@@ -47,24 +47,23 @@
     </script>
 
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i></p>
-                        <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i></p>
-                    </div>
+        <div class="row">
+            <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                    <p><i class="fa fa-envelope mr-2"></i></p>
+                    <p class="text-body px-3">|</p>
+                    <p><i class="fa fa-phone-alt mr-2"></i></p>
                 </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-primary px-3" href="https://www.facebook.com/FIEIOficial?locale=es_LA">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-primary px-3" href="https://www.facebook.com/FIEIOficial?locale=es_LA">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">

@@ -1,4 +1,18 @@
-/* Aplica el box-sizing a todos los elementos para asegurar que el padding y el borde se incluyan en el tamaño total */
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
 *,
 *::before,
 *::after {

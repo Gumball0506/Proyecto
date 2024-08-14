@@ -1,46 +1,83 @@
+/*
+    ----------------------------------------------------
+    Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+
 .blog-slider {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 100%;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-  }
-  
-  .blog-slider__img img {
-    width: 100%;
-    height: auto;
-    border-bottom: 5px solid #FF6F00; /* Color de borde que combine con el color de tu universidad */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%; /* Aumentar el ancho máximo para pantallas pequeñas */
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin: auto; /* Centrar el slider */
+}
+
+.blog-slider__img {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho */
+}
+
+.blog-slider__img img {
+  width: 100%;
+  height: auto;
+  border-bottom: 5px solid #FF6F00; /* Color de borde que combine con el color de tu universidad */
+}
+
+.blog-slider__text {
+  padding: 18px;
+  background-color: #fff; /* Fondo blanco para el texto */
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  position: relative; /* Cambiar a relative para evitar problemas de superposición */
+  border-top: 5px solid #FF6F00; /* Color de borde que combine con el color de tu universidad */
+}
+
+.blog-slider__text::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 5px;
+  background-color: #FF6F00; /* Color de borde que combine con el color de tu universidad */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.blog-slider__text p {
+  margin: 0;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
   .blog-slider__text {
-    padding: 18px;
-    background-color: #fff; /* Fondo blanco para el texto */
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-    font-size: 1.2rem;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top: 5px solid #FF6F00; /* Color de borde que combine con el color de tu universidad */
+      font-size: 1.2rem; /* Mantener tamaño de fuente en pantallas más pequeñas */
+      padding: 12px; /* Ajustar padding */
   }
-  
-  .blog-slider__text::before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 5px;
-    background-color: #FF6F00; /* Color de borde que combine con el color de tu universidad */
-    position: absolute;
-    top: 0;
-    left: 0;
+}
+
+@media (max-width: 480px) {
+  .blog-slider__text {
+      font-size: 1.1rem; /* Aumentar el tamaño de texto en dispositivos móviles */
+      padding: 10px; /* Ajustar padding */
   }
-  
+
   .blog-slider__text p {
-    margin: 0;
+      line-height: 1.4; /* Mejorar la legibilidad en pantallas pequeñas */
   }
+}

@@ -309,7 +309,7 @@ function proyecto_proceso_profesor($idProyecto)
 
                 // Configurar el correo
                 $mail->setFrom('rsufiei@brsocial.fiei.online', 'Soporte_Tecnico');
-                $mail->addAddress('correo del profesor');
+                $mail->addAddress('jgill@unfv.edu.pe', 'Jose Martin Gil Lopez');
                 $mail->isHTML(true);
                 $mail->Subject = 'Notificacion de Proyecto para revision';
 

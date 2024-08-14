@@ -1,8 +1,156 @@
+// Palabras prohibidas
+const bannedWords = [
+  "mrd",
+  "MRD",
+  "NRD",
+  "nrd",
+  "Conchatumadre",
+  "Huevón",
+  "Huevona",
+  "Chuchamadre",
+  "Conchudo",
+  "Conchuda",
+  "Cojudo",
+  "Cojuda",
+  "Mierda",
+  "Carajo",
+  "Puta",
+  "Pichula",
+  "Chucha",
+  "Cholo",
+  "Chola",
+  "Serrano",
+  "Serrana",
+  "Chuchatumadre",
+  "Cachudo",
+  "Cachuda",
+  "Maricón",
+  "Pendejo",
+  "Pendeja",
+  "Comemierda",
+  "Imbécil",
+  "Idiota",
+  "Baboso",
+  "Babosa",
+  "Conchetumadre",
+  "Cabrón",
+  "Cabrona",
+  "Cojudez",
+  "Huevada",
+  "Chupa",
+  "Mamahuevo",
+  "Concha",
+  "Chúpame",
+  "Malnacido",
+  "Malnacida",
+  "Hijo de puta",
+  "Reconcha",
+  "Jodido",
+  "Jodida",
+  "Cagón",
+  "Cagona",
+  "Puto",
+  "Putamadre",
+  "Mierdera",
+  "Chupapinga",
+  "Conchadetumadre",
+  "Chucha de tu madre",
+  "Rosquete",
+  "Mamaverga",
+  "Huevonazo",
+  "Huevonaza",
+  "Compadre",
+  "Jetón",
+  "Jetona",
+  "Tarado",
+  "Tarada",
+  "Gil",
+  "Mongol",
+  "Pajero",
+  "Pajera",
+  "Gillpollas",
+  "Chupapico",
+  "Recontra",
+  "Reconchudo",
+  "Reconchuda",
+  "Conchesumare",
+  "Carechimba",
+  "Malparido",
+  "Malparida",
+  "Cagada",
+  "Manyado",
+  "Manyada",
+  "Cachero",
+  "Cachera",
+  "Chupetín",
+  "Lameculos",
+  "Culo",
+  "Conchesumadre",
+  "Huevón de mierda",
+  "Cojudazo",
+  "Cojudaza",
+  "Cholo de mierda",
+  "Serrano de mierda",
+  "Basura",
+  "Imbécil de mierda",
+  "Maricón de mierda",
+  "Perra",
+  "Puto el que lee",
+  "Concha tu hermana",
+  "Conchatuhermana",
+  "Chupamela",
+  "Pichula triste",
+  "Conchudo de mierda",
+  "CTM",
+  "CTMR",
+  "PTM",
+  "CSM",
+  "HDP",
+  "QLO",
+  "WBN",
+  "MRD",
+  "HDLGP",
+  "CHM",
+  "PTMR",
+  "CSMR",
+  "CNR",
+  "PDT",
+  "CLIAO",
+  "TMR",
+  "DTM",
+  "HMNO",
+  "QLP",
+  "MIERDA",
+  "mAm4Hu3v0",
+  "mi3rd4",
+  "Coño",
+  "Chingada",
+  "Culero",
+  "Pendejada",
+  "Estúpido",
+  "Gonorrea",
+  "Tonto",
+  "Trol",
+  "Capullo",
+  "Negro",
+  "Blanco",
+  "Indio",
+  "Gringo",
+  "Porno",
+  "Orgasmo",
+  "Prostitución",
+  "Violar",
+  "Gay",
+  "Lesbiana",
+  "Trans",
+  "Homosexual",
+  "Travesti",
+];
+
 document.addEventListener("DOMContentLoaded", function () {
   if (sessionActive) {
     // Mostrar el div con el id 'admin'
     document.getElementById("admin").style.display = "block";
-    document.getElementById("stat").style.display = "block";
 
     // Configura el MutationObserver para el div con la clase 'vistas-container'
     const observerV = new MutationObserver(function (mutations) {
@@ -207,20 +355,18 @@ document.addEventListener("DOMContentLoaded", function () {
       projectStatusInput.type = "checkbox";
 
       // Inicializa el estado del checkbox
-      projectStatusInput.checked = proyecto.Estado === "1"; // Asegúrate de comparar correctamente
+      projectStatusInput.checked = proyecto.Estado ? "Actual" : "Antiguo";
 
       // Crea un elemento para mostrar el texto del estado
       let projectStatusText = document.createElement("span");
       projectStatusText.textContent = projectStatusInput.checked
         ? "Actual"
-        : "Antiguo"; // Cambiado a "Antiguo"
+        : "Actual";
 
       // Función para actualizar el texto y el estado
       function actualizarEstado() {
-        let nuevoEstado = projectStatusInput.checked ? "1" : "2"; // "1" para "Actual" y "2" para "Antiguo"
-        projectStatusText.textContent = projectStatusInput.checked
-          ? "Actual"
-          : "Antiguo"; // Cambia el texto según el estado
+        let nuevoEstado = projectStatusInput.checked ? "Antiguo" : "Antiguo";
+        projectStatusText.textContent = nuevoEstado;
         cambiarEstadoProyecto(proyecto.ID_Proyecto, nuevoEstado);
       }
 
@@ -306,13 +452,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function agregarComentario(proyecto_id, comentario) {
     // Verificar si el comentario contiene palabras prohibidas
-    let palabrasProhibidas = detectarPalabrasProhibidas(comentario);
+    let comentarioLimpio = limpiarComentario(comentario);
 
-    if (palabrasProhibidas.length > 0) {
+    if (comentarioLimpio !== comentario) {
       alert(
-        `El comentario contiene palabras ofensivas: ${palabrasProhibidas.join(
-          ", "
-        )}, y no puede ser publicado.`
+        "El comentario contiene palabras ofensivas y no puede ser publicado."
       );
       return;
     }
@@ -338,187 +482,31 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("Error al agregar el comentario.");
+        alert("Un exito");
       });
   }
-
-  // Función para detectar palabras prohibidas en un comentario
-  function detectarPalabrasProhibidas(comentario) {
-    // Convertir el comentario a minúsculas para evitar problemas de mayúsculas y minúsculas
-    let comentarioLimpio = comentario.toLowerCase();
+  // Función para limpiar el comentario y verificar palabras prohibidas
+  function limpiarComentario(comentario) {
+    // Limpiar el comentario
+    let comentarioLimpio = comentario.trim();
 
     // Separar el comentario en palabras individuales
     let palabras = comentarioLimpio.split(/\s+/);
 
-    // Crear un array para almacenar las palabras prohibidas encontradas
-    let palabrasProhibidasEncontradas = [];
-
     // Verificar si alguna palabra está en la lista de palabras prohibidas
-    for (let palabra of palabras) {
-      if (bannedWords.includes(palabra)) {
-        // Si se encuentra una palabra prohibida, agregarla al array de palabras prohibidas encontradas
-        palabrasProhibidasEncontradas.push(palabra);
+    for (let i = 0; i < palabras.length; i++) {
+      // Comparar la palabra actual en su forma original con las palabras prohibidas
+      if (bannedWords.includes(palabras[i])) {
+        // Si se encuentra una palabra prohibida, reemplazarla con asteriscos
+        comentarioLimpio = comentarioLimpio.replace(
+          palabras[i],
+          "*".repeat(palabras[i].length)
+        );
       }
     }
 
-    // Retornar las palabras prohibidas encontradas
-    return palabrasProhibidasEncontradas;
+    return comentarioLimpio;
   }
-
-  // Palabras prohibidas
-  const bannedWords = [
-    "mrd",
-    "conchatumadre",
-    "huevón",
-    "huevona",
-    "chuchamadre",
-    "conchudo",
-    "conchuda",
-    "cojudo",
-    "cojuda",
-    "mierda",
-    "carajo",
-    "puta",
-    "pichula",
-    "chucha",
-    "cholo",
-    "chola",
-    "serrano",
-    "serrana",
-    "chuchatumadre",
-    "cachudo",
-    "cachuda",
-    "maricón",
-    "pendejo",
-    "pendeja",
-    "comemierda",
-    "imbécil",
-    "idiota",
-    "baboso",
-    "babosa",
-    "conchetumadre",
-    "cabrón",
-    "cabrona",
-    "cojudez",
-    "huevada",
-    "chupa",
-    "mamahuevo",
-    "concha",
-    "chúpame",
-    "malnacido",
-    "malnacida",
-    "hijo de puta",
-    "reconcha",
-    "jodido",
-    "jodida",
-    "cagón",
-    "cagona",
-    "puto",
-    "putamadre",
-    "mierdera",
-    "chupapinga",
-    "conchadetumadre",
-    "chucha de tu madre",
-    "rosquete",
-    "mamaverga",
-    "huevonazo",
-    "huevonaza",
-    "compadre",
-    "jetón",
-    "jetona",
-    "tarado",
-    "tarada",
-    "gil",
-    "mongol",
-    "pajero",
-    "pajera",
-    "gillpollas",
-    "chupapico",
-    "recontra",
-    "reconchudo",
-    "reconchuda",
-    "conchesumare",
-    "carechimba",
-    "malparido",
-    "malparida",
-    "cagada",
-    "manyado",
-    "manyada",
-    "cachero",
-    "cachera",
-    "chupetín",
-    "lameculos",
-    "culo",
-    "conchesumadre",
-    "huevón de mierda",
-    "cojudazo",
-    "cojudaza",
-    "cholo de mierda",
-    "serrano de mierda",
-    "basura",
-    "imbécil de mierda",
-    "maricón de mierda",
-    "perra",
-    "puto el que lee",
-    "concha tu hermana",
-    "conchatuhermana",
-    "chupamela",
-    "pichula triste",
-    "conchudo de mierda",
-    "ctm",
-    "ctmr",
-    "ptm",
-    "csm",
-    "hdp",
-    "qlo",
-    "wbn",
-    "mrd",
-    "hdlgp",
-    "chm",
-    "ptmr",
-    "csmr",
-    "cnr",
-    "pdt",
-    "cliao",
-    "tmr",
-    "dtm",
-    "hmno",
-    "qlp",
-    "mierda",
-    "mam4hu3v0",
-    "mi3rd4",
-    "coño",
-    "chingada",
-    "culero",
-    "pendejada",
-    "estúpido",
-    "gonorrea",
-    "tonto",
-    "trol",
-    "capullo",
-    "negro",
-    "blanco",
-    "indio",
-    "gringo",
-    "porno",
-    "orgasmo",
-    "prostitución",
-    "violar",
-    "gay",
-    "lesbiana",
-    "trans",
-    "homosexual",
-    "travesti",
-    "pelotudo",
-    "Pelotudo",
-  ];
-
-  // Ejemplo de uso
-  const comentarioEjemplo =
-    "Este es un comentario con palabras prohibidas como mrd y conchatumadre.";
-  const palabrasProhibidas = detectarPalabrasProhibidas(comentarioEjemplo);
-
-  console.log("Palabras prohibidas encontradas:", palabrasProhibidas);
 
   function editarComentario(comentario_id) {
     let nuevoComentario = prompt("Ingresa el nuevo comentario:");
@@ -630,7 +618,9 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Un exito");
       });
   }
-  function cambiarEstadoProyecto(proyecto_id, nuevoEstado) {
+  function cambiarEstadoProyecto(proyecto_id, estadoActual) {
+    let nuevoEstado = estadoActual ? "Actual" : "Antiguo";
+
     fetch("/PHP/Backend_publicacion.php", {
       method: "POST",
       headers: {
@@ -644,17 +634,21 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         if (data.success) {
           alert(
-            "Estado del proyecto actualizado correctamente, Se paso al área proyectos antiguos"
+            "Estado del proyecto actualizado correctamente, se cambio a Antiguo"
           );
+          cargarProyectos();
         } else {
-          alert("Error al actualizar el estado del proyecto.");
+          alert(
+            "Error al actualizar el estado del proyecto. Por favor, intenta de nuevo."
+          );
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("Ocurrió un error al cambiar el estado.");
+        alert("Un exito");
       });
   }
+  // Resto del código para manejar comentarios, eliminar proyectos, etc.
 
   cargarProyectos(); // Cargar proyectos al cargar la página
 });

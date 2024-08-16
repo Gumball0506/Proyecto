@@ -1,8 +1,26 @@
-document.addEventListener('DOMContentLoaded', function() {
-  if (sessionActive) {
-      document.getElementById('stat').style.display = 'block';
+/*
+    ----------------------------------------------------
+    Comentario Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
 
-}})
+// Aquí puedes incluir tu código JavaScript.
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (sessionActive) {
+    document.getElementById("stat").style.display = "block";
+  }
+});
 document.addEventListener("DOMContentLoaded", function () {
   cargarProyectosAntiguos(); // Llamar a la función para cargar los proyectos antiguos
 
@@ -47,4 +65,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Alumnos</title>
+    <script>
+        function validarFormulario() {
+            // Validar nombre y apellido (solo letras)
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+            const soloLetras = /^[a-zA-Z\s]+$/;
+            if (!soloLetras.test(nombre)) {
+                alert('El nombre solo puede contener letras.');
+                return false;
+            }
+            if (!soloLetras.test(apellido)) {
+                alert('El apellido solo puede contener letras.');
+                return false;
+            }
+
+            // Validar código de estudiante (solo números)
+            const codigo = document.getElementById('codigo').value;
+            const soloNumeros = /^[0-9]+$/;
+            if (!soloNumeros.test(codigo)) {
+                alert('El código de estudiante solo puede contener números.');
+                return false;
+            }
+
+            // Validar correo electrónico (formato específico)
+            const email = document.getElementById('email').value;
+            const formatoEmail = /^[a-zA-Z0-9._%+-]+@unfv\.edu\.pe$/;
+            if (!formatoEmail.test(email)) {
+                alert('El correo electrónico debe tener el formato tucorreo@unfv.edu.pe');
+                return false;
+            }
+
+            return true;
+        }
+
+        function redirigirLogin() {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <h2>Registro de Alumnos</h2>
+    <form action="registro.php" method="POST" onsubmit="return validarFormulario()">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" required><br><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" id="apellido" required><br><br>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" name="email" id="email" placeholder="example@unfv.edu.pe" required><br><br>        
+
+        <label for="codigo">Código de Estudiante:</label>
+        <input type="text" name="codigo" id="codigo" required><br><br>
+
+        <label for="facultad">Facultad:</label>
+        <select id="facultad" name="facultad" required>
+            <option value="1">Facultad de Administración</option>
+            <option value="2">Facultad de Ciencias Económicas</option>
+            <option value="3">Facultad de Ciencias Financieras y Contables</option>
+            <option value="4">Facultad de Ciencias Naturales y Matemática</option>
+            <option value="5">Facultad de Ciencias Sociales</option>
+            <option value="6">Facultad de Derecho y Ciencia Política</option>
+            <option value="7">Facultad de Educación</option>
+            <option value="8">Facultad de Enfermería</option>
+            <option value="9">Facultad de Humanidades</option>
+            <option value="10">Facultad de Ingeniería Civil</option>
+            <option value="11">Facultad de Ingeniería de Sistemas y Computación</option>
+            <option value="12">Facultad de Ingeniería Electrónica e Informática</option>
+            <option value="13">Facultad de Ingeniería Geográfica, Ambiental y Ecología</option>
+            <option value="14">Facultad de Ingeniería Industrial y de Sistemas</option>
+            <option value="15">Facultad de Medicina</option>
+            <option value="16">Facultad de Odontología</option>
+            <option value="17">Facultad de Oceanografía, Pesquería, Ciencias Alimentarias y Biotecnología</option>
+            <option value="18">Facultad de Psicología</option>
+            <option value="19">Facultad de Arquitectura y Urbanismo</option>
+            <option value="20">Facultad de Tecnología Médica</option>
+        </select><br><br>
+
+        <input type="submit" value="Registrar">
+        <button type="button" onclick="redirigirLogin()">Ingresar</button>
+    </form>
+</body>
+</html>

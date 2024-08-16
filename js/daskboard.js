@@ -1,3 +1,21 @@
+/*
+    ----------------------------------------------------
+    Comentario Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+
+// Aquí puedes incluir tu código JavaScript.
+
 document.addEventListener("DOMContentLoaded", function () {
   const loadingOverlay = document.getElementById("loadingOverlay");
   const loadingMessage = document.getElementById("loadingMessage");
@@ -241,17 +259,21 @@ document.addEventListener("DOMContentLoaded", function () {
               <th>Nombre y Apellidos</th>
               <th>Título del Proyecto</th>
               <th>Código del Estudiante</th>
+              <th>Correo</th>
               <th>Proceso</th>
+              <th>Opciones</th>
           </tr>`;
 
     solicitudes.forEach((solicitud) => {
       solicitudesHTML += `
-          <tr>
+          <tr data-id="${solicitud.ID_ProyectoA}">
               <td>${solicitud.ID_ProyectoA}</td>
               <td>${solicitud.Nombres_Apellidos}</td>
               <td>${solicitud.Titulo_Proyecto}</td>
               <td>${solicitud.Codigo_alumno}</td>
+              <td>${solicitud.Correo_Electronico}</td>
               <td>${renderAcciones(solicitud)}</td>
+              <td>${renderOpciones(solicitud)}</td>
           </tr>`;
     });
 
@@ -260,18 +282,87 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function renderAcciones(solicitud) {
-    if (solicitud.Proceso === "Proceso") {
-      return `
-        <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Aceptado')">Aceptar</button>
-        <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Rechazado')">Rechazar</button>
-        <button onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Proceso')">Revisar</button>
-        <span class='estado-proceso'></span>`;
-    } else {
-      return `<span class='estado-${solicitud.Proceso.toLowerCase()}'>${
-        solicitud.Proceso
-      }</span>`;
-    }
+    const estadoActual = solicitud.Proceso || "Proceso";
+
+    return `
+        <button class="estado-boton ${
+          estadoActual === "Aceptado" ? "aceptado" : ""
+        }" data-estado="Aceptado" onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Aceptado')">Aceptar</button>
+        <button class="estado-boton ${
+          estadoActual === "Rechazado" ? "rechazado" : ""
+        }" data-estado="Rechazado" onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Rechazado')">Rechazar</button>
+        <button class="estado-boton ${
+          estadoActual === "Proceso" ? "activo" : ""
+        }" data-estado="Informar" onclick="mostrarFormularioInformar(${solicitud.ID_ProyectoA})">Informar</button>
+        <button onclick="revertirEstado(${
+          solicitud.ID_ProyectoA
+        })">Revertir</button>
+    `;
   }
+
+  window.mostrarFormularioInformar = function (id) {
+    const content = document.getElementById("content");
+    document.getElementById("informarForm").style.display = "block";
+    // Optional: Pre-fill the form or manage which ID to use
+    document.getElementById("informarMessage").setAttribute("data-id", id);
+  };
+
+  window.cerrarFormulario = function () {
+    document.getElementById("informarForm").style.display = "none";
+  };
+
+  window.enviarNotificacion = function () {
+    const messageElement = document.getElementById("informarMessage");
+    const message = messageElement.value;
+    const id = messageElement.getAttribute("data-id");
+
+    if (!message.trim()) {
+      alert("El mensaje no puede estar vacío.");
+      return;
+    }
+
+    loadingOverlay.style.display = "flex";
+    loadingMessage.textContent = "Enviando mensaje...";
+
+    fetch("/PHP/enviar_mensaje.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id, mensaje: message }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        loadingOverlay.style.display = "none";
+        if (result.success) {
+          mostrarMensaje(result.message, "exito");
+          cerrarFormulario();
+          // Limpiar el campo de texto
+          messageElement.value = "";
+        } else {
+          mostrarMensaje(result.message, "error");
+        }
+      })
+      .catch((error) => {
+        loadingOverlay.style.display = "none";
+        console.error("Error:", error);
+        mostrarMensaje("Error al enviar el mensaje.", "error");
+      });
+  };
+
+  function renderOpciones(solicitud) {
+    return `
+    <button onclick="verDocumento(${solicitud.ID_ProyectoA})">Visualizar</button>
+    <button onclick="descargarDocumento(${solicitud.ID_ProyectoA})">Descargar</button>`;
+  }
+
+  window.verDocumento = function (id) {
+    window.open(`/PRUEBA%201/ver_documento.php?id=${id}`, "_blank");
+  };
+
+  window.descargarDocumento = function (id) {
+    window.location.href = `/PRUEBA%201/descargar_documento.php?id=${id}`;
+  };
 
   function displayError(message) {
     content.innerHTML = `<h2>Error al cargar solicitudes: ${message}</h2>`;
@@ -289,8 +380,40 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 500);
     }, 3000);
   }
+  window.revertirEstado = function (id) {
+    // Selecciona la fila con el ID dado
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    if (!fila) {
+      alert("Solicitud no encontrada.");
+      return;
+    }
 
-  window.cambiarEstado = function (id, estado) {
+    // Revertir el estado a "Proceso" directamente
+    cambiarEstado(id, "Proceso");
+  };
+
+  window.cambiarEstado = function (id, nuevoEstado) {
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    if (!fila) {
+      alert("Solicitud no encontrada.");
+      return;
+    }
+
+    const botones = fila.querySelectorAll(".estado-boton");
+
+    botones.forEach((btn) => {
+      btn.classList.remove("activo", "aceptado", "rechazado");
+      btn.disabled = false;
+    });
+
+    const botonSeleccionado = fila.querySelector(
+      `button[data-estado="${nuevoEstado}"]`
+    );
+    if (botonSeleccionado) {
+      botonSeleccionado.classList.add("activo");
+      botonSeleccionado.disabled = true;
+    }
+
     loadingOverlay.style.display = "flex";
     loadingMessage.textContent = "Cambiando estado...";
 
@@ -299,15 +422,13 @@ document.addEventListener("DOMContentLoaded", function () {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id, estado }),
+      body: JSON.stringify({ id: id, estado: nuevoEstado }),
     })
       .then((response) => response.json())
       .then((result) => {
         loadingOverlay.style.display = "none";
-
         if (result.success) {
           mostrarMensaje(result.message, "exito");
-          fetchSolicitudes();
         } else {
           mostrarMensaje(result.message, "error");
         }

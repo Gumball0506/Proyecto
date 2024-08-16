@@ -95,7 +95,7 @@
             </div>
             <div class="form-group">
                 <label for="codigo">Código de alumno:</label>
-                <input type="text" id="codigo" name="codigo" required>
+                <input type="text" id="codigo" name="codigo" pattern="[0-9]*" maxlength="9" required>
             </div>
             <div class="form-group">
                 <label for="facultad">Facultad:</label>

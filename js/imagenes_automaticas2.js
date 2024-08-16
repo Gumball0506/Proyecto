@@ -1,5 +1,21 @@
-//para las imagenes solo imagenes automaticas
-// Escuchar el evento 'DOMContentLoaded' para ejecutar el código cuando el DOM esté completamente cargado
+/*
+    ----------------------------------------------------
+    Comentario Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+
+// Aquí puedes incluir tu código JavaScript.
+
 document.addEventListener("DOMContentLoaded", function () {
   // Obtener el elemento del slider por su ID
   const slider = document.getElementById("slider");

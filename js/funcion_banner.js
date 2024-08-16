@@ -1,4 +1,21 @@
-// Seleccionar el elemento del slider y sus secciones
+/*
+    ----------------------------------------------------
+    Comentario Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+
+// Aquí puedes incluir tu código JavaScript.
+
 const slider = document.querySelector("#slider");
 let sliderSection = document.querySelectorAll(".slider__section");
 let sliderSectionlast = sliderSection[sliderSection.length - 1];

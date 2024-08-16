@@ -1,3 +1,21 @@
+/*
+    ----------------------------------------------------
+    Comentario Anti-Copyright
+    ----------------------------------------------------
+    Este trabajo es realizado por:
+    - Harold Ortiz Abra Loza
+    - William Vega
+    - Sergio Vidal
+    - Elizabeth Campos
+    - Lily Roque
+    ----------------------------------------------------
+    © 2024 Responsabilidad Social Universitaria. 
+    Todos los derechos reservados.
+    ----------------------------------------------------
+*/
+
+// Aquí puedes incluir tu código JavaScript.
+
 const btns = document.querySelectorAll(".botones");
 const slideRow = document.getElementById("slide-row");
 const main = document.querySelector("main");

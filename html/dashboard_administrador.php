@@ -76,7 +76,7 @@
             </nav>
         </div>
     </div>
-    <div class="container">
+    <div class="container1">
         <aside class="sidebar">
             <div class="profile">
                 <img src="/imagenes/admin.png" alt="Foto de Perfil" class="profile-pic">
@@ -95,10 +95,12 @@
                     </li>
                     <li><i class="fas fa-calendar-week"></i>
                         <a href="#" id="solicitudes">Solicitudes de Proyectos</a>
+
                     </li>
                 </ul>
             </nav>
         </aside>
+
         <main class="main-content">
             <header>
                 <h1>Sistema de Información de Responsabilidad Social</h1>
@@ -106,15 +108,23 @@
             <section class="content" id="content">
                 <h2>Bienvenido al Sistema</h2>
                 <p>Seleccione una opción del menú para comenzar.</p>
-    </div>
-    </section>
-    </main>
+                <!-- Aquí se insertará el contenido dinámico, como la tabla de solicitudes -->
+            </section>
+        </main>
+
     </div>
 
     <div id="loadingOverlay" class="loading-overlay">
         <div class="loading-spinner"></div>
         <h2 id="loadingMessage">Cargando...</h2>
     </div>
+    <div id="informarForm" class="informar-formulario" style="display: none;">
+        <h3>Enviar Notificación</h3>
+        <textarea id="informarMessage" rows="4" placeholder="Escribe tu mensaje aquí..."></textarea>
+        <button class="enviar" onclick="enviarNotificacion()">Enviar</button>
+        <button class="cancelar" onclick="cerrarFormulario()">Cancelar</button>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="/js/easing.min.js"></script>

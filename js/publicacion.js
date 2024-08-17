@@ -1,238 +1,100 @@
-// Palabras prohibidas
-const bannedWords = [
-  "mrd",
-  "MRD",
-  "NRD",
-  "nrd",
-  "Conchatumadre",
-  "Huevón",
-  "Huevona",
-  "Chuchamadre",
-  "Conchudo",
-  "Conchuda",
-  "Cojudo",
-  "Cojuda",
-  "Mierda",
-  "Carajo",
-  "Puta",
-  "Pichula",
-  "Chucha",
-  "Cholo",
-  "Chola",
-  "Serrano",
-  "Serrana",
-  "Chuchatumadre",
-  "Cachudo",
-  "Cachuda",
-  "Maricón",
-  "Pendejo",
-  "Pendeja",
-  "Comemierda",
-  "Imbécil",
-  "Idiota",
-  "Baboso",
-  "Babosa",
-  "Conchetumadre",
-  "Cabrón",
-  "Cabrona",
-  "Cojudez",
-  "Huevada",
-  "Chupa",
-  "Mamahuevo",
-  "Concha",
-  "Chúpame",
-  "Malnacido",
-  "Malnacida",
-  "Hijo de puta",
-  "Reconcha",
-  "Jodido",
-  "Jodida",
-  "Cagón",
-  "Cagona",
-  "Puto",
-  "Putamadre",
-  "Mierdera",
-  "Chupapinga",
-  "Conchadetumadre",
-  "Chucha de tu madre",
-  "Rosquete",
-  "Mamaverga",
-  "Huevonazo",
-  "Huevonaza",
-  "Compadre",
-  "Jetón",
-  "Jetona",
-  "Tarado",
-  "Tarada",
-  "Gil",
-  "Mongol",
-  "Pajero",
-  "Pajera",
-  "Gillpollas",
-  "Chupapico",
-  "Recontra",
-  "Reconchudo",
-  "Reconchuda",
-  "Conchesumare",
-  "Carechimba",
-  "Malparido",
-  "Malparida",
-  "Cagada",
-  "Manyado",
-  "Manyada",
-  "Cachero",
-  "Cachera",
-  "Chupetín",
-  "Lameculos",
-  "Culo",
-  "Conchesumadre",
-  "Huevón de mierda",
-  "Cojudazo",
-  "Cojudaza",
-  "Cholo de mierda",
-  "Serrano de mierda",
-  "Basura",
-  "Imbécil de mierda",
-  "Maricón de mierda",
-  "Perra",
-  "Puto el que lee",
-  "Concha tu hermana",
-  "Conchatuhermana",
-  "Chupamela",
-  "Pichula triste",
-  "Conchudo de mierda",
-  "CTM",
-  "CTMR",
-  "PTM",
-  "CSM",
-  "HDP",
-  "QLO",
-  "WBN",
-  "MRD",
-  "HDLGP",
-  "CHM",
-  "PTMR",
-  "CSMR",
-  "CNR",
-  "PDT",
-  "CLIAO",
-  "TMR",
-  "DTM",
-  "HMNO",
-  "QLP",
-  "MIERDA",
-  "mAm4Hu3v0",
-  "mi3rd4",
-  "Coño",
-  "Chingada",
-  "Culero",
-  "Pendejada",
-  "Estúpido",
-  "Gonorrea",
-  "Tonto",
-  "Trol",
-  "Capullo",
-  "Negro",
-  "Blanco",
-  "Indio",
-  "Gringo",
-  "Porno",
-  "Orgasmo",
-  "Prostitución",
-  "Violar",
-  "Gay",
-  "Lesbiana",
-  "Trans",
-  "Homosexual",
-  "Travesti",
-];
-
 document.addEventListener("DOMContentLoaded", function () {
+  // Variables para calificación por estrellas
+  const stars = document.querySelectorAll(".star");
+  const ratingMessage = document.getElementById("rating-message");
+  const projectId = 123; // ID del proyecto (esto debe ser dinámico en una aplicación real)
+  const userId = 456; // ID del usuario (esto debe ser dinámico en una aplicación real)
+
+  function setRating(rating) {
+    stars.forEach((star) => {
+      star.style.color = star.dataset.value <= rating ? "gold" : "gray";
+    });
+    updateMessage(rating);
+  }
+
+  function updateMessage(rating) {
+    let message = "";
+    switch (rating) {
+      case 5:
+        message = "¡Fantástico proyecto!";
+        break;
+      case 4:
+        message = "¡Muy bueno!";
+        break;
+      case 3:
+        message = "Bueno, pero puede mejorar.";
+        break;
+      case 2:
+        message = "Necesita mejoras.";
+        break;
+      case 1:
+        message = "Poco recomendable.";
+        break;
+      default:
+        message = "";
+    }
+    ratingMessage.textContent = message;
+  }
+
+  // Cargar la calificación al iniciar
+  fetch(
+    `/PHP/Backend_calificacion.php?accion=obtener_calificacion&ID_Proyecto=${projectId}&ID_Usuario=${userId}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        setRating(data.rating);
+      }
+    })
+    .catch((error) => console.error("Error al cargar la calificación:", error));
+
+  // Manejar clics en las estrellas
+  stars.forEach((star) => {
+    star.addEventListener("click", function () {
+      const rating = parseInt(this.dataset.value);
+      setRating(rating);
+
+      // Guardar la calificación
+      fetch(`/PHP/Backend_calificacion.php`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          accion: "guardar_calificacion",
+          ID_Proyecto: projectId,
+          ID_Usuario: userId,
+          calificacion: rating,
+        }).toString(),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            console.log("Calificación guardada correctamente.");
+          }
+        })
+        .catch((error) =>
+          console.error("Error al guardar la calificación:", error)
+        );
+    });
+  });
+
   if (sessionActive) {
     // Mostrar el div con el id 'admin'
     document.getElementById("admin").style.display = "block";
 
-    // Configura el MutationObserver para el div con la clase 'vistas-container'
-    const observerV = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        // Obtener todos los elementos con la clase 'vistas-container'
-        const vistasElements =
-          document.getElementsByClassName("vistas-container");
-
-        // Iterar sobre cada elemento encontrado
-        for (let i = 0; i < vistasElements.length; i++) {
-          vistasElements[i].style.display = "block";
-        }
-
-        // Deja de observar después de encontrar y mostrar el elemento
-        observerV.disconnect();
-      });
-    });
-    // Configura el MutationObserver para el div con la clase 'vistas-container'
-    const observerE = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        // Obtener todos los elementos con la clase 'vistas-container'
-        const vistasElements = document.getElementsByClassName(
-          "eliminar-proyecto-btn"
-        );
-
-        // Iterar sobre cada elemento encontrado
-        for (let i = 0; i < vistasElements.length; i++) {
-          vistasElements[i].style.display = "block";
-        }
-
-        // Deja de observar después de encontrar y mostrar el elemento
-        observerV.disconnect();
-      });
-    });
-    // Configura el MutationObserver para el div con la clase 'vistas-container'
-    const observerS = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        // Obtener todos los elementos con la clase 'vistas-container'
-        const vistasElements = document.getElementsByClassName(
-          "project-status-container"
-        );
-
-        // Iterar sobre cada elemento encontrado
-        for (let i = 0; i < vistasElements.length; i++) {
-          vistasElements[i].style.display = "block";
-        }
-
-        // Deja de observar después de encontrar y mostrar el elemento
-        observerV.disconnect();
-      });
-    });
-
-    // Empieza a observar el body por la adición de nuevos nodos
-    observerV.observe(document.body, { childList: true, subtree: true });
-    observerE.observe(document.body, { childList: true, subtree: true });
-    observerS.observe(document.body, { childList: true, subtree: true });
+    // Configura los MutationObservers para los elementos
+    setupObservers();
   }
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+  // Manejar el envío del formulario de publicación de proyectos
   document
     .getElementById("postForm")
     .addEventListener("submit", function (event) {
       event.preventDefault();
 
-      let titulo = document.getElementById("title").value;
-      let descripcion = document.getElementById("description").value;
-      let foto = document.getElementById("image").files[0];
-      let projectStatus = document.getElementById("projectStatus").checked
-        ? "1"
-        : "2";
-      let formData = new FormData();
+      let formData = new FormData(this);
       formData.append("accion", "guardar_proyecto");
-      formData.append("titulo", titulo);
-      formData.append("descripcion", descripcion);
-      formData.append("eventDate", document.getElementById("eventDate").value);
-      formData.append("foto", foto);
-      formData.append("projectStatus", projectStatus);
-      formData.append(
-        "url_registro",
-        document.getElementById("registrationLink").value
-      );
 
       fetch("/PHP/Backend_publicacion.php", {
         method: "POST",
@@ -243,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data.success) {
             alert("Proyecto publicado correctamente");
             cargarProyectos(); // Actualiza la lista de proyectos después de publicar
-            document.getElementById("postForm").reset(); // Reinicia el formulario después de enviarlo
+            this.reset(); // Reinicia el formulario después de enviarlo
           } else {
             alert(
               "Error al publicar el proyecto. Por favor, intenta de nuevo."
@@ -256,15 +118,46 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+  function setupObservers() {
+    // Configura el MutationObserver para elementos específicos
+    const observers = {
+      vistas: new MutationObserver((mutations) => {
+        mutations.forEach(() => {
+          document.querySelectorAll(".vistas-container").forEach((element) => {
+            element.style.display = "block";
+          });
+        });
+      }),
+      eliminar: new MutationObserver((mutations) => {
+        mutations.forEach(() => {
+          document
+            .querySelectorAll(".eliminar-proyecto-btn")
+            .forEach((element) => {
+              element.style.display = "block";
+            });
+        });
+      }),
+      status: new MutationObserver((mutations) => {
+        mutations.forEach(() => {
+          document
+            .querySelectorAll(".project-status-container")
+            .forEach((element) => {
+              element.style.display = "block";
+            });
+        });
+      }),
+    };
+
+    for (const key in observers) {
+      observers[key].observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
   function cargarProyectos() {
     fetch("/PHP/Backend_publicacion.php?accion=obtener_proyectos")
       .then((response) => response.json())
-      .then((proyectos) => {
-        mostrarProyectos(proyectos); // Mostrar proyectos en la interfaz
-      })
-      .catch((error) => {
-        console.error("Error al cargar los proyectos:", error);
-      });
+      .then((proyectos) => mostrarProyectos(proyectos))
+      .catch((error) => console.error("Error al cargar los proyectos:", error));
   }
 
   function mostrarProyectos(proyectos) {
@@ -310,38 +203,12 @@ document.addEventListener("DOMContentLoaded", function () {
         incrementarVistas(proyecto.ID_Proyecto);
       });
 
-      let comentariosBoton = document.createElement("button");
-      comentariosBoton.innerHTML =
-        '<i class="fas fa-comments"></i> Comentarios';
-      comentariosBoton.classList.add("fb-style-button1", "comentarios-btn");
-      comentariosBoton.addEventListener("click", function () {
-        toggleComentarios(proyecto.ID_Proyecto);
-      });
-
       let eliminarBoton = document.createElement("button");
       eliminarBoton.innerHTML = '<i class="fas fa-trash"></i>';
       eliminarBoton.classList.add("eliminar-proyecto-btn");
       eliminarBoton.id = "eliminar";
       eliminarBoton.addEventListener("click", function () {
         eliminarProyecto(proyecto.ID_Proyecto);
-      });
-
-      let comentariosContainer = document.createElement("div");
-      comentariosContainer.id = "comentarios-" + proyecto.ID_Proyecto;
-      comentariosContainer.classList.add("comentarios-container");
-      comentariosContainer.style.display = "none";
-
-      let comentarioForm = document.createElement("form");
-      comentarioForm.id = "form-comentario-" + proyecto.ID_Proyecto;
-      comentarioForm.classList.add("form-comentario", "fb-style-comment-form");
-      comentarioForm.innerHTML = `<textarea id="comentario-${proyecto.ID_Proyecto}" placeholder="Agregar un comentario"></textarea>
-        <button type="submit">Comentar</button>`;
-      comentarioForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        let comentario = document.getElementById(
-          "comentario-" + proyecto.ID_Proyecto
-        ).value;
-        agregarComentario(proyecto.ID_Proyecto, comentario);
       });
 
       let projectStatusContainer = document.createElement("div");
@@ -387,181 +254,9 @@ document.addEventListener("DOMContentLoaded", function () {
       proyectoDiv.appendChild(vistasElement);
       proyectoDiv.appendChild(imagenElement);
       proyectoDiv.appendChild(eliminarBoton);
-      proyectoDiv.appendChild(comentariosBoton);
-      proyectoDiv.appendChild(comentariosContainer);
-      proyectoDiv.appendChild(comentarioForm);
       proyectoDiv.appendChild(projectStatusContainer);
       proyectosContainer.appendChild(proyectoDiv);
     });
-  }
-
-  // Resto del código JavaScript para manejar eventos, cargar comentarios, etc.
-
-  function cargarComentarios(proyecto_id) {
-    fetch(
-      `/PHP/Backend_publicacion.php?accion=obtener_comentarios&ID_Proyecto=${proyecto_id}`
-    )
-      .then((response) => response.json())
-      .then((comentarios) => mostrarComentarios(comentarios, proyecto_id))
-      .catch((error) =>
-        console.error("Error al cargar los comentarios:", error)
-      );
-  }
-
-  function mostrarComentarios(comentarios, proyecto_id) {
-    let comentariosContainer = document.getElementById(
-      "comentarios-" + proyecto_id
-    );
-    comentariosContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
-
-    comentarios.forEach((comentario) => {
-      let comentarioDiv = document.createElement("div");
-      comentarioDiv.classList.add("comentario");
-
-      let comentarioTexto = document.createElement("p");
-      comentarioTexto.textContent = comentario.Comentario;
-
-      let editarBoton = document.createElement("button");
-      editarBoton.textContent = "Editar";
-      editarBoton.addEventListener("click", function () {
-        editarComentario(comentario.ID_Comentario);
-      });
-
-      let eliminarBoton = document.createElement("button");
-      eliminarBoton.innerHTML = "Eliminar";
-      eliminarBoton.addEventListener("click", function () {
-        eliminarComentario(comentario.ID_Comentario);
-      });
-
-      comentarioDiv.appendChild(comentarioTexto);
-      comentarioDiv.appendChild(editarBoton);
-      comentarioDiv.appendChild(eliminarBoton);
-
-      comentariosContainer.appendChild(comentarioDiv);
-    });
-  }
-
-  function toggleComentarios(proyecto_id) {
-    let comentariosDiv = document.getElementById("comentarios-" + proyecto_id);
-    if (comentariosDiv.style.display === "none") {
-      comentariosDiv.style.display = "block";
-      cargarComentarios(proyecto_id);
-    } else {
-      comentariosDiv.style.display = "none";
-    }
-  }
-  function agregarComentario(proyecto_id, comentario) {
-    // Verificar si el comentario contiene palabras prohibidas
-    let comentarioLimpio = limpiarComentario(comentario);
-
-    if (comentarioLimpio !== comentario) {
-      alert(
-        "El comentario contiene palabras ofensivas y no puede ser publicado."
-      );
-      return;
-    }
-
-    fetch("/PHP/Backend_publicacion.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `accion=agregar_comentario&ID_Proyecto=${encodeURIComponent(
-        proyecto_id
-      )}&Comentario=${encodeURIComponent(comentario)}`,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          alert("Comentario agregado correctamente");
-          cargarComentarios(proyecto_id);
-          document.getElementById("comentario-" + proyecto_id).value = "";
-        } else {
-          alert("Error al agregar el comentario. Por favor, intenta de nuevo.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Un exito");
-      });
-  }
-  // Función para limpiar el comentario y verificar palabras prohibidas
-  function limpiarComentario(comentario) {
-    // Limpiar el comentario
-    let comentarioLimpio = comentario.trim();
-
-    // Separar el comentario en palabras individuales
-    let palabras = comentarioLimpio.split(/\s+/);
-
-    // Verificar si alguna palabra está en la lista de palabras prohibidas
-    for (let i = 0; i < palabras.length; i++) {
-      // Comparar la palabra actual en su forma original con las palabras prohibidas
-      if (bannedWords.includes(palabras[i])) {
-        // Si se encuentra una palabra prohibida, reemplazarla con asteriscos
-        comentarioLimpio = comentarioLimpio.replace(
-          palabras[i],
-          "*".repeat(palabras[i].length)
-        );
-      }
-    }
-
-    return comentarioLimpio;
-  }
-
-  function editarComentario(comentario_id) {
-    let nuevoComentario = prompt("Ingresa el nuevo comentario:");
-    if (nuevoComentario) {
-      fetch("/PHP/Backend_publicacion.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `accion=editar_comentario&ID_Comentario=${encodeURIComponent(
-          comentario_id
-        )}&Comentario=${encodeURIComponent(nuevoComentario)}`,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            alert("Comentario editado correctamente");
-            cargarComentarios(data.proyecto_id);
-          } else {
-            alert(
-              "Error al editar el comentario. Por favor, intenta de nuevo."
-            );
-          }
-        })
-        .catch((error) => console.error("Error:", error));
-    }
-  }
-
-  function eliminarComentario(comentario_id) {
-    let confirmacion = confirm(
-      "¿Estás seguro de que deseas eliminar este comentario?"
-    );
-    if (confirmacion) {
-      fetch("/PHP/Backend_publicacion.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `accion=eliminar_comentario&ID_Comentario=${encodeURIComponent(
-          comentario_id
-        )}`,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            alert("Comentario eliminado correctamente");
-            cargarComentarios(data.proyecto_id);
-          } else {
-            alert(
-              "Error al eliminar el comentario. Por favor, intenta de nuevo."
-            );
-          }
-        })
-        .catch((error) => console.error("Error:", error));
-    }
   }
 
   function eliminarProyecto(proyecto_id) {
@@ -618,6 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Un exito");
       });
   }
+
   function cambiarEstadoProyecto(proyecto_id, estadoActual) {
     let nuevoEstado = estadoActual ? "Actual" : "Antiguo";
 
@@ -648,7 +344,6 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Un exito");
       });
   }
-  // Resto del código para manejar comentarios, eliminar proyectos, etc.
 
   cargarProyectos(); // Cargar proyectos al cargar la página
 });

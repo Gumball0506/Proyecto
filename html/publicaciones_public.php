@@ -43,6 +43,37 @@
             color: #fff;
             /* Cambia el color del texto si es necesario */
         }
+
+        .star-rating {
+            display: flex;
+            direction: rtl;
+            /* Muestra las estrellas en orden inverso */
+            font-size: 24px;
+            /* Tamaño de las estrellas */
+        }
+
+        .star-rating input[type="radio"] {
+            display: none;
+            /* Ocultar los botones de radio */
+        }
+
+        .star-rating label {
+            color: #ddd;
+            /* Color por defecto */
+            cursor: pointer;
+            /* Hacer que las estrellas sean clicables */
+        }
+
+        .star-rating input[type="radio"]:checked~label {
+            color: #ffc107;
+            /* Color de las estrellas seleccionadas */
+        }
+
+        .star-rating label:hover,
+        .star-rating label:hover~label {
+            color: #ffc107;
+            /* Cambia el color al pasar el mouse por encima */
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

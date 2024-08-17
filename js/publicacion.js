@@ -1,41 +1,205 @@
+// Palabras prohibidas
+const bannedWords = [
+  "mrd",
+  "MRD",
+  "NRD",
+  "nrd",
+  "Conchatumadre",
+  "Huevón",
+  "Huevona",
+  "Chuchamadre",
+  "Conchudo",
+  "Conchuda",
+  "Cojudo",
+  "Cojuda",
+  "Mierda",
+  "Carajo",
+  "Puta",
+  "Pichula",
+  "Chucha",
+  "Cholo",
+  "Chola",
+  "Serrano",
+  "Serrana",
+  "Chuchatumadre",
+  "Cachudo",
+  "Cachuda",
+  "Maricón",
+  "Pendejo",
+  "Pendeja",
+  "Comemierda",
+  "Imbécil",
+  "Idiota",
+  "Baboso",
+  "Babosa",
+  "Conchetumadre",
+  "Cabrón",
+  "Cabrona",
+  "Cojudez",
+  "Huevada",
+  "Chupa",
+  "Mamahuevo",
+  "Concha",
+  "Chúpame",
+  "Malnacido",
+  "Malnacida",
+  "Hijo de puta",
+  "Reconcha",
+  "Jodido",
+  "Jodida",
+  "Cagón",
+  "Cagona",
+  "Puto",
+  "Putamadre",
+  "Mierdera",
+  "Chupapinga",
+  "Conchadetumadre",
+  "Chucha de tu madre",
+  "Rosquete",
+  "Mamaverga",
+  "Huevonazo",
+  "Huevonaza",
+  "Compadre",
+  "Jetón",
+  "Jetona",
+  "Tarado",
+  "Tarada",
+  "Gil",
+  "Mongol",
+  "Pajero",
+  "Pajera",
+  "Gillpollas",
+  "Chupapico",
+  "Recontra",
+  "Reconchudo",
+  "Reconchuda",
+  "Conchesumare",
+  "Carechimba",
+  "Malparido",
+  "Malparida",
+  "Cagada",
+  "Manyado",
+  "Manyada",
+  "Cachero",
+  "Cachera",
+  "Chupetín",
+  "Lameculos",
+  "Culo",
+  "Conchesumadre",
+  "Huevón de mierda",
+  "Cojudazo",
+  "Cojudaza",
+  "Cholo de mierda",
+  "Serrano de mierda",
+  "Basura",
+  "Imbécil de mierda",
+  "Maricón de mierda",
+  "Perra",
+  "Puto el que lee",
+  "Concha tu hermana",
+  "Conchatuhermana",
+  "Chupamela",
+  "Pichula triste",
+  "Conchudo de mierda",
+  "CTM",
+  "CTMR",
+  "PTM",
+  "CSM",
+  "HDP",
+  "QLO",
+  "WBN",
+  "MRD",
+  "HDLGP",
+  "CHM",
+  "PTMR",
+  "CSMR",
+  "CNR",
+  "PDT",
+  "CLIAO",
+  "TMR",
+  "DTM",
+  "HMNO",
+  "QLP",
+  "MIERDA",
+  "mAm4Hu3v0",
+  "mi3rd4",
+  "Coño",
+  "Chingada",
+  "Culero",
+  "Pendejada",
+  "Estúpido",
+  "Gonorrea",
+  "Tonto",
+  "Trol",
+  "Capullo",
+  "Negro",
+  "Blanco",
+  "Indio",
+  "Gringo",
+  "Porno",
+  "Orgasmo",
+  "Prostitución",
+  "Violar",
+  "Gay",
+  "Lesbiana",
+  "Trans",
+  "Homosexual",
+  "Travesti",
+];
+
 document.addEventListener("DOMContentLoaded", function () {
   if (sessionActive) {
     // Mostrar el div con el id 'admin'
     document.getElementById("admin").style.display = "block";
 
-    // Configura el MutationObserver para los contenedores específicos
+    // Configura el MutationObserver para el div con la clase 'vistas-container'
     const observerV = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
+        // Obtener todos los elementos con la clase 'vistas-container'
         const vistasElements =
           document.getElementsByClassName("vistas-container");
+
+        // Iterar sobre cada elemento encontrado
         for (let i = 0; i < vistasElements.length; i++) {
           vistasElements[i].style.display = "block";
         }
+
+        // Deja de observar después de encontrar y mostrar el elemento
         observerV.disconnect();
       });
     });
-
+    // Configura el MutationObserver para el div con la clase 'vistas-container'
     const observerE = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
-        const eliminarElements = document.getElementsByClassName(
+        // Obtener todos los elementos con la clase 'vistas-container'
+        const vistasElements = document.getElementsByClassName(
           "eliminar-proyecto-btn"
         );
-        for (let i = 0; i < eliminarElements.length; i++) {
-          eliminarElements[i].style.display = "block";
+
+        // Iterar sobre cada elemento encontrado
+        for (let i = 0; i < vistasElements.length; i++) {
+          vistasElements[i].style.display = "block";
         }
-        observerE.disconnect();
+
+        // Deja de observar después de encontrar y mostrar el elemento
+        observerV.disconnect();
       });
     });
-
+    // Configura el MutationObserver para el div con la clase 'vistas-container'
     const observerS = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
-        const statusElements = document.getElementsByClassName(
+        // Obtener todos los elementos con la clase 'vistas-container'
+        const vistasElements = document.getElementsByClassName(
           "project-status-container"
         );
-        for (let i = 0; i < statusElements.length; i++) {
-          statusElements[i].style.display = "block";
+
+        // Iterar sobre cada elemento encontrado
+        for (let i = 0; i < vistasElements.length; i++) {
+          vistasElements[i].style.display = "block";
         }
-        observerS.disconnect();
+
+        // Deja de observar después de encontrar y mostrar el elemento
+        observerV.disconnect();
       });
     });
 
@@ -44,7 +208,9 @@ document.addEventListener("DOMContentLoaded", function () {
     observerE.observe(document.body, { childList: true, subtree: true });
     observerS.observe(document.body, { childList: true, subtree: true });
   }
+});
 
+document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("postForm")
     .addEventListener("submit", function (event) {
@@ -162,162 +328,181 @@ document.addEventListener("DOMContentLoaded", function () {
       let projectStatusInput = document.createElement("input");
       projectStatusInput.type = "checkbox";
 
-      projectStatusInput.checked = proyecto.Estado ? "Actual" : "Antiguo";
+      // Inicializa el estado del checkbox
+      projectStatusInput.checked = proyecto.Estado;
 
+      // Crea un elemento para mostrar el texto del estado
       let projectStatusText = document.createElement("span");
       projectStatusText.textContent = projectStatusInput.checked
         ? "Actual"
         : "Antiguo";
 
+      // Función para actualizar el texto y el estado
       function actualizarEstado() {
-        let nuevoEstado = projectStatusInput.checked ? "Antiguo" : "Antiguo";
+        let nuevoEstado = projectStatusInput.checked ? "Actual" : "Antiguo";
         projectStatusText.textContent = nuevoEstado;
         cambiarEstadoProyecto(proyecto.ID_Proyecto, nuevoEstado);
       }
 
+      // Añade el texto y el checkbox al contenedor
       projectStatusContainer.appendChild(projectStatusLabel);
       projectStatusContainer.appendChild(projectStatusInput);
       projectStatusContainer.appendChild(projectStatusText);
 
+      // Actualiza el estado cuando cambia el checkbox
       projectStatusInput.addEventListener("change", function () {
-        console.log("Estado cambiado");
         actualizarEstado();
       });
 
-      // Añadir calificación
-      let calificacionContainer = document.createElement("div");
-      calificacionContainer.classList.add("calificacion-container");
+      let starRatingDiv = document.createElement("div");
+      starRatingDiv.classList.add("star-rating");
 
-      let calificacionLabel = document.createElement("label");
-      calificacionLabel.textContent = "Calificación:";
+      for (let i = 5; i >= 1; i--) {
+        let starInput = document.createElement("input");
+        starInput.type = "radio";
+        starInput.id = `star${i}-${proyecto.ID_Proyecto}`;
+        starInput.name = `rating-${proyecto.ID_Proyecto}`;
+        starInput.value = i;
 
-      let calificacionSelect = document.createElement("select");
-      calificacionSelect.id = `calificacion_${proyecto.ID_Proyecto}`;
-      for (let i = 1; i <= 5; i++) {
-        let option = document.createElement("option");
-        option.value = i;
-        option.textContent = i;
-        calificacionSelect.appendChild(option);
+        let starLabel = document.createElement("label");
+        starLabel.htmlFor = `star${i}-${proyecto.ID_Proyecto}`;
+        starLabel.textContent = "★";
+
+        // Evento para manejar la selección de estrellas
+        starInput.addEventListener("change", function () {
+          // Muestra el modal de verificación
+          verificarCodigoEstudiante(proyecto.ID_Proyecto, i);
+        });
+
+        starRatingDiv.appendChild(starInput);
+        starRatingDiv.appendChild(starLabel);
       }
-
-      let calificacionMensaje = document.createElement("input");
-      calificacionMensaje.type = "text";
-      calificacionMensaje.id = `mensaje_${proyecto.ID_Proyecto}`;
-      calificacionMensaje.placeholder = "Escribe un mensaje (opcional)";
-
-      let calificarBtn = document.createElement("button");
-      calificarBtn.textContent = "Calificar";
-      calificarBtn.addEventListener("click", function () {
-        calificarProyecto(proyecto.ID_Proyecto);
-      });
-
-      calificacionContainer.appendChild(calificacionLabel);
-      calificacionContainer.appendChild(calificacionSelect);
-      calificacionContainer.appendChild(calificacionMensaje);
-      calificacionContainer.appendChild(calificarBtn);
 
       proyectoDiv.appendChild(tituloElement);
       proyectoDiv.appendChild(descripcionElement);
-      proyectoDiv.appendChild(enlaceRegistroBoton);
-      proyectoDiv.appendChild(vistasElement);
       proyectoDiv.appendChild(imagenElement);
+      proyectoDiv.appendChild(vistasElement);
+      proyectoDiv.appendChild(enlaceRegistroBoton);
       proyectoDiv.appendChild(eliminarBoton);
       proyectoDiv.appendChild(projectStatusContainer);
-      proyectoDiv.appendChild(calificacionContainer);
+      proyectoDiv.appendChild(starRatingDiv);
       proyectosContainer.appendChild(proyectoDiv);
     });
   }
+  function verificarCodigoEstudiante(idProyecto, calificacion) {
+    let codigo = prompt(
+      "Ingrese su código de estudiante para verificar su identidad:"
+    );
 
-  function obtenerMensaje(calificacion) {
-    switch (calificacion) {
-      case "1":
-        return "Estuvo bien, pero puede mejorar.";
-      case "2":
-        return "Satisfactorio, pero tiene áreas de mejora.";
-      case "3":
-        return "Bueno, pero puede ser aún mejor.";
-      case "4":
-        return "Muy bueno, pero aún hay espacio para mejorar.";
-      case "5":
-        return "Excelente trabajo. ¡Fantástico!";
-      default:
-        return "";
+    if (codigo) {
+      fetch("/PHP/Backend_calificaciones.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          accion: "verificar_codigo",
+          codigo_estudiante: codigo,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.existe) {
+            // Código de estudiante válido, procede a calificar
+            guardarCalificacion(idProyecto, calificacion, codigo);
+          } else {
+            alert(
+              "Código de estudiante incorrecto. No se puede proceder con la calificación."
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Hubo un problema al verificar el código de estudiante.");
+        });
     }
   }
 
-  function calificarProyecto(proyecto_id) {
-    let calificacion = document.getElementById(
-      `calificacion_${proyecto_id}`
-    ).value;
-    let mensaje = obtenerMensaje(calificacion); // Usa la función para obtener el mensaje predefinido
-    let comentario = document.getElementById(`mensaje_${proyecto_id}`).value;
-
-    fetch("/PHP/Backend_calificacion.php", {
+  function guardarCalificacion(idProyecto, calificacion, codigo) {
+    fetch("/PHP/Backend_calificaciones.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: `accion=calificar_proyecto&proyecto_id=${proyecto_id}&calificacion=${calificacion}&mensaje=${mensaje}&comentario=${comentario}`,
+      body: new URLSearchParams({
+        accion: "calificar_proyecto",
+        codigo_estudiante: codigo,
+        proyecto_id: idProyecto,
+        calificacion: calificacion,
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
           alert("Calificación guardada correctamente.");
-          cargarProyectos(); // Actualiza la lista de proyectos después de calificar
         } else {
-          alert("Error al calificar el proyecto. Por favor, intenta de nuevo.");
+          alert(data.error || "Error al guardar la calificación.");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("Error al calificar el proyecto.");
+        alert("Hubo un problema al guardar la calificación.");
       });
   }
 
-  function incrementarVistas(idProyecto) {
-    fetch(
-      `/PHP/Backend_calificacion.php?accion=incrementar_vistas&id_proyecto=${idProyecto}`,
-      {
+  function eliminarProyecto(proyecto_id) {
+    let confirmacion = confirm(
+      "¿Estás seguro de que deseas eliminar este proyecto?"
+    );
+    if (confirmacion) {
+      fetch("/PHP/Backend_publicacion.php", {
         method: "POST",
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          console.log("Vistas incrementadas correctamente.");
-        } else {
-          console.error("Error al incrementar vistas.");
-        }
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `accion=eliminar_proyecto&ID_Proyecto=${encodeURIComponent(
+          proyecto_id
+        )}`,
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
-
-  function eliminarProyecto(idProyecto) {
-    if (confirm("¿Estás seguro de que deseas eliminar este proyecto?")) {
-      fetch(
-        `/PHP/Backend_calificacion.php?accion=eliminar_proyecto&id_proyecto=${idProyecto}`,
-        {
-          method: "POST",
-        }
-      )
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            alert("Proyecto eliminado correctamente.");
-            cargarProyectos(); // Actualiza la lista de proyectos después de eliminar
+            alert("Proyecto eliminado correctamente");
+            cargarProyectos();
           } else {
             alert(
               "Error al eliminar el proyecto. Por favor, intenta de nuevo."
             );
           }
         })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("Error al eliminar el proyecto.");
-        });
+        .catch((error) => console.error("Error:", error));
     }
+  }
+
+  function incrementarVistas(proyecto_id) {
+    fetch("/PHP/Backend_publicacion.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `accion=incrementar_vistas&ID_Proyecto=${encodeURIComponent(
+        proyecto_id
+      )}`,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          obtenerVistasTotales(proyecto_id); // Actualizar las vistas después de incrementarlas
+        } else {
+          alert(
+            "Error al incrementar las vistas. Por favor, intenta de nuevo."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Un exito");
+      });
   }
   function cambiarEstadoProyecto(proyecto_id, estadoActual) {
     let nuevoEstado = estadoActual ? "Actual" : "Antiguo";

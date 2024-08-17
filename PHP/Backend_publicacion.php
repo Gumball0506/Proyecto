@@ -78,29 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             echo json_encode($response);
             break;
-        case 'calificar_proyecto':
-            $proyecto_id = $_POST['proyecto_id'] ?? '';
-            $calificacion = $_POST['calificacion'] ?? '';
-            $mensaje = $_POST['mensaje'] ?? '';
-            $comentario = $_POST['comentario'] ?? '';
-            $id_estudiante = $_SESSION['user_id'] ?? ''; // Asegúrate de que el ID del estudiante esté en la sesión
-
-            if ($proyecto_id && $calificacion && $id_estudiante) {
-                // Inserta o actualiza la calificación del proyecto
-                $stmt = $pdo->prepare(
-                    "INSERT INTO calificaciones (ID_Proyecto, ID_Estudiante, calificacion, mensaje, comentario) 
-                        VALUES (?, ?, ?, ?, ?)
-                        ON DUPLICATE KEY UPDATE 
-                            calificacion = VALUES(calificacion), 
-                            mensaje = VALUES(mensaje), 
-                            comentario = VALUES(comentario)"
-                );
-
-                if ($stmt->execute([$proyecto_id, $id_estudiante, $calificacion, $mensaje, $comentario])) {
-                    $response['success'] = true;
-                }
-            }
-            break;
         case 'eliminar_proyecto':
             try {
                 $ID_Proyecto = $_POST['ID_Proyecto'];

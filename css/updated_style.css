@@ -11211,6 +11211,37 @@ h6,
   /* Añadir esta línea para negrita */
 }
 
+#notificacion-evento {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffeb3b;
+  color: #000;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px0px10pxrgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: none; /* Se oculta por defecto */
+}
+
+#notificacion-eventoh3 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+#notificacion-eventop {
+  margin: 5px0;
+  font-size: 1em;
+  color: #333;
+}
+
+#notificacion-evento.cerrar {
+  cursor: pointer;
+  color: #f44336;
+  float: right;
+  font-weight: bold;
+}
 
 .boxejes .contentejes p {
   font-size: 14px;

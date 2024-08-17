@@ -52,7 +52,7 @@
         /* Cambia el color del texto si es necesario */
     }
 </style>
-
+<div id="notificacion-evento"><span class="cerrar">&times;</span><h3 id="notificacion-titulo">Título del Evento</h3><p id="notificacion-descripcion">Descripción del evento.</p></div>
 <body>
     <?php
     session_start();

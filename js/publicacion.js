@@ -1,100 +1,72 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Variables para calificación por estrellas
-  const stars = document.querySelectorAll(".star");
-  const ratingMessage = document.getElementById("rating-message");
-  const projectId = 123; // ID del proyecto (esto debe ser dinámico en una aplicación real)
-  const userId = 456; // ID del usuario (esto debe ser dinámico en una aplicación real)
-
-  function setRating(rating) {
-    stars.forEach((star) => {
-      star.style.color = star.dataset.value <= rating ? "gold" : "gray";
-    });
-    updateMessage(rating);
-  }
-
-  function updateMessage(rating) {
-    let message = "";
-    switch (rating) {
-      case 5:
-        message = "¡Fantástico proyecto!";
-        break;
-      case 4:
-        message = "¡Muy bueno!";
-        break;
-      case 3:
-        message = "Bueno, pero puede mejorar.";
-        break;
-      case 2:
-        message = "Necesita mejoras.";
-        break;
-      case 1:
-        message = "Poco recomendable.";
-        break;
-      default:
-        message = "";
-    }
-    ratingMessage.textContent = message;
-  }
-
-  // Cargar la calificación al iniciar
-  fetch(
-    `/PHP/Backend_calificacion.php?accion=obtener_calificacion&ID_Proyecto=${projectId}&ID_Usuario=${userId}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.success) {
-        setRating(data.rating);
-      }
-    })
-    .catch((error) => console.error("Error al cargar la calificación:", error));
-
-  // Manejar clics en las estrellas
-  stars.forEach((star) => {
-    star.addEventListener("click", function () {
-      const rating = parseInt(this.dataset.value);
-      setRating(rating);
-
-      // Guardar la calificación
-      fetch(`/PHP/Backend_calificacion.php`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          accion: "guardar_calificacion",
-          ID_Proyecto: projectId,
-          ID_Usuario: userId,
-          calificacion: rating,
-        }).toString(),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            console.log("Calificación guardada correctamente.");
-          }
-        })
-        .catch((error) =>
-          console.error("Error al guardar la calificación:", error)
-        );
-    });
-  });
-
   if (sessionActive) {
     // Mostrar el div con el id 'admin'
     document.getElementById("admin").style.display = "block";
 
-    // Configura los MutationObservers para los elementos
-    setupObservers();
+    // Configura el MutationObserver para los contenedores específicos
+    const observerV = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        const vistasElements =
+          document.getElementsByClassName("vistas-container");
+        for (let i = 0; i < vistasElements.length; i++) {
+          vistasElements[i].style.display = "block";
+        }
+        observerV.disconnect();
+      });
+    });
+
+    const observerE = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        const eliminarElements = document.getElementsByClassName(
+          "eliminar-proyecto-btn"
+        );
+        for (let i = 0; i < eliminarElements.length; i++) {
+          eliminarElements[i].style.display = "block";
+        }
+        observerE.disconnect();
+      });
+    });
+
+    const observerS = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        const statusElements = document.getElementsByClassName(
+          "project-status-container"
+        );
+        for (let i = 0; i < statusElements.length; i++) {
+          statusElements[i].style.display = "block";
+        }
+        observerS.disconnect();
+      });
+    });
+
+    // Empieza a observar el body por la adición de nuevos nodos
+    observerV.observe(document.body, { childList: true, subtree: true });
+    observerE.observe(document.body, { childList: true, subtree: true });
+    observerS.observe(document.body, { childList: true, subtree: true });
   }
 
-  // Manejar el envío del formulario de publicación de proyectos
   document
     .getElementById("postForm")
     .addEventListener("submit", function (event) {
       event.preventDefault();
 
-      let formData = new FormData(this);
+      let titulo = document.getElementById("title").value;
+      let descripcion = document.getElementById("description").value;
+      let foto = document.getElementById("image").files[0];
+      let projectStatus = document.getElementById("projectStatus").checked
+        ? "1"
+        : "2";
+      let formData = new FormData();
       formData.append("accion", "guardar_proyecto");
+      formData.append("titulo", titulo);
+      formData.append("descripcion", descripcion);
+      formData.append("eventDate", document.getElementById("eventDate").value);
+      formData.append("foto", foto);
+      formData.append("projectStatus", projectStatus);
+      formData.append(
+        "url_registro",
+        document.getElementById("registrationLink").value
+      );
 
       fetch("/PHP/Backend_publicacion.php", {
         method: "POST",
@@ -105,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data.success) {
             alert("Proyecto publicado correctamente");
             cargarProyectos(); // Actualiza la lista de proyectos después de publicar
-            this.reset(); // Reinicia el formulario después de enviarlo
+            document.getElementById("postForm").reset(); // Reinicia el formulario después de enviarlo
           } else {
             alert(
               "Error al publicar el proyecto. Por favor, intenta de nuevo."
@@ -118,46 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-  function setupObservers() {
-    // Configura el MutationObserver para elementos específicos
-    const observers = {
-      vistas: new MutationObserver((mutations) => {
-        mutations.forEach(() => {
-          document.querySelectorAll(".vistas-container").forEach((element) => {
-            element.style.display = "block";
-          });
-        });
-      }),
-      eliminar: new MutationObserver((mutations) => {
-        mutations.forEach(() => {
-          document
-            .querySelectorAll(".eliminar-proyecto-btn")
-            .forEach((element) => {
-              element.style.display = "block";
-            });
-        });
-      }),
-      status: new MutationObserver((mutations) => {
-        mutations.forEach(() => {
-          document
-            .querySelectorAll(".project-status-container")
-            .forEach((element) => {
-              element.style.display = "block";
-            });
-        });
-      }),
-    };
-
-    for (const key in observers) {
-      observers[key].observe(document.body, { childList: true, subtree: true });
-    }
-  }
-
   function cargarProyectos() {
     fetch("/PHP/Backend_publicacion.php?accion=obtener_proyectos")
       .then((response) => response.json())
-      .then((proyectos) => mostrarProyectos(proyectos))
-      .catch((error) => console.error("Error al cargar los proyectos:", error));
+      .then((proyectos) => {
+        mostrarProyectos(proyectos); // Mostrar proyectos en la interfaz
+      })
+      .catch((error) => {
+        console.error("Error al cargar los proyectos:", error);
+      });
   }
 
   function mostrarProyectos(proyectos) {
@@ -221,32 +162,59 @@ document.addEventListener("DOMContentLoaded", function () {
       let projectStatusInput = document.createElement("input");
       projectStatusInput.type = "checkbox";
 
-      // Inicializa el estado del checkbox
       projectStatusInput.checked = proyecto.Estado ? "Actual" : "Antiguo";
 
-      // Crea un elemento para mostrar el texto del estado
       let projectStatusText = document.createElement("span");
       projectStatusText.textContent = projectStatusInput.checked
         ? "Actual"
-        : "Actual";
+        : "Antiguo";
 
-      // Función para actualizar el texto y el estado
       function actualizarEstado() {
         let nuevoEstado = projectStatusInput.checked ? "Antiguo" : "Antiguo";
         projectStatusText.textContent = nuevoEstado;
         cambiarEstadoProyecto(proyecto.ID_Proyecto, nuevoEstado);
       }
 
-      // Añade el texto y el checkbox al contenedor
       projectStatusContainer.appendChild(projectStatusLabel);
       projectStatusContainer.appendChild(projectStatusInput);
       projectStatusContainer.appendChild(projectStatusText);
 
-      // Actualiza el estado cuando cambia el checkbox
       projectStatusInput.addEventListener("change", function () {
-        console.log("Estado cambiado"); // Agrega este log para verificar
+        console.log("Estado cambiado");
         actualizarEstado();
       });
+
+      // Añadir calificación
+      let calificacionContainer = document.createElement("div");
+      calificacionContainer.classList.add("calificacion-container");
+
+      let calificacionLabel = document.createElement("label");
+      calificacionLabel.textContent = "Calificación:";
+
+      let calificacionSelect = document.createElement("select");
+      calificacionSelect.id = `calificacion_${proyecto.ID_Proyecto}`;
+      for (let i = 1; i <= 5; i++) {
+        let option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        calificacionSelect.appendChild(option);
+      }
+
+      let calificacionMensaje = document.createElement("input");
+      calificacionMensaje.type = "text";
+      calificacionMensaje.id = `mensaje_${proyecto.ID_Proyecto}`;
+      calificacionMensaje.placeholder = "Escribe un mensaje (opcional)";
+
+      let calificarBtn = document.createElement("button");
+      calificarBtn.textContent = "Calificar";
+      calificarBtn.addEventListener("click", function () {
+        calificarProyecto(proyecto.ID_Proyecto);
+      });
+
+      calificacionContainer.appendChild(calificacionLabel);
+      calificacionContainer.appendChild(calificacionSelect);
+      calificacionContainer.appendChild(calificacionMensaje);
+      calificacionContainer.appendChild(calificarBtn);
 
       proyectoDiv.appendChild(tituloElement);
       proyectoDiv.appendChild(descripcionElement);
@@ -255,65 +223,102 @@ document.addEventListener("DOMContentLoaded", function () {
       proyectoDiv.appendChild(imagenElement);
       proyectoDiv.appendChild(eliminarBoton);
       proyectoDiv.appendChild(projectStatusContainer);
+      proyectoDiv.appendChild(calificacionContainer);
       proyectosContainer.appendChild(proyectoDiv);
     });
   }
 
-  function eliminarProyecto(proyecto_id) {
-    let confirmacion = confirm(
-      "¿Estás seguro de que deseas eliminar este proyecto?"
-    );
-    if (confirmacion) {
-      fetch("/PHP/Backend_publicacion.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `accion=eliminar_proyecto&ID_Proyecto=${encodeURIComponent(
-          proyecto_id
-        )}`,
+  function obtenerMensaje(calificacion) {
+    switch (calificacion) {
+      case "1":
+        return "Estuvo bien, pero puede mejorar.";
+      case "2":
+        return "Satisfactorio, pero tiene áreas de mejora.";
+      case "3":
+        return "Bueno, pero puede ser aún mejor.";
+      case "4":
+        return "Muy bueno, pero aún hay espacio para mejorar.";
+      case "5":
+        return "Excelente trabajo. ¡Fantástico!";
+      default:
+        return "";
+    }
+  }
+
+  function calificarProyecto(proyecto_id) {
+    let calificacion = document.getElementById(
+      `calificacion_${proyecto_id}`
+    ).value;
+    let mensaje = obtenerMensaje(calificacion); // Usa la función para obtener el mensaje predefinido
+    let comentario = document.getElementById(`mensaje_${proyecto_id}`).value;
+
+    fetch("/PHP/Backend_calificacion.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `accion=calificar_proyecto&proyecto_id=${proyecto_id}&calificacion=${calificacion}&mensaje=${mensaje}&comentario=${comentario}`,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert("Calificación guardada correctamente.");
+          cargarProyectos(); // Actualiza la lista de proyectos después de calificar
+        } else {
+          alert("Error al calificar el proyecto. Por favor, intenta de nuevo.");
+        }
       })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Error al calificar el proyecto.");
+      });
+  }
+
+  function incrementarVistas(idProyecto) {
+    fetch(
+      `/PHP/Backend_calificacion.php?accion=incrementar_vistas&id_proyecto=${idProyecto}`,
+      {
+        method: "POST",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          console.log("Vistas incrementadas correctamente.");
+        } else {
+          console.error("Error al incrementar vistas.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
+  function eliminarProyecto(idProyecto) {
+    if (confirm("¿Estás seguro de que deseas eliminar este proyecto?")) {
+      fetch(
+        `/PHP/Backend_calificacion.php?accion=eliminar_proyecto&id_proyecto=${idProyecto}`,
+        {
+          method: "POST",
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            alert("Proyecto eliminado correctamente");
-            cargarProyectos();
+            alert("Proyecto eliminado correctamente.");
+            cargarProyectos(); // Actualiza la lista de proyectos después de eliminar
           } else {
             alert(
               "Error al eliminar el proyecto. Por favor, intenta de nuevo."
             );
           }
         })
-        .catch((error) => console.error("Error:", error));
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Error al eliminar el proyecto.");
+        });
     }
   }
-
-  function incrementarVistas(proyecto_id) {
-    fetch("/PHP/Backend_publicacion.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `accion=incrementar_vistas&ID_Proyecto=${encodeURIComponent(
-        proyecto_id
-      )}`,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          obtenerVistasTotales(proyecto_id); // Actualizar las vistas después de incrementarlas
-        } else {
-          alert(
-            "Error al incrementar las vistas. Por favor, intenta de nuevo."
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Un exito");
-      });
-  }
-
   function cambiarEstadoProyecto(proyecto_id, estadoActual) {
     let nuevoEstado = estadoActual ? "Actual" : "Antiguo";
 
@@ -344,6 +349,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Un exito");
       });
   }
+  // Resto del código para manejar comentarios, eliminar proyectos, etc.
 
   cargarProyectos(); // Cargar proyectos al cargar la página
 });

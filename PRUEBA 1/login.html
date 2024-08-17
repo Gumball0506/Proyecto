@@ -3,30 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <script>
-        function redirigirregistro() {
-            window.location.href = 'registro.html';
+    <title>Iniciar Sesión - Estudiantes</title>
+    <style>
+        /* Añade estilos según tu diseño */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
         }
-
-        // Función para limpiar los campos
-        function limpiarCampos() {
-            document.getElementById('email').value = '';
-            document.getElementById('codigo').value = '';
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
         }
-    </script>
+        .container header {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .container label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        .container input[type="email"],
+        .container input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .container .bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .container .bottom a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .container .bottom a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h2>Iniciar Sesión</h2>
-    <form action="login.php" method="POST" onsubmit="limpiarCampos()">
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" name="email" id="email" placeholder="example@unfv.edu.pe" required><br><br>
-
-        <label for="codigo">Código de Estudiante:</label>
-        <input type="password" name="codigo" id="codigo" required><br><br>
-
-        <input type="submit" value="Iniciar Sesión">
-        <button type="button" onclick="redirigirregistro()">Registrarse</button>
-    </form>
+    <div class="container">
+        <header>Iniciar Sesión</header>
+        <form action="login.php" method="post">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" name="email" id="email" placeholder="example@unfv.edu.pe" required>
+    
+            <label for="codigo">Código de Estudiante:</label>
+            <input type="password" name="codigo" id="codigo" required>
+    
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
 </body>
 </html>

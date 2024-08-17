@@ -43,23 +43,6 @@
             color: #fff;
             /* Cambia el color del texto si es necesario */
         }
-
-        .rating {
-            display: flex;
-            direction: row;
-            font-size: 2rem;
-            color: gray;
-            cursor: pointer;
-        }
-
-        .rating .star {
-            transition: color 0.2s;
-        }
-
-        .rating .star:hover,
-        .rating .star:hover~.star {
-            color: gold;
-        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,7 +68,6 @@
     <?php
     session_start();
     $sessionActive = isset($_SESSION['username']);
-    $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     ?>
     <script>
         var sessionActive = <?php echo json_encode($sessionActive); ?>;
@@ -163,24 +145,14 @@
                     </div>
                 </div>
                 <input type="file" id="image" accept="image/*" required>
-
                 <button type="submit">Publicar</button>
             </form>
         </div>
         <div id="posts" class="posts-container">
             <!-- Ejemplo de proyecto publicado -->
         </div>
-        <!-- Estrellas para calificación -->
-        <div class="rating">
-            <span data-value="5" class="star">&#9733;</span>
-            <span data-value="4" class="star">&#9733;</span>
-            <span data-value="3" class="star">&#9733;</span>
-            <span data-value="2" class="star">&#9733;</span>
-            <span data-value="1" class="star">&#9733;</span>
-        </div>
-        <p id="rating-message"></p>
-
     </div>
+
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
@@ -253,7 +225,6 @@
                 });
         }
     </script>
-
 
 </body>
 

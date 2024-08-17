@@ -35,6 +35,7 @@
     <link href="/css/ejes.css" rel="stylesheet">
     <link href="/css/misivi.css" rel="stylesheet">
     <link href="/css/agradecimiento.css" rel="stylesheet">
+    <link href="/css/panel.css" rel="stylesheet">
 </head>
 <style>
     .watermark {
@@ -58,6 +59,7 @@
         /* Cambia el color del texto si es necesario */
     }
 </style>
+<div id="notificacion-evento"><span class="cerrar">&times;</span><h3 id="notificacion-titulo">Título del Evento</h3><p id="notificacion-descripcion">Descripción del evento.</p></div>
 
 <body>
     <?php
@@ -681,6 +683,7 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="/js/equipojs.js"></script>
     <script src="/js/proy.rlz.js"></script>
+    <script src="/js/panel.js"></script>
 </body>
 
 </html>

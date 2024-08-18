@@ -408,8 +408,39 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => response.json())
         .then((data) => {
           if (data.existe) {
-            // Código de estudiante válido, procede a calificar
-            guardarCalificacion(idProyecto, calificacion, codigo);
+            // Código de estudiante válido, verificar si ya ha calificado
+            fetch("/PHP/Backend_calificaciones.php", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              body: new URLSearchParams({
+                accion: "verificar_calificacion",
+                codigo_estudiante: codigo,
+                proyecto_id: idProyecto,
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.calificado) {
+                  // El estudiante ya ha calificado
+                  let actualizar = confirm(
+                    "Este estudiante ya ha calificado este proyecto. ¿Desea actualizar su calificación?"
+                  );
+                  if (actualizar) {
+                    guardarCalificacion(idProyecto, calificacion, codigo);
+                  }
+                } else {
+                  // El estudiante no ha calificado aún
+                  guardarCalificacion(idProyecto, calificacion, codigo);
+                }
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+                alert(
+                  "Hubo un problema al verificar la calificación existente."
+                );
+              });
           } else {
             alert(
               "Código de estudiante incorrecto. No se puede proceder con la calificación."
@@ -439,7 +470,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert("Calificación guardada correctamente.");
+          alert(data.mensaje || "Calificación guardada correctamente.");
         } else {
           alert(data.error || "Error al guardar la calificación.");
         }

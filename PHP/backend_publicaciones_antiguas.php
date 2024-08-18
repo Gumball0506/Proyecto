@@ -15,7 +15,6 @@ require_once 'conexion.php'; // Asegúrate de que este archivo incluya la conexi
     Todos los derechos reservados.
     ----------------------------------------------------
 */
-
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -35,6 +34,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 echo json_encode($proyectos);
             } catch (Exception $e) {
                 echo json_encode(array('success' => false, 'error' => $e->getMessage()));
+            }
+            break;
+        default:
+            echo json_encode(array('success' => false, 'error' => 'Acción no válida'));
+            break;
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $accion = $_POST['accion'] ?? '';
+
+    switch ($accion) {
+        case 'eliminar_proyectos':
+            $ids = isset($_POST['ids']) ? explode(',', $_POST['ids']) : [];
+
+            if (!empty($ids)) {
+                try {
+                    // Asegúrate de que los IDs se traten como enteros para evitar inyecciones SQL
+                    $ids = array_map('intval', $ids);
+                    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+                    $stmt = $pdo->prepare("DELETE FROM proyectos_antiguos WHERE ID_Proyecto IN ($placeholders)");
+                    $stmt->execute($ids);
+
+                    echo json_encode(array('success' => true));
+                } catch (Exception $e) {
+                    echo json_encode(array('success' => false, 'error' => $e->getMessage()));
+                }
+            } else {
+                echo json_encode(array('success' => false, 'error' => 'No se proporcionaron IDs.'));
             }
             break;
         default:

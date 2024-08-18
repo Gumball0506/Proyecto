@@ -1,3 +1,7 @@
+<?php
+session_start();
+$sessionActive = isset($_SESSION['username']);
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,11 +12,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/styles.css">
     <link href="img/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="/css/updated_style.css" rel="stylesheet">
     <link href="/css/publicaciones_antiguas.css" rel="stylesheet">
+
 </head>
 <style>
     .watermark {
@@ -35,13 +41,94 @@
         color: #fff;
         /* Cambia el color del texto si es necesario */
     }
+
+    .proyecto-card {
+        display: flex;
+        flex-direction: column;
+        /* Cambia la dirección del flujo a columna */
+        align-items: center;
+        /* Centra horizontalmente el contenido */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        position: relative;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        /* Establece un ancho máximo para que se ajuste a la imagen */
+    }
+
+    .proyecto-card img {
+        width: 400px;
+        /* Establece el ancho de la imagen */
+        height: 300px;
+        /* Establece la altura de la imagen para hacerla cuadrada */
+        object-fit: cover;
+        /* Ajusta la imagen para cubrir el área sin distorsionarse */
+        border-radius: 5px;
+        margin-bottom: 15px;
+        /* Espacio debajo de la imagen */
+        position: relative;
+        /* Asegura que la posición relativa permita el uso de z-index */
+    }
+
+    .proyecto-card h3 {
+        margin: 0;
+        font-size: 22px;
+        line-height: 1.4;
+        color: #333;
+        text-align: center;
+        /* Centra el texto del título */
+    }
+
+    .proyecto-card input[type="checkbox"] {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+        z-index: 10;
+        /* Asegura que el checkbox esté al frente */
+    }
+
+    #eliminarBtn {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        background-color: #d9534f;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        /* Hace el botón redondo */
+        cursor: pointer;
+        font-size: 24px;
+        /* Tamaño del ícono */
+        width: 50px;
+        /* Ancho del botón */
+        height: 50px;
+        /* Alto del botón */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        /* Quita el padding predeterminado */
+    }
+
+    #eliminarBtn:hover {
+        background-color: #c9302c;
+    }
+
+    #eliminarBtn i {
+        margin: 0;
+    }
+
+    #eliminarBtn svg {
+        width: 24px;
+        height: 24px;
+    }
 </style>
 
 <body>
-    <?php
-    session_start();
-    $sessionActive = isset($_SESSION['username']);
-    ?>
     <script>
         var sessionActive = <?php echo json_encode($sessionActive); ?>;
     </script>
@@ -102,7 +189,13 @@
     <div id="posts" class="container-fluid">
         <!-- Aquí se mostrarán los proyectos antiguos -->
     </div>
+    <button id="eliminarBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm1-14h10v2H7V5zm6 9c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zM11 9c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm5 2c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1z" />
+        </svg>
+    </button>
 
+    <div id="posts"></div>
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">

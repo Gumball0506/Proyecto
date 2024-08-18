@@ -21,9 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
       let proyectoDiv = document.createElement("div");
       proyectoDiv.classList.add("proyecto-card");
 
-      let checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.value = proyecto.ID_Proyecto;
+      if (sessionActive) {
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = proyecto.ID_Proyecto;
+        proyectoDiv.appendChild(checkbox); // Añadir el checkbox al contenedor del proyecto
+      }
 
       let imagenElement = document.createElement("img");
       imagenElement.src = "data:image/jpeg;base64," + proyecto.Foto;
@@ -37,10 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
           "_blank"
         );
       });
+
       let tituloElement = document.createElement("h3");
       tituloElement.textContent = proyecto.Titulo;
 
-      proyectoDiv.appendChild(checkbox);
       proyectoDiv.appendChild(imagenElement);
       proyectoDiv.appendChild(tituloElement);
 

@@ -1,6 +1,7 @@
 <?php
 session_start();
 $sessionActive = isset($_SESSION['username']);
+$isLoggedIn = isset($_SESSION['estudiante_id']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -210,7 +211,6 @@ $sessionActive = isset($_SESSION['username']);
     <title>Sistema de Publicaciones</title>
     <link rel="stylesheet" href="/css/publicaciones.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/css/comentarios.css">
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -272,19 +272,41 @@ $sessionActive = isset($_SESSION['username']);
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a href="/html/publicaciones_public.php" class="dropdown-item">Proyectos actuales</a>
                                 <a href="/html/publicacionesAntiguas_public.php" class="dropdown-item">Proyectos realizados</a>
-                                <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
+                                <?php if ($isLoggedIn): ?>
+                                    <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
                         <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat" id="stat">Estadisticas</a>
-                        <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sesiones</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <?php if (!$isLoggedIn && !$sessionActive): ?>
+                                    <a href="/html/inicio_de_sesion.php" class="dropdown-item">Administrador</a>
+                                    <a href="/html/registro.html" class="dropdown-item">Registro</a>
+                                    <a href="/html/login.html" class="dropdown-item">Ingreso</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?php if ($isLoggedIn || $sessionActive): ?>
+                            <a href="#" class="nav-item nav-link" onclick="confirmLogout(event)">Salir</a>
+                        <?php endif; ?>
+                        <script>
+                            function confirmLogout(event) {
+                                event.preventDefault(); // Evita que el enlace se ejecute inmediatamente
+                                const userConfirmed = confirm('¿Seguro de cerrar sesión?');
 
+                                if (userConfirmed) {
+                                    window.location.href = '/PHP/cierre_sesion.php'; // Redirige a la página de cierre de sesión si se acepta
+                                }
+                            }
+                        </script>
                     </div>
                 </div>
             </nav>
         </div>
     </div>
-    <!-- Navbar End -->
 
     <div class="fondo">
         <div id="admin">

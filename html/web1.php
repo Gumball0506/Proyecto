@@ -18,11 +18,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['estudiante_id'])) {
-    // Usuario no autenticado, redirigir al inicio de sesión
-    header("Location: login.html");
-    exit();
-}
+$isLoggedIn = isset($_SESSION['estudiante_id']);
 $sessionActive = isset($_SESSION['username']);
 ?>
 <!DOCTYPE html>
@@ -283,7 +279,9 @@ $sessionActive = isset($_SESSION['username']);
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a href="/html/publicaciones_public.php" class="dropdown-item">Proyectos actuales</a>
                                 <a href="/html/publicacionesAntiguas_public.php" class="dropdown-item">Proyectos realizados</a>
-                                <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
+                                <?php if ($isLoggedIn): ?>
+                                    <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
@@ -291,12 +289,26 @@ $sessionActive = isset($_SESSION['username']);
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sesiones</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="/html/inicio_de_sesion.php" class="dropdown-item">Administrador</a>
-                                <a href="/html/registro.html" class="dropdown-item">Registro</a>
-                                <a href="/html/login.html" class="dropdown-item">Ingreso</a>
+                                <?php if (!$isLoggedIn && !$sessionActive): ?>
+                                    <a href="/html/inicio_de_sesion.php" class="dropdown-item">Administrador</a>
+                                    <a href="/html/registro.html" class="dropdown-item">Registro</a>
+                                    <a href="/html/login.html" class="dropdown-item">Ingreso</a>
+                                <?php endif; ?>
                             </div>
                         </div>
-                        <a href="/html/cerrar_sesion.php" class="nav-item nav-link">Salir</a>
+                        <?php if ($isLoggedIn || $sessionActive): ?>
+                            <a href="#" class="nav-item nav-link" onclick="confirmLogout(event)">Salir</a>
+                        <?php endif; ?>
+                        <script>
+                            function confirmLogout(event) {
+                                event.preventDefault(); // Evita que el enlace se ejecute inmediatamente
+                                const userConfirmed = confirm('¿Seguro de cerrar sesión?');
+
+                                if (userConfirmed) {
+                                    window.location.href = '/PHP/cierre_sesion.php'; // Redirige a la página de cierre de sesión si se acepta
+                                }
+                            }
+                        </script>
                     </div>
                 </div>
             </nav>
@@ -810,7 +822,7 @@ $sessionActive = isset($_SESSION['username']);
         </div>
     </div>
     </div>
-    <button class="contact-button" onclick="toggleChat()">
+    <button class="contact-button" onclick="handleChatButton()">
         <img src="https://img.icons8.com/ios/30/ffffff/chat.png" alt="Contacto">
     </button>
 
@@ -839,12 +851,22 @@ $sessionActive = isset($_SESSION['username']);
             </form>
         </div>
     </div>
+
     <script>
         function toggleChat() {
             var chatBox = document.getElementById('chatBox');
             chatBox.classList.toggle('show');
         }
+
+        function handleChatButton() {
+            <?php if ($isLoggedIn): ?>
+                toggleChat();
+            <?php else: ?>
+                alert('Por favor, inicie sesión para utilizar esta funcionalidad.');
+            <?php endif; ?>
+        }
     </script>
+
 
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">

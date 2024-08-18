@@ -1,6 +1,7 @@
 <?php
 session_start();
 $sessionActive = isset($_SESSION['username']);
+$isLoggedIn = isset($_SESSION['estudiante_id']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -172,13 +173,36 @@ $sessionActive = isset($_SESSION['username']);
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a href="/html/publicaciones_public.php" class="dropdown-item">Proyectos actuales</a>
                                 <a href="/html/publicacionesAntiguas_public.php" class="dropdown-item">Proyectos realizados</a>
-                                <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
+                                <?php if ($isLoggedIn): ?>
+                                    <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
                         <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat" id="stat">Estadisticas</a>
-                        <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sesiones</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <?php if (!$isLoggedIn && !$sessionActive): ?>
+                                    <a href="/html/inicio_de_sesion.php" class="dropdown-item">Administrador</a>
+                                    <a href="/html/registro.html" class="dropdown-item">Registro</a>
+                                    <a href="/html/login.html" class="dropdown-item">Ingreso</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?php if ($isLoggedIn || $sessionActive): ?>
+                            <a href="#" class="nav-item nav-link" onclick="confirmLogout(event)">Salir</a>
+                        <?php endif; ?>
+                        <script>
+                            function confirmLogout(event) {
+                                event.preventDefault(); // Evita que el enlace se ejecute inmediatamente
+                                const userConfirmed = confirm('¿Seguro de cerrar sesión?');
 
+                                if (userConfirmed) {
+                                    window.location.href = '/PHP/cierre_sesion.php'; // Redirige a la página de cierre de sesión si se acepta
+                                }
+                            }
+                        </script>
                     </div>
                 </div>
             </nav>
@@ -189,12 +213,13 @@ $sessionActive = isset($_SESSION['username']);
     <div id="posts" class="container-fluid">
         <!-- Aquí se mostrarán los proyectos antiguos -->
     </div>
-    <button id="eliminarBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm1-14h10v2H7V5zm6 9c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zM11 9c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm5 2c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1z" />
-        </svg>
-    </button>
-
+    <?php if ($sessionActive): ?>
+        <button id="eliminarBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm1-14h10v2H7V5zm6 9c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zM11 9c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm5 2c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1z" />
+            </svg>
+        </button>
+    <?php endif; ?>
     <div id="posts"></div>
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">

@@ -13,13 +13,13 @@ try {
 
     // Obtener datos de la solicitud
     $data = json_decode(file_get_contents('php://input'), true);
-    $id = isset($data['id']) ? (int)$data['id'] : 0;
+    $mensajeId = isset($data['id']) ? (int)$data['id'] : 0;
 
-    if ($id > 0) {
+    if ($mensajeId > 0) {
         // Preparar la consulta SQL
         $sql = "DELETE FROM mensajes WHERE ID_Mensaje = :id";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $mensajeId, PDO::PARAM_INT);
 
         // Ejecutar la consulta
         if ($stmt->execute()) {

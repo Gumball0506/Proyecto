@@ -494,17 +494,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="estado-buttons">
                         <button class="${
                           selectedState === "Leído" ? "active" : ""
-                        }" onclick="cambiarEstado(${
+                        }" onclick="actualizarEstadoMensaje(${
         mensaje.ID_Mensaje
       }, 'Leído')">Leído</button>
                         <button class="${
                           selectedState === "Respondido" ? "active" : ""
-                        }" onclick="cambiarEstado(${
+                        }" onclick="actualizarEstadoMensaje(${
         mensaje.ID_Mensaje
       }, 'Respondido')">Respondido</button>
                         <button class="${
                           selectedState === "Por Leer" ? "active" : ""
-                        }" onclick="cambiarEstado(${
+                        }" onclick="actualizarEstadoMensaje(${
         mensaje.ID_Mensaje
       }, 'Por Leer')">No Leído</button>
                     </div>
@@ -521,19 +521,22 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("content").innerHTML = mensajesHTML;
   }
 
-  window.cambiarEstado = function (id, nuevoEstado) {
+  window.actualizarEstadoMensaje = function (mensajeId, nuevoEstadoMensaje) {
     fetch(`/PHP/cambiar_estado_mensaje.php`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: id, estado: nuevoEstado }),
+      body: JSON.stringify({ id: mensajeId, estado: nuevoEstadoMensaje }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
           // Guardar el nuevo estado en localStorage
-          localStorage.setItem(`selectedState-${id}`, nuevoEstado);
+          localStorage.setItem(
+            `selectedState-${mensajeId}`,
+            nuevoEstadoMensaje
+          );
           fetchMensajes(); // Recargar los mensajes después de cambiar el estado
         } else {
           displayError(data.message);
@@ -545,14 +548,14 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   };
 
-  window.eliminarMensaje = function (id) {
+  window.eliminarMensaje = function (mensajeId) {
     if (confirm("¿Estás seguro de que deseas eliminar este mensaje?")) {
       fetch(`/PHP/eliminar_mensaje.php`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id: id }),
+        body: JSON.stringify({ id: mensajeId }),
       })
         .then((response) => response.json())
         .then((data) => {

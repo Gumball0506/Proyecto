@@ -35,6 +35,7 @@
     <?php
     session_start();
     $sessionActive = isset($_SESSION['username']);
+    $isLoggedIn = isset($_SESSION['estudiante_id']);
     ?>
     <script>
         var sessionActive = <?php echo json_encode($sessionActive); ?>;
@@ -53,19 +54,43 @@
                     <div class="navbar-nav ml-auto py-0">
                         <a href="/html/web1.php" class="nav-item nav-link active">Inicio</a>
                         <a href="/html/equipo.php" class="nav-item nav-link">Equipo</a>
-                        <a href="/html/nosotros.php" class="nav-item nav-link">Nosotros</a>
+                        <a href="/html/Nosotros.php" class="nav-item nav-link">Nosotros</a>
                         <a href="/html/calendario.php" class="nav-item nav-link">Calendario</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a href="/html/publicaciones_public.php" class="dropdown-item">Proyectos actuales</a>
                                 <a href="/html/publicacionesAntiguas_public.php" class="dropdown-item">Proyectos realizados</a>
-                                <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
+                                <?php if ($isLoggedIn): ?>
+                                    <a href="/html/propuesta_proyectos_rsu.php" class="dropdown-item">Proyectos de estudiantes</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
-                        <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat">Estadisticas</a>
-                        <a href="/html/inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
+                        <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat" id="stat">Estadisticas</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sesiones</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <?php if (!$isLoggedIn && !$sessionActive): ?>
+                                    <a href="/html/inicio_de_sesion.php" class="dropdown-item">Administrador</a>
+                                    <a href="/html/registro.html" class="dropdown-item">Registro</a>
+                                    <a href="/html/login.html" class="dropdown-item">Ingreso</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?php if ($isLoggedIn || $sessionActive): ?>
+                            <a href="#" class="nav-item nav-link" onclick="confirmLogout(event)">Salir</a>
+                        <?php endif; ?>
+                        <script>
+                            function confirmLogout(event) {
+                                event.preventDefault(); // Evita que el enlace se ejecute inmediatamente
+                                const userConfirmed = confirm('¿Seguro de cerrar sesión?');
+
+                                if (userConfirmed) {
+                                    window.location.href = '/PHP/cierre_sesion.php'; // Redirige a la página de cierre de sesión si se acepta
+                                }
+                            }
+                        </script>
                     </div>
                 </div>
             </nav>

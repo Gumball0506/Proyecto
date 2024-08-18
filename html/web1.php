@@ -59,7 +59,10 @@
         /* Cambia el color del texto si es necesario */
     }
 </style>
-<div id="notificacion-evento"><span class="cerrar">&times;</span><h3 id="notificacion-titulo">Título del Evento</h3><p id="notificacion-descripcion">Descripción del evento.</p></div>
+<div id="notificacion-evento"><span class="cerrar">&times;</span>
+    <h3 id="notificacion-titulo">Título del Evento</h3>
+    <p id="notificacion-descripcion">Descripción del evento.</p>
+</div>
 
 <body>
     <?php
@@ -115,8 +118,15 @@
                         </div>
                         <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
                         <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat" id="stat">Estadisticas</a>
-                        <a href="inicio_de_sesion.php" class="nav-item nav-link">Administrador</a>
-
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sesiones</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a href="/html/inicio_de_sesion.php" class="dropdown-item">Administrador</a>
+                                <a href="/html/registro.html" class="dropdown-item">Registro</a>
+                                <a href="/html/login.html" class="dropdown-item">Ingreso</a>
+                            </div>
+                        </div>
+                        <a href="/html/cerrar_sesion.php" class="nav-item nav-link">Salir</a>
                     </div>
                 </div>
             </nav>

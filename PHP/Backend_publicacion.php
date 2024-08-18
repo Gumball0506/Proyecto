@@ -78,6 +78,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             echo json_encode($response);
             break;
+        case 'editar_proyecto':
+            try {
+                $ID_Proyecto = $_POST['ID_Proyecto'];
+                $titulo = $_POST['Titulo'];
+                $descripcion = $_POST['Descripcion'];
+                $url_registro = $_POST['url_registro'];
+                $Fecha_inicio = $_POST['Fecha_inicio'];
+
+                $sql = "UPDATE proyectos SET Titulo = ?, Descripcion = ?, url_registro = ?, Fecha_inicio = ? WHERE ID_Proyecto = ?";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$titulo, $descripcion, $url_registro, $Fecha_inicio, $ID_Proyecto]);
+
+                $response = array('success' => true);
+            } catch (Exception $e) {
+                $response = array('success' => false, 'error' => $e->getMessage());
+            }
+            echo json_encode($response);
+            break;
+
         case 'eliminar_proyecto':
             try {
                 $ID_Proyecto = $_POST['ID_Proyecto'];

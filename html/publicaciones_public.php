@@ -1,3 +1,7 @@
+<?php
+session_start();
+$sessionActive = isset($_SESSION['username']);
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -74,6 +78,132 @@
             color: #ffc107;
             /* Cambia el color al pasar el mouse por encima */
         }
+
+        /* Estilos para el contenedor del título y el botón */
+        .titulo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .editar-proyecto-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .editar-proyecto-btn i {
+            margin-right: 5px;
+        }
+
+        .editar-proyecto-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* Estilos para el contenedor del formulario de edición */
+        #editFormContainer {
+            display: none;
+            /* Oculto por defecto */
+            position: fixed;
+            /* Posiciona el cuadro en relación a la ventana del navegador */
+            top: 50%;
+            /* Centra verticalmente */
+            left: 50%;
+            /* Centra horizontalmente */
+            transform: translate(-50%, -50%);
+            /* Ajusta la posición para centrar */
+            background-color: #fff;
+            /* Fondo blanco */
+            padding: 20px;
+            /* Espaciado interno */
+            border: 1px solid #ddd;
+            /* Borde gris claro */
+            border-radius: 8px;
+            /* Bordes redondeados */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            /* Sombra para destacar */
+            z-index: 1000;
+            /* Asegura que esté por encima de otros elementos */
+            max-width: 600px;
+            /* Ancho máximo del formulario */
+            width: 100%;
+            /* Ancho completo en pantallas pequeñas */
+            box-sizing: border-box;
+            /* Incluye el padding en el ancho total */
+        }
+
+        /* Estilos para el formulario dentro del contenedor */
+        #editFormContainer form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #editFormContainer label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        #editFormContainer input,
+        #editFormContainer textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #editFormContainer button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #editFormContainer button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* Estilos para el botón de cancelar */
+        .cancelar-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .cancelar-btn:hover {
+            background-color: #e53935;
+            transform: scale(1.05);
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            /* Asegura que esté encima de otros elementos */
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,10 +226,6 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    $sessionActive = isset($_SESSION['username']);
-    ?>
     <script>
         var sessionActive = <?php echo json_encode($sessionActive); ?>;
     </script>
@@ -182,8 +308,24 @@
         <div id="posts" class="posts-container">
             <!-- Ejemplo de proyecto publicado -->
         </div>
-    </div>
+        <div id="overlay"></div>
+        <div id="editFormContainer">
+            <form id="editForm">
+                <input type="hidden" id="editProjectId">
+                <label for="editTitle">Título:</label>
+                <input type="text" id="editTitle" required>
+                <label for="editDescription">Descripción:</label>
+                <textarea id="editDescription" required></textarea>
+                <label for="editRegistrationLink">Enlace de Registro:</label>
+                <input type="url" id="editRegistrationLink" required>
+                <label for="editEventDate">Fecha de Evento:</label>
+                <input type="date" id="editEventDate" required>
+                <button type="submit">Guardar</button>
+                <button type="button" id="cancelEdit">Cancelar</button>
+            </form>
+        </div>
 
+    </div>
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">

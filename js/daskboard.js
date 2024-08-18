@@ -357,11 +357,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   window.verDocumento = function (id) {
-    window.open(`/PRUEBA%201/ver_documento.php?id=${id}`, "_blank");
+    window.open(`/PHP/ver_documento.php?id=${id}`, "_blank");
   };
 
   window.descargarDocumento = function (id) {
-    window.location.href = `/PRUEBA%201/descargar_documento.php?id=${id}`;
+    window.location.href = `/PHP/descargar_documento.php?id=${id}`;
   };
 
   function displayError(message) {

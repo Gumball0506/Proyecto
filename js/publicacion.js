@@ -260,6 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("/PHP/Backend_publicacion.php?accion=obtener_proyectos")
       .then((response) => response.json())
       .then((proyectos) => {
+        console.log("Proyectos cargados:", proyectos); // Log para depuración
         mostrarProyectos(proyectos); // Mostrar proyectos en la interfaz
       })
       .catch((error) => {
@@ -317,7 +318,6 @@ document.addEventListener("DOMContentLoaded", function () {
       eliminarBoton.addEventListener("click", function () {
         eliminarProyecto(proyecto.ID_Proyecto);
       });
-
       let projectStatusContainer = document.createElement("div");
       projectStatusContainer.classList.add("project-status-container");
       projectStatusContainer.id = "status";
@@ -377,7 +377,13 @@ document.addEventListener("DOMContentLoaded", function () {
         starRatingDiv.appendChild(starInput);
         starRatingDiv.appendChild(starLabel);
       }
-
+      let editarBoton = document.createElement("button");
+      editarBoton.textContent = "Editar";
+      editarBoton.classList.add("editar-proyecto-btn");
+      editarBoton.addEventListener("click", function () {
+        mostrarFormularioEdicion(proyecto);
+      });
+      proyectoDiv.appendChild(editarBoton);
       proyectoDiv.appendChild(tituloElement);
       proyectoDiv.appendChild(descripcionElement);
       proyectoDiv.appendChild(imagenElement);
@@ -389,6 +395,66 @@ document.addEventListener("DOMContentLoaded", function () {
       proyectosContainer.appendChild(proyectoDiv);
     });
   }
+  function mostrarFormularioEdicion(proyecto) {
+    document.getElementById("editProjectId").value = proyecto.ID_Proyecto;
+    document.getElementById("editTitle").value = proyecto.Titulo;
+    document.getElementById("editDescription").value = proyecto.Descripcion;
+    document.getElementById("editRegistrationLink").value =
+      proyecto.url_registro;
+    document.getElementById("editEventDate").value = proyecto.Fecha_inicio;
+
+    document.getElementById("editFormContainer").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+  }
+
+  // Captura el evento submit del formulario de edición
+  document
+    .getElementById("editForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      let projectId = document.getElementById("editProjectId").value;
+      let title = document.getElementById("editTitle").value;
+      let description = document.getElementById("editDescription").value;
+      let url = document.getElementById("editRegistrationLink").value;
+      let eventDate = document.getElementById("editEventDate").value;
+
+      let formData = new FormData();
+      formData.append("accion", "editar_proyecto");
+      formData.append("ID_Proyecto", projectId);
+      formData.append("Titulo", title);
+      formData.append("Descripcion", description);
+      formData.append("url_registro", url);
+      formData.append("Fecha_inicio", eventDate);
+
+      fetch("/PHP/Backend_publicacion.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            cargarProyectos(); // Recargar proyectos
+            cancelarEdicion();
+          } else {
+            alert("Error al editar el proyecto: " + data.error);
+          }
+        })
+        .catch((error) => {
+          console.error("Error al editar el proyecto:", error);
+        });
+    });
+
+  function cancelarEdicion() {
+    document.getElementById("editFormContainer").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+  }
+
+  // Agregar evento al botón de cancelar
+  document
+    .getElementById("cancelEdit")
+    .addEventListener("click", cancelarEdicion);
+
   function verificarCodigoEstudiante(idProyecto, calificacion) {
     let codigo = prompt(
       "Ingrese su código de estudiante para verificar su identidad:"

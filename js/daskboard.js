@@ -439,4 +439,139 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarMensaje("Error al cambiar estado.", "error");
       });
   };
+  document.getElementById("mensajes").addEventListener("click", function () {
+    fetchMensajes();
+  });
+
+  function fetchMensajes() {
+    fetch("/PHP/obtener_mensajes.php")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          renderMensajes(data.mensajes);
+        } else {
+          displayError(data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        displayError("Error al cargar los mensajes.");
+      });
+  }
+
+  function renderMensajes(mensajes) {
+    // Ordenar los mensajes: 'Pendiente' primero, 'Por Leer' después, 'Leído' después, 'Respondido' al final
+    mensajes.sort((a, b) => {
+      const order = ["Pendiente", "Por Leer", "Leído", "Respondido"];
+      return order.indexOf(a.Estado) - order.indexOf(b.Estado);
+    });
+
+    let mensajesHTML = `
+        <h2>Mensajes Recibidos</h2>
+        <table>
+            <tr>
+                <th>Nombre y Apellidos</th>
+                <th>Email</th>
+                <th>Fecha de Envío</th>
+                <th>Mensaje</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>`;
+
+    mensajes.forEach((mensaje) => {
+      // Determinar cuál botón debe estar marcado como seleccionado
+      const selectedState =
+        localStorage.getItem(`selectedState-${mensaje.ID_Mensaje}`) ||
+        mensaje.Estado;
+
+      mensajesHTML += `
+            <tr id="mensaje-${mensaje.ID_Mensaje}">
+                <td>${mensaje.Nombre} ${mensaje.Apellido}</td>
+                <td>${mensaje.Email}</td>
+                <td>${mensaje.Fecha_Envio}</td>
+                <td>${mensaje.Mensaje}</td>
+                <td>
+                    <div class="estado-buttons">
+                        <button class="${
+                          selectedState === "Leído" ? "active" : ""
+                        }" onclick="cambiarEstado(${
+        mensaje.ID_Mensaje
+      }, 'Leído')">Leído</button>
+                        <button class="${
+                          selectedState === "Respondido" ? "active" : ""
+                        }" onclick="cambiarEstado(${
+        mensaje.ID_Mensaje
+      }, 'Respondido')">Respondido</button>
+                        <button class="${
+                          selectedState === "Por Leer" ? "active" : ""
+                        }" onclick="cambiarEstado(${
+        mensaje.ID_Mensaje
+      }, 'Por Leer')">No Leído</button>
+                    </div>
+                </td>
+                <td>
+                    <button onclick="eliminarMensaje(${
+                      mensaje.ID_Mensaje
+                    })">Eliminar</button>
+                </td>
+            </tr>`;
+    });
+
+    mensajesHTML += "</table>";
+    document.getElementById("content").innerHTML = mensajesHTML;
+  }
+
+  window.cambiarEstado = function (id, nuevoEstado) {
+    fetch(`/PHP/cambiar_estado_mensaje.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id, estado: nuevoEstado }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // Guardar el nuevo estado en localStorage
+          localStorage.setItem(`selectedState-${id}`, nuevoEstado);
+          fetchMensajes(); // Recargar los mensajes después de cambiar el estado
+        } else {
+          displayError(data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        displayError("Error al cambiar el estado del mensaje.");
+      });
+  };
+
+  window.eliminarMensaje = function (id) {
+    if (confirm("¿Estás seguro de que deseas eliminar este mensaje?")) {
+      fetch(`/PHP/eliminar_mensaje.php`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            fetchMensajes(); // Recargar los mensajes después de eliminar
+          } else {
+            displayError(data.message);
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          displayError("Error al eliminar el mensaje.");
+        });
+    }
+  };
+
+  function displayError(message) {
+    document.getElementById(
+      "content"
+    ).innerHTML = `<h2>Error</h2><p>${message}</p>`;
+  }
 });

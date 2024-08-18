@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($stmt->rowCount() > 0) {
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['user_id'] = $row['ID_Estudiante'];
+                $_SESSION['estudiante_id'] = $row['ID_Estudiante'];
                 $_SESSION['email'] = $row['Email'];
                 $_SESSION['codigo_estudiante'] = $row['Codigo_Estudiante'];
                 header("Location: /html/web1.php");

@@ -15,6 +15,16 @@
     ----------------------------------------------------
 */
 ?>
+<?php
+session_start();
+
+if (!isset($_SESSION['estudiante_id'])) {
+    // Usuario no autenticado, redirigir al inicio de sesión
+    header("Location: login.html");
+    exit();
+}
+$sessionActive = isset($_SESSION['username']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,6 +68,169 @@
         color: #fff;
         /* Cambia el color del texto si es necesario */
     }
+
+    .contact-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .contact-button img {
+        width: 30px;
+        height: 30px;
+        color: white;
+    }
+
+    .contact-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Estilos del chat flotante */
+    .chat-box {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 350px;
+        max-height: 500px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: none;
+        flex-direction: column;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(100%);
+        margin-left: 100%;
+    }
+
+    .chat-box.show {
+        display: flex;
+        opacity: 1;
+        transform: scale(1);
+        width: 30%;
+        /* Ancho expandido */
+        max-height: 80%;
+        /* Altura expandida para adaptarse al viewport */
+        bottom: 10px;
+        /* Ajustar la distancia desde el borde inferior cuando está expandido */
+        right: 10px;
+        /* Ajustar la distancia desde el borde derecho cuando está expandido */
+        margin-left: 50%;
+        /* Ajustar la posición horizontal */
+        margin-bottom: 6%;
+        /* Eliminar margen inferior para expansión completa */
+        margin-right: 60px;
+    }
+
+    .chat-box header {
+        background: #007BFF;
+        color: #fff;
+        padding: 15px;
+        border-radius: 10px 10px 0 0;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-box .close {
+        cursor: pointer;
+        font-size: 20px;
+        transition: color 0.3s;
+    }
+
+    .chat-box .close:hover {
+        color: #0056b3;
+    }
+
+    .chat-box .content1 {
+        padding: 20px;
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .chat-box .content1 label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .chat-box .content1 input[type="text"],
+    .chat-box .content1 textarea {
+        width: calc(100% - 20px);
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+    }
+
+    .chat-box .content1 textarea {
+        resize: vertical;
+    }
+
+    .warning-message {
+        background-color: #ffdddd;
+        border: 1px solid #dd0000;
+        color: #dd0000;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .chat-box .buttons {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        background: #f9f9f9;
+        border-top: 1px solid #ddd;
+    }
+
+    .chat-box .buttons button {
+        width: 48%;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #fff;
+        transition: background 0.3s;
+    }
+
+    .chat-box .buttons .send {
+        background: #007BFF;
+    }
+
+    .chat-box .buttons .send:hover {
+        background: #0056b3;
+    }
+
+    .chat-box .buttons .cancel {
+        background: #ddd;
+        color: #333;
+    }
+
+    .chat-box .buttons .cancel:hover {
+        background: #ccc;
+    }
+
+    label {
+        color: #333;
+    }
 </style>
 <div id="notificacion-evento"><span class="cerrar">&times;</span>
     <h3 id="notificacion-titulo">Título del Evento</h3>
@@ -65,10 +238,7 @@
 </div>
 
 <body>
-    <?php
-    session_start();
-    $sessionActive = isset($_SESSION['username']);
-    ?>
+
     <script>
         var sessionActive = <?php echo json_encode($sessionActive); ?>;
     </script>
@@ -640,6 +810,42 @@
         </div>
     </div>
     </div>
+    <button class="contact-button" onclick="toggleChat()">
+        <img src="https://img.icons8.com/ios/30/ffffff/chat.png" alt="Contacto">
+    </button>
+
+    <div id="chatBox" class="chat-box">
+        <header>
+            <span>Enviar Mensaje</span>
+            <span class="close" onclick="toggleChat()">✖</span>
+        </header>
+        <div class="content1">
+            <form id="messageForm" action="/PHP/mensaje.php" method="post">
+                <label for="asunto">Asunto:</label>
+                <input type="text" name="asunto" id="asunto" required>
+
+                <!-- Mensaje de advertencia -->
+                <p class="warning-message">
+                    Por favor, abstenerse de enviar mensajes extensos. Solo se aceptan preguntas o dudas breves. Si necesitas comunicarte de manera más discreta, utiliza el botón de contactos.
+                </p>
+
+                <label for="mensaje">Mensaje:</label>
+                <textarea name="mensaje" id="mensaje" rows="5" required></textarea>
+                <!-- Botones para enviar y cancelar -->
+                <div class="buttons">
+                    <button type="button" class="cancel" onclick="toggleChat()">Cancelar</button>
+                    <button type="submit" class="send">Enviar Mensaje</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function toggleChat() {
+            var chatBox = document.getElementById('chatBox');
+            chatBox.classList.toggle('show');
+        }
+    </script>
+
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">

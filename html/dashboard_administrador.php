@@ -17,6 +17,65 @@
 ?>
 <!DOCTYPE html>
 <html lang="es">
+<style>
+    .estado-buttons {
+        display: flex;
+        gap: 5px;
+    }
+
+    .estado-buttons button {
+        padding: 3px 4px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        color: white;
+        background-color: gray;
+        /* Color predeterminado para los botones inactivos */
+    }
+
+    .estado-buttons button.active {
+        background-color: blue;
+        /* Color para el botón activo */
+        font-weight: bold;
+    }
+
+    .estado-buttons button:nth-child(1):not(.active) {
+        background-color: orange;
+    }
+
+    /* Botón "No Leído" */
+    .estado-buttons button:nth-child(2):not(.active) {
+        background-color: lightgreen;
+    }
+
+    /* Botón "Leído" */
+    .estado-buttons button:nth-child(3):not(.active) {
+        background-color: lightcoral;
+    }
+
+    .estado-buttons {
+        display: flex;
+        gap: 5px;
+    }
+
+    .estado-buttons button {
+        padding: 2px 3px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        color: white;
+        background-color: gray;
+        /* Color predeterminado para los botones inactivos */
+    }
+
+    .estado-buttons button.active {
+        background-color: red;
+        /* Color para el botón activo */
+        font-weight: bold;
+    }
+
+    /* Botón "Respondido" */
+</style>
 
 <head>
     <meta charset="UTF-8">
@@ -96,6 +155,9 @@
                     <li><i class="fas fa-calendar-week"></i>
                         <a href="#" id="solicitudes">Solicitudes de Proyectos</a>
 
+                    </li>
+                    <li><i class="fas fa-calendar-week"></i>
+                        <a href="#" id="mensajes">Gestion de mensajes</a>
                     </li>
                 </ul>
             </nav>

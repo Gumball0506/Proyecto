@@ -185,6 +185,21 @@ document.addEventListener("DOMContentLoaded", function () {
         observerV.disconnect();
       });
     });
+    const observerD = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        // Obtener todos los elementos con la clase 'vistas-container'
+        const vistasElements =
+          document.getElementsByClassName("editar-proyecto-btn");
+
+        // Iterar sobre cada elemento encontrado
+        for (let i = 0; i < vistasElements.length; i++) {
+          vistasElements[i].style.display = "block";
+        }
+
+        // Deja de observar después de encontrar y mostrar el elemento
+        observerD.disconnect();
+      });
+    });
     // Configura el MutationObserver para el div con la clase 'vistas-container'
     const observerS = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
@@ -207,6 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
     observerV.observe(document.body, { childList: true, subtree: true });
     observerE.observe(document.body, { childList: true, subtree: true });
     observerS.observe(document.body, { childList: true, subtree: true });
+    observerD.observe(document.body, { childList: true, subtree: true });
   }
 });
 

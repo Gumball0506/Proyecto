@@ -27,6 +27,9 @@ $isLoggedIn = isset($_SESSION['estudiante_id']);
         .project-status-container {
             display: none;
         }
+        .editar-proyecto-btn{
+            display: none;
+        }
 
         .watermark {
             position: relative;

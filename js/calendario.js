@@ -188,10 +188,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const registerLinks = dayEvents
       .map((event) => {
         if (event.url_registro) {
-          return `<p>Si desea registrarse en este proyecto:</p>
-                <a href="${event.url_registro}" target="_blank">
-                  <button>Haga clic aquí</button>
-                </a>`;
+          return `<p>Si deseas saber más de nuestros proyectos! 🌟📚🌍</p>
+<a href="/html/publicaciones_public.php">
+    <button>Haga clic aquí</button>
+</a>`;
         }
         return "";
       })

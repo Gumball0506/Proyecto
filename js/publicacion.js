@@ -188,8 +188,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const observerD = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
         // Obtener todos los elementos con la clase 'vistas-container'
-        const vistasElements =
-          document.getElementsByClassName("editar-proyecto-btn");
+        const vistasElements = document.getElementsByClassName(
+          "editar-proyecto-btn"
+        );
 
         // Iterar sobre cada elemento encontrado
         for (let i = 0; i < vistasElements.length; i++) {
@@ -321,11 +322,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let enlaceRegistroBoton = document.createElement("a");
       enlaceRegistroBoton.textContent = "Registro";
-      enlaceRegistroBoton.href = proyecto.url_registro;
+      enlaceRegistroBoton.href = `/html/registro_alumnos.php?ID_Proyecto=${proyecto.ID_Proyecto}`;
       enlaceRegistroBoton.classList.add("enlace-registro-btn");
-      enlaceRegistroBoton.addEventListener("click", function () {
-        incrementarVistas(proyecto.ID_Proyecto);
-      });
 
       let eliminarBoton = document.createElement("button");
       eliminarBoton.innerHTML = '<i class="fas fa-trash"></i>';
@@ -473,7 +471,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function verificarCodigoEstudiante(idProyecto, calificacion) {
     let codigo = prompt(
-      "Ingrese su código de estudiante para verificar su identidad:"
+      "Si ya se registro, ingrese su código de estudiante o de docente para verificar su identidad:"
     );
 
     if (codigo) {

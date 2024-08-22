@@ -228,9 +228,7 @@ $sessionActive = isset($_SESSION['username']);
         color: #333;
     }
 </style>
-<div id="notificacion-evento"><span class="cerrar">&times;</span>
-    <h3 id="notificacion-titulo">Título del Evento</h3>
-    <p id="notificacion-descripcion">Descripción del evento.</p>
+<div id="notificacion-evento">
 </div>
 
 <body>
@@ -274,6 +272,9 @@ $sessionActive = isset($_SESSION['username']);
                         <a href="/html/equipo.php" class="nav-item nav-link">Equipo</a>
                         <a href="/html/Nosotros.php" class="nav-item nav-link">Nosotros</a>
                         <a href="/html/calendario.php" class="nav-item nav-link">Calendario</a>
+                        <?php if (!$sessionActive): ?>
+                            <a href="/html/Contenido_Registros.php" class="nav-item nav-link">Informes</a>
+                        <?php endif; ?>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">

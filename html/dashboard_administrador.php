@@ -25,17 +25,29 @@ $sessionActive = isset($_SESSION['username']);
 <style>
     .estado-buttons {
         display: flex;
+        flex-wrap: wrap;
+        /* Permite que los botones se envuelvan en una nueva línea si no hay suficiente espacio */
         gap: 5px;
+        justify-content: center;
+        /* Centra los botones horizontalmente */
+        margin: 10px 0;
+        /* Añade un margen superior e inferior */
     }
 
     .estado-buttons button {
-        padding: 3px 4px;
+        padding: 6px 12px;
+        /* Ajusta el padding para mayor claridad en pantallas grandes */
         border: none;
-        border-radius: 3px;
+        border-radius: 5px;
+        /* Bordes más redondeados para un aspecto más moderno */
         cursor: pointer;
         color: white;
         background-color: gray;
         /* Color predeterminado para los botones inactivos */
+        font-size: 0.9em;
+        /* Tamaño de fuente más pequeño para adaptarse a pantallas pequeñas */
+        transition: background-color 0.3s ease, font-weight 0.3s ease;
+        /* Transiciones suaves para cambios de color y peso de fuente */
     }
 
     .estado-buttons button.active {
@@ -46,37 +58,42 @@ $sessionActive = isset($_SESSION['username']);
 
     .estado-buttons button:nth-child(1):not(.active) {
         background-color: orange;
+        /* Color para el primer botón no activo */
     }
 
-    /* Botón "No Leído" */
     .estado-buttons button:nth-child(2):not(.active) {
         background-color: lightgreen;
+        /* Color para el segundo botón no activo */
     }
 
-    /* Botón "Leído" */
     .estado-buttons button:nth-child(3):not(.active) {
         background-color: lightcoral;
+        /* Color para el tercer botón no activo */
     }
 
-    .estado-buttons {
-        display: flex;
-        gap: 5px;
+    @media (max-width: 600px) {
+        .estado-buttons button {
+            padding: 4px 8px;
+            /* Menor padding para pantallas pequeñas */
+            font-size: 0.8em;
+            /* Tamaño de fuente más pequeño para pantallas pequeñas */
+        }
     }
 
-    .estado-buttons button {
-        padding: 2px 3px;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-        color: white;
-        background-color: gray;
-        /* Color predeterminado para los botones inactivos */
-    }
+    @media (max-width: 400px) {
+        .estado-buttons {
+            flex-direction: column;
+            /* Cambia la dirección a columna en pantallas muy pequeñas */
+            align-items: center;
+            /* Centra los botones verticalmente en pantallas muy pequeñas */
+        }
 
-    .estado-buttons button.active {
-        background-color: red;
-        /* Color para el botón activo */
-        font-weight: bold;
+        .estado-buttons button {
+            width: 100%;
+            /* Hacer que los botones ocupen todo el ancho disponible */
+            max-width: 300px;
+            /* Ancho máximo para evitar botones demasiado grandes */
+        }
     }
 
     /* Botón "Respondido" */
@@ -119,6 +136,9 @@ $sessionActive = isset($_SESSION['username']);
                         <a href="/html/equipo.php" class="nav-item nav-link">Equipo</a>
                         <a href="/html/Nosotros.php" class="nav-item nav-link">Nosotros</a>
                         <a href="/html/calendario.php" class="nav-item nav-link">Calendario</a>
+                        <?php if ($sessionActive): ?>
+                            <a href="/html/Contenido_Registros.php" class="nav-item nav-link">Informes</a>
+                        <?php endif; ?>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">

@@ -27,7 +27,8 @@ $isLoggedIn = isset($_SESSION['estudiante_id']);
         .project-status-container {
             display: none;
         }
-        .editar-proyecto-btn{
+
+        .editar-proyecto-btn {
             display: none;
         }
 
@@ -270,6 +271,9 @@ $isLoggedIn = isset($_SESSION['estudiante_id']);
                         <a href="/html/equipo.php" class="nav-item nav-link">Equipo</a>
                         <a href="/html/Nosotros.php" class="nav-item nav-link">Nosotros</a>
                         <a href="/html/calendario.php" class="nav-item nav-link">Calendario</a>
+                        <?php if ($sessionActive): ?>
+                            <a href="/html/Contenido_Registros.php" class="nav-item nav-link">Informes</a>
+                        <?php endif; ?>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">

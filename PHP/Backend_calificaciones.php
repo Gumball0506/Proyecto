@@ -1,9 +1,9 @@
 <?php
 session_start();
 $host = 'localhost';
-$dbname = 'proyecto_integrador';
-$username = 'root';
-$password = '';
+$dbname = 'Responsabilidad_Social';
+$username = 'RSUFIEI';
+$password = 'Bicicleta123*';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
@@ -34,7 +34,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo json_encode(['existe' => false]);
             }
             break;
+        case 'verificar_codigo_admin':
+            $codigo_admin = $_POST['codigo_admin'] ?? '';
+            if (!empty($codigo_admin)) {
+                $stmt = $pdo->prepare('SELECT ID_Admin FROM administradores WHERE Codigo_Admin = ?');
+                $stmt->execute([$codigo_admin]);
+                $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
+                if ($admin) {
+                    echo json_encode(['existe' => true, 'id_admin' => $admin['ID_Admin']]);
+                } else {
+                    echo json_encode(['existe' => false]);
+                }
+            } else {
+                echo json_encode(['existe' => false]);
+            }
+            break;
         case 'calificar_proyecto':
             $codigo_estudiante = $_POST['codigo_estudiante'] ?? '';
             $id_proyecto = $_POST['proyecto_id'] ?? '';

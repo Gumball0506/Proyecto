@@ -11210,41 +11210,62 @@ h6,
   font-weight: bold;
   /* Añadir esta línea para negrita */
 }
-
-#notificacion-evento {
+.notificacion-evento {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffeb3b;
-  color: #000;
+  background-color: #ffffff; /* Color de fondo blanco para claridad */
+  color: #333333; /* Color de texto oscuro para mejor legibilidad */
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px0px10pxrgba(0, 0, 0, 0.1);
+  border-radius: 12px; /* Bordes más redondeados */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra más difusa */
   z-index: 1000;
+  border: 2px solid #ffeb3b; /* Borde amarillo para resaltar la notificación */
+  animation: fadeIn 0.5s ease-in-out; /* Animación de entrada */
   display: none; /* Se oculta por defecto */
+  font-family: Arial, sans-serif; /* Fuente clara y moderna */
 }
 
-#notificacion-eventoh3 {
+.notificacion-evento h3 {
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.6em;
+  color: #333; /* Color del título oscuro */
+  font-weight: 600; /* Negrita para el título */
 }
 
-#notificacion-eventop {
-  margin: 5px0;
-  font-size: 1em;
-  color: #333;
+.notificacion-evento p {
+  margin: 10px 0 0;
+  font-size: 1.1em;
+  color: #555; /* Color del texto más suave */
 }
 
-#notificacion-evento.cerrar {
+.notificacion-evento .cerrar {
   cursor: pointer;
-  color: #f44336;
-  float: right;
-  font-weight: bold;
+  color: #f44336; /* Color rojo para el botón de cerrar */
+  font-size: 1.4em;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: color 0.3s ease; /* Transición suave para el color */
 }
 
-.boxejes .contentejes p {
-  font-size: 14px;
-  color: #000;
-  margin: 0;
+.notificacion-evento .cerrar:hover {
+  color: #d32f2f; /* Color rojo más oscuro al pasar el mouse */
+}
+
+/* Animación para mostrar la notificación */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -45%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* Animación para desvanecer la notificación */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.notificacion-evento.fade-out {
+  animation: fadeOut 0.5s ease-in-out;
 }

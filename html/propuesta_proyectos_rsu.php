@@ -56,6 +56,9 @@
                         <a href="/html/equipo.php" class="nav-item nav-link">Equipo</a>
                         <a href="/html/Nosotros.php" class="nav-item nav-link">Nosotros</a>
                         <a href="/html/calendario.php" class="nav-item nav-link">Calendario</a>
+                        <?php if ($sessionActive): ?>
+                            <a href="/html/Contenido_Registros.php" class="nav-item nav-link">Informes</a>
+                        <?php endif; ?>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Proyectos</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
@@ -96,7 +99,6 @@
             </nav>
         </div>
     </div>
-
     <div class="container">
         <h1>Bienvenido a Propuesta de proyectos RSU</h1>
         <h2>Aquí podrás preparar tu documento de proyecto para la presentación</h2>
@@ -116,11 +118,11 @@
         <form id="proyecto-form" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nombre">Nombres y apellidos:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" required>
             </div>
             <div class="form-group">
                 <label for="codigo">Código de alumno:</label>
-                <input type="text" id="codigo" name="codigo" pattern="[0-9]*" maxlength="9" required>
+                <input type="text" id="codigo" name="codigo" pattern="\d{9}" title="Debe contener exactamente 9 dígitos" maxlength="9" required>
             </div>
             <div class="form-group">
                 <label for="facultad">Facultad:</label>
@@ -149,7 +151,7 @@
             </div>
             <div class="form-group">
                 <label for="telefono">Número de teléfono (solo números):</label>
-                <input type="text" id="telefono" name="telefono" pattern="[0-9]*" maxlength="9" required>
+                <input type="text" id="telefono" name="telefono" pattern="\d{9}" title="Debe contener exactamente 9 dígitos" maxlength="9" required>
             </div>
             <div class="form-group">
                 <label for="titulo_proyecto">Titulo del Proyecto:</label>
@@ -161,7 +163,7 @@
             </div>
             <div class="form-group">
                 <label for="correo">Correo electrónico:</label>
-                <input type="email" id="correo" name="correo" required>
+                <input type="email" id="correo" name="correo" pattern="^[a-zA-Z0-9._%+-]+@unfv\.edu\.pe$" title="Debe usar un correo con el dominio @unfv.edu.pe" required>
             </div>
             <div class="form-group">
                 <label for="archivo">Archivo de proyecto:</label>
@@ -170,6 +172,7 @@
             <button type="submit" class="button">Enviar</button>
         </form>
     </div>
+
 
     <script>
         document.getElementById('proyecto-form').addEventListener('submit', function(e) {

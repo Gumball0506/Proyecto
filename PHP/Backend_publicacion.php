@@ -135,9 +135,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch ($accion) {
         case 'obtener_proyectos':
             try {
-                $stmt = $pdo->query("SELECT p.ID_Proyecto, p.Titulo, p.Descripcion, p.Foto, p.url_registro, COALESCE(v.total_vistas, 0) AS total_vistas, e.ID_Estado AS Estado 
+                $stmt = $pdo->query("SELECT p.ID_Proyecto, p.Titulo, p.Descripcion, p.Foto, p.url_registro, e.ID_Estado AS Estado 
                                     FROM proyectos p
-                                    LEFT JOIN vistas_totales v ON p.ID_Proyecto = v.ID_Proyecto
                                     LEFT JOIN estado e ON p.ID_Estado = e.ID_Estado");
                 $proyectos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

@@ -328,9 +328,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             align-self: flex-start;
         }
     </style>
+    <script type="text/javascript">
+        function ajax() {
+            var req = new XMLHttpRequest();
+            req.onreadystatechange = function() {
+                if (req.readyState == 4 && req.status == 200) {
+                    document.getElementById('caja-chat').innerHTML = req.responseText;
+                }
+            }
+            req.open('GET', 'actualizar_chat.php?idConversacion=<?php echo $idConversacion; ?>', true);
+            req.send();
+        }
+
+        function openEditModal(mensajeId, mensajeTexto) {
+            document.getElementById('editModal').style.display = 'flex';
+            document.getElementById('editMensajeId').value = mensajeId;
+            document.getElementById('editMensajeTexto').value = mensajeTexto;
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        setInterval(function() {
+            ajax();
+        }, 1000);
+    </script>
 </head>
 
-<body>
+<body onload="ajax();">
     <div id="contenedor">
         <div id="caja-chat">
             <?php
@@ -383,6 +409,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script>
+        function ajax() {
+            var req = new XMLHttpRequest();
+            req.onreadystatechange = function() {
+                if (req.readyState == 4 && req.status == 200) {
+                    document.getElementById('chat').innerHTML = req.responseText;
+                }
+            }
+            req.open('GET', 'get_messages.php?id_conversacion=<?php echo $idConversacion; ?>', true);
+            req.send();
+        }
+
         function abrirModal(id, mensaje) {
             document.getElementById('mensaje_id').value = id;
             document.getElementById('editMessage').value = mensaje;

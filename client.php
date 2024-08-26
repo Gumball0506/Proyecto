@@ -1,39 +1,59 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $host = 'localhost';
 $dbname = 'proyecto_integrador';
 $username = 'root';
 $password = '';
 
-
 try {
-	// Conexión a la base de datos usando PDO
 	$pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+	// echo "Conexión exitosa a la base de datos."; // Comenta o elimina esta línea en producción
 } catch (PDOException $e) {
-	// Registrar el error y detener la ejecución
-	error_log("Error de conexión: " . $e->getMessage());
-	die("Error de conexión: " . $e->getMessage());
+	error_log("Error de conexión: " . $e->getMessage()); // Registra el error en el archivo de log del servidor
+	die("Error de conexión. Por favor, intente más tarde.");
 }
 
-// Contar el número de conversaciones
-$queryConversaciones = "SELECT COUNT(*) as total_conversaciones FROM conversaciones";
-$resultConversaciones = $pdo->query($queryConversaciones);
-$totalConversaciones = $resultConversaciones->fetch(PDO::FETCH_ASSOC)['total_conversaciones'];
+$query = "
+    SELECT 
+        e.ID_Estudiante,
+        e.Nombre,
+        e.Apellido,
+        e.Codigo_Estudiante,
+        IFNULL(p.Titulo, 'No se registró en ningún proyecto') AS Proyecto
+    FROM 
+        estudiantes e
+    LEFT JOIN 
+        registro_de_proyectos_voluntarios r ON e.ID_Estudiante = r.ID_Registro
+    LEFT JOIN 
+        proyectos p ON r.ID_Proyecto = p.ID_Proyecto
+    ORDER BY 
+        e.Apellido, e.Nombre;
+";
 
-// Contar el número total de mensajes
-$queryMensajes = "SELECT COUNT(*) as total_mensajes FROM mensajes";
-$resultMensajes = $pdo->query($queryMensajes);
-$totalMensajes = $resultMensajes->fetch(PDO::FETCH_ASSOC)['total_mensajes'];
+try {
+	$result = $pdo->query($query);
+	if ($result === false) {
+		throw new Exception('Error en la consulta.');
+	}
+	$estudiantes = $result->fetchAll(PDO::FETCH_ASSOC);
+	// var_dump($estudiantes); // Para depuración
+} catch (Exception $e) {
+	error_log("Error en la consulta: " . $e->getMessage());
+	die("Error al obtener los datos. Por favor, intente más tarde.");
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Home</title>
+	<title>Registro de proyectos</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/sweetalert2.css">
 	<link rel="stylesheet" href="css/material.min.css">
@@ -44,41 +64,8 @@ $totalMensajes = $resultMensajes->fetch(PDO::FETCH_ASSOC)['total_mensajes'];
 	<script>
 		window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
 	</script>
-	<script src="js/material.min.js"></script>
-	<script src="js/sweetalert2.min.js"></script>
-	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script src="js/main copy.js"></script>
 </head>
-<style>
-	.notificacion-evento {
-		position: fixed;
-		top: 10px;
-		right: 10px;
-		background-color: #f8d7da;
-		color: #721c24;
-		border: 1px solid #f5c6cb;
-		border-radius: 5px;
-		padding: 15px;
-		margin: 10px;
-		z-index: 1000;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		opacity: 1;
-		transition: opacity 0.5s ease;
-	}
-
-	.notificacion-evento.fade-out {
-		opacity: 0;
-	}
-
-	.cerrar {
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		cursor: pointer;
-		font-size: 18px;
-		color: #721c24;
-	}
-</style>
 
 <body>
 	<!-- navBar -->
@@ -220,29 +207,59 @@ $totalMensajes = $resultMensajes->fetch(PDO::FETCH_ASSOC)['total_mensajes'];
 		</div>
 	</section>
 	<section class="full-width pageContent">
-		<section class="full-width text-center" style="padding: 40px 0;">
-			<h3 class="text-center tittles">SISTEMA DE GESTION</h3>
-			<!-- Tile para mostrar el número de conversaciones -->
-			<article class="full-width tile">
-				<div class="tile-text">
-					<span class="text-condensedLight">
-						<?php echo $totalConversaciones; ?><br>
-						<small>Total de Conversaciones</small>
-					</span>
-				</div>
-				<i class="zmdi zmdi-comment-list tile-icon"></i>
-			</article>
-			<!-- Tile para mostrar el número de mensajes -->
-			<article class="full-width tile">
-				<div class="tile-text">
-					<span class="text-condensedLight">
-						<?php echo $totalMensajes; ?><br>
-						<small>Total de Mensajes</small>
-					</span>
-				</div>
-				<i class="zmdi zmdi-email tile-icon"></i>
-			</article>
+		<section class="full-width header-well">
+			<div class="full-width header-well-icon">
+				<i class="zmdi zmdi-accounts"></i>
+			</div>
+			<div class="full-width header-well-text">
+				<p class="text-condensedLight">
+					👩‍🎓👨‍🎓 Alumnos en Nuestra Comunidad 🌐
+
+					Aquí podrás ver el total de alumnos registrados en nuestra página, así como aquellos que están participando en proyectos específicos. 🚀📊
+
+
+				</p>
+			</div>
 		</section>
+		<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			<div class="mdl-tabs__panel" id="tabListClient">
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+						<div class="full-width panel mdl-shadow--2dp">
+							<div class="full-width panel-tittle bg-success text-center tittles">
+								🎓 Alumnos en esta Comunidad 🌟
+								<div class="full-width">
+									<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width">
+										<thead>
+											<tr>
+												<th class="text-center">ID Estudiante</th>
+												<th class="text-center">Nombre</th>
+												<th class="text-center">Apellido</th>
+												<th class="text-center">Código de Estudiante</th>
+												<th class="text-center">Proyecto</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach ($estudiantes as $estudiante): ?>
+												<tr>
+													<th class="text-center"><?php echo htmlspecialchars($estudiante['ID_Estudiante']); ?></th>
+													<th class="text-center"><?php echo htmlspecialchars($estudiante['Nombre']); ?></th>
+													<th class="text-center"><?php echo htmlspecialchars($estudiante['Apellido']); ?></th>
+													<th class="text-center"><?php echo htmlspecialchars($estudiante['Codigo_Estudiante']); ?></th>
+													<th class="text-center"><?php echo htmlspecialchars($estudiante['Proyecto']); ?></th>
+												</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
 	</section>
 </body>
 

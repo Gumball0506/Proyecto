@@ -17,18 +17,19 @@ try {
 
 try {
     $stmt = $pdo->prepare('
-    SELECT
-        e.Nombre,
-        e.Apellido,
-        p.Titulo_Proyecto,
-        e.Codigo_Estudiante,
-        e.Email,
-        e.ID_Estudiante,  -- Incluye este campo para usarlo en el enlace
-        p.ID_ProyectoA
-    FROM
-        proyectos_alumnos p
-    JOIN
-        estudiantes e ON p.ID_Estudiante = e.ID_Estudiante
+SELECT
+    e.Nombre,
+    e.Apellido,
+    e.Codigo_Estudiante,
+    e.Email,
+    e.ID_Estudiante
+FROM
+    proyectos_alumnos p
+JOIN
+    estudiantes e ON p.ID_Estudiante = e.ID_Estudiante
+GROUP BY
+    e.ID_Estudiante;
+
 ');
 
 
@@ -253,9 +254,7 @@ try {
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
                     <thead>
                         <tr>
-                            <th>ID_Proyectos</th>
                             <th class="mdl-data-table__cell--non-numeric">Nombres y Apellidos</th>
-                            <th>Titulo del proyecto</th>
                             <th>Codigo del estudiante</th>
                             <th>Correo Electronico</th>
                             <th>Opciones</th>
@@ -264,28 +263,16 @@ try {
                     <tbody>
                         <?php foreach ($proyectosAlumnos as $row): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($row['ID_ProyectoA']); ?></td>
                                 <td class="mdl-data-table__cell--non-numeric">
                                     <?php echo htmlspecialchars($row['Nombre']) . ' ' . htmlspecialchars($row['Apellido']); ?>
                                 </td>
-                                <td><?php echo htmlspecialchars($row['Titulo_Proyecto']); ?></td>
                                 <td><?php echo htmlspecialchars($row['Codigo_Estudiante']); ?></td>
                                 <td><?php echo htmlspecialchars($row['Email']); ?></td>
                                 <td>
                                     <div class="options-menu">
-                                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                            <i class="zmdi zmdi-more"></i>
-                                        </button>
-                                        <div class="options-content">
-                                            <!-- Enlace dinámico a la página de chat con los parámetros -->
-                                            <a href="chatbox.php?estudiante_id=<?php echo htmlspecialchars($row['ID_Estudiante']); ?>" class="btn btn-primary">
-                                                <button>Mensajes</button>
-                                            </a>
-                                            <button>Reporte</button>
-                                            <a href="/PHP/ver_documento.php?id=<?php echo htmlspecialchars($row['ID_ProyectoA']); ?>" class="btn btn-primary">
-                                                <button>Visualizar</button>
-                                            </a>
-                                        </div>
+                                        <a href="chatbox.php?estudiante_id=<?php echo htmlspecialchars($row['ID_Estudiante']); ?>" class="btn btn-primary">
+                                            <button>Mensajes</button>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

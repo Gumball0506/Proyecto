@@ -1,117 +1,86 @@
 <?php
 include 'conexion.php';
-/*
-    ----------------------------------------------------
-    Anti-Copyright
-    ----------------------------------------------------
-    Este trabajo es realizado por:
-    - Harold Ortiz Abra Loza
-    - William Vega
-    - Sergio Vidal
-    - Elizabeth Campos
-    - Lily Roque
-    ----------------------------------------------------
-    © 2024 Responsabilidad Social Universitaria. 
-    Todos los derechos reservados.
-    ----------------------------------------------------
-*/
-function cifrar($datos)
-{
-    $password = 'ABCD-1234.aer'; // Contraseña de cifrado
-    $metodo = 'AES-256-CBC'; // Método de cifrado
-    $ivSize = openssl_cipher_iv_length($metodo); // Tamaño del vector de inicialización
-    $iv = openssl_random_pseudo_bytes($ivSize); // Generar IV aleatorio
-    $datosCifrados = openssl_encrypt($datos, $metodo, $password, OPENSSL_RAW_DATA, $iv); // Cifrar los datos
-    return base64_encode($iv . $datosCifrados); // Retornar IV + datos cifrados en base64
-}
+session_start(); // Iniciar sesión para acceder a las variables de sesión
 
 try {
-    // Validar y sanitizar entradas
-    $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+    // Verificar y sanitizar entradas
     $titulo = filter_input(INPUT_POST, 'titulo_proyecto', FILTER_SANITIZE_STRING);
-    $codigo = filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_NUMBER_INT);
-    $facultad = filter_input(INPUT_POST, 'facultad', FILTER_SANITIZE_NUMBER_INT);
     $telefono = filter_input(INPUT_POST, 'telefono', FILTER_SANITIZE_NUMBER_INT);
     $descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
-    $correo = filter_input(INPUT_POST, 'correo', FILTER_VALIDATE_EMAIL);
     $archivo = $_FILES['archivo'];
 
-    if (!$nombre || !$codigo || !$titulo || !$facultad || !$telefono || !$descripcion || !$correo || !$archivo) {
-        throw new Exception('Datos inválidos.');
+    // Depuración: Imprimir datos recibidos
+    if (empty($titulo) || empty($telefono) || empty($descripcion) || empty($archivo)) {
+        throw new Exception('Datos inválidos. Verifique todos los campos.');
     }
 
-    // Obtener tipo de archivo
-    $fileExtension = pathinfo($archivo['name'], PATHINFO_EXTENSION);
-    $stmt = $pdo->prepare('SELECT ID_Tipo_Archivo FROM tipo_archivo WHERE Tipo LIKE :extension');
-    $stmt->execute([':extension' => '%' . $fileExtension . '%']);
-    $tipoArchivo = $stmt->fetchColumn();
+    if ($archivo['error'] !== UPLOAD_ERR_OK) {
+        throw new Exception('Error en la carga del archivo.');
+    }
 
-    if (!$tipoArchivo) {
+    // Verificar si el estudiante está logueado
+    if (!isset($_SESSION['estudiante_id'])) {
+        throw new Exception('Estudiante no autenticado.');
+    }
+    $estudianteId = $_SESSION['estudiante_id']; // Obtener el ID del estudiante desde la sesión
+
+    // Obtener tipo de archivo
+    $fileExtension = strtolower(pathinfo($archivo['name'], PATHINFO_EXTENSION));
+    $allowedExtensions = ['pdf', 'docx', 'doc', 'pptx', 'ppt', 'txt', 'jpg', 'png'];
+    if (!in_array($fileExtension, $allowedExtensions)) {
         throw new Exception('Tipo de archivo no permitido.');
     }
 
-    // Leer contenido del archivo
+    // Leer el contenido del archivo
     $archivoContenido = file_get_contents($archivo['tmp_name']);
     if ($archivoContenido === false) {
         throw new Exception('Error al leer el archivo.');
     }
 
-    // Comenzar transacción
-    $pdo->beginTransaction();
+    // Obtener ID_Tipo_Archivo desde la tabla tipo_archivo
+    $tipoArchivoQuery = $pdo->prepare('SELECT ID_Tipo_Archivo FROM tipo_archivo WHERE Tipo = :tipo');
+    $tipoArchivoQuery->execute([':tipo' => $fileExtension]);
+    $tipoArchivoResult = $tipoArchivoQuery->fetch(PDO::FETCH_ASSOC);
 
-    // Cifrar el correo antes de insertarlo
-    $correoCifrado = cifrar($correo);
+    if ($tipoArchivoResult) {
+        $tipoArchivo = $tipoArchivoResult['ID_Tipo_Archivo'];
+    } else {
+        throw new Exception('Tipo de archivo no encontrado en la base de datos.');
+    }
 
-    // Insertar datos en la tabla proyectos_alumnos
+    // Preparar y ejecutar la inserción en la base de datos
     $stmt = $pdo->prepare('
         INSERT INTO proyectos_alumnos (
-            Nombres_Apellidos,
             Titulo_Proyecto,
-            Codigo_alumno, 
             Descripcion, 
-            Correo_Electronico, 
             Archivo_Proyecto, 
             ID_Tipo_Archivo, 
-            ID_Facultad, 
             Numero_telefono, 
             Proceso,
-            ID_Admin
+            ID_Admin,
+            ID_Estudiante
         ) VALUES (
-            :nombre,
             :titulo_proyecto,
-            :codigo, 
             :descripcion, 
-            :correo, 
             :archivo, 
             :tipoArchivo, 
-            :facultad, 
             :telefono, 
             "Proceso",
-            1
+            1,
+            :estudiante_id
         )
     ');
 
     $stmt->execute([
-        ':nombre' => $nombre,
         ':titulo_proyecto' => $titulo,
-        ':codigo' => $codigo,
         ':descripcion' => $descripcion,
-        ':correo' => $correoCifrado, // Guardar el correo cifrado
         ':archivo' => $archivoContenido,
         ':tipoArchivo' => $tipoArchivo,
-        ':facultad' => $facultad,
-        ':telefono' => $telefono
+        ':telefono' => $telefono,
+        ':estudiante_id' => $estudianteId // Insertar el ID del estudiante
     ]);
 
-    // Commit de la transacción
-    $pdo->commit();
-
-    echo 'Datos guardados exitosamente.';
+    echo 'Formulario enviado exitosamente.';
 } catch (Exception $e) {
-    // Rollback en caso de error
-    if ($pdo->inTransaction()) {
-        $pdo->rollBack();
-    }
-
     echo 'Error: ' . $e->getMessage();
 }

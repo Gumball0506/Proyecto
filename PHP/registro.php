@@ -1,34 +1,39 @@
 <?php
-// Conexión a la base de datos
+// Mostrar errores para depuración
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Configuración de la base de datos
 $servername = "localhost";
-$username = "RSUFIEI";
-$password = "Bicicleta123*";
-$dbname = "Responsabilidad_Social";
+$username = "root";
+$password = "";
+$dbname = "proyecto_integrador";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    // Crear una conexión PDO
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
+    // Configurar el manejo de errores de PDO
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Obtener datos del formulario
-$nombre = $_POST['nombre'];
-$apellido = $_POST['apellido'];
-$email = $_POST['email'];
-$codigo = $_POST['codigo'];
-$id_facultad = $_POST['facultad'];
+    // Obtener datos del formulario
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $email = $_POST['email'];
+    $codigo = $_POST['codigo'];
+    $id_facultad = $_POST['facultad'];
 
-// Verificar si el email o el código ya están registrados
-$sql_check = "SELECT * FROM estudiantes WHERE Email = ? OR Codigo_Estudiante = ?";
-$stmt = $conn->prepare($sql_check);
-$stmt->bind_param("ss", $email, $codigo);
-$stmt->execute();
-$result = $stmt->get_result();
+    // Verificar si el email o el código ya están registrados
+    $sql_check = "SELECT * FROM estudiantes WHERE Email = :email OR Codigo_Estudiante = :codigo";
+    $stmt = $conn->prepare($sql_check);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':codigo', $codigo);
+    $stmt->execute();
 
-if ($result->num_rows > 0) {
-    // Si hay un registro existente con el mismo email o código
-    echo '<!DOCTYPE html>
+    if ($stmt->rowCount() > 0) {
+        // Si hay un registro existente con el mismo email o código
+        echo '<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -85,16 +90,20 @@ if ($result->num_rows > 0) {
     </div>
 </body>
 </html>';
-} else {
-    // Preparar la sentencia SQL
-    $sql_insert = "INSERT INTO estudiantes (Nombre, Apellido, Email, Codigo_Estudiante, ID_Facultad)
-                VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql_insert);
-    $stmt->bind_param("ssssi", $nombre, $apellido, $email, $codigo, $id_facultad);
+    } else {
+        // Preparar la sentencia SQL para insertar
+        $sql_insert = "INSERT INTO estudiantes (Nombre, Apellido, Email, Codigo_Estudiante, ID_Facultad)
+                       VALUES (:nombre, :apellido, :email, :codigo, :id_facultad)";
+        $stmt = $conn->prepare($sql_insert);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':apellido', $apellido);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':codigo', $codigo);
+        $stmt->bindParam(':id_facultad', $id_facultad);
 
-    // Ejecutar la consulta
-    if ($stmt->execute()) {
-        echo '<!DOCTYPE html>
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            echo '<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -151,11 +160,13 @@ if ($result->num_rows > 0) {
     </div>
 </body>
 </html>';
-    } else {
-        echo "Error: " . $stmt->error;
+        } else {
+            echo "Error: No se pudo completar el registro.";
+        }
     }
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
 }
 
 // Cerrar la conexión
-$stmt->close();
-$conn->close();
+$conn = null;

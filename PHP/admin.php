@@ -17,9 +17,9 @@
 */
 
 $servername = "localhost";
-$username = "RSUFIEI";
-$password = "Bicicleta123*";
-$dbname = "Responsabilidad_Social";
+$username = "root";
+$password = "";
+$dbname = "proyecto_integrador";
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);

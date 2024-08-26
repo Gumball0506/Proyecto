@@ -224,17 +224,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function fetchSolicitudes() {
-    const content = document.getElementById("content");
     content.innerHTML = "<h2>Cargando...</h2>";
     loadingOverlay.style.display = "flex";
 
     fetch("/PHP/gestionar_solicitudes.php")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
         loadingOverlay.style.display = "none";
         if (data.success) {
@@ -272,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <td>${solicitud.Titulo_Proyecto}</td>
               <td>${solicitud.Codigo_alumno}</td>
               <td>${solicitud.Correo_Electronico}</td>
-              <td>${renderAcciones(solicitud)}</td>
+              <td>${solicitud.Proceso || "Proceso"}</td>
               <td>${renderOpciones(solicitud)}</td>
           </tr>`;
     });
@@ -280,26 +274,6 @@ document.addEventListener("DOMContentLoaded", function () {
     solicitudesHTML += "</table>";
     content.innerHTML = solicitudesHTML;
   }
-
-  function renderAcciones(solicitud) {
-    const estadoActual = solicitud.Proceso || "Proceso";
-
-    return `
-        <button class="estado-boton ${
-          estadoActual === "Aceptado" ? "aceptado" : ""
-        }" data-estado="Aceptado" onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Aceptado')">Aceptar</button>
-        <button class="estado-boton ${
-          estadoActual === "Rechazado" ? "rechazado" : ""
-        }" data-estado="Rechazado" onclick="cambiarEstado(${solicitud.ID_ProyectoA}, 'Rechazado')">Rechazar</button>
-        <button class="estado-boton ${
-          estadoActual === "Proceso" ? "activo" : ""
-        }" data-estado="Informar" onclick="mostrarFormularioInformar(${solicitud.ID_ProyectoA})">Informar</button>
-        <button onclick="revertirEstado(${
-          solicitud.ID_ProyectoA
-        })">Revertir</button>
-    `;
-  }
-
   window.mostrarFormularioInformar = function (id) {
     const content = document.getElementById("content");
     document.getElementById("informarForm").style.display = "block";

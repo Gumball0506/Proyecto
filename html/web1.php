@@ -286,7 +286,7 @@ $sessionActive = isset($_SESSION['username']);
                             </div>
                         </div>
                         <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
-                        <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat" id="stat">Estadisticas</a>
+                        <a href="/home.php" class="nav-item nav-link" id="stat" id="stat">Panel administrador</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sesiones</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">

@@ -169,9 +169,9 @@
         <?php
         // Conectar a la base de datos
         $host = 'localhost';
-        $dbname = 'Responsabilidad_Social';
-        $username = 'RSUFIEI';
-        $password = 'Bicicleta123*';
+        $dbname = 'proyecto_integrador';
+        $username = 'root';
+        $password = '';
 
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -219,7 +219,6 @@
                 <strong>Nombre del Proyecto:</strong> <?php echo htmlspecialchars($proyecto['Titulo']); ?>
             </div>
         <?php endif; ?>
-
         <form id="registroForm" action="/PHP/procesar_registro.php" method="POST" onsubmit="return validarFormulario()">
             <input type="hidden" id="ID_Proyecto" name="ID_Proyecto" value="<?php echo htmlspecialchars($proyecto['ID_Proyecto']); ?>">
 

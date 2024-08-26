@@ -4,9 +4,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 $host = 'localhost';
-$dbname = 'Responsabilidad_Social';
-$username = 'RSUFIEI';
-$password = 'Bicicleta123*';
+$dbname = 'proyecto_integrador';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
@@ -19,14 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['email']) && !empty($_POST['codigo'])) {
         $email = $_POST['email'];
         $codigo = $_POST['codigo'];
-
         try {
             $sql = "SELECT * FROM estudiantes WHERE Email = :email AND Codigo_Estudiante = :codigo";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':codigo', $codigo, PDO::PARAM_STR);
             $stmt->execute();
-
             if ($stmt->rowCount() > 0) {
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 $_SESSION['estudiante_id'] = $row['ID_Estudiante'];

@@ -1,9 +1,9 @@
 <?php
 // Conectar a la base de datos
 $host = 'localhost';
-$dbname = 'Responsabilidad_Social';
-$username = 'RSUFIEI';
-$password = 'Bicicleta123*';
+$dbname = 'proyecto_integrador';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);

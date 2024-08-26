@@ -1,19 +1,7 @@
 <?php
-/*
-    ----------------------------------------------------
-    Anti-Copyright
-    ----------------------------------------------------
-    Este trabajo es realizado por:
-    - Harold Ortiz Abra Loza
-    - William Vega
-    - Sergio Vidal
-    - Elizabeth Campos
-    - Lily Roque
-    ----------------------------------------------------
-    © 2024 Responsabilidad Social Universitaria. 
-    Todos los derechos reservados.
-    ----------------------------------------------------
-*/
+session_start();
+$sessionActive = isset($_SESSION['username']);
+$isLoggedIn = isset($_SESSION['estudiante_id']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -32,13 +20,9 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    $sessionActive = isset($_SESSION['username']);
-    $isLoggedIn = isset($_SESSION['estudiante_id']);
-    ?>
     <script>
         var sessionActive = <?php echo json_encode($sessionActive); ?>;
+        var isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
     </script>
 
     <div class="container-fluid position-relative nav-bar p-0">
@@ -70,7 +54,7 @@
                             </div>
                         </div>
                         <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
-                        <a href="/html/dashboard_administrador.php" class="nav-item nav-link" id="stat" id="stat">Estadisticas</a>
+                        <a href="/html/dashboard_administrador.php" class="nav-item nav-link">Estadisticas</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sesiones</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
@@ -86,11 +70,11 @@
                         <?php endif; ?>
                         <script>
                             function confirmLogout(event) {
-                                event.preventDefault(); // Evita que el enlace se ejecute inmediatamente
+                                event.preventDefault();
                                 const userConfirmed = confirm('¿Seguro de cerrar sesión?');
 
                                 if (userConfirmed) {
-                                    window.location.href = '/PHP/cierre_sesion.php'; // Redirige a la página de cierre de sesión si se acepta
+                                    window.location.href = '/PHP/cierre_sesion.php';
                                 }
                             }
                         </script>
@@ -117,44 +101,7 @@
     <div class="container" id="formulario">
         <form id="proyecto-form" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="nombre">Nombres y apellidos:</label>
-                <input type="text" id="nombre" name="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" required>
-            </div>
-            <div class="form-group">
-                <label for="codigo">Código de alumno:</label>
-                <input type="text" id="codigo" name="codigo" pattern="\d{9}" title="Debe contener exactamente 9 dígitos" maxlength="9" required>
-            </div>
-            <div class="form-group">
-                <label for="facultad">Facultad:</label>
-                <select id="facultad" name="facultad" required>
-                    <option value="1">Facultad de Administración</option>
-                    <option value="2">Facultad de Ciencias Económicas</option>
-                    <option value="3">Facultad de Ciencias Financieras y Contables</option>
-                    <option value="4">Facultad de Ciencias Naturales y Matemática</option>
-                    <option value="5">Facultad de Ciencias Sociales</option>
-                    <option value="6">Facultad de Derecho y Ciencia Política</option>
-                    <option value="7">Facultad de Educación</option>
-                    <option value="8">Facultad de Enfermería</option>
-                    <option value="9">Facultad de Humanidades</option>
-                    <option value="10">Facultad de Ingeniería Civil</option>
-                    <option value="11">Facultad de Ingeniería de Sistemas y Computación</option>
-                    <option value="12">Facultad de Ingeniería Electrónica e Informática</option>
-                    <option value="13">Facultad de Ingeniería Geográfica, Ambiental y Ecología</option>
-                    <option value="14">Facultad de Ingeniería Industrial y de Sistemas</option>
-                    <option value="15">Facultad de Medicina</option>
-                    <option value="16">Facultad de Odontología</option>
-                    <option value="17">Facultad de Oceanografía, Pesquería, Ciencias Alimentarias y Biotecnología</option>
-                    <option value="18">Facultad de Psicología</option>
-                    <option value="19">Facultad de Arquitectura y Urbanismo</option>
-                    <option value="20">Facultad de Tecnología Médica</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="telefono">Número de teléfono (solo números):</label>
-                <input type="text" id="telefono" name="telefono" pattern="\d{9}" title="Debe contener exactamente 9 dígitos" maxlength="9" required>
-            </div>
-            <div class="form-group">
-                <label for="titulo_proyecto">Titulo del Proyecto:</label>
+                <label for="titulo_proyecto">Título del Proyecto:</label>
                 <textarea id="titulo_proyecto" name="titulo_proyecto" maxlength="200" required></textarea>
             </div>
             <div class="form-group">
@@ -162,8 +109,8 @@
                 <textarea id="descripcion" name="descripcion" maxlength="200" required></textarea>
             </div>
             <div class="form-group">
-                <label for="correo">Correo electrónico:</label>
-                <input type="email" id="correo" name="correo" pattern="^[a-zA-Z0-9._%+-]+@unfv\.edu\.pe$" title="Debe usar un correo con el dominio @unfv.edu.pe" required>
+                <label for="telefono">Número de teléfono (solo números):</label>
+                <input type="text" id="telefono" name="telefono" pattern="\d{9}" title="Debe contener exactamente 9 dígitos" maxlength="9" required>
             </div>
             <div class="form-group">
                 <label for="archivo">Archivo de proyecto:</label>
@@ -172,7 +119,6 @@
             <button type="submit" class="button">Enviar</button>
         </form>
     </div>
-
 
     <script>
         document.getElementById('proyecto-form').addEventListener('submit', function(e) {
@@ -187,7 +133,6 @@
                 .then(response => response.text())
                 .then(result => {
                     alert(result);
-                    // Limpiar el formulario después de enviar los datos
                     document.getElementById('proyecto-form').reset();
                 })
                 .catch(error => {

@@ -55,6 +55,7 @@
 </style>
 
 <body>
+<?php include '/PHP/seguimiento.php'; ?>
     <?php
     session_start();
     $sessionActive = isset($_SESSION['username']);

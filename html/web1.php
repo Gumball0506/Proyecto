@@ -271,8 +271,12 @@ $sessionActive = isset($_SESSION['username']);
                         <a href="/html/web1.php" class="nav-item nav-link active">Inicio</a>
                         <a href="/html/equipo.php" class="nav-item nav-link">Equipo</a>
                         <a href="/html/Nosotros.php" class="nav-item nav-link">Nosotros</a>
+                        <?php if ($isLoggedIn): ?>
+                            <a href="/html/Proceso_proyecto.php" class="nav-item nav-link">Proceso_Proyecto</a>
+                            <a href="/chat.php" class="nav-item nav-link">Comunicacion</a>
+                        <?php endif; ?>
                         <a href="/html/calendario.php" class="nav-item nav-link">Calendario</a>
-                        <?php if (!$sessionActive): ?>
+                        <?php if ($sessionActive): ?>
                             <a href="/html/Contenido_Registros.php" class="nav-item nav-link">Informes</a>
                         <?php endif; ?>
                         <div class="nav-item dropdown">
@@ -288,28 +292,28 @@ $sessionActive = isset($_SESSION['username']);
                         <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
                         <a href="/home.php" class="nav-item nav-link" id="stat" id="stat">Panel administrador</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sesiones</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <?php if (!$isLoggedIn && !$sessionActive): ?>
+                            <?php if (!$isLoggedIn && !$sessionActive): ?>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ingresar</a>
+                                <div class="dropdown-menu border-0 rounded-0 m-0">
                                     <a href="/html/inicio_de_sesion.php" class="dropdown-item">Administrador</a>
                                     <a href="/html/registro.html" class="dropdown-item">Registro</a>
                                     <a href="/html/login.html" class="dropdown-item">Ingreso</a>
-                                <?php endif; ?>
-                            </div>
+                                </div>
                         </div>
-                        <?php if ($isLoggedIn || $sessionActive): ?>
-                            <a href="#" class="nav-item nav-link" onclick="confirmLogout(event)">Salir</a>
-                        <?php endif; ?>
-                        <script>
-                            function confirmLogout(event) {
-                                event.preventDefault(); // Evita que el enlace se ejecute inmediatamente
-                                const userConfirmed = confirm('¿Seguro de cerrar sesión?');
+                    <?php endif; ?>
+                    <?php if ($isLoggedIn || $sessionActive): ?>
+                        <a href="#" class="nav-item nav-link" onclick="confirmLogout(event)">Salir</a>
+                    <?php endif; ?>
+                    <script>
+                        function confirmLogout(event) {
+                            event.preventDefault(); // Evita que el enlace se ejecute inmediatamente
+                            const userConfirmed = confirm('¿Seguro de cerrar sesión?');
 
-                                if (userConfirmed) {
-                                    window.location.href = '/PHP/cierre_sesion.php'; // Redirige a la página de cierre de sesión si se acepta
-                                }
+                            if (userConfirmed) {
+                                window.location.href = '/PHP/cierre_sesion.php'; // Redirige a la página de cierre de sesión si se acepta
                             }
-                        </script>
+                        }
+                    </script>
                     </div>
                 </div>
             </nav>
@@ -823,52 +827,6 @@ $sessionActive = isset($_SESSION['username']);
         </div>
     </div>
     </div>
-    <button class="contact-button" onclick="handleChatButton()">
-        <img src="https://img.icons8.com/ios/30/ffffff/chat.png" alt="Contacto">
-    </button>
-
-    <div id="chatBox" class="chat-box">
-        <header>
-            <span>Enviar Mensaje</span>
-            <span class="close" onclick="toggleChat()">✖</span>
-        </header>
-        <div class="content1">
-            <form id="messageForm" action="/PHP/mensaje.php" method="post">
-                <label for="asunto">Asunto:</label>
-                <input type="text" name="asunto" id="asunto" required>
-
-                <!-- Mensaje de advertencia -->
-                <p class="warning-message">
-                    Por favor, abstenerse de enviar mensajes extensos. Solo se aceptan preguntas o dudas breves. Si necesitas comunicarte de manera más discreta, utiliza el botón de contactos.
-                </p>
-
-                <label for="mensaje">Mensaje:</label>
-                <textarea name="mensaje" id="mensaje" rows="5" required></textarea>
-                <!-- Botones para enviar y cancelar -->
-                <div class="buttons">
-                    <button type="button" class="cancel" onclick="toggleChat()">Cancelar</button>
-                    <button type="submit" class="send">Enviar Mensaje</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        function toggleChat() {
-            var chatBox = document.getElementById('chatBox');
-            chatBox.classList.toggle('show');
-        }
-
-        function handleChatButton() {
-            <?php if ($isLoggedIn): ?>
-                toggleChat();
-            <?php else: ?>
-                alert('Por favor, inicie sesión para utilizar esta funcionalidad.');
-            <?php endif; ?>
-        }
-    </script>
-
-
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">

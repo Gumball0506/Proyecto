@@ -4,13 +4,14 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Incluye la biblioteca FPDF desde la ruta correcta
-require('C:/Users/harol/Proyecto web/fpdf/fpdf.php');
+require 'fpdf/fpdf.php';  // Asumiendo que `fpdf` está en el mismo directorio que `Reporte.php`
+
 
 // Conexión a la base de datos
 $host = 'localhost';
-$dbname = 'proyecto_integrador';
-$username = 'root';
-$password = '';
+$dbname = 'Responsabilidad_Social';
+$username = 'RSUFIEI';
+$password = 'Bicicleta123*';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
@@ -37,7 +38,7 @@ class PDF extends FPDF
     function Header()
     {
         // Logo
-        $this->Image('C:/Users/harol/Proyecto web/imagenes/logo_unfv.jpg', 10, 6, 30); // Ruta correcta de la imagen
+        $this->Image('imagenes/logo_unfv.jpg', 10, 6, 30); // Ruta correcta de la imagen
         $this->SetFont('Arial', 'B', 12);
         // Mover a la derecha
         $this->Cell(80);

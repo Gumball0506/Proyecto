@@ -19,9 +19,9 @@
 
 
     $host = 'localhost';
-    $dbname = 'proyecto_integrador';
-    $username = 'root';
-    $password = '';
+    $dbname = 'Responsabilidad_Social';
+    $username = 'RSUFIEI';
+    $password = 'Bicicleta123*';
 
     try {
         $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
@@ -56,7 +56,7 @@
             if ($stmt->rowCount() > 0) {
                 $_SESSION['username'] = $user; // Almacenar el nombre de usuario en la sesión
                 echo "<script>
-        window.location.href = '/html/publicaciones_public.php';
+        window.location.href = '/home.php';
     </script>";
             } else {
                 echo "<script>

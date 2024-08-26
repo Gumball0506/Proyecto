@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$dbname = 'proyecto_integrador';
-$username = 'root';
-$password = '';
+$dbname = 'Responsabilidad_Social';
+$username = 'RSUFIEI';
+$password = 'Bicicleta123*';
 session_start();
 $adminID = $_SESSION['username'];
 $isLoggedIn = isset($_SESSION['estudiante_id']);
@@ -120,10 +120,7 @@ GROUP BY
                     <img src="/imagenes/admin.png" alt="Avatar" class="img-responsive">
                 </div>
                 <figcaption class="navLateral-body-cr hide-on-tablet">
-                    <span>
-                        Panel de control<br>
-                        <small></small>
-                    </span>
+                    <span>Panel de control<br><small></small></span>
                 </figcaption>
             </figure>
             <div class="full-width tittles navLateral-body-tittle-menu">
@@ -131,104 +128,46 @@ GROUP BY
             </div>
             <nav class="full-width">
                 <ul class="full-width list-unstyle menu-principal">
-                    <li class="full-width">
-                        <a href="/html/web1.php" class="full-width">
-                            <div class="navLateral-body-cl">
-                                <i class="zmdi zmdi-view-dashboard"></i>
-                            </div>
-                            <div class="navLateral-body-cr hide-on-tablet">
-                                INICIO
-                            </div>
-                        </a>
-                    </li>
-                    <li class="full-width">
-                        <a href="home.php" class="full-width">
-                            <div class="navLateral-body-cl">
-                                <i class="zmdi zmdi-settings"></i>
-                            </div>
-                            <div class="navLateral-body-cr hide-on-tablet">
-                                PANEL DE GESTION
-                            </div>
-                        </a>
-                    </li>
-                    <li class="full-width">
-                        <a href="panel_mensajes.php" class="full-width">
-                            <div class="navLateral-body-cl">
-                                <i class="zmdi zmdi-email"></i>
-                            </div>
-                            <div class="navLateral-body-cr hide-on-tablet">
-                                MENSAJES
-                            </div>
-                        </a>
-                    </li>
-
+                    <!-- Navigation Links -->
+                    <li class="full-width"><a href="/html/web1.php" class="full-width">
+                            <div class="navLateral-body-cl"><i class="zmdi zmdi-view-dashboard"></i></div>
+                            <div class="navLateral-body-cr hide-on-tablet">INICIO</div>
+                        </a></li>
+                    <li class="full-width"><a href="home.php" class="full-width">
+                            <div class="navLateral-body-cl"><i class="zmdi zmdi-settings"></i></div>
+                            <div class="navLateral-body-cr hide-on-tablet">PANEL DE GESTION</div>
+                        </a></li>
+                    <li class="full-width"><a href="panel_mensajes.php" class="full-width">
+                            <div class="navLateral-body-cl"><i class="zmdi zmdi-email"></i></div>
+                            <div class="navLateral-body-cr hide-on-tablet">MENSAJES</div>
+                        </a></li>
                     <li class="full-width divider-menu-h"></li>
-                    <li class="full-width">
-                        <a href="#!" class="full-width btn-subMenu">
-                            <div class="navLateral-body-cl">
-                                <i class="zmdi zmdi-face"></i>
-                            </div>
-                            <div class="navLateral-body-cr hide-on-tablet">
-                                USUARIOS
-                            </div>
-                            <span class="zmdi zmdi-chevron-left"></span>
+                    <li class="full-width"><a href="#!" class="full-width btn-subMenu">
+                            <div class="navLateral-body-cl"><i class="zmdi zmdi-face"></i></div>
+                            <div class="navLateral-body-cr hide-on-tablet">USUARIOS</div><span class="zmdi zmdi-chevron-left"></span>
                         </a>
                         <ul class="full-width menu-principal sub-menu-options">
-                            <li class="full-width">
-                                <a href="/client.php" class="full-width">
-                                    <div class="navLateral-body-cl">
-                                        <i class="zmdi zmdi-accounts"></i>
-                                    </div>
-                                    <div class="navLateral-body-cr hide-on-tablet">
-                                        USUSARIOS REGISTRADOS
-                                    </div>
-                                </a>
-                            </li>
+                            <li class="full-width"><a href="/client.php" class="full-width">
+                                    <div class="navLateral-body-cl"><i class="zmdi zmdi-accounts"></i></div>
+                                    <div class="navLateral-body-cr hide-on-tablet">USUSARIOS REGISTRADOS</div>
+                                </a></li>
                         </ul>
                     </li>
                     <li class="full-width divider-menu-h"></li>
-                    <li class="full-width">
-                        <a href="inventory.php" class="full-width">
-                            <div class="navLateral-body-cl">
-                                <i class="zmdi zmdi-store"></i>
-                            </div>
-                            <div class="navLateral-body-cr hide-on-tablet">
-                                REGISTRO DE PROYECTOS
-                            </div>
-                        </a>
-                    </li>
+                    <li class="full-width"><a href="inventory.php" class="full-width">
+                            <div class="navLateral-body-cl"><i class="zmdi zmdi-store"></i></div>
+                            <div class="navLateral-body-cr hide-on-tablet">REGISTRO DE PROYECTOS</div>
+                        </a></li>
                     <li class="full-width divider-menu-h"></li>
-                    <li class="full-width">
-                        <a href="#!" class="full-width btn-subMenu">
-                            <div class="navLateral-body-cl">
-                                <i class="zmdi zmdi-wrench"></i>
-                            </div>
-                            <div class="navLateral-body-cr hide-on-tablet">
-                                SETTINGS
-                            </div>
-                            <span class="zmdi zmdi-chevron-left"></span>
+                    <li class="full-width"><a href="#!" class="full-width btn-subMenu">
+                            <div class="navLateral-body-cl"><i class="zmdi zmdi-wrench"></i></div>
+                            <div class="navLateral-body-cr hide-on-tablet">SETTINGS</div><span class="zmdi zmdi-chevron-left"></span>
                         </a>
                         <ul class="full-width menu-principal sub-menu-options">
-                            <li class="full-width">
-                                <a href="#!" class="full-width">
-                                    <div class="navLateral-body-cl">
-                                        <i class="zmdi zmdi-widgets"></i>
-                                    </div>
-                                    <div class="navLateral-body-cr hide-on-tablet">
-                                        OPTION
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="full-width">
-                                <a href="#!" class="full-width">
-                                    <div class="navLateral-body-cl">
-                                        <i class="zmdi zmdi-widgets"></i>
-                                    </div>
-                                    <div class="navLateral-body-cr hide-on-tablet">
-                                        OPTION
-                                    </div>
-                                </a>
-                            </li>
+                            <li class="full-width"><a href="/Reporte.php" class="full-width">
+                                    <div class="navLateral-body-cl"><i class="zmdi zmdi-widgets"></i></div>
+                                    <div class="navLateral-body-cr hide-on-tablet">Reportes</div>
+                                </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -243,7 +182,7 @@ GROUP BY
             </div>
             <div class="full-width header-well-text">
                 <p class="text-condensedLight">
-                    📂 En este apartado podrás visualizar los proyectos de los alumnos 📝. Explora cada propuesta 📊, revisa los archivos adjuntos 📎, y mantente al tanto del progreso 🚀.
+                    📂 En este apartado podrás comunicarte con los alumnos 📝. Explora cada propuesta 📊, revisa los archivos adjuntos 📎, y mantente al tanto del progreso 🚀.
                 </p>
             </div>
 

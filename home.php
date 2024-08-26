@@ -1,9 +1,8 @@
 <?php
 $host = 'localhost';
-$dbname = 'proyecto_integrador';
-$username = 'root';
-$password = '';
-
+$dbname = 'Responsabilidad_Social';
+$username = 'RSUFIEI';
+$password = 'Bicicleta123*';
 
 try {
 	// Conexión a la base de datos usando PDO
@@ -35,48 +34,80 @@ $totalMensajes = $resultMensajes->fetch(PDO::FETCH_ASSOC)['total_mensajes'];
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Home</title>
 	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/sweetalert2.css">
 	<link rel="stylesheet" href="css/material.min.css">
 	<link rel="stylesheet" href="css/material-design-iconic-font.min.css">
 	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
 	<link rel="stylesheet" href="css/main.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script>
-		window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
-	</script>
 	<script src="js/material.min.js"></script>
-	<script src="js/sweetalert2.min.js"></script>
 	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script src="js/main copy.js"></script>
+	<script src="progreso.js" defer></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <style>
-	.notificacion-evento {
-		position: fixed;
-		top: 10px;
-		right: 10px;
-		background-color: #f8d7da;
-		color: #721c24;
-		border: 1px solid #f5c6cb;
+	/* styles.css */
+	.container {
+		width: 80%;
+		margin: 0 auto;
+		padding: 20px;
+	}
+
+	#progressContainer {
+		margin-top: 20px;
+	}
+
+	.stage {
+		font-weight: bold;
+		margin-bottom: 5px;
+	}
+
+	.button-container {
+		margin-top: 10px;
+	}
+
+	.button-container button {
+		padding: 10px 20px;
+		margin-right: 10px;
+		border: none;
+		color: white;
+		background-color: #007bff;
 		border-radius: 5px;
-		padding: 15px;
-		margin: 10px;
-		z-index: 1000;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		opacity: 1;
-		transition: opacity 0.5s ease;
-	}
-
-	.notificacion-evento.fade-out {
-		opacity: 0;
-	}
-
-	.cerrar {
-		position: absolute;
-		top: 10px;
-		right: 10px;
 		cursor: pointer;
-		font-size: 18px;
-		color: #721c24;
+	}
+
+	.button-container button:hover {
+		background-color: #0056b3;
+	}
+
+	/* styles.css */
+	/* styles.css */
+
+	.progress-bar {
+		width: 100%;
+		background-color: #e0e0e0;
+		border-radius: 4px;
+		overflow: hidden;
+		margin-bottom: 10px;
+		/* Agregar margen si es necesario */
+	}
+
+	.progress-bar-inner {
+		height: 30px;
+		line-height: 30px;
+		color: white;
+		text-align: center;
+		background-color: #0000FF;
+		/* Azul para todas las etapas */
+		transition: width 1s;
+		/* Transición suave de 1 segundo */
+	}
+
+	/* Debug CSS */
+	.progress-bar-inner {
+		background-color: #00FF00 !important;
+		/* Verde brillante para depurar */
 	}
 </style>
 
@@ -87,8 +118,7 @@ $totalMensajes = $resultMensajes->fetch(PDO::FETCH_ASSOC)['total_mensajes'];
 			<i class="zmdi zmdi-more-vert btn-menu" id="btn-menu"></i>
 			<div class="mdl-tooltip" for="btn-menu">Menu</div>
 			<nav class="navBar-options-list">
-				<ul class="list-unstyle">
-				</ul>
+				<ul class="list-unstyle"></ul>
 			</nav>
 		</div>
 	</div>
@@ -104,10 +134,7 @@ $totalMensajes = $resultMensajes->fetch(PDO::FETCH_ASSOC)['total_mensajes'];
 					<img src="/imagenes/admin.png" alt="Avatar" class="img-responsive">
 				</div>
 				<figcaption class="navLateral-body-cr hide-on-tablet">
-					<span>
-						Panel de control<br>
-						<small></small>
-					</span>
+					<span>Panel de control<br><small></small></span>
 				</figcaption>
 			</figure>
 			<div class="full-width tittles navLateral-body-tittle-menu">
@@ -115,104 +142,46 @@ $totalMensajes = $resultMensajes->fetch(PDO::FETCH_ASSOC)['total_mensajes'];
 			</div>
 			<nav class="full-width">
 				<ul class="full-width list-unstyle menu-principal">
-					<li class="full-width">
-						<a href="/html/web1.php" class="full-width">
-							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-view-dashboard"></i>
-							</div>
-							<div class="navLateral-body-cr hide-on-tablet">
-								INICIO
-							</div>
-						</a>
-					</li>
-					<li class="full-width">
-						<a href="home.php" class="full-width">
-							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-settings"></i>
-							</div>
-							<div class="navLateral-body-cr hide-on-tablet">
-								PANEL DE GESTION
-							</div>
-						</a>
-					</li>
-					<li class="full-width">
-						<a href="panel_mensajes.php" class="full-width">
-							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-email"></i>
-							</div>
-							<div class="navLateral-body-cr hide-on-tablet">
-								MENSAJES
-							</div>
-						</a>
-					</li>
-
+					<!-- Navigation Links -->
+					<li class="full-width"><a href="/html/web1.php" class="full-width">
+							<div class="navLateral-body-cl"><i class="zmdi zmdi-view-dashboard"></i></div>
+							<div class="navLateral-body-cr hide-on-tablet">INICIO</div>
+						</a></li>
+					<li class="full-width"><a href="home.php" class="full-width">
+							<div class="navLateral-body-cl"><i class="zmdi zmdi-settings"></i></div>
+							<div class="navLateral-body-cr hide-on-tablet">PANEL DE GESTION</div>
+						</a></li>
+					<li class="full-width"><a href="panel_mensajes.php" class="full-width">
+							<div class="navLateral-body-cl"><i class="zmdi zmdi-email"></i></div>
+							<div class="navLateral-body-cr hide-on-tablet">MENSAJES</div>
+						</a></li>
 					<li class="full-width divider-menu-h"></li>
-					<li class="full-width">
-						<a href="#!" class="full-width btn-subMenu">
-							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-face"></i>
-							</div>
-							<div class="navLateral-body-cr hide-on-tablet">
-								USUARIOS
-							</div>
-							<span class="zmdi zmdi-chevron-left"></span>
+					<li class="full-width"><a href="#!" class="full-width btn-subMenu">
+							<div class="navLateral-body-cl"><i class="zmdi zmdi-face"></i></div>
+							<div class="navLateral-body-cr hide-on-tablet">USUARIOS</div><span class="zmdi zmdi-chevron-left"></span>
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
-							<li class="full-width">
-								<a href="/client.php" class="full-width">
-									<div class="navLateral-body-cl">
-										<i class="zmdi zmdi-accounts"></i>
-									</div>
-									<div class="navLateral-body-cr hide-on-tablet">
-										USUSARIOS REGISTRADOS
-									</div>
-								</a>
-							</li>
+							<li class="full-width"><a href="/client.php" class="full-width">
+									<div class="navLateral-body-cl"><i class="zmdi zmdi-accounts"></i></div>
+									<div class="navLateral-body-cr hide-on-tablet">USUSARIOS REGISTRADOS</div>
+								</a></li>
 						</ul>
 					</li>
 					<li class="full-width divider-menu-h"></li>
-					<li class="full-width">
-						<a href="inventory.php" class="full-width">
-							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-store"></i>
-							</div>
-							<div class="navLateral-body-cr hide-on-tablet">
-								REGISTRO DE PROYECTOS
-							</div>
-						</a>
-					</li>
+					<li class="full-width"><a href="inventory.php" class="full-width">
+							<div class="navLateral-body-cl"><i class="zmdi zmdi-store"></i></div>
+							<div class="navLateral-body-cr hide-on-tablet">REGISTRO DE PROYECTOS</div>
+						</a></li>
 					<li class="full-width divider-menu-h"></li>
-					<li class="full-width">
-						<a href="#!" class="full-width btn-subMenu">
-							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-wrench"></i>
-							</div>
-							<div class="navLateral-body-cr hide-on-tablet">
-								SETTINGS
-							</div>
-							<span class="zmdi zmdi-chevron-left"></span>
+					<li class="full-width"><a href="#!" class="full-width btn-subMenu">
+							<div class="navLateral-body-cl"><i class="zmdi zmdi-wrench"></i></div>
+							<div class="navLateral-body-cr hide-on-tablet">SETTINGS</div><span class="zmdi zmdi-chevron-left"></span>
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
-							<li class="full-width">
-								<a href="#!" class="full-width">
-									<div class="navLateral-body-cl">
-										<i class="zmdi zmdi-widgets"></i>
-									</div>
-									<div class="navLateral-body-cr hide-on-tablet">
-										OPTION
-									</div>
-								</a>
-							</li>
-							<li class="full-width">
-								<a href="#!" class="full-width">
-									<div class="navLateral-body-cl">
-										<i class="zmdi zmdi-widgets"></i>
-									</div>
-									<div class="navLateral-body-cr hide-on-tablet">
-										OPTION
-									</div>
-								</a>
-							</li>
+							<li class="full-width"><a href="/Reporte.php" class="full-width">
+									<div class="navLateral-body-cl"><i class="zmdi zmdi-widgets"></i></div>
+									<div class="navLateral-body-cr hide-on-tablet">Reportes</div>
+								</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -242,6 +211,12 @@ $totalMensajes = $resultMensajes->fetch(PDO::FETCH_ASSOC)['total_mensajes'];
 				</div>
 				<i class="zmdi zmdi-email tile-icon"></i>
 			</article>
+			<section class="container">
+				<h3 class="text-center tittles">Proceso de los proyectos</h3>
+				<div id="progressContainer">
+					<!-- Aquí se inyectarán las barras de progreso dinámicamente -->
+				</div>
+			</section>
 		</section>
 	</section>
 </body>

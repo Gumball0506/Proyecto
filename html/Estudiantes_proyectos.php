@@ -1,9 +1,9 @@
 <?php
 session_start();
 $host = 'localhost';
-$dbname = 'proyecto_integrador';
-$username = 'root';
-$password = '';
+$dbname = 'Responsabilidad_Social';
+$username = 'RSUFIEI';
+$password = 'Bicicleta123*';
 
 // Verifica si el estudiante está conectado
 if (!isset($_SESSION['estudiante_id'])) {

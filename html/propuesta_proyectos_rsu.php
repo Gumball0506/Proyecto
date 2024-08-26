@@ -24,7 +24,6 @@ $isLoggedIn = isset($_SESSION['estudiante_id']);
         var sessionActive = <?php echo json_encode($sessionActive); ?>;
         var isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
     </script>
-
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
@@ -39,6 +38,10 @@ $isLoggedIn = isset($_SESSION['estudiante_id']);
                         <a href="/html/web1.php" class="nav-item nav-link active">Inicio</a>
                         <a href="/html/equipo.php" class="nav-item nav-link">Equipo</a>
                         <a href="/html/Nosotros.php" class="nav-item nav-link">Nosotros</a>
+                        <?php if ($isLoggedIn): ?>
+                            <a href="/html/Proceso_proyecto.php" class="nav-item nav-link">Proceso_Proyecto</a>
+                            <a href="/chat.php" class="nav-item nav-link">Comunicacion</a>
+                        <?php endif; ?>
                         <a href="/html/calendario.php" class="nav-item nav-link">Calendario</a>
                         <?php if ($sessionActive): ?>
                             <a href="/html/Contenido_Registros.php" class="nav-item nav-link">Informes</a>
@@ -54,30 +57,30 @@ $isLoggedIn = isset($_SESSION['estudiante_id']);
                             </div>
                         </div>
                         <a href="https://forms.gle/JJ9c7M57P7y81Qsu7" class="nav-item nav-link">Contactos</a>
-                        <a href="/html/dashboard_administrador.php" class="nav-item nav-link">Estadisticas</a>
+                        <a href="/home.php" class="nav-item nav-link" id="stat" id="stat">Panel administrador</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sesiones</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <?php if (!$isLoggedIn && !$sessionActive): ?>
+                            <?php if (!$isLoggedIn && !$sessionActive): ?>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ingresar</a>
+                                <div class="dropdown-menu border-0 rounded-0 m-0">
                                     <a href="/html/inicio_de_sesion.php" class="dropdown-item">Administrador</a>
                                     <a href="/html/registro.html" class="dropdown-item">Registro</a>
                                     <a href="/html/login.html" class="dropdown-item">Ingreso</a>
-                                <?php endif; ?>
-                            </div>
+                                </div>
                         </div>
-                        <?php if ($isLoggedIn || $sessionActive): ?>
-                            <a href="#" class="nav-item nav-link" onclick="confirmLogout(event)">Salir</a>
-                        <?php endif; ?>
-                        <script>
-                            function confirmLogout(event) {
-                                event.preventDefault();
-                                const userConfirmed = confirm('¿Seguro de cerrar sesión?');
+                    <?php endif; ?>
+                    <?php if ($isLoggedIn || $sessionActive): ?>
+                        <a href="#" class="nav-item nav-link" onclick="confirmLogout(event)">Salir</a>
+                    <?php endif; ?>
+                    <script>
+                        function confirmLogout(event) {
+                            event.preventDefault(); // Evita que el enlace se ejecute inmediatamente
+                            const userConfirmed = confirm('¿Seguro de cerrar sesión?');
 
-                                if (userConfirmed) {
-                                    window.location.href = '/PHP/cierre_sesion.php';
-                                }
+                            if (userConfirmed) {
+                                window.location.href = '/PHP/cierre_sesion.php'; // Redirige a la página de cierre de sesión si se acepta
                             }
-                        </script>
+                        }
+                    </script>
                     </div>
                 </div>
             </nav>

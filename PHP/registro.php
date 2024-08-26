@@ -6,10 +6,9 @@ error_reporting(E_ALL);
 
 // Configuración de la base de datos
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "proyecto_integrador";
-
+$username = "RSUFIEI";
+$password = "Bicicleta123*";
+$dbname = "Responsabilidad_Social";
 try {
     // Crear una conexión PDO
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

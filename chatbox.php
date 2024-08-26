@@ -5,9 +5,9 @@ error_reporting(E_ALL);
 session_start();
 
 $servidor = "localhost";
-$usuario = "root";
-$password = "";
-$base_datos = "proyecto_integrador";
+$usuario = "RSUFIEI";
+$password = "Bicicleta123*";
+$base_datos = "Responsabilidad_Social";
 
 try {
     $conexion = new PDO("mysql:host=$servidor;dbname=$base_datos", $usuario, $password);

@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$dbname = 'proyecto_integrador';
-$username = 'root';
-$password = '';
+$dbname = 'Responsabilidad_Social';
+$username = 'RSUFIEI';
+$password = 'Bicicleta123*';
 /*
     ----------------------------------------------------
     Anti-Copyright
